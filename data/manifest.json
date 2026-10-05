@@ -1,0 +1,133 @@
+{
+ "built_at": "2026-10-05T14:56:50+00:00",
+ "python": "3.12.14",
+ "github": {
+  "status": "complete",
+  "repo": "streamlit/streamlit",
+  "run_started_at": "2026-10-05T14:39:47+00:00",
+  "run_finished_at": "2026-10-05T14:56:49+00:00",
+  "candidates_fetched_at": "2026-10-05T14:40:59+00:00",
+  "authenticated": true,
+  "requests_this_run": 1097,
+  "requests_previous_runs": 18,
+  "requests_total": 1115,
+  "params": {
+   "labels": [
+    "area:deployment",
+    "area:server",
+    "area:network",
+    "area:docker",
+    "feature:community-cloud",
+    "feature:config",
+    "feature:cli"
+   ],
+   "keywords": [
+    "websocket",
+    "reverse proxy",
+    "nginx",
+    "docker",
+    "kubernetes",
+    "baseUrlPath",
+    "XSRF",
+    "enableCORS",
+    "Please wait",
+    "connection error",
+    "server.port",
+    "server.address",
+    "_stcore",
+    "health check",
+    "load balancer",
+    "SSL",
+    "Azure",
+    "AWS",
+    "Heroku",
+    "sticky session"
+   ],
+   "since": "2021-01-01",
+   "per_keyword": 100,
+   "max_issues": 600,
+   "timeline": true
+  },
+  "selection_stats": {
+   "candidates": 664,
+   "dropped_pull_requests": 6,
+   "dropped_before_since": 112,
+   "eligible": 546,
+   "selected": 546
+  },
+  "sampling_method": "union of label listing and keyword search (state=all); drop PRs and issues created before `since`; order by (has domain label, #keyword hits, #comments) desc; keep top max_issues",
+  "n_selected": 546
+ },
+ "docs": {
+  "docs_repo": "https://github.com/streamlit/docs.git",
+  "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+  "parsed_at": "2026-10-05T14:39:47+00:00",
+  "api_json_version": "1.64.0",
+  "pages": 391,
+  "sections": 1547,
+  "config_options": 144,
+  "release_note_bullets": 1762,
+  "release_versions": 117,
+  "autofunction_rendered": 259,
+  "autofunction_missing": [
+   "ComponentResult",
+   "streamlit.connections.ExperimentalBaseConnection.reset",
+   "streamlit.connections.SnowparkConnection.query",
+   "streamlit.connections.SnowparkConnection.reset",
+   "streamlit.connections.SnowparkConnection.safe_session",
+   "streamlit.connections.SnowparkConnection.session"
+  ]
+ },
+ "cleaning": {
+  "built_at": "2026-10-05T14:56:50+00:00",
+  "comments_kept": 2233,
+  "comments_raw": 2701,
+  "issues": 546,
+  "issues_with_streamlit_version": 274,
+  "issues_closed_as_duplicate": 11,
+  "comments_removed_bot": 442,
+  "comments_removed_noise": 26,
+  "families": 531,
+  "families_with_duplicates": 16,
+  "issues_with_fixed_in": 75
+ },
+ "files": {
+  "issues.jsonl": {
+   "sha256": "0462d6943982a65e26ba467435f8eba47b62358175f074176596d128b3b5c9a0",
+   "records": 546,
+   "bytes": 4533988
+  },
+  "issue_families.json": {
+   "sha256": "21944e06055e9ec9f9340f1bd4af67343da675500842868ca5705b6eb66fa967",
+   "records": null,
+   "bytes": 670
+  },
+  "docs_sections.jsonl": {
+   "sha256": "9ecf08edc85ae92bee4e13b01cd2d6b89b974f2b9b6b50c4c9443f8ad2f19ec6",
+   "records": 1547,
+   "bytes": 2632752
+  },
+  "config_options.jsonl": {
+   "sha256": "2295c3bf46e011caa85fb1f405f76cedc569300cbb0ddfe4b8f179d7350e0c6f",
+   "records": 144,
+   "bytes": 125005
+  },
+  "release_notes.jsonl": {
+   "sha256": "2688fe7b2032be0ff2ca8e36ef9cdacec222d397e22349d003d8f9a4865dc60e",
+   "records": 1762,
+   "bytes": 1001123
+  },
+  "versions.json": {
+   "sha256": "4491113cb3b8519bf4e6fe55513b316df362aade5dc1d86822c9b9f5147246a5",
+   "records": null,
+   "bytes": 2917
+  }
+ },
+ "reproduce": [
+  "cp .env.example .env  # add GITHUB_TOKEN",
+  "PYTHONPATH=src python -m ssa.data.crawl_docs        # pinned by data/raw/docs.lock",
+  "PYTHONPATH=src python -m ssa.data.crawl_issues",
+  "PYTHONPATH=src python -m ssa.data.clean_issues",
+  "PYTHONPATH=src python -m ssa.data.manifest"
+ ]
+}

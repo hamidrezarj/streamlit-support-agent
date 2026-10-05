@@ -1,0 +1,20 @@
+{
+ "docs_repo": "https://github.com/streamlit/docs.git",
+ "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
+ "parsed_at": "2026-10-05T14:39:47+00:00",
+ "api_json_version": "1.64.0",
+ "pages": 391,
+ "sections": 1547,
+ "config_options": 144,
+ "release_note_bullets": 1762,
+ "release_versions": 117,
+ "autofunction_rendered": 259,
+ "autofunction_missing": [
+  "ComponentResult",
+  "streamlit.connections.ExperimentalBaseConnection.reset",
+  "streamlit.connections.SnowparkConnection.query",
+  "streamlit.connections.SnowparkConnection.reset",
+  "streamlit.connections.SnowparkConnection.safe_session",
+  "streamlit.connections.SnowparkConnection.session"
+ ]
+}

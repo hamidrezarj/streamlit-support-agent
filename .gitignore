@@ -1,0 +1,45 @@
+# ---------- secrets (never commit) ----------
+.env
+.env.*
+!.env.example
+
+# ---------- Python / tooling ----------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.ipynb_checkpoints/
+
+# ---------- editors / OS ----------
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ---------- data ----------
+# raw API dumps: large, contain GitHub usernames/avatars; re-creatable with the crawler
+# (use `dir/*` not `dir/` so the ! exceptions below can re-include single files)
+data/raw/*
+!data/raw/docs.lock
+!data/raw/docs_crawl_log.json
+data/raw/github/
+
+# derived index: rebuilt from data/processed with scripts/build_index.sh (~$0.02 embeddings)
+data/index/
+*.npy
+*.sqlite
+*.tmp
+
+# KEPT in git (the pinned, PII-scrubbed data version + results):
+#   data/processed/*        cleaned issues, docs sections, release notes (~8 MB)
+#   data/manifest.json      counts, docs commit, sha256 of every processed file
+#   data/selected_issues.json
+#   data/usage/ledger.jsonl API cost ledger (no keys) -> cost report
+#   data/eval/              evaluation results
+
+# ---------- course material ----------
+*.pdf

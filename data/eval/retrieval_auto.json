@@ -1,0 +1,2134 @@
+{
+ "built_at": "2026-10-05T16:17:15+00:00",
+ "n_tasks": {
+  "fix": 75,
+  "dup": 26,
+  "doc": 12
+ },
+ "metrics": {
+  "bm25": {
+   "fix": {
+    "recall@5": 0.607,
+    "hit@5": 0.613,
+    "recall@10": 0.653,
+    "hit@10": 0.653,
+    "recall@20": 0.667,
+    "hit@20": 0.667,
+    "mrr": 0.477
+   },
+   "dup": {
+    "recall@5": 0.596,
+    "hit@5": 0.731,
+    "recall@10": 0.702,
+    "hit@10": 0.808,
+    "recall@20": 0.808,
+    "hit@20": 0.923,
+    "mrr": 0.577
+   },
+   "doc": {
+    "recall@5": 0.417,
+    "hit@5": 0.417,
+    "recall@10": 0.583,
+    "hit@10": 0.583,
+    "recall@20": 0.583,
+    "hit@20": 0.583,
+    "mrr": 0.28
+   }
+  },
+  "dense": {
+   "fix": {
+    "recall@5": 0.733,
+    "hit@5": 0.733,
+    "recall@10": 0.813,
+    "hit@10": 0.813,
+    "recall@20": 0.867,
+    "hit@20": 0.867,
+    "mrr": 0.615
+   },
+   "dup": {
+    "recall@5": 0.644,
+    "hit@5": 0.769,
+    "recall@10": 0.75,
+    "hit@10": 0.846,
+    "recall@20": 0.885,
+    "hit@20": 0.962,
+    "mrr": 0.596
+   },
+   "doc": {
+    "recall@5": 0.417,
+    "hit@5": 0.417,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "hit@20": 0.5,
+    "mrr": 0.279
+   }
+  },
+  "hybrid": {
+   "fix": {
+    "recall@5": 0.72,
+    "hit@5": 0.72,
+    "recall@10": 0.813,
+    "hit@10": 0.813,
+    "recall@20": 0.88,
+    "hit@20": 0.88,
+    "mrr": 0.578
+   },
+   "dup": {
+    "recall@5": 0.702,
+    "hit@5": 0.808,
+    "recall@10": 0.75,
+    "hit@10": 0.846,
+    "recall@20": 0.913,
+    "hit@20": 1.0,
+    "mrr": 0.637
+   },
+   "doc": {
+    "recall@5": 0.417,
+    "hit@5": 0.417,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.667,
+    "hit@20": 0.667,
+    "mrr": 0.33
+   }
+  }
+ },
+ "per_task": [
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 2868,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 2936,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 4173,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 4173,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 5140,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 5152,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 5339,
+   "first_relevant_rank": 13
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 5793,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 5849,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 5965,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6087,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 6224,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6389,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6643,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6690,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6703,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6822,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6855,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 6935,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7046,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 7261,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7467,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 7467,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 7568,
+   "first_relevant_rank": 12
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 7569,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 7578,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7637,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7703,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 7731,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7855,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 7890,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 7946,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7954,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7994,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 7999,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8084,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 8098,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8149,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8195,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8320,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8321,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8496,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8500,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8606,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8629,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8738,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 8762,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 8844,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8901,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 8958,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9080,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9146,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9198,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9227,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9397,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9425,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9450,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9456,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 9579,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 9655,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 10043,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 10199,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 10302,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 10361,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 10397,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 10786,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 10897,
+   "first_relevant_rank": 8
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 10913,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11006,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11097,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11163,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11296,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11299,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 11299,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11300,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 11300,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11308,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11330,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 11356,
+   "first_relevant_rank": 23
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 11357,
+   "first_relevant_rank": 9
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11396,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11420,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 11488,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 11591,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 11670,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 12108,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 12113,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 12166,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 12743,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 13101,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 13280,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 13335,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 13335,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 13461,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 13600,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 13712,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 13773,
+   "first_relevant_rank": 9
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 14155,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 14290,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 14432,
+   "first_relevant_rank": 20
+  },
+  {
+   "mode": "bm25",
+   "kind": "doc",
+   "issue": 14571,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 14601,
+   "first_relevant_rank": 11
+  },
+  {
+   "mode": "bm25",
+   "kind": "dup",
+   "issue": 14960,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 15193,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 15740,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16296,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16341,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16390,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16391,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16631,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16676,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16678,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "bm25",
+   "kind": "fix",
+   "issue": 16697,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 2868,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 2936,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 4173,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 4173,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 5140,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 5152,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 5339,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 5793,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 5849,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 5965,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6087,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 6224,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6389,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6643,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6690,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6703,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6822,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6855,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 6935,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7046,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 7261,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7467,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 7467,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 7568,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 7569,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 7578,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7637,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7703,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 7731,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7855,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 7890,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 7946,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7954,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7994,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 7999,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8084,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 8098,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8149,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8195,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8320,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8321,
+   "first_relevant_rank": 12
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8496,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8500,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8606,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8629,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8738,
+   "first_relevant_rank": 10
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 8762,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 8844,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8901,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 8958,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9080,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9146,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9198,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9227,
+   "first_relevant_rank": 16
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9397,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9425,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9450,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9456,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 9579,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 9655,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 10043,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 10199,
+   "first_relevant_rank": 19
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 10302,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 10361,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 10397,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 10786,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 10897,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 10913,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11006,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11097,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11163,
+   "first_relevant_rank": 5
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11296,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11299,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 11299,
+   "first_relevant_rank": 17
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11300,
+   "first_relevant_rank": 10
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 11300,
+   "first_relevant_rank": 15
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11308,
+   "first_relevant_rank": 14
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11330,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 11356,
+   "first_relevant_rank": 25
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 11357,
+   "first_relevant_rank": 13
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11396,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11420,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 11488,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 11591,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 11670,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 12108,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 12113,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 12166,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 12743,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 13101,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 13280,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 13335,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 13335,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 13461,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 13600,
+   "first_relevant_rank": 5
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 13712,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 13773,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 14155,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 14290,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 14432,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "doc",
+   "issue": 14571,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 14601,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "dense",
+   "kind": "dup",
+   "issue": 14960,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 15193,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 15740,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16296,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16341,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16390,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16391,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16631,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16676,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16678,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "dense",
+   "kind": "fix",
+   "issue": 16697,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 2868,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 2936,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 4173,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 4173,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 5140,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 5152,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 5339,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 5793,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 5849,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 5965,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6087,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 6224,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6389,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6643,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6690,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6703,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6822,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6855,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 6935,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7046,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 7261,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7467,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 7467,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 7568,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 7569,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 7578,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7637,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7703,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 7731,
+   "first_relevant_rank": 11
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7855,
+   "first_relevant_rank": 10
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 7890,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 7946,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7954,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7994,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 7999,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8084,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 8098,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8149,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8195,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8320,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8321,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8496,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8500,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8606,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8629,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8738,
+   "first_relevant_rank": 13
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 8762,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 8844,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8901,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 8958,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9080,
+   "first_relevant_rank": 5
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9146,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9198,
+   "first_relevant_rank": 5
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9227,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9397,
+   "first_relevant_rank": 11
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9425,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9450,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9456,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 9579,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 9655,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 10043,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 10199,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 10302,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 10361,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 10397,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 10786,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 10897,
+   "first_relevant_rank": 9
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 10913,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11006,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11097,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11163,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11296,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11299,
+   "first_relevant_rank": 5
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 11299,
+   "first_relevant_rank": 18
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11300,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 11300,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11308,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11330,
+   "first_relevant_rank": 8
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 11356,
+   "first_relevant_rank": 19
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 11357,
+   "first_relevant_rank": 11
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11396,
+   "first_relevant_rank": 15
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11420,
+   "first_relevant_rank": 4
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 11488,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 11591,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 11670,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 12108,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 12113,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 12166,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 12743,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 13101,
+   "first_relevant_rank": 14
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 13280,
+   "first_relevant_rank": 14
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 13335,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 13335,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 13461,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 13600,
+   "first_relevant_rank": 8
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 13712,
+   "first_relevant_rank": 7
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 13773,
+   "first_relevant_rank": 20
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 14155,
+   "first_relevant_rank": 3
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 14290,
+   "first_relevant_rank": 12
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 14432,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "hybrid",
+   "kind": "doc",
+   "issue": 14571,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 14601,
+   "first_relevant_rank": 6
+  },
+  {
+   "mode": "hybrid",
+   "kind": "dup",
+   "issue": 14960,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 15193,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 15740,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16296,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16341,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16390,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16391,
+   "first_relevant_rank": 2
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16631,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16676,
+   "first_relevant_rank": null
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16678,
+   "first_relevant_rank": 1
+  },
+  {
+   "mode": "hybrid",
+   "kind": "fix",
+   "issue": 16697,
+   "first_relevant_rank": 1
+  }
+ ],
+ "query_embeddings_paid": 108
+}
