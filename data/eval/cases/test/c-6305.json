@@ -1,0 +1,87 @@
+{
+ "case_id": "c-6305",
+ "split": "test",
+ "bucket": "ambiguous",
+ "topic": "nginx-websocket",
+ "family_id": "fam:6305",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 6305,
+  "url": "https://github.com/streamlit/streamlit/issues/6305",
+  "title": "Unable to use Streamlit behind HTTP proxy due to websocket errors",
+  "body": "### Checklist\n\n### Summary\n\nStreamlit app is running inside a docker container behind a NGINX proxy under `/dashboard/` path.\n\nThe docker container is started as follows:\n`\ndocker run -d -p 49500:8080 $DOCKER_IMAGE\n`\nWhere `49500` is the external port, and `8080` is the internal NGINX port.\nNGINX forward all requests to `http://ip:49500/dashboard/` to the Streamlit app running in the internal port `8081`.\n\nThe Streamlit app is started as follows:\n`\nstreamlit run script.py --server.port=8081 --server.baseUrlPath=\"/dashboard/\" --browser.gatherUsageStats=false --theme.base=\"light\" --server.enableCORS=false --server.enableXsrfProtection=false &\n`\n\nAccessing the Streamlit app using the IP address works fine e.g. `http://ip:49500/dashboard/`.\n\nHowever, while accessing the Streamlit app using a HTTP reverse proxy does not work e.g.\n`https://server.domain.com:8443/cloud-automation-service/services/6/endpoints/mlops-dashboard-gui-92-6/`.\n\nOur HTTP reverse proxy forwards:\n`https://server.domain.com:8443/cloud-automation-service/services/6/endpoints/mlops-dashboard-gui-92-6/`\nto:\n`http://0.0.0.0:49500/dashboard/`\n\n### Screenshot 01\n[image]\n\n### Screenshot 02\n[image]\n\nChecking the logs from the HTTP reverse proxy it shows the Websocket was closed:\n[please ignore the IP addresses and ports]\n```\n2023-01-25 17:01:02.423 [qtp1454870101-30359] DEBUG org.ow2.proactive.pca.service.proxy.websocket.PCAWebSocketFilter - PCA Proxy received WebSocket request\n2023-01-25 17:01:02.496 [qtp1454870101-30359] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ClientWebSocketCreator - Handling WebSocket request for PSA service [1] with target service URL [ws://server.domain.com:53179/dashboard/stream]\n2023-01-25 17:01:02.498 [qtp1454870101-30359] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ClientWebSocket - WebSocket Proxy got connection from client: /78.199.116.24:53056\n2023-01-25 17:01:02.529 [qtp1454870101-30359] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ServiceWebSocketCreator - Web Socket Upgrade Request Headers : {Origin=[https://server.domain.com:8443/], X-Forwarded-Host=[server.domain.com:8443], X-Forwarded-Proto=[https], X-Forwarded-For=[78.199.116.24, 62.210.106.13], Accept-Language=[en-US,en;q=0.9,fr;q=0.8,pt;q=0.7,de;q=0.6], Accept-Encoding=[gzip, deflate, br], X-Forwarded-Server=[62.210.106.13]}\n2023-01-25 17:01:02.552 [HttpClient@45312537-31978] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ServiceWebSocket - WebSocket Proxy connected to service ws://server.domain.com:53179/dashboard/stream\n2023-01-25 17:01:02.552 [HttpClient@45312537-31978] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ServiceWebSocket - WebSocket session: WebSocketSession[websocket=JettyListenerEventDriver[org.ow2.proactive.pca.service.proxy.websocket.ServiceWebSocket],behavior=CLIENT,connection=WebSocketClientConnection@6ad8dbba::SocketChannelEndPoint@6ee75239{l=/127.0.0.1:59568,r=server.domain.com/127.0.1.1:53179,OPEN,fill=-,flush=-,to=1/3600000}{io=0/0,kio=0,kro=1}->WebSocketClientConnection@6ad8dbba[s=ConnectionState@2be5d181[OPENING],f=Flusher@362d70c5[IDLE][queueSize=0,aggregateSize=-1,terminated=null],g=Generator[CLIENT,validating],p=Parser@1a8478b1[ExtensionStack,s=START,c=0,len=0,f=null]],remote=WebSocketRemoteEndpoint@4ea68742[batching=true],incoming=JettyListenerEventDriver[org.ow2.proactive.pca.service.proxy.websocket.ServiceWebSocket],outgoing=ExtensionStack[queueSize=0,extensions=[],incoming=org.eclipse.jetty.websocket.common.WebSocketSession,outgoing=org.eclipse.jetty.websocket.client.io.WebSocketClientConnection]]\n2023-01-25 17:01:02.683 [qtp1454870101-27141] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ClientWebSocket - WebSocket Proxy received a close connection request from client /78.199.116.24:53056. Code: 1006, Disconnected\n2023-01-25 17:01:02.683 [qtp1454870101-27141] DEBUG org.ow2.proactive.pca.service.proxy.websocket.ServiceWebSocket - WebSocket Proxy received a close request from client server.domain.com/127.0.1.1:53179. Code: 1006, Disconnected.\n```\n\n### Reproducible Code Example\n\n```Python\nimport streamlit as st\n\nst.write(\"Hello, World!\")\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\nThe expected behavior is to be able to access the Streamlit app as follows\n\n[image]\n\n### Current Behavior\n\nThe current behavior is\n\n[image]\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.11.1\n- Python version: 3.8.12\n- Operating System: Debian GNU/Linux 11 (bullseye)\n- Browser: Chrome, Firefox\n- Virtual environment: Docker\n\n### Additional Information\n\n### Are you willing to submit a PR?\n\n- [ ] Yes, I am willing to submit a PR!",
+  "as_of": "2023-03-13T18:33:17Z"
+ },
+ "filters": {
+  "before": "2023-03-13T18:33:17Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "Streamlit 1.11.1 in Docker behind nginx under /dashboard/: websocket errors.",
+  "hypotheses": [
+   "proxy strips query params / path rewriting (baseUrlPath)",
+   "missing websocket upgrade",
+   "old version bug in message endpoint (fixed 1.20)"
+  ],
+  "missing_info": [
+   {
+    "item": "nginx location config + server.baseUrlPath value",
+    "why": "path prefix handling"
+   },
+   {
+    "item": "browser console error",
+    "why": "which request fails"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for nginx config; check baseUrlPath=dashboard and upgrade headers",
+   "Suggest upgrading (1.20 fixed ForwardMsgCache retrieval)"
+  ],
+  "must_not": [
+   "state the 1.18 endpoint rename is the cause (user is on 1.11.1)"
+  ],
+  "relevant_sources": [
+   "config:server.baseUrlPath",
+   "rn:1.20.0:2e089914",
+   "issue:3741",
+   "issue:3270"
+  ],
+  "reference": "Maintainer pointed to message-endpoint fix and query params; user to retest; others fixed via nginx location renames.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "case_id": "c-13102",
+ "split": "dev",
+ "bucket": "answerable",
+ "topic": "python-3.9-dropped",
+ "family_id": "fam:13102",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 13102,
+  "url": "https://github.com/streamlit/streamlit/issues/13102",
+  "title": "1.51.0 version of streamlit not showing in pip",
+  "body": "### Checklist\n\n### Summary\n\nThis is on Amazon EC2 Linux  2023\n\n$     uname -r\n6.1.158-178.288.amzn2023.x86_64\n\nI have upgraded the pip as well to latest version \n$     pip --version\npip 25.3 from /home/<user>/.local/lib/python3.9/site-packages/pip (python 3.9)\n\n$ pip index versions streamlit\nstreamlit (1.50.0)\nAvailable versions: 1.50.0, 1.49.1, 1.49.0, 1.48.1, 1.48.0, 1.47.1, 1.47.0, 1.46.1, 1.46.0, 1.45.1, 1.45.0, 1.44.1, 1.44.0, 1.43.2, 1.43.1, 1.43.0, 1.42.2, 1.42.1, 1.42.0, 1.41.1, 1.41.0, 1.40.2, 1.40.1, 1.40.0, 1.39.1, 1.39.0, 1.38.0, 1.37.1, 1.37.0, 1.36.0, 1.35.0, 1.34.0, 1.33.0, 1.32.2, 1.32.1, 1.32.0, 1.31.1, 1.31.0, 1.30.0, 1.29.0, 1.28.2, 1.28.1, 1.28.0, 1.27.2, 1.27.1, 1.27.0, 1.26.1, 1.26.0, 1.25.0, 1.24.1, 1.24.0, 1.23.1, 1.23.0, 1.22.0, 1.21.0, 1.20.0, 1.19.0, 1.18.1, 1.18.0, 1.17.0, 1.16.0, 1.15.2, 1.15.1, 1.15.0, 1.14.1, 1.14.0, 1.13.0, 1.12.2, 1.12.1, 1.12.0, 1.11.1, 1.11.0, 1.10.0, 1.9.2, 1.9.1, 1.9.0, 1.8.1, 1.8.0, 1.7.0, 1.6.0, 1.5.1, 1.5.0, 1.4.0, 1.3.1, 1.3.0, 1.2.0, 1.1.0, 1.0.0, 0.89.0, 0.88.0, 0.87.0, 0.86.0, 0.85.1, 0.85.0, 0.84.2, 0.84.1, 0.84.0, 0.83.0, 0.82.0, 0.81.1, 0.81.0, 0.80.0, 0.79.0, 0.78.0, 0.77.0, 0.76.0, 0.75.0, 0.74.1, 0.74.0, 0.73.1, 0.73.0, 0.72.0, 0.71.0, 0.70.0, 0.69.2, 0.69.1, 0.69.0, 0.68.1, 0.68.0, 0.67.1, 0.67.0, 0.66.0, 0.65.2, 0.65.1, 0.65.0, 0.64.0, 0.63.1, 0.63.0, 0.62.1, 0.62.0, 0.61.0, 0.60.0, 0.59.0, 0.58.0, 0.57.3, 0.57.2, 0.57.1, 0.57.0, 0.56.0, 0.55.0, 0.54.0, 0.53.0, 0.52.2, 0.52.1, 0.52.0, 0.51.0, 0.50.2, 0.50.1, 0.50.0, 0.49.0, 0.48.1, 0.48.0, 0.47.4, 0.47.3, 0.47.2, 0.47.1, 0.47.0, 0.46.0, 0.45.0, 0.44.0, 0.43.2, 0.43.1, 0.43.0, 0.42.0, 0.41.0, 0.40.1, 0.40.0, 0.37.0, 0.36.0, 0.35.0, 0.34.0, 0.33.0, 0.32.0, 0.31.0, 0.30.0, 0.29.0, 0.28.0, 0.27.0, 0.26.1, 0.26.0, 0.25.0, 0.24.3, 0.24.2, 0.24.1, 0.24.0, 0.23.0, 0.22.2, 0.22.1, 0.22.0, 0.21.0, 0.20.0, 0.19.1, 0.19.0, 0.18.1, 0.18.0, 0.17.2, 0.17.1, 0.17.0, 0.16.3, 0.16.2, 0.16.1, 0.16.0, 0.15.6, 0.15.5, 0.15.4, 0.15.3, 0.15.2, 0.15.1, 0.15.0, 0.14.2, 0.13.5, 0.13.3, 0.13.1, 0.13.0, 0.12.4, 0.12.3, 0.12.2, 0.11.0, 0.9.0, 0.8.2, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1\n  INSTALLED: 1.50.0\n  LATEST:    1.50.0\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n### Additional Information",
+  "as_of": "2025-11-24T10:58:54Z"
+ },
+ "filters": {
+  "before": "2025-11-24T10:58:54Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "usage_guidance",
+  "summary": "pip on EC2 shows max 1.50.0; user is on Python 3.9.",
+  "hypotheses": [
+   "Python 3.9 support dropped in 1.51",
+   "stale pip index/mirror"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Explain 1.51.0 dropped Python 3.9 (release notes) and recommend Python >= 3.10"
+  ],
+  "must_not": [
+   "ask for the Python version (visible in the pip path: python3.9)",
+   "blame PyPI caching as the main cause"
+  ],
+  "relevant_sources": [
+   "rn:1.51.0:817a9569",
+   "page:/knowledge-base/using-streamlit/sanity-checks"
+  ],
+  "reference": "Maintainer: 1.51.0 does not support Python 3.9; upgrade Python.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

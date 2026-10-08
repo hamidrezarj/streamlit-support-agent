@@ -1,0 +1,58 @@
+{
+ "built_at": "2026-10-05T16:43:08+00:00",
+ "n_cases": 32,
+ "per_split": {
+  "dev": {
+   "cases": 16,
+   "buckets": {
+    "answerable": 6,
+    "ambiguous": 5,
+    "escalate": 5
+   },
+   "multi_turn": 5,
+   "scenarios": 5
+  },
+  "test": {
+   "cases": 16,
+   "buckets": {
+    "answerable": 5,
+    "ambiguous": 6,
+    "escalate": 5
+   },
+   "multi_turn": 6,
+   "scenarios": 6
+  }
+ },
+ "n_scenarios": 11,
+ "cases_with_labelled_sources": 28,
+ "cross_split_max_similarity": [
+  {
+   "sim": 0.749,
+   "dev": 15326,
+   "test": 16341
+  },
+  {
+   "sim": 0.728,
+   "dev": 8149,
+   "test": 11509
+  },
+  {
+   "sim": 0.689,
+   "dev": 7867,
+   "test": 11509
+  },
+  {
+   "sim": 0.676,
+   "dev": 8149,
+   "test": 16341
+  },
+  {
+   "sim": 0.675,
+   "dev": 8149,
+   "test": 15378
+  }
+ ],
+ "cross_split_vectors_available": "32/32",
+ "hard_failures": [],
+ "warnings": []
+}

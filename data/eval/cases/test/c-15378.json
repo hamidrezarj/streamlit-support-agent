@@ -1,0 +1,82 @@
+{
+ "case_id": "c-15378",
+ "split": "test",
+ "bucket": "escalate",
+ "topic": "starlette-corporate-network",
+ "family_id": "fam:15378",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 15378,
+  "url": "https://github.com/streamlit/streamlit/issues/15378",
+  "title": "Running Streamlit with Starlette in Corporate Network",
+  "body": "### Checklist\n\n### Summary\n\nI have a Streamlit application with multiple subpages that I run within a corporate network. Due to the new functionalities, I would like to upgrade to Streamlit >= 1.57. However, I am encountering difficulties getting a minimal example to run, even though it works without issues on my private machine.\n\napp.py:\n```python\nimport streamlit as st\napp = st.App(\"test_page.py\")\n``` \n\ntest_page.py:\n\n```python\nimport streamlit as st\nst.header(\"Welcome\")\nst.write(\"This is the main page of the app.\")\n``` \n\nWhen I start app.py using streamlit run app.py, I can access the page at http://127.0.0.1:8501/, but I cannot see it at http://localhost:8501/. Instead I just see the loading screen:\n\n[image]\n\nWhen running on the server, I am facing similar issues. I expect that when I am able to run the application on localhost, it should be possible in the same way on the server.\n\nIn the Dev-Tools of the browser I see this message:\n_index.dkY5s53S.js:184 WebSocket connection to 'ws://localhost:8501/_stcore/stream' failed: WebSocket is closed before the connection is established._\n\nIn the Terminal I get the following error message: \n_Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)\nhandle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>\nTraceback (most recent call last):\n  File \"C:\\Users\\<user>\\.conda\\envs\\scnd_1_58\\Lib\\asyncio\\events.py\", line 88, in _run\n    self._context.run(self._callback, *self._args)\n  File \"C:\\Users\\<user>\\.conda\\envs\\scnd_1_58\\Lib\\asyncio\\proactor_events.py\", line 165, in _call_connection_lost\n    self._sock.shutdown(socket.SHUT_RDWR)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host\nException in callback _ProactorBasePipeTransport._call_connection_lost(None)\nhandle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>\nTraceback (most recent call last):\n  File \"C:\\Users\\<user>\\.conda\\envs\\scnd_1_58\\Lib\\asyncio\\events.py\", line 88, in _run\n    self._context.run(self._callback, *self._args)\n  File \"C:\\Users\\<user>\\.conda\\envs\\scnd_1_58\\Lib\\asyncio\\proactor_events.py\", line 165, in _call_connection_lost\n    self._sock.shutdown(socket.SHUT_RDWR)\nConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host_\n\nI would really happy to use the new version as it brings so much benefit for my use case. Unfortunately I tried various options for starting the application and all of them failed.\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.58\n- Python version: 3.12\n- Operating System: Windows\n- Browser: Chrome, Edge, Firefox\n\n### Additional Information",
+  "as_of": "2026-06-01T13:46:51Z"
+ },
+ "filters": {
+  "before": "2026-06-01T13:46:51Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "In a corporate network, Streamlit >=1.57 (Starlette) app doesn't load; works on private machine.",
+  "hypotheses": [
+   "proxy/auth in corporate network breaking websocket under new server",
+   "IPv4/IPv6 binding difference"
+  ],
+  "missing_info": [
+   {
+    "item": "does 1.56 (pre-Starlette) work in the same network",
+    "why": "isolates server change"
+   },
+   {
+    "item": "browser console websocket error",
+    "why": "where the connection fails"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for console errors and 1.56 comparison; escalate as regression with evidence"
+  ],
+  "must_not": [
+   "claim it is fixed"
+  ],
+  "relevant_sources": [
+   "rn:1.57.0:5ca3c99f"
+  ],
+  "reference": "Confirmed regression; open; later linked to authentication.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

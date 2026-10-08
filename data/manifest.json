@@ -1,6 +1,6 @@
 {
- "built_at": "2026-10-05T14:56:50+00:00",
- "python": "3.12.14",
+ "built_at": "2026-10-05T16:43:30+00:00",
+ "python": "3.10.12",
  "github": {
   "status": "complete",
   "repo": "streamlit/streamlit",
@@ -61,7 +61,7 @@
  "docs": {
   "docs_repo": "https://github.com/streamlit/docs.git",
   "docs_commit": "695e6ce2fb1b23afc6df66b40420ab0013ad72fd",
-  "parsed_at": "2026-10-05T14:39:47+00:00",
+  "parsed_at": "2026-10-05T16:43:06+00:00",
   "api_json_version": "1.64.0",
   "pages": 391,
   "sections": 1547,
@@ -79,7 +79,7 @@
   ]
  },
  "cleaning": {
-  "built_at": "2026-10-05T14:56:50+00:00",
+  "built_at": "2026-10-05T16:43:30+00:00",
   "comments_kept": 2233,
   "comments_raw": 2701,
   "issues": 546,
@@ -93,9 +93,9 @@
  },
  "files": {
   "issues.jsonl": {
-   "sha256": "0462d6943982a65e26ba467435f8eba47b62358175f074176596d128b3b5c9a0",
+   "sha256": "d2075151eca404a9073256155e374d93d8d8a897264684300e6d8e1a2eb883fd",
    "records": 546,
-   "bytes": 4533988
+   "bytes": 4534468
   },
   "issue_families.json": {
    "sha256": "21944e06055e9ec9f9340f1bd4af67343da675500842868ca5705b6eb66fa967",
@@ -113,9 +113,9 @@
    "bytes": 125005
   },
   "release_notes.jsonl": {
-   "sha256": "2688fe7b2032be0ff2ca8e36ef9cdacec222d397e22349d003d8f9a4865dc60e",
+   "sha256": "099ea12c71d0f2b21fc3d390db8d8394ed7c5350c418e7b4a595285f239f9071",
    "records": 1762,
-   "bytes": 1001123
+   "bytes": 1012486
   },
   "versions.json": {
    "sha256": "4491113cb3b8519bf4e6fe55513b316df362aade5dc1d86822c9b9f5147246a5",

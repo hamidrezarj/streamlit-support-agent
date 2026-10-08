@@ -20,6 +20,7 @@ Notes
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import logging
@@ -329,7 +330,8 @@ def parse_release_notes(repo: Path, sha: str) -> tuple[list[dict], dict]:
                 seen.add(key)
                 is_fix = "fix" in category.lower() or bool(re.match(r"^\W*\s*Bug fix", text, re.I))
                 rows.append({
-                    "id": f"rn:{version}:{len([r for r in rows if r['version'] == version])}",
+                    # content-based id: stable if bullets are added/reordered later
+                    "id": f"rn:{version}:{hashlib.sha1(text.encode()).hexdigest()[:8]}",
                     "type": "release_note",
                     "version": version,
                     "release_date": date,

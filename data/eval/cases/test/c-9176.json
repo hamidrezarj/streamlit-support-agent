@@ -1,0 +1,80 @@
+{
+ "case_id": "c-9176",
+ "split": "test",
+ "bucket": "answerable",
+ "topic": "watchdog-warning-flag",
+ "family_id": "fam:9176",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 9176,
+  "url": "https://github.com/streamlit/streamlit/issues/9176",
+  "title": "--global.disableWatchdogWarning deprecated in production.",
+  "body": "### Checklist\n\n### Summary\n\nI get the following error when I deploy my streamlit app which works locally to posit connect.\n```\nstreamlit.errors.DeprecationError:\n════════════════════════════════════════════════\nglobal.disableWatchdogWarning IS NO LONGER SUPPORTED.\n\nglobal.disableWatchdogWarning has been deprecated and will be removed in a future version.\n\nPlease update command-line argument or environment variable.\n════════════════════════════════════════════════\n```\n\nThis exception is still affecting me with version 1.37 of streamlit being deployed on posit connect. None of the recommendations in other forums helped. Can you please tell me how to fix this? I dont have a terminal in posit and cannot change the command that is used to run the streamlit app. I can define environment variables or create a config.toml file though.\n\n### Reproducible Code Example\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n### Additional Information",
+  "as_of": "2024-07-30T19:08:23Z"
+ },
+ "filters": {
+  "before": "2024-07-30T19:08:23Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "usage_guidance",
+  "summary": "Deprecation error for global.disableWatchdogWarning when deploying to Posit Connect.",
+  "hypotheses": [
+   "option set in config.toml/env/CLI by the user",
+   "set by the hosting platform's launch command"
+  ],
+  "missing_info": [
+   {
+    "item": "where the option could be set (config.toml, STREAMLIT_GLOBAL_DISABLE_WATCHDOG_WARNING env var, CLI)",
+    "why": "user vs platform"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Tell user to remove the option from config/env/CLI",
+   "If absent, the platform sets it -> contact Posit"
+  ],
+  "must_not": [
+   "escalate as Streamlit bug"
+  ],
+  "relevant_sources": [
+   "issue:7999",
+   "page:/develop/concepts/configuration/options"
+  ],
+  "reference": "Maintainer: remove option; if not set by you, Posit Connect likely sets it.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

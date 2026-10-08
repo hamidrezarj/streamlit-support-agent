@@ -1,0 +1,71 @@
+{
+ "case_id": "c-16341",
+ "split": "test",
+ "bucket": "escalate",
+ "topic": "cloud-starlette-1.4",
+ "family_id": "fam:16341",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 16341,
+  "url": "https://github.com/streamlit/streamlit/issues/16341",
+  "title": "Community Cloud installs incompatible Streamlit/Starlette versions causing GZipResponder TypeError on startup",
+  "body": "### Checklist\n\n### Summary\n\nI'm unable to deploy any Streamlit application on Streamlit Community Cloud.\n\nThe issue is reproducible with a minimal application.\n\nRepository contents:\n\napp.py\n\nimport streamlit as st\n\nst.title(\"Hello\")\n\nrequirements.txt\n\nstreamlit\n\nThe application never starts. The error occurs before my code is executed.\n\nDeployment log shows:\n\nUsing Python 3.14.6 environment\n\nInstalled packages include:\n\n- streamlit==1.61.0\n- starlette==1.4.0\n- uvicorn==0.52.1\n\nThe server then fails health checks with:\n\nTypeError: GZipResponder.__init__() missing 1 required keyword-only argument: 'thread_minimum_size'\n\nStack trace points to:\n\nstreamlit/web/server/starlette/starlette_gzip_middleware.py\n\nThe same error happens:\n\n- with a completely minimal app\n- with a requirements.txt containing only \"streamlit\"\n- after changing the configured Python version\n- with multiple different applications\n\nSince the application code is never executed, this appears to be an incompatibility in the deployment environment rather than in the app itself.\n\nCould you please investigate why Community Cloud is installing this package combination?\n\n### Reproducible Code Example\n\n```Python\nUsing Python 3.14.6 environment\n\nstreamlit==1.61.0\nstarlette==1.4.0\nuvicorn==0.52.1\n\nTypeError: GZipResponder.__init__() missing 1 required keyword-only argument: 'thread_minimum_size'\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n### Additional Information",
+  "as_of": "2026-08-05T10:54:32Z"
+ },
+ "filters": {
+  "before": "2026-08-05T10:54:32Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "Any app fails on Community Cloud: streamlit 1.61.0 + starlette 1.4.0 -> GZipResponder TypeError.",
+  "hypotheses": [
+   "new Starlette release incompatible with Streamlit"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Suggest pinning starlette to the previous version in requirements.txt as workaround",
+   "Escalate as platform-wide regression"
+  ],
+  "must_not": [
+   "blame the user's app code"
+  ],
+  "relevant_sources": [],
+  "reference": "Confirmed; starlette<1.4.0 workaround; fixed in 1.62.0.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

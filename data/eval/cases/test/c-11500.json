@@ -1,0 +1,74 @@
+{
+ "case_id": "c-11500",
+ "split": "test",
+ "bucket": "answerable",
+ "topic": "sessioninfo-bad-message",
+ "family_id": "fam:11500",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 11500,
+  "url": "https://github.com/streamlit/streamlit/issues/11500",
+  "title": "Bad message format: Tried to use SessionInfo before it was initialized",
+  "body": "### Checklist\n\n### Summary\n\nThe following issue does not seem to be resolved or is manifesting from a different root cause.\n[https://github.com/streamlit/streamlit/issues/9767](url)\n\nWithin the last couple of weeks, the \"Bad message format\" popup started appearing in my commercial application that uses Streamlit for the UI. We have not deployed a new version, changed the Docker container, or changed the application hosting. The Bad message format was not a problem before. \n\nOnce the dialog box is cleared, there is no issue with the application running as normal. *Is this notification needed on the front end at all???*\n\nI have tried multiple solutions with session_state variables, loading delays, and configuration file updates, but nothing I have tried resolves the error. \n\nI have no idea how to go about replicating this with a simpler code. While i cannot share my commercial codebase here, I would be happy to privately share on a screenshare with a developer working on the bug.\n\nPlease see additional details below. @user\n \n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n1. Start a session of the application BargeAI at https://barge-ai.com with a browser OR refresh the browser \n2. Login (or cookies activated)\n3. Wait for the application to load\n4. Bad message format dialog box appears\n5. Close Bad message format dialog box\n6. Application runs normally\n\n[image]\n\n### Expected Behavior\n\nSteps 4 & 5 above would not happen\n\n### Current Behavior\n\nERROR MESSAGE:\n\"Bad message format: Tried to use SessionInfo before it was initialized\"\n[image]\n\nCONSOLE:\nHere is the corresponding error message from the console.\nindex.DmrHunjf.js:811 Error: Tried to use SessionInfo before it was initialized\n    at get current (index.DmrHunjf.js:735:48883)\n    at App.handlePageProfileMsg (index.DmrHunjf.js:811:24732)\n    at Object.pageProfile (index.DmrHunjf.js:811:22384)\n    at Me (index.DmrHunjf.js:811:21802)\n    at App.handleMessage [as onMessage] (index.DmrHunjf.js:811:21864)\n    at WebsocketConnection.handleMessage (index.DmrHunjf.js:762:2855)\n\nELASTIC BEANSTALK DOCKER CONTAINER LOG:\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.11/site-packages/tornado/websocket.py\", line 1113, in wrapper\n    await fut\ntornado.iostream.StreamClosedError: Stream is closed\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.11/site-packages/tornado/websocket.py\", line 1115, in wrapper\n    raise WebSocketClosedError()\ntornado.websocket.WebSocketClosedError\nTask exception was never retrieved\nfuture: <Task finished name='Task-151850' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at /usr/local/lib/python3.11/site-packages/tornado/websocket.py:1111> exception=WebSocketClosedError()>\n\nADDITIONAL INFO:\nThe dialog box does not appear every time a new session is created but the occurrence is now frequent. It seems like the websocket may be disconnecting periodically with this new paradigm. Occasionally, in the upper right hand corner, I see the word \"CONNECTION\" or \"CONNECTING\" appear just before the message appears, which seems to signify that the websocket was disconnected. \n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.41.0\n- Python version: python:3.11-slim\n- Operating System: Docker running on 64bit Amazon Linux 2023/4.5.2 (AWS Elastic Beanstalk, EC2)\n- Browser: Chrome Version 136.0.7103.114 (Official Build) (x86_64)\n\n### Additional Information\n\nMost recent related issue:\n[https://github.com/streamlit/streamlit/issues/9767]",
+  "as_of": "2025-06-02T18:37:40Z"
+ },
+ "filters": {
+  "before": "2025-06-02T18:37:40Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "known_issue",
+  "summary": "'Bad message format: SessionInfo before it was initialized' popup in production, user states 1.41.0 (later corrected to 1.43.2).",
+  "hypotheses": [
+   "race condition fixed in 1.45.0",
+   "after upgrade: ForwardMsg MISS known in 1.45.0, fixed 1.45.1"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Explain patch landed in a later version (release notes 1.45.0) and recommend upgrading to latest patch (>=1.45.1)"
+  ],
+  "must_not": [
+   "ask for the version (given)"
+  ],
+  "relevant_sources": [
+   "rn:1.45.0:18cae91c",
+   "issue:11357"
+  ],
+  "reference": "Maintainer: fix is in a later release; after correction & upgrade to 1.45.0 user hit ForwardMsg MISS -> 1.45.1 fixed it.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

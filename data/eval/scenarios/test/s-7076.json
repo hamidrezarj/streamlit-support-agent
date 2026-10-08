@@ -1,0 +1,71 @@
+{
+ "id": "s-7076",
+ "issue": 7076,
+ "split": "test",
+ "covers": [
+  "real_followups",
+  "maintainer_reject"
+ ],
+ "steps": [
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 1652274012,
+   "text": "One additional note here -- The tests for the WebsocketConnection seem to think the result of the  health check should be  json in the form of ```{status: \"ok\"}``` rather than the string \"ok\". \n\n**The health check response**\n[image]\n\n**From the test**\n[image]",
+   "created_at": "2023-07-26T18:07:49Z",
+   "url": "https://github.com/streamlit/streamlit/issues/7076#issuecomment-1652274012",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "reject",
+   "reason": "Don't speculate about the JSON format; ask for the deployment details first."
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 1665566529,
+   "text": "One thing I did notice is that within the application, the healthcheck endpoint is called far more often than in other environments. When I look at the network tab, I see it being called perhaps every 5 minutes, versus when the application is deployed in the streamlit cloud, I never see it called in the network tab (I am on Chrome)",
+   "created_at": "2023-08-04T12:57:16Z",
+   "url": "https://github.com/streamlit/streamlit/issues/7076#issuecomment-1665566529",
+   "by_issue_author": true
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 1666007163,
+   "text": "Interestingly, there is also a very good chance I am getting a timeout. Just got this error while running a long running process, which caused the application to refresh. It tried to call the stcore/health endpoint. Potentially, if I have a long running process, perhaps this causes a timeout, which refreshes the application?\n\n[image]",
+   "created_at": "2023-08-04T18:20:31Z",
+   "url": "https://github.com/streamlit/streamlit/issues/7076#issuecomment-1666007163",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "awaiting_user",
+  "comments_posted": 2,
+  "must_not": [
+   "rejected proposal text appears in tracker",
+   "any tracker change from the rejected proposal"
+  ]
+ },
+ "case_id": "c-7076",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

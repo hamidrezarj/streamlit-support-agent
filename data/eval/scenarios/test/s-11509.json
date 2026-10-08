@@ -1,0 +1,51 @@
+{
+ "id": "s-11509",
+ "issue": 11509,
+ "split": "test",
+ "covers": [
+  "real_followups",
+  "case_switch"
+ ],
+ "interleave_with": "s-9140",
+ "steps": [
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "system",
+   "event": "switch_case",
+   "to": "s-9140"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 3019420957,
+   "text": "Hi, just for a proper closure, the command wasn't working for me as the code was using bootstrap.run(), which requires the arguments to be passed explicitly into the function like this:\n`bootstrap.run(\"app.py\", False, [], {\"server.baseUrlPath\": base_url_path})`\n\nAppreciate for the reply by the way.",
+   "created_at": "2025-06-30T14:37:45Z",
+   "url": "https://github.com/streamlit/streamlit/issues/11509#issuecomment-3019420957",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "answered",
+  "comments_posted": 2,
+  "must_not": [
+   "facts from #9140 (tornado, Windows) appear in this case",
+   "approval from #9140 used here"
+  ]
+ },
+ "case_id": "c-11509",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

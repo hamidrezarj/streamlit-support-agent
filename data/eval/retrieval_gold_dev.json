@@ -1,0 +1,1071 @@
+{
+ "split": "dev",
+ "built_at": "2026-10-06T14:07:05+00:00",
+ "metrics": {
+  "bm25": {
+   "recall@5": 0.412,
+   "hit@5": 0.6,
+   "recall@10": 0.492,
+   "hit@10": 0.667,
+   "recall@12": 0.492,
+   "hit@12": 0.667,
+   "mrr": 0.48,
+   "n_labelled_cases": 15
+  },
+  "dense": {
+   "recall@5": 0.434,
+   "hit@5": 0.733,
+   "recall@10": 0.49,
+   "hit@10": 0.733,
+   "recall@12": 0.546,
+   "hit@12": 0.8,
+   "mrr": 0.578,
+   "n_labelled_cases": 15
+  },
+  "hybrid": {
+   "recall@5": 0.401,
+   "hit@5": 0.667,
+   "recall@10": 0.468,
+   "hit@10": 0.667,
+   "recall@12": 0.481,
+   "hit@12": 0.667,
+   "mrr": 0.506,
+   "n_labelled_cases": 15
+  },
+  "grouped-bm25": {
+   "recall@5": 0.368,
+   "hit@5": 0.533,
+   "recall@10": 0.468,
+   "hit@10": 0.667,
+   "recall@12": 0.49,
+   "hit@12": 0.667,
+   "mrr": 0.422,
+   "n_labelled_cases": 15
+  },
+  "grouped-dense": {
+   "recall@5": 0.379,
+   "hit@5": 0.6,
+   "recall@10": 0.648,
+   "hit@10": 0.8,
+   "recall@12": 0.664,
+   "hit@12": 0.8,
+   "mrr": 0.517,
+   "n_labelled_cases": 15
+  },
+  "grouped-hybrid": {
+   "recall@5": 0.346,
+   "hit@5": 0.533,
+   "recall@10": 0.637,
+   "hit@10": 0.867,
+   "recall@12": 0.653,
+   "hit@12": 0.867,
+   "mrr": 0.463,
+   "n_labelled_cases": 15
+  }
+ },
+ "leaks": [],
+ "per_case": [
+  {
+   "mode": "bm25",
+   "case": "c-11647",
+   "bucket": "answerable",
+   "found": {
+    "issue:11357": 1,
+    "issue:11372": 3,
+    "issue:11299": 4
+   },
+   "missed": []
+  },
+  {
+   "mode": "bm25",
+   "case": "c-12709",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 1,
+    "issue:12089": 2,
+    "issue:11357": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-13102",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "rn:1.51.0:817a9569",
+    "page:/knowledge-base/using-streamlit/sanity-checks"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-13165",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 2,
+    "issue:11357": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881",
+    "rn:1.47.0:991c2abe"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-13461",
+   "bucket": "answerable",
+   "found": {
+    "issue:13389": 1,
+    "issue:13335": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "bm25",
+   "case": "c-13521",
+   "bucket": "escalate",
+   "found": {
+    "issue:9271": 1
+   },
+   "missed": [
+    "rn:0.47.0:d11ce33d",
+    "config:server.port"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-15326",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy",
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-16570",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:12089": 1,
+    "issue:11973": 2,
+    "issue:11357": 5,
+    "issue:11299": 9
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-5500",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:3177": 3
+   },
+   "missed": [
+    "issue:4001",
+    "page:/knowledge-base/deploy/remote-start"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-6956",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/knowledge-base/dependencies/libgl",
+    "page:/knowledge-base/dependencies/module-not-found-error"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-7867",
+   "bucket": "answerable",
+   "found": {
+    "config:client.toolbarMode": 1,
+    "page:/develop/concepts/configuration/options": 2
+   },
+   "missed": [
+    "page:/develop/concepts/architecture/app-chrome"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-8149",
+   "bucket": "escalate",
+   "found": {
+    "issue:4921": 6
+   },
+   "missed": []
+  },
+  {
+   "mode": "bm25",
+   "case": "c-8364",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "config:server.headless",
+    "page:/develop/concepts/architecture/architecture"
+   ]
+  },
+  {
+   "mode": "bm25",
+   "case": "c-9665",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:9465": 5
+   },
+   "missed": []
+  },
+  {
+   "mode": "bm25",
+   "case": "c-9781",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "issue:4516",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-11647",
+   "bucket": "answerable",
+   "found": {
+    "issue:11357": 1,
+    "issue:11372": 2
+   },
+   "missed": [
+    "issue:11299"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-12709",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 1,
+    "issue:11357": 2,
+    "issue:12089": 4
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-13102",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/using-streamlit/sanity-checks": 12
+   },
+   "missed": [
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-13165",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 2,
+    "issue:11357": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881",
+    "rn:1.47.0:991c2abe"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-13461",
+   "bucket": "answerable",
+   "found": {
+    "issue:13389": 1,
+    "issue:13335": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "dense",
+   "case": "c-13521",
+   "bucket": "escalate",
+   "found": {
+    "issue:9271": 1
+   },
+   "missed": [
+    "rn:0.47.0:d11ce33d",
+    "config:server.port"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-15326",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy",
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-16570",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:12089": 1,
+    "issue:11973": 3,
+    "issue:11357": 5
+   },
+   "missed": [
+    "issue:11299",
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-5500",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:4001": 4,
+    "issue:3177": 8,
+    "page:/knowledge-base/deploy/remote-start": 12
+   },
+   "missed": []
+  },
+  {
+   "mode": "dense",
+   "case": "c-6956",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/dependencies/module-not-found-error": 3,
+    "page:/knowledge-base/dependencies/libgl": 6
+   },
+   "missed": []
+  },
+  {
+   "mode": "dense",
+   "case": "c-7867",
+   "bucket": "answerable",
+   "found": {
+    "config:client.toolbarMode": 1
+   },
+   "missed": [
+    "page:/develop/concepts/architecture/app-chrome",
+    "page:/develop/concepts/configuration/options"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-8149",
+   "bucket": "escalate",
+   "found": {
+    "issue:4921": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "dense",
+   "case": "c-8364",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "config:server.headless",
+    "page:/develop/concepts/architecture/architecture"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-9665",
+   "bucket": "ambiguous",
+   "found": {},
+   "missed": [
+    "issue:9465"
+   ]
+  },
+  {
+   "mode": "dense",
+   "case": "c-9781",
+   "bucket": "escalate",
+   "found": {
+    "issue:4516": 1
+   },
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-11647",
+   "bucket": "answerable",
+   "found": {
+    "issue:11357": 1,
+    "issue:11372": 3,
+    "issue:11299": 8
+   },
+   "missed": []
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-12709",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 1,
+    "issue:11357": 2,
+    "issue:12089": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-13102",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "rn:1.51.0:817a9569",
+    "page:/knowledge-base/using-streamlit/sanity-checks"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-13165",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 2,
+    "issue:11357": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881",
+    "rn:1.47.0:991c2abe"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-13461",
+   "bucket": "answerable",
+   "found": {
+    "issue:13389": 1,
+    "issue:13335": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-13521",
+   "bucket": "escalate",
+   "found": {
+    "issue:9271": 1
+   },
+   "missed": [
+    "rn:0.47.0:d11ce33d",
+    "config:server.port"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-15326",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy",
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-16570",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:12089": 1,
+    "issue:11973": 2,
+    "issue:11357": 5,
+    "issue:11299": 12
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-5500",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:3177": 4,
+    "issue:4001": 6
+   },
+   "missed": [
+    "page:/knowledge-base/deploy/remote-start"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-6956",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/dependencies/module-not-found-error": 3
+   },
+   "missed": [
+    "page:/knowledge-base/dependencies/libgl"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-7867",
+   "bucket": "answerable",
+   "found": {
+    "config:client.toolbarMode": 1,
+    "page:/develop/concepts/configuration/options": 6
+   },
+   "missed": [
+    "page:/develop/concepts/architecture/app-chrome"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-8149",
+   "bucket": "escalate",
+   "found": {
+    "issue:4921": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-8364",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "config:server.headless",
+    "page:/develop/concepts/architecture/architecture"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-9665",
+   "bucket": "ambiguous",
+   "found": {},
+   "missed": [
+    "issue:9465"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "case": "c-9781",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "issue:4516",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-11647",
+   "bucket": "answerable",
+   "found": {
+    "issue:11357": 1,
+    "issue:11372": 3,
+    "issue:11299": 4
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-12709",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 1,
+    "issue:12089": 2,
+    "issue:11357": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-13102",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/using-streamlit/sanity-checks": 8
+   },
+   "missed": [
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-13165",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 2,
+    "issue:11357": 3
+   },
+   "missed": [
+    "rn:1.46.0:23b3f881",
+    "rn:1.47.0:991c2abe"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-13461",
+   "bucket": "answerable",
+   "found": {
+    "issue:13389": 1,
+    "issue:13335": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-13521",
+   "bucket": "escalate",
+   "found": {
+    "issue:9271": 1,
+    "rn:0.47.0:d11ce33d": 11
+   },
+   "missed": [
+    "config:server.port"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-15326",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy",
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-16570",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:12089": 1,
+    "issue:11973": 2,
+    "issue:11357": 5
+   },
+   "missed": [
+    "issue:11299",
+    "rn:1.46.0:23b3f881"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-5500",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:3177": 3,
+    "page:/knowledge-base/deploy/remote-start": 7
+   },
+   "missed": [
+    "issue:4001"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-6956",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/knowledge-base/dependencies/libgl",
+    "page:/knowledge-base/dependencies/module-not-found-error"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-7867",
+   "bucket": "answerable",
+   "found": {
+    "config:client.toolbarMode": 6,
+    "page:/develop/concepts/configuration/options": 7
+   },
+   "missed": [
+    "page:/develop/concepts/architecture/app-chrome"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-8149",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "issue:4921"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-8364",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "config:server.headless",
+    "page:/develop/concepts/architecture/architecture"
+   ]
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-9665",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:9465": 5
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-bm25",
+   "case": "c-9781",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "issue:4516",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-11647",
+   "bucket": "answerable",
+   "found": {
+    "issue:11357": 1,
+    "issue:11372": 2
+   },
+   "missed": [
+    "issue:11299"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-12709",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 1,
+    "issue:11357": 2,
+    "issue:12089": 4,
+    "rn:1.46.0:23b3f881": 10
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-13102",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/using-streamlit/sanity-checks": 6
+   },
+   "missed": [
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-13165",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 2,
+    "issue:11357": 3,
+    "rn:1.46.0:23b3f881": 10,
+    "rn:1.47.0:991c2abe": 11
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-13461",
+   "bucket": "answerable",
+   "found": {
+    "issue:13389": 1,
+    "issue:13335": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-13521",
+   "bucket": "escalate",
+   "found": {
+    "issue:9271": 1,
+    "rn:0.47.0:d11ce33d": 10
+   },
+   "missed": [
+    "config:server.port"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-15326",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy",
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-16570",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:12089": 1,
+    "issue:11973": 3,
+    "issue:11357": 5,
+    "rn:1.46.0:23b3f881": 10
+   },
+   "missed": [
+    "issue:11299"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-5500",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:4001": 4,
+    "page:/knowledge-base/deploy/remote-start": 7
+   },
+   "missed": [
+    "issue:3177"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-6956",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/dependencies/module-not-found-error": 6,
+    "page:/knowledge-base/dependencies/libgl": 8
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-7867",
+   "bucket": "answerable",
+   "found": {
+    "config:client.toolbarMode": 6,
+    "page:/develop/concepts/configuration/options": 7
+   },
+   "missed": [
+    "page:/develop/concepts/architecture/app-chrome"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-8149",
+   "bucket": "escalate",
+   "found": {
+    "issue:4921": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-8364",
+   "bucket": "escalate",
+   "found": {},
+   "missed": [
+    "config:server.headless",
+    "page:/develop/concepts/architecture/architecture"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-9665",
+   "bucket": "ambiguous",
+   "found": {},
+   "missed": [
+    "issue:9465"
+   ]
+  },
+  {
+   "mode": "grouped-dense",
+   "case": "c-9781",
+   "bucket": "escalate",
+   "found": {
+    "issue:4516": 1,
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy": 9
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-11647",
+   "bucket": "answerable",
+   "found": {
+    "issue:11357": 1,
+    "issue:11372": 3
+   },
+   "missed": [
+    "issue:11299"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-12709",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 1,
+    "issue:11357": 2,
+    "issue:12089": 3,
+    "rn:1.46.0:23b3f881": 10
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-13102",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/using-streamlit/sanity-checks": 7
+   },
+   "missed": [
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-13165",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:11973": 2,
+    "issue:11357": 3,
+    "rn:1.46.0:23b3f881": 10,
+    "rn:1.47.0:991c2abe": 11
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-13461",
+   "bucket": "answerable",
+   "found": {
+    "issue:13389": 1,
+    "issue:13335": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-13521",
+   "bucket": "escalate",
+   "found": {
+    "issue:9271": 1,
+    "rn:0.47.0:d11ce33d": 10
+   },
+   "missed": [
+    "config:server.port"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-15326",
+   "bucket": "answerable",
+   "found": {},
+   "missed": [
+    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy",
+    "rn:1.51.0:817a9569"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-16570",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:12089": 1,
+    "issue:11973": 2,
+    "issue:11357": 5,
+    "rn:1.46.0:23b3f881": 10
+   },
+   "missed": [
+    "issue:11299"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-5500",
+   "bucket": "ambiguous",
+   "found": {
+    "issue:3177": 4,
+    "page:/knowledge-base/deploy/remote-start": 7
+   },
+   "missed": [
+    "issue:4001"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-6956",
+   "bucket": "answerable",
+   "found": {
+    "page:/knowledge-base/dependencies/module-not-found-error": 6
+   },
+   "missed": [
+    "page:/knowledge-base/dependencies/libgl"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-7867",
+   "bucket": "answerable",
+   "found": {
+    "config:client.toolbarMode": 6,
+    "page:/develop/concepts/configuration/options": 7,
+    "page:/develop/concepts/architecture/app-chrome": 8
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-8149",
+   "bucket": "escalate",
+   "found": {
+    "issue:4921": 2
+   },
+   "missed": []
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-8364",
+   "bucket": "escalate",
+   "found": {
+    "page:/develop/concepts/architecture/architecture": 9
+   },
+   "missed": [
+    "config:server.headless"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-9665",
+   "bucket": "ambiguous",
+   "found": {},
+   "missed": [
+    "issue:9465"
+   ]
+  },
+  {
+   "mode": "grouped-hybrid",
+   "case": "c-9781",
+   "bucket": "escalate",
+   "found": {
+    "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy": 9
+   },
+   "missed": [
+    "issue:4516"
+   ]
+  }
+ ]
+}

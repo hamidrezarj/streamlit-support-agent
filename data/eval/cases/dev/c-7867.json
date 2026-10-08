@@ -1,0 +1,76 @@
+{
+ "case_id": "c-7867",
+ "split": "dev",
+ "bucket": "answerable",
+ "topic": "toolbar-mode",
+ "family_id": "fam:7867",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 7867,
+  "url": "https://github.com/streamlit/streamlit/issues/7867",
+  "title": "Setting STREAMLIT_CLIENT_TOOLBAR_MODE environment variable does not work",
+  "body": "### Checklist\n\n### Summary\n\nI'm trying to set the toolbar mode for my streamlit app using the environment variable:\n`STREAMLIT_CLIENT_TOOLBAR_MODE=viewer` \nHowever, this seems to have no effect and the toolbar is still visible. I have not used a command line flag for this variable, and so the environment variable should take precedent according to the following code:\nhttps://github.com/streamlit/streamlit/blob/49277083064190c732c0551157be6fb6c437fdcc/lib/streamlit/config.py#L1221\n\nFor the environment variable, I followed the syntax outlined in the [Streamlit Docs](https://docs.streamlit.io/library/advanced-features/configuration) (point 3)\n\n### Reproducible Code Example\n\n### Steps To Reproduce\n\n### Expected Behavior\n\nToolbar disappears\n\n### Current Behavior\n\nToolbar still present\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.28.2\n- Python version: 3.10.12\n- Operating System: Ubuntu\n- Browser: Safari\n\n### Additional Information",
+  "as_of": "2023-12-21T08:50:03Z"
+ },
+ "filters": {
+  "before": "2023-12-21T08:50:03Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "usage_guidance",
+  "summary": "STREAMLIT_CLIENT_TOOLBAR_MODE=viewer seems to have no effect (toolbar still visible).",
+  "hypotheses": [
+   "expected: 'viewer' hides only developer options; 'minimal' hides more",
+   "env var not picked up"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Explain the difference between viewer and minimal using the config docs; suggest minimal"
+  ],
+  "must_not": [
+   "escalate as a bug",
+   "claim env vars are not supported"
+  ],
+  "relevant_sources": [
+   "config:client.toolbarMode",
+   "page:/develop/concepts/architecture/app-chrome",
+   "page:/develop/concepts/configuration/options"
+  ],
+  "reference": "Maintainer: viewer only hides developer options, working as expected; use minimal.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

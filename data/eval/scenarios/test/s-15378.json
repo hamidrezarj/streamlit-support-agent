@@ -1,0 +1,45 @@
+{
+ "id": "s-15378",
+ "issue": 15378,
+ "split": "test",
+ "covers": [
+  "real_followups",
+  "step_limit"
+ ],
+ "steps": [
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 4599319685,
+   "text": "Hi Lukas, thanks for the response! I tried the proposed setting (along various other configurations) and it didn't work. I would love to use the new versions, as it would allow me preloading of data and integration of an API. I really appreciate the development of Streamlit over the past year — I think great progress has been made 👍",
+   "created_at": "2026-06-02T06:24:21Z",
+   "url": "https://github.com/streamlit/streamlit/issues/15378#issuecomment-4599319685",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "escalated",
+  "comments_posted": 2,
+  "must_not": [
+   "repeats the server.address suggestion the user already tried",
+   "exceeds step budget"
+  ]
+ },
+ "case_id": "c-15378",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

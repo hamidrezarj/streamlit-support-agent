@@ -1,0 +1,38 @@
+{
+ "_doc": "Hand-picked evaluation cases (draft by Claude, to be reviewed by the team). bucket = what a good response at as_of looks like: answerable (evidence existed -> usage guidance / known-issue explanation), ambiguous (must ask a discriminating question or propose a check), escalate (likely new/unconfirmed bug -> refer to maintainers with evidence). topic = near-duplicate group; a topic never spans dev and test. mt = multi-turn scenario built from the real thread.",
+ "cases": [
+  {"issue": 11647, "bucket": "answerable", "topic": "forwardmsg-miss", "split": "dev"},
+  {"issue": 16570, "bucket": "ambiguous",  "topic": "forwardmsg-miss", "split": "dev"},
+  {"issue": 13165, "bucket": "ambiguous",  "topic": "forwardmsg-miss", "split": "dev"},
+  {"issue": 12709, "bucket": "ambiguous",  "topic": "forwardmsg-miss", "split": "dev", "mt": true},
+  {"issue": 13102, "bucket": "answerable", "topic": "python-3.9-dropped", "split": "dev"},
+  {"issue": 15326, "bucket": "answerable", "topic": "python-3.9-dropped", "split": "dev"},
+  {"issue": 13521, "bucket": "escalate",   "topic": "server-port", "split": "dev"},
+  {"issue": 8149,  "bucket": "escalate",   "topic": "server-port", "split": "dev"},
+  {"issue": 7867,  "bucket": "answerable", "topic": "toolbar-mode", "split": "dev", "mt": true},
+  {"issue": 9665,  "bucket": "ambiguous",  "topic": "hang-after-upgrade", "split": "dev"},
+  {"issue": 8364,  "bucket": "escalate",   "topic": "offline-startup-hang", "split": "dev", "mt": true},
+  {"issue": 16030, "bucket": "escalate",   "topic": "websockets-16.1", "split": "dev"},
+  {"issue": 13461, "bucket": "answerable", "topic": "authlib-1.6", "split": "dev"},
+  {"issue": 5500,  "bucket": "ambiguous",  "topic": "please-wait-forever", "split": "dev", "mt": true},
+  {"issue": 9781,  "bucket": "escalate",   "topic": "cloud-incident", "split": "dev", "mt": true},
+  {"issue": 6956,  "bucket": "answerable", "topic": "opencv-on-cloud", "split": "dev"},
+
+  {"issue": 6095,  "bucket": "answerable", "topic": "endpoints-health", "split": "test"},
+  {"issue": 7076,  "bucket": "ambiguous",  "topic": "endpoints-health", "split": "test", "mt": true},
+  {"issue": 7856,  "bucket": "answerable", "topic": "nginx-websocket", "split": "test"},
+  {"issue": 6305,  "bucket": "ambiguous",  "topic": "nginx-websocket", "split": "test"},
+  {"issue": 6224,  "bucket": "answerable", "topic": "replicas-sticky-sessions", "split": "test"},
+  {"issue": 9680,  "bucket": "ambiguous",  "topic": "replicas-sticky-sessions", "split": "test"},
+  {"issue": 11500, "bucket": "answerable", "topic": "sessioninfo-bad-message", "split": "test", "mt": true},
+  {"issue": 8321,  "bucket": "ambiguous",  "topic": "sessioninfo-bad-message", "split": "test"},
+  {"issue": 9176,  "bucket": "answerable", "topic": "watchdog-warning-flag", "split": "test", "mt": true},
+  {"issue": 11509, "bucket": "ambiguous",  "topic": "base-url-path", "split": "test", "mt": true},
+  {"issue": 9140,  "bucket": "ambiguous",  "topic": "tornado-windows", "split": "test", "mt": true},
+  {"issue": 11670, "bucket": "escalate",   "topic": "websocket-ping-timeout", "split": "test"},
+  {"issue": 16341, "bucket": "escalate",   "topic": "cloud-starlette-1.4", "split": "test"},
+  {"issue": 15378, "bucket": "escalate",   "topic": "starlette-corporate-network", "split": "test", "mt": true},
+  {"issue": 5793,  "bucket": "escalate",   "topic": "xsrf-cookie", "split": "test"},
+  {"issue": 14432, "bucket": "escalate",   "topic": "metrics-endpoint", "split": "test"}
+ ]
+}

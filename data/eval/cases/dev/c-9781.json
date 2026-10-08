@@ -1,0 +1,83 @@
+{
+ "case_id": "c-9781",
+ "split": "dev",
+ "bucket": "escalate",
+ "topic": "cloud-incident",
+ "family_id": "fam:9781",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 9781,
+  "url": "https://github.com/streamlit/streamlit/issues/9781",
+  "title": "Endless \"Your app is in the oven\"",
+  "body": "### Checklist\n\n### Summary\n\nApp link: https://andrei-lock-empty-or-full-resnet18-53nn5p.streamlit.app\nApp is not deploying\n\n### Reproducible Code Example\n\n### Steps To Reproduce\n\n1. Try to deploy the app\n2. Endless \"Your app is in the oven\"\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [x] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: stramlit server\n- Python version: streamlit server\n- Operating System: Windows 10\n- Browser: Chrome\n\n### Additional Information\n\nConsole log:\n[     UTC     ] Logs for andrei-lock-empty-or-full-resnet18-53nn5p.streamlit.app/\n[09:39:54] 🖥 Provisioning machine...\n[09:39:54] 🎛 Preparing system...\n[09:39:54] ⛓ Spinning up manager process...",
+  "as_of": "2024-11-04T09:56:35Z"
+ },
+ "filters": {
+  "before": "2024-11-04T09:56:35Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "Community Cloud deploy stuck at 'Your app is in the oven'.",
+  "hypotheses": [
+   "Community Cloud platform incident",
+   "dependency/build problem visible in logs"
+  ],
+  "missing_info": [
+   {
+    "item": "deploy logs from 'Manage app'",
+    "why": "build error vs platform"
+   },
+   {
+    "item": "does a minimal template app deploy",
+    "why": "isolates platform vs repo"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for logs / try minimal app; route to Community Cloud support (platform issue, not OSS library)"
+  ],
+  "must_not": [
+   "mark resolved before the user confirms"
+  ],
+  "relevant_sources": [
+   "issue:4516",
+   "page:/deploy/streamlit-community-cloud/deploy-your-app/deploy"
+  ],
+  "reference": "Cloud incident; resolved next day; user confirmed working.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

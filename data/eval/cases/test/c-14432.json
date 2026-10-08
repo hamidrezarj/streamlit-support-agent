@@ -1,0 +1,70 @@
+{
+ "case_id": "c-14432",
+ "split": "test",
+ "bucket": "escalate",
+ "topic": "metrics-endpoint",
+ "family_id": "fam:14432",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 14432,
+  "url": "https://github.com/streamlit/streamlit/issues/14432",
+  "title": "Error from prometheus when scraping /_stcore/metrics",
+  "body": "### Checklist\n\n### Summary\n\nError from prometheus when scraping /_stcore/metrics:\nError scraping target: unit \"seconds\" not a suffix of metrics \"session_duration_seconds_total\"\n\nI believe the unit seconds should be at the end:\n\"session_duration_total_seconds\" \n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n1. Scrape /_stcore/metrics endpoint with prometheus\n2. Check the error in prometheus > Status > Target health \n\n### Expected Behavior\n\nTarget health status in prometheus up. \n\n### Current Behavior\n\nTarget health status in prometheus down. Error scraping target: unit \"seconds\" not a suffix of metrics \"session_duration_seconds_total\" \n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.55.0\n- Python version: 3.13\n- Operating System: linux\n- Browser: chrome \n\n### Additional Information",
+  "as_of": "2026-03-20T05:57:16Z"
+ },
+ "filters": {
+  "before": "2026-03-20T05:57:16Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "Prometheus fails scraping /_stcore/metrics: unit suffix naming.",
+  "hypotheses": [
+   "metric naming not OpenMetrics compliant"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Escalate as bug with the exact Prometheus error"
+  ],
+  "must_not": [
+   "ask for repro steps (given)"
+  ],
+  "relevant_sources": [],
+  "reference": "Confirmed; metrics made OpenMetrics-compliant in 1.56.0.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

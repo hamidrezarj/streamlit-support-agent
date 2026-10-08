@@ -1,0 +1,73 @@
+{
+ "case_id": "c-8149",
+ "split": "dev",
+ "bucket": "escalate",
+ "topic": "server-port",
+ "family_id": "fam:8149",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 8149,
+  "url": "https://github.com/streamlit/streamlit/issues/8149",
+  "title": "Could not run streamlit on `3000` port. ",
+  "body": "### Checklist\n\n### Summary\n\nWhen I try to run stremalit application with `streamlit run app.py --server.port=3000` the streamlit app failed to load. \n\nThis happens because we detect the dev environment based on port number, so in the case of `server.port=3000` it is falsly thinks that we are in development mode. \n\n### Reproducible Code Example\n\n```Python\nstreamlit run app.py --server.port=3000\n```\n\n### Steps To Reproduce\n\nTry to run arbitrary streamlit application on `3000` port\n\n### Expected Behavior\n\nIt should work correctly, similarly to any other available port.\n\n### Current Behavior\n\nIt fails to load. \n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n### Additional Information",
+  "as_of": "2024-02-13T15:44:55Z"
+ },
+ "filters": {
+  "before": "2024-02-13T15:44:55Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "App fails to load with --server.port=3000 (dev-mode detection by port).",
+  "hypotheses": [
+   "frontend treats port 3000 as dev server and connects to 8501"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Confirm known behaviour (see #4921 diagnosis), workaround: use another port",
+   "Escalate as bug"
+  ],
+  "must_not": [
+   "treat it as a user configuration error"
+  ],
+  "relevant_sources": [
+   "issue:4921"
+  ],
+  "reference": "Confirmed; warning added in 1.32.0, port 3000 supported in 1.46.0.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

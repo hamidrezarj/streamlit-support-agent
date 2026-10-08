@@ -1,0 +1,86 @@
+{
+ "case_id": "c-12709",
+ "split": "dev",
+ "bucket": "ambiguous",
+ "topic": "forwardmsg-miss",
+ "family_id": "fam:12709",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 12709,
+  "url": "https://github.com/streamlit/streamlit/issues/12709",
+  "title": "Connection error",
+  "body": "### Checklist\n\n### Summary\n\nConnection error\nFailed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=55d28271fbcfc8f9930c70de136ab02e]. This is not expected to happen. Please [report this bug](https://github.com/streamlit/streamlit/issues).\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n### Additional Information",
+  "as_of": "2025-10-07T11:24:49Z"
+ },
+ "filters": {
+  "before": "2025-10-07T11:24:49Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "ForwardMsg MISS, title 'Connection error', no version (real follow-ups reveal Community Cloud, 8/10 frequency, version 1.50.0).",
+  "hypotheses": [
+   "old version (known bug)",
+   "residual bug in recent versions on Community Cloud"
+  ],
+  "missing_info": [
+   {
+    "item": "Streamlit version",
+    "why": "if >=1.46 the known fix does not explain it -> escalate"
+   },
+   {
+    "item": "platform (Cloud / SiS / self-hosted)",
+    "why": "platform-specific variants"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for version and platform",
+   "After 1.50.0 is revealed: do NOT recommend the old upgrade; escalate with evidence of residual reports (#11357 later comments, #11973)"
+  ],
+  "must_not": [
+   "after version 1.50.0 is known, still claim upgrading to 1.45.1 fixes it"
+  ],
+  "relevant_sources": [
+   "issue:11357",
+   "issue:11973",
+   "issue:12089",
+   "rn:1.46.0:23b3f881"
+  ],
+  "reference": "Maintainer asked version; user said 1.50.0; issue closed not_planned without fix.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

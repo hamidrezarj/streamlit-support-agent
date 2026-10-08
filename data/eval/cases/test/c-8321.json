@@ -1,0 +1,79 @@
+{
+ "case_id": "c-8321",
+ "split": "test",
+ "bucket": "ambiguous",
+ "topic": "sessioninfo-bad-message",
+ "family_id": "fam:8321",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 8321,
+  "url": "https://github.com/streamlit/streamlit/issues/8321",
+  "title": "Streamlit 1.32.2 return “Bad message format, Tried to use SessionInfo before it was initialized” while 1.32.0 working for same App",
+  "body": "### Checklist\n\n### Summary\n\n**Install new release of Streamlit (1.32.2) does not allow to run correctly running app for 1.32.0 release.\n\nBrowser output: Pop-up window: “Bad message format, Tried to use SessionInfo before it was initialized”\n\nOutput terminal pasted in section current behaviour\n\nQuite susspicios are install logs of Streamlit: 1.32.2: **\n\n`\n(NewEnv) C:\\WINDOWS\\system32>pip install streamlit --upgrade\nWARNING: Skipping C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit-1.32.0.dist-info due to invalid metadata entry 'name'\nWARNING: Ignoring invalid distribution ~treamlit (C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages)\nCollecting streamlit\n  Using cached streamlit-1.32.2-py2.py3-none-any.whl.metadata (8.5 kB)\nRequirement already satisfied: altair<6,>=4.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (5.0.1)\nRequirement already satisfied: blinker<2,>=1.0.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (1.6.2)\nRequirement already satisfied: cachetools<6,>=4.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (4.2.2)\nRequirement already satisfied: click<9,>=7.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (8.1.7)\nRequirement already satisfied: numpy<2,>=1.19.3 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (1.26.4)\nRequirement already satisfied: packaging<24,>=16.8 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (23.1)\nRequirement already satisfied: pandas<3,>=1.3.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (2.2.1)\nRequirement already satisfied: pillow<11,>=7.1.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (10.2.0)\nRequirement already satisfied: protobuf<5,>=3.20 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (3.20.3)\nRequirement already satisfied: pyarrow>=7.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (14.0.2)\nRequirement already satisfied: requests<3,>=2.27 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (2.31.0)\nRequirement already satisfied: rich<14,>=10.14.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (13.3.5)\nRequirement already satisfied: tenacity<9,>=8.1.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (8.2.2)\nRequirement already satisfied: toml<2,>=0.10.1 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (0.10.2)\nRequirement already satisfied: typing-extensions<5,>=4.3.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (4.9.0)\nRequirement already satisfied: gitpython!=3.1.19,<4,>=3.0.7 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (3.1.37)\nRequirement already satisfied: pydeck<1,>=0.8.0b4 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (0.8.0)\nRequirement already satisfied: tornado<7,>=6.0.3 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (6.3.3)\nRequirement already satisfied: watchdog>=2.1.5 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from streamlit) (2.1.6)\nRequirement already satisfied: jinja2 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from altair<6,>=4.0->streamlit) (3.1.3)\nRequirement already satisfied: jsonschema>=3.0 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from altair<6,>=4.0->streamlit) (4.19.2)\nRequirement already satisfied: toolz in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from altair<6,>=4.0->streamlit) (0.12.0)\nRequirement already satisfied: colorama in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from click<9,>=7.0->streamlit) (0.4.6)\nRequirement already satisfied: gitdb<5,>=4.0.1 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from gitpython!=3.1.19,<4,>=3.0.7->streamlit) (4.0.7)\nRequirement already satisfied: python-dateutil>=2.8.2 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from pandas<3,>=1.3.0->streamlit) (2.8.2)\nRequirement already satisfied: pytz>=2020.1 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from pandas<3,>=1.3.0->streamlit) (2023.3.post1)\nRequirement already satisfied: tzdata>=2022.7 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from pandas<3,>=1.3.0->streamlit) (2023.3)\nRequirement already satisfied: charset-normalizer<4,>=2 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2.0.4)\nRequirement already satisfied: idna<4,>=2.5 in c:\\programdata\\anaconda3\\envs\\newenv\\lib\\site-packages (from requests<3,>=2.27->streamlit) (3.4)\nRequirement already satisfied: urllib3<3,>=1.21.\n... [5269 chars trimmed] ...\n^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\click\\core.py\", line 2362, in process_value\n    value = self.callback(ctx, self, value)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\click\\decorators.py\", line 512, in callback\n    raise RuntimeError(\nRuntimeError: Could not determine the version for 'streamlit' automatically. `\n\n### Reproducible Code Example\n\n```Python\n# -*- coding: utf-8 -*-\n\"\"\"\nCreated on 16-03-2024\n\n@user: Marek Sawicki\n\"\"\"\n\nimport streamlit as st  # pip install streamlit\nimport os\n\nkomputer_Roberta = False\n\nif komputer_Roberta:\n    os.chdir('C:\\\\Users\\\\<user>\\\\Documents\\\\GitHub\\\\SpineTime_Streamlit\\\\ST_App')\nelse:\n    os.chdir('C:\\\\Users\\\\<user>\\\\Documents\\\\GitHub\\\\SpineTime_Streamlit\\\\ST_App')\n  \n\n# -------- MISC --------------    \n    \n# # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/\nst.set_page_config(page_title=\"Spine Time Backend App\", page_icon=\"graphics\\ST_logo.png\", layout=\"wide\")\n\nst.sidebar.markdown(\"# Main page 🦒\")\n\n# ---- MAINPAGE ----\nst.markdown(\"\"\"---\"\"\")\nst.markdown(\"# Main page 🦒\")\nst.markdown(\"\"\"---\"\"\")\n\nst.markdown(\"This is SpineTime backend app for R&D purposes\")\n\npain = st.slider('A pain scale?', 0, 10, 0)\nst.write(\"My A-pain is: \", pain)\n\n#st.page_link(\"pages/01_PainTest.py\")\n\nst.button(\"Pain Test Site\", key=None, help=None, on_click=st.page_link(\"pages/01_PainTest.py\"),type=\"primary\")\nst.image(\"graphics\\REHApp.png\")\n\n#---- HIDE STREAMLIT STYLE ----\nhide_st_style = \"\"\"\n            <style>\n            #MainMenu {visibility: hidden;}\n            footer {visibility: hidden;}\n            header {visibility: hidden;}\n            </style>\n            \"\"\"\nst.markdown(hide_st_style, unsafe_allow_html=True)\n```\n\n### Steps To Reproduce\n\n1. Installed and running 1.32.0\n2. pip install streamlit --upgrage \n3. Install streamlit 1.32.2 \n4. Rerun same app\n5. Receive in Browser: \"Bad message format, Tried to use SessionInfo before it was initialized\"\n\n### Expected Behavior\n\nApp is running like 1.32.0:\n`\n(NewEnv) C:\\WINDOWS\\system32>streamlit run C:\\Users\\<user>\\Documents\\GitHub\\SpineTime_Streamlit\\ST_App\\Main_page.py\n\n  You can now view your Streamlit app in your browser.\n\n  Local URL: http://localhost:8501\n  Network URL: http://192.168.1.9:8501\n`\n\n### Current Behavior\n\nTerminal output:\n\n`(NewEnv) C:\\WINDOWS\\system32>streamlit run C:\\Users\\<user>\\Documents\\GitHub\\SpineTime_Streamlit\\ST_App\\Main_page.py\n\n  You can now view your Streamlit app in your browser.\n\n  Local URL: http://localhost:8501\n  Network URL: http://192.168.1.9:8501\n\nException in callback AppSession._on_scriptrunner_event.<locals>.<lambda>() at C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py:475\nhandle: <Handle AppSession._on_scriptrunner_event.<locals>.<lambda>() at C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py:475>\nTraceback (most recent call last):\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\google\\protobuf\\internal\\python_message.py\", line 702, in field_setter\n    new_value = type_checker.CheckValue(new_value)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\google\\protobuf\\internal\\type_checkers.py\", line 211, in CheckValue\n    raise TypeError(message)\nTypeError: None has type <class 'NoneType'>, but expected one of: (<class 'bytes'>, <class 'str'>)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\asyncio\\events.py\", line 84, in _run\n    self._context.run(self._callback, *self._args)\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py\", line 475, in <lambda>\n    lambda: self._handle_scriptrunner_event_on_event_loop(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py\", line 545, in _handle_scriptrunner_event_on_event_loop\n    self._create_new_session_message(page_script_hash)\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py\", line 654, in _create_new_session_message\n    imsg.environment_info.streamlit_version = STREAMLIT_VERSION_STRING\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\google\\protobuf\\internal\\python_message.py\", line 704, in field_setter\n    raise TypeError(\nTypeError: Cannot set EnvironmentInfo.streamlit_version to None: None has type <class 'NoneType'>, but expected one of: (<class 'bytes'>, <class 'str'>)\nException in callback AppSession._on_scriptrunner_event.<locals>.<lambda>() at C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py:475\nhandle: <Handle AppSession._on_scriptrunner_event.<locals>.<lambda>() at C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py:475>\nTraceback (most recent call last):\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\google\\protobuf\\internal\\python_message.py\", line 702, in field_setter\n    new_value = type_checker.CheckValue(new_value)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\google\\protobuf\\internal\\type_checkers.py\", line 211, in CheckValue\n    raise TypeError(message)\nTypeError: None has type <class 'NoneType'>, but expected one of: (<class 'bytes'>, <class 'str'>)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\asyncio\\events.py\", line 84, in _run\n    self._context.run(self._callback, *self._args)\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py\", line 475, in <lambda>\n    lambda: self._handle_scriptrunner_event_on_event_loop(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py\", line 545, in _handle_scriptrunner_event_on_event_loop\n    self._create_new_session_message(page_script_hash)\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\streamlit\\runtime\\app_session.py\", line 654, in _create_new_session_message\n    imsg.environment_info.streamlit_version = STREAMLIT_VERSION_STRING\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\ProgramData\\Anaconda3\\envs\\NewEnv\\Lib\\site-packages\\google\\protobuf\\internal\\python_message.py\", line 704, in field_setter\n    raise TypeError(\nTypeError: Cannot set EnvironmentInfo.streamlit_version to None: None has type <class 'NoneType'>, but expected one of: (<class 'bytes'>, <class 'str'>)\n  Stopping...`\n\n### Is this a regression?\n\n- [X] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.32.2\n- Python version: 3.11.8\n- Operating System: Win10\n- Browser: Opera 107.0.5045.36 (Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0)\n\n### Additional Information",
+  "as_of": "2024-03-17T17:11:42Z"
+ },
+ "filters": {
+  "before": "2024-03-17T17:11:42Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "1.32.2 shows 'Bad message format, SessionInfo...' while 1.32.0 works; Windows/Anaconda install warnings.",
+  "hypotheses": [
+   "broken/mixed install in conda env (protobuf or partial upgrade)",
+   "regression between 1.32.0 and 1.32.2"
+  ],
+  "missing_info": [
+   {
+    "item": "protobuf version / clean venv test",
+    "why": "mixed install vs regression"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask protobuf version and to test in a fresh environment",
+   "Escalate if it reproduces cleanly"
+  ],
+  "must_not": [
+   "claim fixed in a specific version"
+  ],
+  "relevant_sources": [
+   "page:/knowledge-base/using-streamlit/sanity-checks"
+  ],
+  "reference": "Maintainer asked protobuf version; couldn't reproduce; later fix in 1.36 added SessionInfo check.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

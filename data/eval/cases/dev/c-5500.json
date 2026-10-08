@@ -1,0 +1,87 @@
+{
+ "case_id": "c-5500",
+ "split": "dev",
+ "bucket": "ambiguous",
+ "topic": "please-wait-forever",
+ "family_id": "fam:5500",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 5500,
+  "url": "https://github.com/streamlit/streamlit/issues/5500",
+  "title": "streamlit please wait forever python",
+  "body": "### Summary\n\nAfter deploying on the server \"stream hello\", the browser opens up  please wait\nand  please wait forever python \nHow to operate this?\n\n### Debug info\n\n- Streamlit version: (get it with `$ streamlit version`)1.13.0\n- Python version: (get it with `$ python --version`) 3.8.0\n- Using Conda? PipEnv? PyEnv? Pex? Conda",
+  "as_of": "2022-10-08T10:52:58Z"
+ },
+ "filters": {
+  "before": "2022-10-08T10:52:58Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "'streamlit hello' deployed on a server shows 'Please wait...' forever (v1.13).",
+  "hypotheses": [
+   "WebSocket blocked by proxy/firewall/load balancer",
+   "accessing wrong address/port or proxy not forwarding /stream",
+   "browser extension / corporate proxy"
+  ],
+  "missing_info": [
+   {
+    "item": "how the app is accessed (direct IP:port vs reverse proxy / LB)",
+    "why": "proxy without websocket upgrade is the most common cause"
+   },
+   {
+    "item": "browser console / network errors for the websocket",
+    "why": "confirms websocket failure vs script error"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask how it is accessed and for console errors",
+   "Point to the 'App is not loading when running remotely' KB article"
+  ],
+  "must_not": [
+   "ask to reinstall again",
+   "claim a Streamlit bug"
+  ],
+  "relevant_sources": [
+   "issue:4001",
+   "issue:3177",
+   "page:/knowledge-base/deploy/remote-start"
+  ],
+  "reference": "Maintainer: not enough info, no known issue; asked if own app runs; closed as unactionable.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

@@ -70,6 +70,16 @@ def split_text(text: str, max_chars: int = C.CHUNK_MAX_CHARS,
     return chunks
 
 
+WINDOW_GAP_DAYS = 3   # new comment window after a pause: an early answer must not inherit
+                      # the late `available_at` of comments written months afterwards
+
+
+def _days_between(a: str, b: str) -> float:
+    from datetime import datetime
+    f = lambda x: datetime.fromisoformat(x.replace("Z", "+00:00"))
+    return (f(b) - f(a)).total_seconds() / 86400
+
+
 def _cid(*parts) -> str:
     return hashlib.sha1("|".join(map(str, parts)).encode()).hexdigest()[:16]
 
@@ -106,8 +116,10 @@ def issue_chunks(r: dict) -> list[dict]:
     for c in r["comments"]:
         who = "maintainer" if c["is_maintainer"] else ("issue author" if c["is_issue_author"] else "user")
         block = f"[{who}, {c['created_at'][:10]}]\n{c['text']}"
+        gap = (window and _days_between(window[-1][0]["created_at"], c["created_at"]) > WINDOW_GAP_DAYS)
         for piece in split_text(block):
-            if size and size + len(piece) > C.CHUNK_MAX_CHARS:
+            if size and (size + len(piece) > C.CHUNK_MAX_CHARS or gap):
+                gap = False
                 flush()
                 window, size = [], 0
             window.append((c, piece))

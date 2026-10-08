@@ -1,0 +1,74 @@
+{
+ "case_id": "c-5793",
+ "split": "test",
+ "bucket": "escalate",
+ "topic": "xsrf-cookie",
+ "family_id": "fam:5793",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 5793,
+  "url": "https://github.com/streamlit/streamlit/issues/5793",
+  "title": "Misconfigured _xsrf cookies",
+  "body": "### Checklist\n\n### Summary\n\nHi,\n\nI am running a Streamlit app on Azure, requiring authentication with AD, and `st.file_uploader` returns a 403 Forbidden error if `enableXsrfProtection` is on. It works locally, and I suspect that this is caused by the _xsrf cookie not getting though, because I can see the cookie in dev tools locally, but not when deployed.\n\nIn particular, the cookie is missing the SameSite and Secure attributes.\n\n### Reproducible Code Example\n\n### Steps To Reproduce\n\n1. Open any Streamlit app\n2. Open browser developer tools\n\n### Expected Behavior\n\nCookies have `SameSite=None; Secure` attribute.\n\n### Current Behavior\n\n_xsrf cookie is not transmitted when deployed on the cloud with SSO and HTTPS-only.\n\nLocally this is what I am getting:\n[image]\n\nPlus the deprecation warning:\n\n>Some cookies are misusing the recommended “SameSite“ attribute\n>Cookie “_xsrf” does not have a proper “SameSite” attribute value. Soon, cookies without the “SameSite” attribute or with an invalid value will be treated as “Lax”. This means that the cookie will no longer be sent in third-party contexts. If your application depends on this cookie being available in such contexts, please add the “SameSite=None“ attribute to it. To know more about the “SameSite“ attribute, read https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.15.0\n- Python version: 3.10, 3.11\n- Operating System: Ubuntu 22.04 (WSL)\n- Browser: Firefox, Chrome\n- Virtual environment: yes\n\n### Additional Information\n\nThis has been touched on in https://github.com/streamlit/streamlit/issues/2517 and particularly https://github.com/streamlit/streamlit/issues/2517#issuecomment-1321281460. Feel free to close if you consider this is a duplicate, but I believe that the cookie configuration and Streamlit overwriting Jupyter's cookies are two different issues.\n\nThere are multiple reports of this on the forum:\n\nhttps://discuss.streamlit.io/t/deployment-on-azure-ad-authentication-enabled-st-file-uploader-403-forbidden/30898\n\nhttps://discuss.streamlit.io/t/azure-ad-xsrf-protection-and-st-file-uploader/33612\n\nhttps://discuss.streamlit.io/t/deployment-on-azure-appservice-ad-authentication-enabled-st-file-uploader-403-forbidden/5839\n\nhttps://discuss.streamlit.io/t/file-uploader-403-error-when-embedding-streamlit-app-in-iframe/24109\n\nWhether they all have the same underlying cause, I cannot tell.\n\n### Are you willing to submit a PR?\n\n- [ ] Yes, I am willing to submit a PR!",
+  "as_of": "2022-11-30T12:59:03Z"
+ },
+ "filters": {
+  "before": "2022-11-30T12:59:03Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "On Azure with AD auth, file_uploader 403 when enableXsrfProtection on; _xsrf cookie lacks SameSite/Secure.",
+  "hypotheses": [
+   "XSRF cookie attributes in cross-site/proxied auth setup"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Workaround: server.enableXsrfProtection=false (with security caveat)",
+   "Escalate cookie attribute bug"
+  ],
+  "must_not": [
+   "recommend disabling XSRF without the security caveat"
+  ],
+  "relevant_sources": [
+   "config:server.enableXsrfProtection",
+   "page:/knowledge-base/deploy/remote-start"
+  ],
+  "reference": "Confirmed; long-running; SameSite option added in 1.59.0.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}
