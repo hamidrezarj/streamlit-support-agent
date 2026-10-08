@@ -1,0 +1,82 @@
+{
+ "case_id": "c-6224",
+ "split": "test",
+ "bucket": "answerable",
+ "topic": "replicas-sticky-sessions",
+ "family_id": "fam:2936",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 6224,
+  "url": "https://github.com/streamlit/streamlit/issues/6224",
+  "title": "st.file_uploader with accept_multiple_files=True leads to 400/502 errors sporadically (AWS deployment)",
+  "body": "### Checklist\n\n### Summary\n\nWe’re using a file upload widget with accept_multiple_files=True and sporadically getting either:\n`Failed to load resource: the server responded with a status of 400 (Invalid session_id: <number here>)`\nor\n`Failed to load resource: the server responded with a status of 502 (Bad Gateway)`\n\nwhile trying to upload several files (several being anything above ~10). Files are Fastq (.gz) files, the largest of which is ~85mb (our max file upload size is set to 200mb). Failures are sporadic but is seemingly dependent on the number of files uploaded. Not every file will fail, just a handful. \n\nThe app is currently deployed to AWS as an auto-scaled and load-balanced ElasticBeanstalk application. We have tried enabling sticky sessions based on a similar issue here: [st.file_uploader returns HTTP code 400 with invalid session_id when deployed on Kubernetes · Issue #4173 · streamlit/streamlit · GitHub](https://github.com/streamlit/streamlit/issues/4173) with no luck.\n\n### Reproducible Code Example\n\n```Python\nselected_files = st.file_uploader(\"Select Fastq file pairs for upload:\", help=\"Each pair must contain R1 + R2 files\", type=\"gz\", accept_multiple_files=True)\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\nIdeally everything would upload and the user is free to proceed with the downstream analysis for these files. \n\n### Current Behavior\n\nSee summary for errors. \n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.13.0\n- Python version: 3.10.8\n- Deployed in an auto-scaled/auto-balanced AWS ElasticBeanstalk environment\n\n### Additional Information\n\nIssues that are not necessarily resolved that resemble this include:\nhttps://github.com/streamlit/streamlit/issues/4173\nhttps://github.com/streamlit/streamlit/issues/2803\n\n### Are you willing to submit a PR?\n\n- [ ] Yes, I am willing to submit a PR!",
+  "as_of": "2023-03-03T18:25:16Z"
+ },
+ "filters": {
+  "before": "2023-03-03T18:25:16Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "known_issue",
+  "summary": "file_uploader multiple files -> sporadic 400 Invalid session_id / 502 on AWS deployment.",
+  "hypotheses": [
+   "multiple replicas without session affinity (known)",
+   "LB request size/timeouts (502)"
+  ],
+  "missing_info": [
+   {
+    "item": "number of replicas / LB stickiness",
+    "why": "confirms the known cause"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Explain known multi-replica limitation; enable sticky sessions (cite #4173 / #2936 and architecture docs)",
+   "Ask about replicas if unsure"
+  ],
+  "must_not": [
+   "claim a recent Streamlit regression"
+  ],
+  "relevant_sources": [
+   "issue:4173",
+   "issue:2936",
+   "page:/develop/concepts/architecture/architecture",
+   "page:/knowledge-base/deploy/remote-start"
+  ],
+  "reference": "Maintainer: known issue with replicas; enable sticky sessions; closed as duplicate of #4173.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

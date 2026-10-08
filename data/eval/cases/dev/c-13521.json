@@ -1,0 +1,76 @@
+{
+ "case_id": "c-13521",
+ "split": "dev",
+ "bucket": "escalate",
+ "topic": "server-port",
+ "family_id": "fam:13521",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 13521,
+  "url": "https://github.com/streamlit/streamlit/issues/13521",
+  "title": "Windows: PermissionError when default port 8501 is reserved by system - should auto-search for free port",
+  "body": "### Checklist\n\n### Summary\n\n**Problem:**\n\nOn Windows systems where port 8501 is reserved by the system (e.g., PID 4 - System process), Streamlit crashes with PermissionError instead of automatically searching for the next available port.\n\n**Error:**\n\n> PermissionError: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions\n\n**Related issue:** #9271 (closed)\n\n---\n\n**Expected Behavior**\nWhen the default port is unavailable due to permission issues (not just \"already in use\"), Streamlit should:\n\n1. Treat PermissionError the same as EADDRINUSE\n2. Automatically search for the next available port\n3. Only fail if no free port is found after all attempts\n\n**Root Cause**\nPermissionError on Windows represents a situation where the port is inaccessible (e.g., reserved by system), which is functionally similar to EADDRINUSE. The current code only handles the latter.\n\n**Potential solution examples.**\n\n- Modify the exception handling to catch both error conditions:\n\n`except OSError as e:\n    if e.errno == errno.EADDRINUSE or isinstance(e, PermissionError):\n        # Try next port...\n    else:\n        raise`\n\n- Or implement pre-flight port checking using socket.bind():\n\n`import socket\n\ndef is_port_available(port: int, address: str) -> bool:\n    \"\"\"Check if port is available before attempting to bind.\"\"\"\n    try:\n        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:\n            s.bind((address, port))\n        return True\n    except (OSError, PermissionError):\n        return False`\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n1. Reserve port 8501 on Windows (simulating system reservation):\n\n`# Option A: Check if port 8501 is already reserved by system`\n`netstat -ano | findstr :8501`\n\n`# Option B: Reserve the port using netsh (requires admin)`\n`netsh int ipv4 add excludedportrange protocol=tcp startport=8501 numberofports=1`\n\n2. Create a simple Streamlit app:\n\n`# app.py\nimport streamlit as st\nst.write(\"Hello World\")`\n\n3. Run Streamlit with default port:\n\n`streamlit run app.py`\n\n### Expected Behavior\n\nStreamlit auto-detects unavailable port and uses 8502, 8503, etc.\n\n### Current Behavior\n\nIn streamlit/web/server/server.py (line 232-268), the start_listening_tcp_socket() function only handles OSError with errno == EADDRINUSE. When a PermissionError occurs (WinError 10013), it's not caught and the application crashes instead of trying the next port.\n\n`except OSError as e:\n    if e.errno == errno.EADDRINUSE:\n        # ... auto-find next port\n    else:\n        raise  # ❌ Crashes here for PermissionError`\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.52.2\n- Python version: 3.12.10\n- Operating System: Windows\n- Browser: Brave\n\n### Additional Information",
+  "as_of": "2026-01-06T21:14:06Z"
+ },
+ "filters": {
+  "before": "2026-01-06T21:14:06Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "Windows: port 8501 reserved by the system -> PermissionError WinError 10013 instead of trying next port.",
+  "hypotheses": [
+   "port in Windows excluded port range (Hyper-V/WinNAT)",
+   "auto-port fallback only handles 'address in use', not permission errors"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Workaround: run with --server.port <free port>",
+   "Escalate as bug/enhancement with repro and link to #9271 / 0.47 auto-port behaviour"
+  ],
+  "must_not": [
+   "claim auto-port selection already covers this case"
+  ],
+  "relevant_sources": [
+   "issue:9271",
+   "rn:0.47.0:d11ce33d",
+   "config:server.port"
+  ],
+  "reference": "Confirmed; fix merged for 1.53.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "case_id": "c-7076",
+ "split": "test",
+ "bucket": "ambiguous",
+ "topic": "endpoints-health",
+ "family_id": "fam:7076",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 7076,
+  "url": "https://github.com/streamlit/streamlit/issues/7076",
+  "title": "Health check endpoint seems to break when deployed in certain cloud environments",
+  "body": "### Checklist\n\n### Summary\n\nHi,\nI really enjoy using streamlit to deploy all sorts of applications, but I consistently run into an issue that I have started to be able to reproduce, but is very difficult to understand. I have seen people discuss this issue before, but I haven't been able to find a version of streamlit that fixes the issue. Essentially, the application seems to refresh on me after a certain period of time. Here is one example.\n\nhttps://discuss.streamlit.io/t/i-get-kicked-out-of-my-app-at-random-times/28316\n\n### Reproducible Code Example\n\nN/A\n\n### Steps To Reproduce\n\nDeploy a long running application to a non streamlit cloud environment using docker.\n\n### Expected Behavior\n\nI expect the _stcore/health to not throw an exception, seemingly causing my application to refresh.\n\n### Current Behavior\n\nEssentially, the gist of the issue is that when I deploy this using Docker to a cloud environment (AWS/Azure), I find the call made to the /_stcore/health endpoint **fails to parse on the frontend**. The endpoint produces a response with the text \"ok\", but further into the code, it seems the axios library tries to parse this response as json using JSON.parse(). However, this results in an error, which seems to refresh the page. I don't know how often the health endpoint is called, but it seems like it happens approximately every 5 minutes, so for long running processes, these don't end up finishing.\n\nI tried to trace the bug through the streamlit codebase and found that perhaps you are returning the text \"ok\" on line 519 in the function labeled \"is_ready_for_browser_connection\". This seems to get returned to the UI, likely through in the \"HealthHandler\" class on line 148 in the get function. I suspect self.write() will converts dictionaries to json and text is just returned as text through the API. However, perhaps returning the dictionary {\"status\": \"ok\"} might fix the issue. \n\nFrom the code and stacktrace, it seems there is a websocket that attempts to close, and before closing, it pings the server (the health check), however, the health check indicates it is \"ok\" and should keep the websocket open. However, an exception occurs during the parsing of the health check, so the connection is closed and perhaps that is when the page refreshes.\n\nImportantly, this does not seem to happen for me in the Streamlit Cloud nor locally, likely because neither seem to call the health check endpoint. The streamlit cloud seems to call the app/status endpoint and locally, no health checks are performed.\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.24.0\n- Python version: 3.8.16\n- Operating System: Windows\n- Browser: Chrome/Edge\n\n### Additional Information\n\n**Preview of the endpoint (base url removed)**\n[image]\n\n**Preview of the response**\n[image]\n\n**Error in Javascript**\n[image]\n\n**Code from Streamlit (with ok)**\n[image]\n\n**HealthHandler**\n[image]",
+  "as_of": "2023-07-26T16:53:10Z"
+ },
+ "filters": {
+  "before": "2023-07-26T16:53:10Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "App refreshes after some time in certain cloud environments; suspects /healthz response format (v1.24).",
+  "hypotheses": [
+   "proxy/LB idle or request timeout dropping the websocket -> reconnect + health check",
+   "health endpoint format (unlikely)"
+  ],
+  "missing_info": [
+   {
+    "item": "deployment platform / proxy and its timeouts",
+    "why": "idle-timeout vs Streamlit behaviour"
+   },
+   {
+    "item": "browser console / network errors at refresh time",
+    "why": "shows websocket close codes"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for platform/proxy details and logs",
+   "Explain health check is used on reconnect; suggest checking LB timeouts"
+  ],
+  "must_not": [
+   "confirm the JSON-format theory as root cause"
+  ],
+  "relevant_sources": [
+   "issue:3028",
+   "rn:1.18.0:f5f16ff6",
+   "rn:1.20.0:1f5e7538"
+  ],
+  "reference": "Maintainer asked for stack traces/deployment; long-running process timeouts suspected; unresolved.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

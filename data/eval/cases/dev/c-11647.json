@@ -1,0 +1,77 @@
+{
+ "case_id": "c-11647",
+ "split": "dev",
+ "bucket": "answerable",
+ "topic": "forwardmsg-miss",
+ "family_id": "fam:11647",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 11647,
+  "url": "https://github.com/streamlit/streamlit/issues/11647",
+  "title": "Connection error",
+  "body": "### Checklist\n\n### Summary\n\nWhen I clicked on a button in my app, I got this error. It happened once and I couldn't reproduce it. \n\nFailed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=1d99864e8c71263a2968f13e2df28735]. This is not expected to happen. Please [report this bug](https://github.com/streamlit/streamlit/issues).\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.45.0\n- Python version: 3.10.6\n- Operating System: Windows 11\n- Browser: Brave\n\n### Additional Information",
+  "as_of": "2025-06-13T21:44:42Z"
+ },
+ "filters": {
+  "before": "2025-06-13T21:44:42Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "known_issue",
+  "summary": "One-off 'Cached ForwardMsg MISS' on Streamlit 1.45.0.",
+  "hypotheses": [
+   "known ForwardMsg cache bug in 1.45.0 (patched in 1.45.1)",
+   "network blip / proxy dropping messages"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Explain it matches a known 1.45.0 issue and recommend upgrading to >=1.45.1 (cite issue #11357 maintainer comment)",
+   "Ask to report back if it recurs after upgrading"
+  ],
+  "must_not": [
+   "ask for the Streamlit version (already given: 1.45.0)",
+   "claim root cause is user code"
+  ],
+  "relevant_sources": [
+   "issue:11357",
+   "issue:11299",
+   "issue:11372"
+  ],
+  "reference": "Maintainer: known issue in 1.45.0, fixed in 1.45.1 patch; closed as duplicate.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

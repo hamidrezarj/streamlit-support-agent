@@ -1,0 +1,84 @@
+{
+ "case_id": "c-11509",
+ "split": "test",
+ "bucket": "ambiguous",
+ "topic": "base-url-path",
+ "family_id": "fam:11509",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 11509,
+  "url": "https://github.com/streamlit/streamlit/issues/11509",
+  "title": "STREAMLIT_SERVER_BASE_URL_PATH not working with `docker run -e STREAMLIT_SERVER_BASE_URL_PATH=test_path`",
+  "body": "### Checklist\n\n### Summary\n\nI'm trying to run a Streamlit application docker container with the `STREAMLIT_SERVER_BASE_URL_PATH` environment variable according to the [documentation here](https://docs.streamlit.io/develop/concepts/configuration/options). The same configuration worked if I include the configuration in the `.streamlit/.config.toml` when building the image, but not working when trying to run the container with the environment variable.\n\nRelevant discussion:\nhttps://discuss.streamlit.io/t/run-streamlit-app-on-specific-url-path/32147\n\n### Reproducible Code Example\n\n```Python\ndocker run --rm --env STREAMLIT_SERVER_BASE_URL_PATH=test -p 8501:8501 <image_id>\n```\n\n### Steps To Reproduce\n\nTo reproduce the issue:\n1. Create a streamlit application with a docker image\n2. Run the docker image with the `-e STREAMLIT_SERVER_BASE_URL_PATH=test_path` argument\n3. You will see that the application is running on `Local URL: http://localhost:8501` instead of `Local URL: http://localhost/test_path:8501`\n\n### Expected Behavior\n\nThe `-e STREAMLIT_SERVER_BASE_URL_PATH=test_path` should work and the applicaiton should run on `localhost/test_path`\n\n### Current Behavior\n\nOnly runs on `localhost`\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.45.1\n- Python version: 3.13.2\n- Operating System: Mac OS 15.5 (24F74)\n- Browser: Chrome Version 137.0.7151.41 (Official Build) (arm64)\n\n### Additional Information",
+  "as_of": "2025-06-04T03:39:51Z"
+ },
+ "filters": {
+  "before": "2025-06-04T03:39:51Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "STREAMLIT_SERVER_BASE_URL_PATH env var ignored with docker run -e (config.toml works).",
+  "hypotheses": [
+   "app started via a custom launcher (bootstrap.run) that bypasses env/CLI config",
+   "env var not set in container / wrong name",
+   "bug"
+  ],
+  "missing_info": [
+   {
+    "item": "Dockerfile CMD/ENTRYPOINT (how Streamlit is launched)",
+    "why": "custom launcher vs streamlit run"
+   },
+   {
+    "item": "is the env var visible inside the container",
+    "why": "docker run vs compose override"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for Dockerfile/launch command; confirm env var naming per config docs"
+  ],
+  "must_not": [
+   "confirm a bug before ruling out the launcher"
+  ],
+  "relevant_sources": [
+   "config:server.baseUrlPath",
+   "page:/develop/concepts/configuration/options"
+  ],
+  "reference": "Maintainer couldn't reproduce; user later: code used bootstrap.run(), needs flag_options.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

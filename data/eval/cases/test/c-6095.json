@@ -1,0 +1,75 @@
+{
+ "case_id": "c-6095",
+ "split": "test",
+ "bucket": "answerable",
+ "topic": "endpoints-health",
+ "family_id": "fam:6095",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 6095,
+  "url": "https://github.com/streamlit/streamlit/issues/6095",
+  "title": "Rename endpoints #5534 breaks streamlit behind load balancer",
+  "body": "### Checklist\n\n### Summary\n\nHi Team,\n\nwith the changes introduced in Rename endpoints #5534 you changed the websocket request path from `/stream` to `/_stcore/stream`.\n\nWe are running streamlit behind a load balancer with a specific configuration to upgrade requests that reach `/stream` to use Websocket. This is broken since the latest release and our Apps with the new streamlit version are not working anymore.\n\nI am pretty sure, we are not the only organization running into this issue.\n\nIf it's possible, could you rollback this change? \n\nThanks,\nNicolas\n\n### Reproducible Code Example\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [X] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: streamlit-1.18.0\n- Python version: python-3.8.15\n- Operating System: macOS 13.1\n- Browser: Version 109.0.5414.119 (Official Build) (x86_64)\n- Virtual environment:\n\n### Additional Information\n\n### Are you willing to submit a PR?\n\n- [ ] Yes, I am willing to submit a PR!",
+  "as_of": "2023-02-10T10:31:58Z"
+ },
+ "filters": {
+  "before": "2023-02-10T10:31:58Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "known_issue",
+  "summary": "After 1.18 the websocket path changed from /stream to /_stcore/stream; LB config breaks.",
+  "hypotheses": [
+   "intentional endpoint rename in 1.18.0"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Explain the rename (release notes 1.18.0) and update LB/proxy rules to /_stcore/stream and /_stcore/health",
+   "Note rollback is unlikely; these paths were internal"
+  ],
+  "must_not": [
+   "promise a rollback",
+   "escalate as regression"
+  ],
+  "relevant_sources": [
+   "rn:1.18.0:f5f16ff6",
+   "issue:3028"
+  ],
+  "reference": "Closed as expected behaviour; endpoints renamed to avoid GCP clashes.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

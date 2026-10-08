@@ -1,0 +1,53 @@
+{
+ "id": "s-9140",
+ "issue": 9140,
+ "split": "test",
+ "covers": [
+  "real_followups",
+  "case_switch"
+ ],
+ "interleave_with": "s-11509",
+ "steps": [
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "system",
+   "event": "switch_case",
+   "to": "s-11509"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 2257412986,
+   "text": "tornado==6.4.1\nDid you try to run this Streamlit app locally? -  Yes\n@user \n\nThe same code with same versions(tornado,streamlite and python) working on ubuntu os.\nBut not working on windows OS.",
+   "created_at": "2024-07-30T04:02:47Z",
+   "url": "https://github.com/streamlit/streamlit/issues/9140#issuecomment-2257412986",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "escalated",
+  "comments_posted": 2,
+  "facts": {
+   "tornado_version": "6.4.1"
+  },
+  "must_not": [
+   "facts from #11509 appear in this case"
+  ]
+ },
+ "case_id": "c-9140",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

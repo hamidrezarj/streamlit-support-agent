@@ -1,0 +1,74 @@
+{
+ "case_id": "c-7856",
+ "split": "test",
+ "bucket": "answerable",
+ "topic": "nginx-websocket",
+ "family_id": "fam:7856",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 7856,
+  "url": "https://github.com/streamlit/streamlit/issues/7856",
+  "title": "Streamlit and nginx main.ca9076db.js:2 WebSocket connection to 'ws://xxx:8080/_stcore/stream' failed",
+  "body": "### Checklist\n\n### Summary\n\nI use deployment and services to deploy streamlit in kubernetes. I access services nodeport directly and streamlit can run normally. However, when I use nginx as a proxy, the following problem occurs.\n\n```\nmain.ca9076db.js:2 WebSocket connection to 'ws://***:8080/_stcore/stream' failed:\n```\n\nThe deployment and services configuration is as follows:\n\n```yaml\n\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: custom-ksvc-llama2-deployment\n  namespace: kubeflow-admin-cpaas-io\nspec:\n  progressDeadlineSeconds: 600\n  replicas: 1\n  revisionHistoryLimit: 10\n  selector:\n    matchLabels:\n      serving.knative.dev/revisionUID: custom-ksvc-llama2-deployment\n  strategy:\n    rollingUpdate:\n      maxSurge: 25%\n      maxUnavailable: 0\n    type: RollingUpdate\n  template:\n    metadata:\n      labels:\n        serving.knative.dev/revisionUID: custom-ksvc-llama2-deployment\n    spec:\n      containers:\n      - image: build-harbor.alauda.cn/mlops/streamlit-llama2@sha256:3124c49e98ea56f17004ba4f7fecaad9e751b8f7d8992c3ce47cfb840dd7cbbf\n... [9 lines trimmed] ...\n        - containerPort: 8501\n          name: user-port\n          protocol: TCP\n        resources:\n          limits:\n            cpu: \"2\"\n            memory: 4Gi\n        terminationMessagePath: /dev/termination-log\n        terminationMessagePolicy: FallbackToLogsOnError\n      dnsPolicy: ClusterFirst\n      enableServiceLinks: false\n      imagePullSecrets:\n      - name: imagepullsecret\n      restartPolicy: Always\n      schedulerName: default-scheduler\n      securityContext: {}\n      terminationGracePeriodSeconds: 600\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: custom-ksvc-llama2-00001-nodeport\n  namespace: kubeflow-admin-cpaas-io\nspec:\n  ipFamilies:\n  - IPv4\n  ipFamilyPolicy: SingleStack\n  ports:\n  - name: http\n    port: 8501\n    protocol: TCP\n    targetPort: 8501\n  selector:\n    serving.knative.dev/revisionUID: custom-ksvc-llama2-deployment\n  type: NodePort\n```\n\nThe nginx configuration is as follows:\n\n```\nevents {\n    worker_connections 10;\n}\n\nhttp {\n\n    server {\n        listen 80;\n        server_name test.example.com;\n\n        location /_stcore/stream/ {\n                proxy_pass http://192.168.176.202:32541/_stcore/stream/;\n                proxy_set_header        Host $host;\n                proxy_set_header        X-Real-IP $remote_addr;\n                proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;\n                proxy_set_header        X-Forwarded-Proto $scheme;\n                proxy_http_version 1.1;\n                proxy_set_header Upgrade $http_upgrade;\n                proxy_set_header Connection \"upgrade\";\n        }\n\n        location / {\n                proxy_pass http://192.168.176.202:32541/;\n                proxy_set_header        Host $host;\n                proxy_set_header        X-Real-IP $remote_addr;\n                proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;\n                proxy_set_header        X-Forwarded-Proto $scheme;\n        }\n    }\n}\n```\n\nWhat is the reason for this and how to modify the nginx configuration?\n\n### The nginx log is as follows:\n\n```\n172.16.6.133 - - [19/Dec/2023:12:44:14 +0000] \"GET / HTTP/1.1\" 304 0 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n\n172.16.6.133 - - [19/Dec/2023:12:44:15 +0000] \"GET /_stcore/health HTTP/1.1\" 304 0 \"http://192.168.176.202:8080/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n\n172.16.6.133 - - [19/Dec/2023:12:44:15 +0000] \"GET /_stcore/host-config HTTP/1.1\" 304 0 \"http://192.168.176.202:8080/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n\n172.16.6.133 - - [19/Dec/2023:12:44:19 +0000] \"GET /_stcore/stream HTTP/1.1\" 301 169 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n\n172.16.6.133 - - [19/Dec/2023:12:44:19 +0000] \"GET /_stcore/health HTTP/1.1\" 304 0 \"http://192.168.176.202:8080/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n\n172.16.6.133 - - [19/Dec/2023:12:44:19 +0000] \"GET /_stcore/host-config HTTP/1.1\" 304 0 \"http://192.168.176.202:8080/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n\n172.16.6.133 - - [19/Dec/2023:12:44:20 +0000] \"GET /_stcore/stream HTTP/1.1\" 301 169 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36\"\n```\n\nIt seems that the /_stcore/stream endpoint has been permanently removed. Is this the case in streamlit version 1.29.0? What is the new endpoint?\n\n### Reproducible Code Example\n\nIt should not be the _stcore/stream endpoint removed by streamlit, because there are related requests in the source code\n\n```js\n/**\n * The path of the server's websocket endpoint.\n */\nconst WEBSOCKET_STREAM_PATH = \"_stcore/stream\"\n```\n\nTesting the _stcore/stream endpoint, nginx doesn't seem to turn it into a ws request\n\n[image]\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.29.0\n- Python version: 3.10\n- Operating System: ubuntu\n- Browser: chrome\n\n### Additional Information",
+  "as_of": "2023-12-19T12:39:40Z"
+ },
+ "filters": {
+  "before": "2023-12-19T12:39:40Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "usage_guidance",
+  "summary": "k8s + nginx proxy: WebSocket to /_stcore/stream fails (config included).",
+  "hypotheses": [
+   "nginx location /_stcore/stream/ with trailing slash returns 301",
+   "missing Upgrade/Connection headers"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Point out the trailing-slash location / 301 and websocket upgrade headers; give corrected location block"
+  ],
+  "must_not": [
+   "ask for the nginx config (already provided)"
+  ],
+  "relevant_sources": [
+   "issue:3741",
+   "page:/knowledge-base/deploy/deploy-streamlit-domain-port-80"
+  ],
+  "reference": "Answer: use location /_stcore/stream (no trailing slash).",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

@@ -55,7 +55,7 @@ PYTHONPATH=src python -m ssa.index.search "stuck on Please wait behind nginx" --
 
 | Step | Module | Output |
 |---|---|---|
-| Chunking | `ssa.index.chunk` | `data/index/chunks.jsonl` (5,364 chunks), `chunk_stats.json` |
+| Chunking | `ssa.index.chunk` | `data/index/chunks.jsonl` (5,990 chunks), `chunk_stats.json` |
 | BM25 | `ssa.index.store` | `data/index/index.sqlite` (chunks table + FTS5, porter tokenizer) |
 | Embeddings | `ssa.index.embed` | `embedding_cache.sqlite` (content-hash cache), `embeddings.<model>.npy` |
 | Retrieval | `ssa.index.search` | `Retriever.search()` / `search_grouped()` — bm25, dense, hybrid (RRF k=60) |
@@ -74,3 +74,55 @@ so they are treated as timeless — a known limitation for "historical" cases.
 **Cost:** the corpus is ~1.15M tokens ≈ $0.02 with text-embedding-3-small.
 Every API call is logged in `data/usage/ledger.jsonl`; `BUDGET_USD` blocks a
 call *before* it is sent if it would exceed the team budget.
+
+## 3. Evaluation set
+
+```bash
+PYTHONPATH=src python -m ssa.eval.select_cases          # reviewable candidate pool (heuristic bucket hints)
+PYTHONPATH=src python -m ssa.eval.build_cases           # cases + scenarios + validation report
+PYTHONPATH=src python -m ssa.eval.retrieval_gold --split dev
+```
+
+* **32 cases** (16 dev / 16 test), hand-picked from 139 candidates; buckets
+  answerable / ambiguous / escalate are balanced per split. **11 multi-turn
+  scenarios** (5 dev / 6 test) covering user correction, maintainer edit/reject,
+  stop-while-awaiting-approval, duplicate request, case changed before execute,
+  tool failure, switching between two cases.
+* **Historical setting:** a case starts at the issue's `created_at`; the assistant
+  sees only title + body. Retrieval for every case uses `before=as_of` and
+  excludes **all** eval issues (`data/eval/eval_exclusions.json`).
+* **Split by topic** (near-duplicate group) and duplicate family — no topic
+  appears in both dev and test. Max cross-split body similarity is 0.75.
+* Real follow-ups are copied from the issue author's comments (`origin: real`);
+  our own turns are marked `origin: designed`.
+* Annotations in `data/eval/annotations/*_draft.json` were drafted by Claude
+  from the full threads and **must be reviewed by the team** (`reviewed_by`).
+* Release-note ids are content hashes (`rn:<version>:<sha1[:8]>`), stable across re-parsing.
+* Known limitations: docs are a 2026 snapshot (treated as timeless); patch
+  releases (e.g. 1.45.1) are not in the release notes, so such fixes are only
+  evidenced by maintainer comments; issue bodies may have been edited after creation.
+
+## 4. LLM access: chat, cost ledger, record/replay
+
+```bash
+PYTHONPATH=src python -m ssa.llm.smoke                      # one tiny live call (~$0.00002)
+LLM_CACHE_MODE=replay PYTHONPATH=src python -m ...          # re-run anything offline, $0
+```
+
+| Piece | Module | Notes |
+|---|---|---|
+| `LLMClient.chat()` | `ssa.llm.client` | OpenAI-compatible (Metis); tools / tool_choice / JSON mode; `temperature=0`, `seed=7` |
+| `LLMClient.chat_json()` | `ssa.llm.client` | JSON mode + one repair turn on invalid JSON / missing keys, then `LLMError` |
+| Record/replay cache | `ssa.llm.cache` | `data/llm_cache/chat.sqlite`, key = sha256 of the full request; committed to git |
+| Fake client | `ssa.llm.fake` | scripted responses / tool calls for offline logic tests |
+
+`LLM_CACHE_MODE`: `cache` (default, read-through) · `replay` (offline; a miss raises
+`ReplayMiss`; no API key needed) · `live` (always call, overwrite) · `off`.
+
+* **Live vs replayed are never mixed:** live calls are budget-guarded and written to
+  `data/usage/ledger.jsonl`; replayed calls cost $0, are not ledgered, and are flagged
+  `replayed=True`. `client.stats` counts both per run (`live_calls`, `replayed_calls`,
+  tokens, `usd_live`, `usd_replayed` = original cost of the replayed calls, latency).
+* Ledger prices are OpenAI list prices (override with `PRICE_<MODEL>_IN/_OUT`); the
+  Metis panel is the source of truth for actual spend.
+* Default chat model: `gpt-4o-mini`; agent replies are in **English** (fixed for evaluation).

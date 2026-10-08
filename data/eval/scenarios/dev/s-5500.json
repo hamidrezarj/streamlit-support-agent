@@ -1,0 +1,57 @@
+{
+ "id": "s-5500",
+ "issue": 5500,
+ "split": "dev",
+ "covers": [
+  "designed_followups",
+  "user_correction",
+  "brief_example"
+ ],
+ "steps": [
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "user",
+   "origin": "designed",
+   "text": "I open it directly at http://<server-ip>:8501, no proxy. Reinstalling streamlit didn't help. Version is 1.13.0."
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "user",
+   "origin": "designed",
+   "text": "Correction: sorry, it's actually behind our company nginx on https://tools.example.com/st/ - the direct IP works fine.",
+   "corrects": "access_path"
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "awaiting_user",
+  "comments_posted": 2,
+  "facts": {
+   "access_path": "nginx reverse proxy under /st/"
+  },
+  "superseded_facts": [
+   "access_path=direct ip"
+  ],
+  "must_not": [
+   "final reply still assumes no proxy",
+   "asks for Streamlit version again"
+  ]
+ },
+ "case_id": "c-5500",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

@@ -1,0 +1,39 @@
+{
+ "id": "s-7867",
+ "issue": 7867,
+ "split": "dev",
+ "covers": [
+  "real_followups",
+  "maintainer_edit"
+ ],
+ "steps": [
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 1865925439,
+   "text": "Following up from my previous issue, I've noticed that even setting the command line flag `--client.toolbarMode=viewer` appears to have no effect. However, `--client.toolbarMode=minimal` does do what it's meant to, as defined in the docs",
+   "created_at": "2023-12-21T09:23:15Z",
+   "url": "https://github.com/streamlit/streamlit/issues/7867#issuecomment-1865925439",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "edit",
+   "edit_note": "Maintainer shortens the reply and adds: 'Use client.toolbarMode = \"minimal\" to hide the menu.'"
+  }
+ ],
+ "expected_final": {
+  "status": "answered",
+  "comments_posted": 1,
+  "posted_text_equals_edited": true,
+  "must_not": [
+   "label type:bug added"
+  ]
+ },
+ "case_id": "c-7867",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

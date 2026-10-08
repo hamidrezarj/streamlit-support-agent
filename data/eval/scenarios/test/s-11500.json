@@ -1,0 +1,71 @@
+{
+ "id": "s-11500",
+ "issue": 11500,
+ "split": "test",
+ "covers": [
+  "real_followups",
+  "user_correction",
+  "case_changed_before_execute"
+ ],
+ "steps": [
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 2934761423,
+   "corrects": "streamlit_version",
+   "note": "arrives while the first proposal is pending",
+   "text": "@user A million thanks! I had incorrectly determined the patch went in 1.41.0. \n\nOne correction to the ticket: the existing Streamlit version was 1.43.2 not 1.41.0 when the ticket was written. \n\nWe updated to Streamlit 1.45.0, and we are not seeing the info message insofar. I will update at end of day with further testing and close the issue as appropriate.",
+   "created_at": "2025-06-03T11:19:12Z",
+   "url": "https://github.com/streamlit/streamlit/issues/11500#issuecomment-2934761423",
+   "by_issue_author": true
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve",
+   "note": "approval targets the OLD proposal; must be rejected as stale"
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 2936816978,
+   "text": "@user \n\n[image]\n\nThis is after the update to 1.45.0.",
+   "created_at": "2025-06-03T19:16:36Z",
+   "url": "https://github.com/streamlit/streamlit/issues/11500#issuecomment-2936816978",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "answered",
+  "comments_posted": 2,
+  "facts": {
+   "streamlit_version": "1.45.0"
+  },
+  "superseded_facts": [
+   "streamlit_version=1.41.0",
+   "streamlit_version=1.43.2"
+  ],
+  "must_not": [
+   "stale proposal executed"
+  ]
+ },
+ "case_id": "c-11500",
+ "annotated_by": "claude-draft",
+ "reviewed_by": null
+}

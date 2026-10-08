@@ -1,0 +1,81 @@
+{
+ "case_id": "c-8364",
+ "split": "dev",
+ "bucket": "escalate",
+ "topic": "offline-startup-hang",
+ "family_id": "fam:8364",
+ "multi_turn": true,
+ "visible": {
+  "issue_number": 8364,
+  "url": "https://github.com/streamlit/streamlit/issues/8364",
+  "title": "Server hangs on startup when offline",
+  "body": "### Checklist\n\n### Summary\n\nWhen I run streamlit \n\n### Reproducible Code Example\n\n### Steps To Reproduce\n\n1. Disable your internet connection\n2. Run `streamlit hello` or `streamlit run some_script.py` (preferably with development mode on to see more logs)\n3. Observe that the server does not fully start (the streamlit web app page is stuck loading), and the runtime reports no connected sessions\n4. 2-5 minutes later, see that the server does start, along with many tornado endpoint hits processed all at once.\n\n### Expected Behavior\n\nServer starts right away even with no active internet connection\n\n### Current Behavior\n\n### Is this a regression?\n\n- [X] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.32.2\n- Python version: 3.11.1\n- Operating System: Fedora 36\n- Browser: Firefox 112.0.1\n\n### Additional Information",
+  "as_of": "2024-03-22T17:37:49Z"
+ },
+ "filters": {
+  "before": "2024-03-22T17:37:49Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "Server hangs for minutes on startup when offline (clear repro steps given).",
+  "hypotheses": [
+   "network call at startup without timeout (version check / external IP lookup)",
+   "dependency regression"
+  ],
+  "missing_info": [
+   {
+    "item": "is server.headless enabled / config used",
+    "why": "startup code path differs in headless mode"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Escalate with repro; ask about config (headless, gatherUsageStats) to narrow the network call",
+   "Suggest debug logging to locate the hang"
+  ],
+  "must_not": [
+   "say it cannot be reproduced without trying the given steps",
+   "close as user error"
+  ],
+  "relevant_sources": [
+   "config:server.headless",
+   "page:/develop/concepts/architecture/architecture"
+  ],
+  "reference": "User found headless mode calls get_external_ip(); confirmed; fixed with a timeout (2026).",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

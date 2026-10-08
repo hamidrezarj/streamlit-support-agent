@@ -1,0 +1,73 @@
+{
+ "case_id": "c-13461",
+ "split": "dev",
+ "bucket": "answerable",
+ "topic": "authlib-1.6",
+ "family_id": "fam:13335",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 13461,
+  "url": "https://github.com/streamlit/streamlit/issues/13461",
+  "title": "400: 'NoneType' object does not support item assignment - Authlib>=1.6.*",
+  "body": "### Checklist\n\n### Summary\n\nWhen authenticating to azure entra https://login.microsoftonline.com/\nand using the latest `Authlib, 1.6.*`.\n\nThe website shows this message after login \n\n`400: 'NoneType' object does not support item assignment`\n\nand nothing else.\n\nreverting to `1.5.*` solves this issue. \n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.45\n- Python version: python=3.11 on conda\n- Operating System: Server running on ubuntu inside docker. Linux cfaf193df011 6.8.0-1044-aws #46~22.04.1-Ubuntu SMP Tue Dec  2 12:52:18 UTC 2025 x86_64 x86_64 x86_64 GNU/Linu. Browser on windows. \n- Browser: Chrome 143.0.7499.170",
+  "as_of": "2025-12-25T12:19:51Z"
+ },
+ "filters": {
+  "before": "2025-12-25T12:19:51Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "known_issue",
+  "summary": "st.login with Entra fails: 400 'NoneType' object does not support item assignment with Authlib 1.6.*; Streamlit 1.45.",
+  "hypotheses": [
+   "known incompatibility with Authlib 1.6.6, fixed in Streamlit 1.52.2"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Point to #13335 / #13389: upgrade Streamlit to >=1.52.2 or keep Authlib <1.6.6"
+  ],
+  "must_not": [
+   "ask which identity provider (given: Entra)"
+  ],
+  "relevant_sources": [
+   "issue:13335",
+   "issue:13389"
+  ],
+  "reference": "Closed as duplicate of #13335; upgrade to 1.52.2.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

@@ -1,0 +1,88 @@
+{
+ "case_id": "c-16570",
+ "split": "dev",
+ "bucket": "ambiguous",
+ "topic": "forwardmsg-miss",
+ "family_id": "fam:16570",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 16570,
+  "url": "https://github.com/streamlit/streamlit/issues/16570",
+  "title": "Connection error",
+  "body": "### Checklist\n\n### Summary\n\nFailed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=cd4746dc1df6dcfb073b12276a2c9e39]. This is not expected to happen.\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\n### Expected Behavior\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version:\n- Python version:\n- Operating System:\n- Browser:\n\n### Additional Information",
+  "as_of": "2026-08-19T08:03:58Z"
+ },
+ "filters": {
+  "before": "2026-08-19T08:03:58Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "info_request",
+  "summary": "Bare 'Cached ForwardMsg MISS' report, no version or context.",
+  "hypotheses": [
+   "old Streamlit < 1.45.1/1.46 with the known cache bug",
+   "newer residual variant (SiS / reconnects)"
+  ],
+  "missing_info": [
+   {
+    "item": "Streamlit version",
+    "why": "older than 1.45.1 -> known fixed bug; newer -> new/residual issue to escalate"
+   },
+   {
+    "item": "deployment platform (local / Community Cloud / Streamlit in Snowflake)",
+    "why": "SiS-specific variants were reported separately"
+   }
+  ],
+  "acceptable_next_steps": [
+   "Ask for the exact Streamlit version first; if < 1.46 recommend upgrade",
+   "Mention the known fix (1.45.1 / 1.46.0 cache cleanup) conditionally"
+  ],
+  "must_not": [
+   "ask a full fixed checklist (OS, browser, python) without saying why",
+   "claim it is fixed without knowing the version"
+  ],
+  "relevant_sources": [
+   "issue:11357",
+   "issue:11299",
+   "rn:1.46.0:23b3f881",
+   "issue:11973",
+   "issue:12089"
+  ],
+  "reference": "Maintainer asked for the version; closed as likely caused by an old version.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

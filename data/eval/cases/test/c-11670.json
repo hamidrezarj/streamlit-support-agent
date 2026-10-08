@@ -1,0 +1,74 @@
+{
+ "case_id": "c-11670",
+ "split": "test",
+ "bucket": "escalate",
+ "topic": "websocket-ping-timeout",
+ "family_id": "fam:11670",
+ "multi_turn": false,
+ "visible": {
+  "issue_number": 11670,
+  "url": "https://github.com/streamlit/streamlit/issues/11670",
+  "title": "connection breaks up because WebSocketProtocol13.ping_timeout=1, but expected to be 30",
+  "body": "### Checklist\n\n### Summary\n\nIn server.py there is configuration for tornado:\n\n```\nTORNADO_SETTINGS = {\n    # Gzip HTTP responses.\n    \"compress_response\": True,\n    # Ping every 1s to keep WS alive.\n    # 2021.06.22: this value was previously 20s, and was causing\n    # connection instability for a small number of users. This smaller\n    # ping_interval fixes that instability.\n    # https://github.com/streamlit/streamlit/issues/3196\n    \"websocket_ping_interval\": 1,\n    # If we don't get a ping response within 30s, the connection\n    # is timed out.\n    \"websocket_ping_timeout\": 30,\n    \"xsrf_cookie_name\": \"_streamlit_xsrf\",\n}\n```\n\nBut if we go to tornado sources https://www.tornadoweb.org/en/stable/_modules/tornado/websocket.html\nthen we will find out:\n\n```python\n    @user\n    def ping_timeout(self) -> float:\n        timeout = self.params.ping_timeout\n        if timeout is not None:\n            if self.ping_interval and timeout > self.ping_interval:\n                de_dupe_gen_log(\n                    # Note: using de_dupe_gen_log to prevent this message from\n                    # being duplicated for each connection\n                    logging.WARNING,\n                    f\"The websocket_ping_timeout ({timeout}) cannot be longer\"\n                    f\" than the websocket_ping_interval ({self.ping_interval}).\"\n                    f\"\\nSetting websocket_ping_timeout={self.ping_interval}\",\n                )\n                return self.ping_interval\n            return timeout\n        return self.ping_interval\n```\n\nObviously, that streamlit have pint_timeout set to 1, which is super inconvenient with unstable connection (like delay on 1s will breaks up streaming)\n\n### Reproducible Code Example\n\n```Python\n\n```\n\n### Steps To Reproduce\n\nJust go with debugger to tornado/websocket.py line where get_websocket_protocol is defined and check that `WebSocketProtocol13(self, False, params)` will return both ping_timeout and ping_interval equals 1.\n\n### Expected Behavior\n\nI expect streamlit will provide an ability to set this parameters somewhere in config.\n\n### Current Behavior\n\n### Is this a regression?\n\n- [ ] Yes, this used to work in a previous version.\n\n### Debug info\n\n- Streamlit version: 1.45.1\n- Python version: 3.9 or 3.12, doesn't matter \n- Operating System: Linux\n- Browser: Chrome\n\n### Additional Information",
+  "as_of": "2025-06-17T15:35:11Z"
+ },
+ "filters": {
+  "before": "2025-06-17T15:35:11Z",
+  "exclude_issues": [
+   5500,
+   5793,
+   6095,
+   6224,
+   6305,
+   6956,
+   7076,
+   7856,
+   7867,
+   8149,
+   8321,
+   8364,
+   9140,
+   9176,
+   9665,
+   9680,
+   9781,
+   11500,
+   11509,
+   11647,
+   11670,
+   12709,
+   13102,
+   13165,
+   13461,
+   13521,
+   14432,
+   15326,
+   15378,
+   16030,
+   16341,
+   16570
+  ]
+ },
+ "gold": {
+  "outcome": "escalate",
+  "summary": "WebSocket ping_timeout effectively 1s (tornado) -> connections drop; detailed code analysis provided.",
+  "hypotheses": [
+   "Streamlit ping interval/timeout settings vs tornado behaviour"
+  ],
+  "missing_info": [],
+  "acceptable_next_steps": [
+   "Escalate with the analysis; mention history (1.20 made timeouts more forgiving)",
+   "Workaround: patch settings / pin tornado until fix"
+  ],
+  "must_not": [
+   "ask for versions (given)"
+  ],
+  "relevant_sources": [
+   "rn:1.20.0:1f5e7538",
+   "issue:8660"
+  ],
+  "reference": "Confirmed regression; fixed in 1.47.0; configurable interval in 1.48.0.",
+  "annotated_by": "claude-draft",
+  "reviewed_by": null
+ }
+}

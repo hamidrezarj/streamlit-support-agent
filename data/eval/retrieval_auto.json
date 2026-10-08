@@ -1,5 +1,5 @@
 {
- "built_at": "2026-10-05T16:17:15+00:00",
+ "built_at": "2026-10-06T14:06:48+00:00",
  "n_tasks": {
   "fix": 75,
   "dup": 26,
@@ -12,18 +12,18 @@
     "hit@5": 0.613,
     "recall@10": 0.653,
     "hit@10": 0.653,
-    "recall@20": 0.667,
-    "hit@20": 0.667,
-    "mrr": 0.477
+    "recall@20": 0.653,
+    "hit@20": 0.653,
+    "mrr": 0.479
    },
    "dup": {
-    "recall@5": 0.596,
+    "recall@5": 0.606,
     "hit@5": 0.731,
     "recall@10": 0.702,
     "hit@10": 0.808,
-    "recall@20": 0.808,
-    "hit@20": 0.923,
-    "mrr": 0.577
+    "recall@20": 0.865,
+    "hit@20": 0.962,
+    "mrr": 0.534
    },
    "doc": {
     "recall@5": 0.417,
@@ -32,7 +32,7 @@
     "hit@10": 0.583,
     "recall@20": 0.583,
     "hit@20": 0.583,
-    "mrr": 0.28
+    "mrr": 0.279
    }
   },
   "dense": {
@@ -46,13 +46,13 @@
     "mrr": 0.615
    },
    "dup": {
-    "recall@5": 0.644,
-    "hit@5": 0.769,
+    "recall@5": 0.683,
+    "hit@5": 0.808,
     "recall@10": 0.75,
     "hit@10": 0.846,
-    "recall@20": 0.885,
+    "recall@20": 0.894,
     "hit@20": 0.962,
-    "mrr": 0.596
+    "mrr": 0.616
    },
    "doc": {
     "recall@5": 0.417,
@@ -68,20 +68,20 @@
    "fix": {
     "recall@5": 0.72,
     "hit@5": 0.72,
-    "recall@10": 0.813,
-    "hit@10": 0.813,
+    "recall@10": 0.8,
+    "hit@10": 0.8,
     "recall@20": 0.88,
     "hit@20": 0.88,
-    "mrr": 0.578
+    "mrr": 0.574
    },
    "dup": {
-    "recall@5": 0.702,
+    "recall@5": 0.712,
     "hit@5": 0.808,
-    "recall@10": 0.75,
-    "hit@10": 0.846,
-    "recall@20": 0.913,
+    "recall@10": 0.788,
+    "hit@10": 0.885,
+    "recall@20": 0.923,
     "hit@20": 1.0,
-    "mrr": 0.637
+    "mrr": 0.639
    },
    "doc": {
     "recall@5": 0.417,
@@ -135,7 +135,7 @@
    "mode": "bm25",
    "kind": "dup",
    "issue": 5339,
-   "first_relevant_rank": 13
+   "first_relevant_rank": 15
   },
   {
    "mode": "bm25",
@@ -165,7 +165,7 @@
    "mode": "bm25",
    "kind": "dup",
    "issue": 6224,
-   "first_relevant_rank": 1
+   "first_relevant_rank": 2
   },
   {
    "mode": "bm25",
@@ -237,13 +237,13 @@
    "mode": "bm25",
    "kind": "dup",
    "issue": 7568,
-   "first_relevant_rank": 12
+   "first_relevant_rank": 13
   },
   {
    "mode": "bm25",
    "kind": "dup",
    "issue": 7569,
-   "first_relevant_rank": 1
+   "first_relevant_rank": 2
   },
   {
    "mode": "bm25",
@@ -267,7 +267,7 @@
    "mode": "bm25",
    "kind": "dup",
    "issue": 7731,
-   "first_relevant_rank": null
+   "first_relevant_rank": 19
   },
   {
    "mode": "bm25",
@@ -435,7 +435,7 @@
    "mode": "bm25",
    "kind": "fix",
    "issue": 9450,
-   "first_relevant_rank": 3
+   "first_relevant_rank": 2
   },
   {
    "mode": "bm25",
@@ -549,7 +549,7 @@
    "mode": "bm25",
    "kind": "dup",
    "issue": 11300,
-   "first_relevant_rank": 2
+   "first_relevant_rank": 3
   },
   {
    "mode": "bm25",
@@ -567,7 +567,7 @@
    "mode": "bm25",
    "kind": "doc",
    "issue": 11356,
-   "first_relevant_rank": 23
+   "first_relevant_rank": 24
   },
   {
    "mode": "bm25",
@@ -675,7 +675,7 @@
    "mode": "bm25",
    "kind": "doc",
    "issue": 13773,
-   "first_relevant_rank": 9
+   "first_relevant_rank": 10
   },
   {
    "mode": "bm25",
@@ -693,7 +693,7 @@
    "mode": "bm25",
    "kind": "fix",
    "issue": 14432,
-   "first_relevant_rank": 20
+   "first_relevant_rank": null
   },
   {
    "mode": "bm25",
@@ -927,7 +927,7 @@
    "mode": "dense",
    "kind": "dup",
    "issue": 7578,
-   "first_relevant_rank": 7
+   "first_relevant_rank": 8
   },
   {
    "mode": "dense",
@@ -945,7 +945,7 @@
    "mode": "dense",
    "kind": "dup",
    "issue": 7731,
-   "first_relevant_rank": 7
+   "first_relevant_rank": 5
   },
   {
    "mode": "dense",
@@ -1227,7 +1227,7 @@
    "mode": "dense",
    "kind": "dup",
    "issue": 11300,
-   "first_relevant_rank": 15
+   "first_relevant_rank": 18
   },
   {
    "mode": "dense",
@@ -1269,7 +1269,7 @@
    "mode": "dense",
    "kind": "dup",
    "issue": 11488,
-   "first_relevant_rank": 2
+   "first_relevant_rank": 1
   },
   {
    "mode": "dense",
@@ -1593,7 +1593,7 @@
    "mode": "hybrid",
    "kind": "dup",
    "issue": 7568,
-   "first_relevant_rank": 3
+   "first_relevant_rank": 4
   },
   {
    "mode": "hybrid",
@@ -1623,13 +1623,13 @@
    "mode": "hybrid",
    "kind": "dup",
    "issue": 7731,
-   "first_relevant_rank": 11
+   "first_relevant_rank": 8
   },
   {
    "mode": "hybrid",
    "kind": "fix",
    "issue": 7855,
-   "first_relevant_rank": 10
+   "first_relevant_rank": 14
   },
   {
    "mode": "hybrid",
@@ -1665,7 +1665,7 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 8084,
-   "first_relevant_rank": 7
+   "first_relevant_rank": 9
   },
   {
    "mode": "hybrid",
@@ -1701,7 +1701,7 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 8496,
-   "first_relevant_rank": 6
+   "first_relevant_rank": 9
   },
   {
    "mode": "hybrid",
@@ -1779,7 +1779,7 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 9397,
-   "first_relevant_rank": 11
+   "first_relevant_rank": 9
   },
   {
    "mode": "hybrid",
@@ -1905,7 +1905,7 @@
    "mode": "hybrid",
    "kind": "dup",
    "issue": 11300,
-   "first_relevant_rank": 4
+   "first_relevant_rank": 3
   },
   {
    "mode": "hybrid",
@@ -1917,13 +1917,13 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 11330,
-   "first_relevant_rank": 8
+   "first_relevant_rank": 9
   },
   {
    "mode": "hybrid",
    "kind": "doc",
    "issue": 11356,
-   "first_relevant_rank": 19
+   "first_relevant_rank": 20
   },
   {
    "mode": "hybrid",
@@ -1941,7 +1941,7 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 11420,
-   "first_relevant_rank": 4
+   "first_relevant_rank": 5
   },
   {
    "mode": "hybrid",
@@ -1989,13 +1989,13 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 13101,
-   "first_relevant_rank": 14
+   "first_relevant_rank": 16
   },
   {
    "mode": "hybrid",
    "kind": "fix",
    "issue": 13280,
-   "first_relevant_rank": 14
+   "first_relevant_rank": 15
   },
   {
    "mode": "hybrid",
@@ -2019,13 +2019,13 @@
    "mode": "hybrid",
    "kind": "fix",
    "issue": 13600,
-   "first_relevant_rank": 8
+   "first_relevant_rank": 10
   },
   {
    "mode": "hybrid",
    "kind": "fix",
    "issue": 13712,
-   "first_relevant_rank": 7
+   "first_relevant_rank": 9
   },
   {
    "mode": "hybrid",
@@ -2043,13 +2043,13 @@
    "mode": "hybrid",
    "kind": "dup",
    "issue": 14290,
-   "first_relevant_rank": 12
+   "first_relevant_rank": 11
   },
   {
    "mode": "hybrid",
    "kind": "fix",
    "issue": 14432,
-   "first_relevant_rank": 6
+   "first_relevant_rank": 17
   },
   {
    "mode": "hybrid",
@@ -2130,5 +2130,5 @@
    "first_relevant_rank": 1
   }
  ],
- "query_embeddings_paid": 108
+ "query_embeddings_paid": 0
 }

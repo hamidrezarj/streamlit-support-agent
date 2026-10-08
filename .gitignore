@@ -33,6 +33,8 @@ data/index/
 *.npy
 *.sqlite
 *.tmp
+# ...except the LLM record/replay cache: lets anyone re-run evals offline for $0
+!data/llm_cache/*.sqlite
 
 # KEPT in git (the pinned, PII-scrubbed data version + results):
 #   data/processed/*        cleaned issues, docs sections, release notes (~8 MB)
