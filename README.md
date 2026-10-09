@@ -172,3 +172,24 @@ Final pipeline, enforced in code (not by the prompt):
 
 Extra metrics (all systems): basis mislabel rate, checklist questions, duplicate citations,
 upgrade advice without a release note, high-confidence wrong answers, sources shown.
+
+
+## 6. Command-line interface
+
+```bash
+export PYTHONPATH=src
+python -m ssa.cli cases                                   # list dev cases (--split test|all)
+python -m ssa.cli show    --case c-8149 --gold            # pretty-print a saved run, $0, no API
+python -m ssa.cli show    --case c-12709 --run baseline --gold   # same case, baseline output
+python -m ssa.cli analyze --case c-5500                   # run final-v4 now (cached calls replay, $0)
+python -m ssa.cli analyze --title "App stuck on Please wait" --body-file report.txt --as-of 2024-05-01
+pbpaste | python -m ssa.cli analyze --title "..." --body-file -       # report from the clipboard
+```
+
+Sections printed: facts from the report, evidence (relation per source, `RESOLVES`, maintainer reply,
+`*` = cited), decision (rule that fired, LLM proposal, overrides), hypotheses with basis, next step and
+questions, reply to the user, maintainer summary, what the code corrected, cost (live vs replayed).
+`--gold` shows the hidden gold *after* the result (never sent to the system); `--all-sources` also lists
+sources judged irrelevant; `--json` / `--save` give the full result with trace. A new report is
+retrieved with the same leakage filters (`before = --as-of`, all eval issues excluded). Test cases
+need `--confirm-test`.
