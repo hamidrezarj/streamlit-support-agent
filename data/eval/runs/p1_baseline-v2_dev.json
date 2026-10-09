@@ -1,0 +1,3361 @@
+{
+ "system": "baseline-v2",
+ "prompt_version": "baseline-v2",
+ "split": "dev",
+ "built_at": "2026-10-09T10:26:47+00:00",
+ "git_commit": "996e228",
+ "model": "gpt-4o-mini",
+ "cache_mode": "cache",
+ "stopped_early": null,
+ "metrics": {
+  "n_cases": 16,
+  "outcome_exact": 0.312,
+  "bucket_ok": 0.5,
+  "per_bucket": {
+   "ambiguous": {
+    "n": 5,
+    "bucket_ok": 0.8,
+    "outcome_exact": 0.8
+   },
+   "answerable": {
+    "n": 6,
+    "bucket_ok": 0.667,
+    "outcome_exact": 0.167
+   },
+   "escalate": {
+    "n": 5,
+    "bucket_ok": 0.0,
+    "outcome_exact": 0.0
+   }
+  },
+  "confusion": {
+   "ambiguous": {
+    "info_request": 4,
+    "known_issue": 1
+   },
+   "answerable": {
+    "info_request": 2,
+    "known_issue": 4
+   },
+   "escalate": {
+    "known_issue": 4,
+    "info_request": 1
+   }
+  },
+  "retrieval_recall": 0.468,
+  "cited_recall": 0.334,
+  "avg_cited": 1.812,
+  "invalid_citation_cases": 0,
+  "contract_problem_cases": 6,
+  "redundant_question_cases": 2,
+  "checklist_question_cases": 3,
+  "basis_mislabel_rate": 0.125,
+  "duplicate_citation_cases": 1,
+  "unsupported_upgrade_cases": 2,
+  "high_confidence_wrong": 6,
+  "avg_sources_shown": 10.0,
+  "avg_questions": 0.688,
+  "errors": 0,
+  "cost": {
+   "llm_calls_live": 16,
+   "llm_calls_replayed": 0,
+   "tokens_in": 64125,
+   "tokens_out": 6966,
+   "usd_live": 0.0138,
+   "usd_replayed_equiv": 0.0,
+   "usd_per_case": 0.000862,
+   "query_embeddings": 0,
+   "avg_llm_latency_s": 6.072,
+   "avg_wall_s": 6.113,
+   "avg_steps": 2.0
+  }
+ },
+ "cases": [
+  {
+   "case_id": "c-11647",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-11647",
+    "bucket": "answerable",
+    "gold_outcome": "known_issue",
+    "outcome": "info_request",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 1.0,
+    "cited_recall": 0.333,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3155,
+    "tokens_out": 425,
+    "usd_live": 0.000728,
+    "usd_replayed": 0.0,
+    "latency_s": 9.401,
+    "query_embeddings": 0,
+    "wall_s": 9.424,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "The user encountered a connection error related to WebSocket messages in their Streamlit app.",
+    "known_facts": [
+     "Streamlit version: 1.45.0",
+     "Python version: 3.10.6",
+     "Operating System: Windows 11",
+     "Browser: Brave"
+    ],
+    "hypotheses": [
+     {
+      "text": "The error may be related to fast user interactions causing WebSocket message processing issues.",
+      "basis": "similar_report",
+      "sources": [
+       "S1",
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the error can be consistently reproduced or if it was a one-time occurrence."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Could you try to reproduce the error and let me know if it happens again?"
+    },
+    "questions": [],
+    "user_reply": "It seems you encountered a connection error related to WebSocket messages in your Streamlit app. This type of error has been reported before, often linked to fast user interactions, which can lead to issues in processing WebSocket messages [S1], [S2]. Since you mentioned it happened only once, could you try to reproduce the error and let me know if it happens again? This will help us understand if it's a recurring issue.",
+    "maintainer_summary": {
+     "problem": "User experienced a WebSocket message processing error that occurred once and could not be reproduced.",
+     "environment": "Streamlit version 1.45.0, Python 3.10.6, Windows 11, Brave browser.",
+     "checks_done": "User has not provided steps to reproduce or additional context.",
+     "key_sources": [
+      "S1",
+      "S2"
+     ],
+     "open_questions": "Whether the error can be consistently reproduced.",
+     "next_step": "Monitor for further reports or attempts to reproduce the issue."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:11357",
+     "type": "issue",
+     "title": "Connection error: Failed to process a Websocket message. Error: Cached ForwardMsg",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11357",
+     "available_at": "2025-05-14T06:20:47Z",
+     "chunk_id": "41489b947edbda40",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:11488",
+     "type": "issue",
+     "title": "Connection error Failed to process a Websocket message.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11488",
+     "available_at": "2025-05-30T11:52:00Z",
+     "chunk_id": "a3611fa271a56d97",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:11372",
+     "type": "issue",
+     "title": "streamlit webssocket error streamlit recomnds reporting",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11372",
+     "available_at": "2025-05-15T15:49:54Z",
+     "chunk_id": "71355d21cf5776df",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:11357",
+     "type": "comment",
+     "title": "Connection error: Failed to process a Websocket message. Error: Cached ForwardMsg",
+     "heading": "comments 2025-05-23..2025-05-23",
+     "url": "https://github.com/streamlit/streamlit/issues/11357#issuecomment-2904202497",
+     "available_at": "2025-05-23T12:03:30Z",
+     "chunk_id": "5e074705a66fc56d",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:11300",
+     "type": "issue",
+     "title": "cached websocket issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11300",
+     "available_at": "2025-05-08T00:30:38Z",
+     "chunk_id": "a793551db5203840",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:5929",
+     "type": "issue",
+     "title": "Connection Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5929",
+     "available_at": "2023-01-09T08:55:59Z",
+     "chunk_id": "de0543f5bb7ad06a",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:9787",
+     "type": "issue",
+     "title": "st.fragment produces \"Failed to process a Websocket message (AxiosError: Request failed with status code 418\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9787",
+     "available_at": "2024-11-05T15:16:05Z",
+     "chunk_id": "6a10113c0dea75cd",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:11299",
+     "type": "issue",
+     "title": "Failed to process a Websocket message - while using Slider + st.dataframe height",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11299",
+     "available_at": "2025-05-07T23:56:06Z",
+     "chunk_id": "7e032c1f82c77288",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:9396",
+     "type": "issue",
+     "title": "Connection Error: Application Fails After Initial Run",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9396",
+     "available_at": "2024-09-04T07:38:12Z",
+     "chunk_id": "d85edf0c5fdfc15e",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:7752",
+     "type": "issue",
+     "title": "Connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7752",
+     "available_at": "2023-11-25T09:53:53Z",
+     "chunk_id": "b1a72dc9434d6b3e",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S2"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:11357",
+    "issue:11488",
+    "issue:11372",
+    "issue:11357",
+    "issue:11300",
+    "issue:5929",
+    "issue:9787",
+    "issue:11299",
+    "issue:9396",
+    "issue:7752"
+   ],
+   "error": null,
+   "retrieval_s": 0.017,
+   "steps": 2
+  },
+  {
+   "case_id": "c-12709",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-12709",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "info_request",
+    "outcome_exact": true,
+    "bucket_ok": true,
+    "retrieval_recall": 0.75,
+    "cited_recall": 0.75,
+    "n_cited": 4,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": true,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 2959,
+    "tokens_out": 403,
+    "usd_live": 0.000686,
+    "usd_replayed": 0.0,
+    "latency_s": 4.528,
+    "query_embeddings": 0,
+    "wall_s": 4.574,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "User is experiencing a connection error related to Websocket messages.",
+    "known_facts": [],
+    "hypotheses": [
+     {
+      "text": "The error may be related to a known issue with Websocket messages and cached responses.",
+      "basis": "similar_report",
+      "sources": [
+       "S1",
+       "S2",
+       "S3",
+       "S4"
+      ]
+     }
+    ],
+    "unknowns": [
+     "The user's Streamlit version, Python version, operating system, and browser are unknown, which are crucial for diagnosing the issue."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Please provide your Streamlit version, Python version, operating system, and browser."
+    },
+    "questions": [
+     "What version of Streamlit are you using?",
+     "What operating system and browser are you using?"
+    ],
+    "user_reply": "It seems you're encountering a connection error related to Websocket messages, specifically a 'Cached ForwardMsg MISS' error. This issue has been reported by other users as well [S1], [S2], [S3], and [S4]. To assist you better, could you please provide your Streamlit version, Python version, operating system, and browser?",
+    "maintainer_summary": {
+     "problem": "User reports a connection error related to Websocket messages.",
+     "environment": "Unknown Streamlit version, Python version, OS, and browser.",
+     "checks_done": "No specific checks have been performed due to lack of user information.",
+     "key_sources": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+     ],
+     "open_questions": "What are the user's Streamlit version, Python version, operating system, and browser?",
+     "next_step": "Await user response for environment details."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:11973",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11973",
+     "available_at": "2025-07-17T22:14:53Z",
+     "chunk_id": "53088c859b9203b1",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:11357",
+     "type": "issue",
+     "title": "Connection error: Failed to process a Websocket message. Error: Cached ForwardMsg",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11357",
+     "available_at": "2025-05-14T06:20:47Z",
+     "chunk_id": "41489b947edbda40",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:12089",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12089",
+     "available_at": "2025-07-31T13:30:15Z",
+     "chunk_id": "60cfdaa88d7ac9c3",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:12072",
+     "type": "issue",
+     "title": "Connection Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12072",
+     "available_at": "2025-07-30T16:29:08Z",
+     "chunk_id": "0d2758207c146f39",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:11488",
+     "type": "issue",
+     "title": "Connection error Failed to process a Websocket message.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11488",
+     "available_at": "2025-05-30T11:52:00Z",
+     "chunk_id": "a3611fa271a56d97",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:11847",
+     "type": "issue",
+     "title": "Connection Error: Failed to process a Websocket message. Error: Cached ForwardMsg MISS",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11847",
+     "available_at": "2025-07-02T17:16:53Z",
+     "chunk_id": "5c2ac7353187ca0d",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:11372",
+     "type": "issue",
+     "title": "streamlit webssocket error streamlit recomnds reporting",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11372",
+     "available_at": "2025-05-15T15:49:54Z",
+     "chunk_id": "71355d21cf5776df",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:11973",
+     "type": "comment",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "comments 2025-07-28..2025-07-30",
+     "url": "https://github.com/streamlit/streamlit/issues/11973#issuecomment-3130128445",
+     "available_at": "2025-07-30T14:25:51Z",
+     "chunk_id": "0b765025ec334c34",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:11300",
+     "type": "issue",
+     "title": "cached websocket issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11300",
+     "available_at": "2025-05-08T00:30:38Z",
+     "chunk_id": "a793551db5203840",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:7752",
+     "type": "issue",
+     "title": "Connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7752",
+     "available_at": "2023-11-25T09:53:53Z",
+     "chunk_id": "b1a72dc9434d6b3e",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S2",
+     "S3",
+     "S4"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:11973",
+    "issue:11357",
+    "issue:12089",
+    "issue:12072",
+    "issue:11488",
+    "issue:11847",
+    "issue:11372",
+    "issue:11973",
+    "issue:11300",
+    "issue:7752"
+   ],
+   "error": null,
+   "retrieval_s": 0.041,
+   "steps": 2
+  },
+  {
+   "case_id": "c-13102",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-13102",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "info_request",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 0,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 6054,
+    "tokens_out": 488,
+    "usd_live": 0.001201,
+    "usd_replayed": 0.0,
+    "latency_s": 7.096,
+    "query_embeddings": 0,
+    "wall_s": 7.128,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "The user is unable to find version 1.51.0 of Streamlit in pip.",
+    "known_facts": [
+     "User is on Amazon EC2 Linux 2023.",
+     "User has pip version 25.3.",
+     "User has Streamlit version 1.50.0 installed.",
+     "User has upgraded pip to the latest version."
+    ],
+    "hypotheses": [
+     {
+      "text": "Version 1.51.0 may not have been released or made available on PyPI yet.",
+      "basis": "assistant_hypothesis",
+      "sources": []
+     }
+    ],
+    "unknowns": [
+     "Whether version 1.51.0 has been officially released and made available on PyPI."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Please check if version 1.51.0 has been officially released and available on PyPI."
+    },
+    "questions": [
+     "Have you checked the official Streamlit release notes or PyPI for the availability of version 1.51.0?"
+    ],
+    "user_reply": "It seems that version 1.51.0 of Streamlit is not showing up in pip for your environment. This could be because it has not been released or made available on PyPI yet. Please check the official Streamlit release notes or the PyPI page to confirm if version 1.51.0 has been officially released. If it has, you might want to try clearing your pip cache or using a different environment to see if that resolves the issue.",
+    "maintainer_summary": {
+     "problem": "User cannot find Streamlit version 1.51.0 in pip.",
+     "environment": "Amazon EC2 Linux 2023, pip 25.3, Streamlit 1.50.0.",
+     "checks_done": "User has confirmed pip is upgraded to the latest version.",
+     "key_sources": [],
+     "open_questions": "Has version 1.51.0 been officially released and made available on PyPI?",
+     "next_step": "Check the official Streamlit release notes or PyPI for the availability of version 1.51.0."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:4842",
+     "type": "comment",
+     "title": "streamlit run fails for containerized v1.10.0",
+     "heading": "comments 2022-10-04..2022-10-04",
+     "url": "https://github.com/streamlit/streamlit/issues/4842#issuecomment-1267141607",
+     "available_at": "2022-10-04T14:59:33Z",
+     "chunk_id": "9240a095021bf177",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:5140",
+     "type": "issue",
+     "title": "Uncaught exception: TypeError: Protocols cannot be instantiated",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5140",
+     "available_at": "2022-08-12T09:11:12Z",
+     "chunk_id": "51a8e27f52fa8f82",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:12838",
+     "type": "issue",
+     "title": "Running on Raspberry Pi 4b: illegal hardware instruction  streamlit hello",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12838",
+     "available_at": "2025-10-21T09:44:50Z",
+     "chunk_id": "67517085cdd13f7f",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:6601",
+     "type": "comment",
+     "title": "Streamlit hello world fails with \"no module named streamlit.cli\"",
+     "heading": "comments 2023-08-07..2023-08-07",
+     "url": "https://github.com/streamlit/streamlit/issues/6601#issuecomment-1667161651",
+     "available_at": "2023-08-07T04:20:53Z",
+     "chunk_id": "3d18206091dfc5de",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:4580",
+     "type": "issue",
+     "title": "Streamlit assuming sudo available in docker",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4580",
+     "available_at": "2022-04-01T05:51:11Z",
+     "chunk_id": "c825b6b13477898c",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "doc:/knowledge-base/using-streamlit/how-upgrade-latest-version-streamlit#pipenv",
+     "type": "doc",
+     "title": "How do I upgrade to the latest version of Streamlit?",
+     "heading": "How do I upgrade to the latest version of Streamlit? > Pipenv",
+     "url": "https://docs.streamlit.io/knowledge-base/using-streamlit/how-upgrade-latest-version-streamlit#pipenv",
+     "available_at": null,
+     "chunk_id": "f96cc918d9576351",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:7289",
+     "type": "issue",
+     "title": "libGL.so.1 not installed for Streamlit Server",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/7289",
+     "available_at": "2023-09-07T20:21:08Z",
+     "chunk_id": "230a14a80edebc48",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:6934",
+     "type": "comment",
+     "title": "Streamlit reinstalling packages by itself causing incompatibilities",
+     "heading": "comments 2023-06-30..2023-07-01",
+     "url": "https://github.com/streamlit/streamlit/issues/6934#issuecomment-1614904496",
+     "available_at": "2023-07-01T16:07:44Z",
+     "chunk_id": "64228406cf035b00",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5771",
+     "type": "issue",
+     "title": "can not run streamlit python file...",
+     "heading": "body part 3",
+     "url": "https://github.com/streamlit/streamlit/issues/5771",
+     "available_at": "2022-11-27T18:59:10Z",
+     "chunk_id": "40e1b328588853d1",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5771",
+     "type": "issue",
+     "title": "can not run streamlit python file...",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5771",
+     "available_at": "2022-11-27T18:59:10Z",
+     "chunk_id": "782ed48a11574210",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:4842",
+    "issue:5140",
+    "issue:12838",
+    "issue:6601",
+    "issue:4580",
+    "doc:/knowledge-base/using-streamlit/how-upgrade-latest-version-streamlit#pipenv",
+    "issue:7289",
+    "issue:6934",
+    "issue:5771",
+    "issue:5771"
+   ],
+   "error": null,
+   "retrieval_s": 0.026,
+   "steps": 2
+  },
+  {
+   "case_id": "c-13165",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-13165",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "info_request",
+    "outcome_exact": true,
+    "bucket_ok": true,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.5,
+    "n_cited": 3,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": true,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3163,
+    "tokens_out": 407,
+    "usd_live": 0.000719,
+    "usd_replayed": 0.0,
+    "latency_s": 5.825,
+    "query_embeddings": 0,
+    "wall_s": 5.884,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "The user is experiencing a websocket error when navigating away from and back to the Streamlit app.",
+    "known_facts": [],
+    "hypotheses": [
+     {
+      "text": "The websocket error may be related to a known issue with cached messages in Streamlit.",
+      "basis": "similar_report",
+      "sources": [
+       "S1",
+       "S2",
+       "S3"
+      ]
+     }
+    ],
+    "unknowns": [
+     "The user's Streamlit version, Python version, operating system, and browser are unknown."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Please provide your Streamlit version, Python version, operating system, and browser."
+    },
+    "questions": [
+     "What version of Streamlit are you using?",
+     "What operating system and browser are you using?"
+    ],
+    "user_reply": "It seems you're encountering a websocket error when navigating away from and back to your Streamlit app. This issue has been reported by other users as well, indicating it may be a known problem with cached messages in Streamlit [S1], [S2]. To assist you better, could you please provide your Streamlit version, Python version, operating system, and browser?",
+    "maintainer_summary": {
+     "problem": "User reports a websocket error when navigating away from and back to the Streamlit app.",
+     "environment": "Unknown Streamlit version, Python version, OS, and browser.",
+     "checks_done": "No specific checks have been performed due to lack of version and environment details.",
+     "key_sources": [
+      "S1",
+      "S2",
+      "S3"
+     ],
+     "open_questions": "What version of Streamlit is the user running? What are the user's OS and browser details?",
+     "next_step": "Await user response for version and environment details."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:12089",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12089",
+     "available_at": "2025-07-31T13:30:15Z",
+     "chunk_id": "60cfdaa88d7ac9c3",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:11973",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11973",
+     "available_at": "2025-07-17T22:14:53Z",
+     "chunk_id": "53088c859b9203b1",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:11357",
+     "type": "issue",
+     "title": "Connection error: Failed to process a Websocket message. Error: Cached ForwardMsg",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11357",
+     "available_at": "2025-05-14T06:20:47Z",
+     "chunk_id": "41489b947edbda40",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:11488",
+     "type": "issue",
+     "title": "Connection error Failed to process a Websocket message.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11488",
+     "available_at": "2025-05-30T11:52:00Z",
+     "chunk_id": "a3611fa271a56d97",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:12072",
+     "type": "issue",
+     "title": "Connection Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12072",
+     "available_at": "2025-07-30T16:29:08Z",
+     "chunk_id": "0d2758207c146f39",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:11847",
+     "type": "issue",
+     "title": "Connection Error: Failed to process a Websocket message. Error: Cached ForwardMsg MISS",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11847",
+     "available_at": "2025-07-02T17:16:53Z",
+     "chunk_id": "5c2ac7353187ca0d",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:11372",
+     "type": "issue",
+     "title": "streamlit webssocket error streamlit recomnds reporting",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11372",
+     "available_at": "2025-05-15T15:49:54Z",
+     "chunk_id": "71355d21cf5776df",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:11300",
+     "type": "issue",
+     "title": "cached websocket issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11300",
+     "available_at": "2025-05-08T00:30:38Z",
+     "chunk_id": "a793551db5203840",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:11299",
+     "type": "issue",
+     "title": "Failed to process a Websocket message - while using Slider + st.dataframe height",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11299",
+     "available_at": "2025-05-07T23:56:06Z",
+     "chunk_id": "7e032c1f82c77288",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:11357",
+     "type": "comment",
+     "title": "Connection error: Failed to process a Websocket message. Error: Cached ForwardMsg",
+     "heading": "comments 2025-07-22..2025-07-24",
+     "url": "https://github.com/streamlit/streamlit/issues/11357#issuecomment-3101169197",
+     "available_at": "2025-07-24T18:29:34Z",
+     "chunk_id": "7c4c0754f4154a76",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S2",
+     "S3"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:12089",
+    "issue:11973",
+    "issue:11357",
+    "issue:11488",
+    "issue:12072",
+    "issue:11847",
+    "issue:11372",
+    "issue:11300",
+    "issue:11299",
+    "issue:11357"
+   ],
+   "error": null,
+   "retrieval_s": 0.054,
+   "steps": 2
+  },
+  {
+   "case_id": "c-13461",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-13461",
+    "bucket": "answerable",
+    "gold_outcome": "known_issue",
+    "outcome": "known_issue",
+    "outcome_exact": true,
+    "bucket_ok": true,
+    "retrieval_recall": 1.0,
+    "cited_recall": 1.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [
+     "hypothesis without valid basis"
+    ],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4175,
+    "tokens_out": 509,
+    "usd_live": 0.000932,
+    "usd_replayed": 0.0,
+    "latency_s": 6.202,
+    "query_embeddings": 0,
+    "wall_s": 6.256,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user encounters a '400: NoneType object does not support item assignment' error when using Authlib version 1.6.* with Streamlit.",
+    "known_facts": [
+     "Streamlit version: 1.45",
+     "Python version: 3.11",
+     "Operating System: Ubuntu inside Docker",
+     "Reverting to Authlib version 1.5.* resolves the issue."
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue is caused by a bug in Authlib version 1.6.* when used with Streamlit.",
+      "basis": "known_issue",
+      "sources": [
+       "S1",
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether upgrading Streamlit to a version that includes the fix for this issue would resolve it."
+    ],
+    "next_step": {
+     "type": "answer",
+     "text": "You can either continue using Authlib version 1.5.* as a workaround or consider upgrading Streamlit to version 1.52.2 or later, which includes a fix for this issue."
+    },
+    "questions": [],
+    "user_reply": "It seems that the error you're encountering is related to a known issue with Authlib version 1.6.* when used with Streamlit. Many users have reported the same '400: NoneType object does not support item assignment' error, and reverting to Authlib version 1.5.* has been a successful workaround [S1][S2]. You might also want to consider upgrading Streamlit to version 1.52.2 or later, which includes a fix for this issue. Let me know if you need further assistance!",
+    "maintainer_summary": {
+     "problem": "Users encounter a '400: NoneType object does not support item assignment' error when using Authlib version 1.6.* with Streamlit.",
+     "environment": "Streamlit version 1.45, Python 3.11, Ubuntu inside Docker.",
+     "checks_done": "User confirmed that reverting to Authlib version 1.5.* resolves the issue.",
+     "key_sources": [
+      "S1",
+      "S2"
+     ],
+     "open_questions": "None.",
+     "next_step": "Consider documenting the issue and the workaround in the release notes for future reference."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:13389",
+     "type": "issue",
+     "title": "st.login('microsoft') authentication fails with authlib==1.6.6 - redirects to \"400: 'NoneType' object does not support item assignment\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13389",
+     "available_at": "2025-12-16T18:52:09Z",
+     "chunk_id": "4afc1aab88b59e91",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:13335",
+     "type": "issue",
+     "title": "New updated Authlib Version 1.6.6 in streamlit[auth] does not work",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13335",
+     "available_at": "2025-12-12T14:09:14Z",
+     "chunk_id": "9d344573b3b33e6c",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:13389",
+     "type": "comment",
+     "title": "st.login('microsoft') authentication fails with authlib==1.6.6 - redirects to \"400: 'NoneType' object does not support item assignment\"",
+     "heading": "comments 2025-12-17..2025-12-17",
+     "url": "https://github.com/streamlit/streamlit/issues/13389#issuecomment-3666384427",
+     "available_at": "2025-12-17T17:20:46Z",
+     "chunk_id": "1ec1fbae8388c781",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:13377",
+     "type": "issue",
+     "title": "Error on OIDC Integration when running within Docker",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13377",
+     "available_at": "2025-12-16T03:09:22Z",
+     "chunk_id": "e7fc5a6d004f6dec",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:11591",
+     "type": "issue",
+     "title": "st.login for microsoft doesnt work with the redirect url endpoint(oauth2callback)",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/11591",
+     "available_at": "2025-06-11T14:17:54Z",
+     "chunk_id": "1dbec7e3c6c56c4d",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:11391",
+     "type": "issue",
+     "title": "Cannot use common tenant with microsoft login: authlib.jose.errors.InvalidClaimError: invalid_claim: Invalid claim 'iss'",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11391",
+     "available_at": "2025-05-17T22:14:20Z",
+     "chunk_id": "2a2ae86cd7307da8",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:11591",
+     "type": "issue",
+     "title": "st.login for microsoft doesnt work with the redirect url endpoint(oauth2callback)",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11591",
+     "available_at": "2025-06-11T14:17:54Z",
+     "chunk_id": "4a69e89f0bc19b14",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:11706",
+     "type": "issue",
+     "title": "st.login() microsoft with \"prompt\" = \"none\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11706",
+     "available_at": "2025-06-19T10:46:45Z",
+     "chunk_id": "f55aa7abeaf4c8eb",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:8973",
+     "type": "issue",
+     "title": "Issue with Streamlit 1.35.0 (latest stable version) in Azure App Service Deployment",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8973",
+     "available_at": "2024-06-24T21:50:55Z",
+     "chunk_id": "3de27644ac9b9300",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:13425",
+     "type": "issue",
+     "title": "not able to login to streamlit.io to cloud it showing Huh. This isn’t supposed to happen. Please contact support.   Error: Your account has exceeded the fair-use limits and was blocked by the system.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13425",
+     "available_at": "2025-12-20T10:55:14Z",
+     "chunk_id": "f1932ee7c7375540",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [
+     "hypothesis without valid basis"
+    ],
+    "cited": [
+     "S1",
+     "S2"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:13389",
+    "issue:13335",
+    "issue:13389",
+    "issue:13377",
+    "issue:11591",
+    "issue:11391",
+    "issue:11591",
+    "issue:11706",
+    "issue:8973",
+    "issue:13425"
+   ],
+   "error": null,
+   "retrieval_s": 0.048,
+   "steps": 2
+  },
+  {
+   "case_id": "c-13521",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-13521",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.333,
+    "cited_recall": 0.333,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [
+     "hypothesis without valid basis"
+    ],
+    "n_questions": 0,
+    "redundant_q": [
+     "streamlit_version"
+    ],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4355,
+    "tokens_out": 456,
+    "usd_live": 0.000927,
+    "usd_replayed": 0.0,
+    "latency_s": 6.218,
+    "query_embeddings": 0,
+    "wall_s": 6.253,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "Streamlit crashes with PermissionError when port 8501 is reserved by the system instead of auto-searching for a free port.",
+    "known_facts": [
+     "Streamlit version: 1.52.2",
+     "Operating System: Windows"
+    ],
+    "hypotheses": [
+     {
+      "text": "Streamlit does not handle PermissionError when port 8501 is reserved, leading to a crash instead of searching for the next available port.",
+      "basis": "known_issue",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the issue persists in versions newer than 1.52.2."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Could you please confirm if you have tried upgrading to a newer version of Streamlit?"
+    },
+    "questions": [],
+    "user_reply": "It seems that the issue you're experiencing is a known limitation in Streamlit where it does not handle PermissionError when the default port 8501 is reserved by the system. Instead of automatically searching for the next available port, it crashes with a PermissionError. This behavior has been noted in previous discussions, and it appears that the current implementation only checks for EADDRINUSE errors [S1]. If you haven't already, I recommend checking if there is a newer version of Streamlit available that may have addressed this issue. Please let me know if you have tried upgrading or if you need further assistance.",
+    "maintainer_summary": {
+     "problem": "Streamlit crashes with PermissionError when port 8501 is reserved by the system instead of auto-searching for a free port.",
+     "environment": "Windows, Streamlit version 1.52.2",
+     "checks_done": "User has confirmed the issue and provided steps to reproduce.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "Is this issue resolved in versions newer than 1.52.2?",
+     "next_step": "Investigate if the issue persists in newer versions of Streamlit."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:9271",
+     "type": "comment",
+     "title": "auto-select next available port",
+     "heading": "comments 2024-12-22..2024-12-22",
+     "url": "https://github.com/streamlit/streamlit/issues/9271#issuecomment-2558369155",
+     "available_at": "2024-12-22T08:04:19Z",
+     "chunk_id": "8a7d88b5619492f3",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:9328",
+     "type": "issue",
+     "title": "Provide a way to specify the starting port number for the free port search",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9328",
+     "available_at": "2024-08-25T10:39:41Z",
+     "chunk_id": "ae19da74a05241d2",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:9271",
+     "type": "comment",
+     "title": "auto-select next available port",
+     "heading": "comments 2024-08-15..2024-08-19",
+     "url": "https://github.com/streamlit/streamlit/issues/9271#issuecomment-2292278534",
+     "available_at": "2024-08-19T15:28:23Z",
+     "chunk_id": "ffd850f5fb37f0b8",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:9328",
+     "type": "comment",
+     "title": "Provide a way to specify the starting port number for the free port search",
+     "heading": "comments 2024-08-29..2024-09-01",
+     "url": "https://github.com/streamlit/streamlit/issues/9328#issuecomment-2318939649",
+     "available_at": "2024-09-01T12:08:17Z",
+     "chunk_id": "5d66f0658196e609",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6855",
+     "type": "issue",
+     "title": "Cannot Ctrl+C to end streamlit process from CLI without an open tab (in Windows)",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6855",
+     "available_at": "2023-06-18T20:48:21Z",
+     "chunk_id": "fe008a3d54b05b7d",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:7426",
+     "type": "issue",
+     "title": "--server.port does not change, always defaults to 8501",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7426",
+     "available_at": "2023-09-26T06:53:50Z",
+     "chunk_id": "f6823eba341b2747",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:5257",
+     "type": "issue",
+     "title": "When binding to unix socket, startup script still shows TCP port",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5257",
+     "available_at": "2022-08-28T15:03:32Z",
+     "chunk_id": "b912f6c5084917a9",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:9787",
+     "type": "issue",
+     "title": "st.fragment produces \"Failed to process a Websocket message (AxiosError: Request failed with status code 418\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9787",
+     "available_at": "2024-11-05T15:16:05Z",
+     "chunk_id": "6a10113c0dea75cd",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:11308",
+     "type": "issue",
+     "title": "Passing 0 to specific a dynamic port incorrectly prints Local URL: http://localhost:0 to the console",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11308",
+     "available_at": "2025-05-08T19:59:39Z",
+     "chunk_id": "2ee84bef0934a573",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:7721",
+     "type": "issue",
+     "title": "net_util.get_external_ip from AWS causes disabling CORS ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7721",
+     "available_at": "2023-11-14T09:09:20Z",
+     "chunk_id": "82c363459bfab59d",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [
+     "hypothesis without valid basis"
+    ],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:9271",
+    "issue:9328",
+    "issue:9271",
+    "issue:9328",
+    "issue:6855",
+    "issue:7426",
+    "issue:5257",
+    "issue:9787",
+    "issue:11308",
+    "issue:7721"
+   ],
+   "error": null,
+   "retrieval_s": 0.03,
+   "steps": 2
+  },
+  {
+   "case_id": "c-15326",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-15326",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": true,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [
+     "hypothesis without valid basis"
+    ],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4820,
+    "tokens_out": 436,
+    "usd_live": 0.000985,
+    "usd_replayed": 0.0,
+    "latency_s": 5.097,
+    "query_embeddings": 0,
+    "wall_s": 5.161,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The Streamlit Cloud app is ignoring the specified Python version in runtime.txt and defaults to Python 3.14.5.",
+    "known_facts": [
+     "Streamlit version: 1.35.0",
+     "Python version specified in runtime.txt: 3.9",
+     "Python version actually used: 3.14.5",
+     "Operating System: Streamlit Community Cloud (Linux)"
+    ],
+    "hypotheses": [
+     {
+      "text": "The Streamlit Cloud build system is not respecting the runtime.txt file, which is a known issue.",
+      "basis": "known_issue",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [],
+    "next_step": {
+     "type": "answer",
+     "text": "You may need to check for updates or workarounds in the Streamlit Community Cloud documentation or forums, as this appears to be a known issue with the platform."
+    },
+    "questions": [],
+    "user_reply": "It seems that your issue with the Streamlit Cloud app ignoring the specified Python version in runtime.txt is a known issue. The platform is currently defaulting to Python 3.14.5, which is causing compatibility problems with your dependencies. You may want to check for updates or workarounds in the Streamlit Community Cloud documentation or forums, as this issue has been reported previously [S1].",
+    "maintainer_summary": {
+     "problem": "Streamlit Cloud is ignoring the runtime.txt file and defaulting to Python 3.14.5, causing compatibility issues with specified dependencies.",
+     "environment": "Streamlit Community Cloud (Linux), Streamlit version 1.35.0.",
+     "checks_done": "User confirmed that the issue persists even with a minimal test case.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "",
+     "next_step": "Monitor for updates or fixes related to the handling of runtime.txt in Streamlit Cloud."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:6934",
+     "type": "issue",
+     "title": "Streamlit reinstalling packages by itself causing incompatibilities",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6934",
+     "available_at": "2023-06-30T16:03:00Z",
+     "chunk_id": "05e05999841f6e96",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "doc:/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies",
+     "type": "doc",
+     "title": "App dependencies for your Community Cloud app",
+     "heading": "App dependencies for your Community Cloud app > Add Python dependencies",
+     "url": "https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies",
+     "available_at": null,
+     "chunk_id": "98ba2bbbebe18cd2",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "doc:/deploy/concepts/dependencies#pip-and-requirementstxt",
+     "type": "doc",
+     "title": "Managing dependencies when deploying your app",
+     "heading": "Managing dependencies when deploying your app > Install Python packages > `pip` and `requirements.txt`",
+     "url": "https://docs.streamlit.io/deploy/concepts/dependencies#pip-and-requirementstxt",
+     "available_at": null,
+     "chunk_id": "a4077d58aa6b32a2",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:8414",
+     "type": "issue",
+     "title": "Streamlit cloud, deployment issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8414",
+     "available_at": "2024-04-03T12:22:34Z",
+     "chunk_id": "708de5c2e5efc4a2",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6934",
+     "type": "comment",
+     "title": "Streamlit reinstalling packages by itself causing incompatibilities",
+     "heading": "comments 2023-08-02..2023-08-02",
+     "url": "https://github.com/streamlit/streamlit/issues/6934#issuecomment-1663040667",
+     "available_at": "2023-08-02T22:10:46Z",
+     "chunk_id": "842942233617b4b7",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:11325",
+     "type": "issue",
+     "title": "Application Not Starting - \"The main module file does not exist\" Despite File Presence",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11325",
+     "available_at": "2025-05-11T16:27:59Z",
+     "chunk_id": "2f401a92842e8e4b",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:11396",
+     "type": "issue",
+     "title": "file_uploader fails for files with Unicode characters in filename (Streamlit Community Cloud)",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11396",
+     "available_at": "2025-05-18T17:45:09Z",
+     "chunk_id": "b77ad8dfa26242f7",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:11356",
+     "type": "issue",
+     "title": "Unable to log in to Streamlit Community Cloud – Receiving 403 Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11356",
+     "available_at": "2025-05-14T03:49:04Z",
+     "chunk_id": "7da7bb31f7514703",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5483",
+     "type": "issue",
+     "title": "Python not configured for Tk ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5483",
+     "available_at": "2022-10-04T23:12:05Z",
+     "chunk_id": "7ba8144acfd02855",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:13100",
+     "type": "issue",
+     "title": "pip install streamlit FAILS at pyarrow build",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13100",
+     "available_at": "2025-11-24T10:00:38Z",
+     "chunk_id": "991131faed84ec21",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [
+     "hypothesis without valid basis"
+    ],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:6934",
+    "doc:/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies",
+    "doc:/deploy/concepts/dependencies#pip-and-requirementstxt",
+    "issue:8414",
+    "issue:6934",
+    "issue:11325",
+    "issue:11396",
+    "issue:11356",
+    "issue:5483",
+    "issue:13100"
+   ],
+   "error": null,
+   "retrieval_s": 0.056,
+   "steps": 2
+  },
+  {
+   "case_id": "c-16030",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-16030",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": null,
+    "cited_recall": null,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4546,
+    "tokens_out": 421,
+    "usd_live": 0.000934,
+    "usd_replayed": 0.0,
+    "latency_s": 4.307,
+    "query_embeddings": 0,
+    "wall_s": 4.337,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "WebSocket connections fail in Streamlit due to websockets version 16.1 blocking non-ASCII header values.",
+    "known_facts": [
+     "Streamlit version: 1.58",
+     "Python version: 3.12",
+     "Operating System: Debian",
+     "Websockets version: 16.1 introduced a change that blocks non-ASCII values in HTTP headers."
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue is caused by websockets version 16.1 blocking non-ASCII header values, which affects WebSocket handshakes.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [],
+    "next_step": {
+     "type": "answer",
+     "text": "To resolve this issue, you can pin the websockets version to below 16.1 in your environment, which restores normal behavior."
+    },
+    "questions": [],
+    "user_reply": "It seems that the issue you're experiencing is due to the recent change in websockets version 16.1, which blocks non-ASCII values in HTTP headers, affecting WebSocket handshakes. A workaround for this issue is to pin the websockets version to below 16.1 in your environment, which should restore normal behavior [S1].",
+    "maintainer_summary": {
+     "problem": "WebSocket connections fail due to websockets version 16.1 blocking non-ASCII header values.",
+     "environment": "Streamlit version 1.58, Python 3.12, Debian OS.",
+     "checks_done": "User confirmed the issue occurs when using a reverse proxy that injects non-ASCII headers.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "",
+     "next_step": "Consider tightening the websockets dependency constraint in Streamlit to avoid pulling in problematic versions."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:10341",
+     "type": "issue",
+     "title": "Nginx Rewrite Interferes with Streamlit WebSocket Calls",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/10341",
+     "available_at": "2025-02-04T22:11:57Z",
+     "chunk_id": "b223cd45ff483a03",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:8799",
+     "type": "issue",
+     "title": "WebSocket header HTTP_SEC_WEBSOCKET_PROTOCOL value changed to 'streamlit, PLACEHOLDER_AUTH_TOKEN' which gives connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8799",
+     "available_at": "2024-05-30T12:34:58Z",
+     "chunk_id": "bd7be185a911ce97",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:12108",
+     "type": "issue",
+     "title": "Frequent websocket connection drops on higher (default 30s) ping_interval",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12108",
+     "available_at": "2025-08-04T12:36:24Z",
+     "chunk_id": "7fa5cf8180968332",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:9040",
+     "type": "issue",
+     "title": "Network Issue (cannot load Streamlit frontend code) on AWS deployed apps",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9040",
+     "available_at": "2024-07-04T12:46:49Z",
+     "chunk_id": "7e7c5c8caf8c6962",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:12108",
+     "type": "issue",
+     "title": "Frequent websocket connection drops on higher (default 30s) ping_interval",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/12108",
+     "available_at": "2025-08-04T12:36:24Z",
+     "chunk_id": "4911713cf64e6bec",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:5619",
+     "type": "comment",
+     "title": "The app says \"Please wait...\" forever | streamlit running on via Databricks notebook",
+     "heading": "comments 2023-03-31..2023-04-01",
+     "url": "https://github.com/streamlit/streamlit/issues/5619#issuecomment-1491804560",
+     "available_at": "2023-04-01T20:34:09Z",
+     "chunk_id": "c3ab91e108c6433a",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:14209",
+     "type": "issue",
+     "title": "WebSocket fails behind Istio VirtualService despite websocketUpgrade: true, causing localhost requests to stall even with normal CPU/memory usage",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/14209",
+     "available_at": "2026-03-04T09:11:57Z",
+     "chunk_id": "748fa1c39afb40bc",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:8660",
+     "type": "comment",
+     "title": "streamlit does not produce WebSocket ping frames",
+     "heading": "comments 2025-06-17..2025-06-17",
+     "url": "https://github.com/streamlit/streamlit/issues/8660#issuecomment-2980771374",
+     "available_at": "2025-06-17T15:11:49Z",
+     "chunk_id": "de12edc437af7fa3",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:8660",
+     "type": "issue",
+     "title": "streamlit does not produce WebSocket ping frames",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8660",
+     "available_at": "2024-05-14T08:13:05Z",
+     "chunk_id": "8644176221130d5b",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:8518",
+     "type": "comment",
+     "title": "Native authentication support for Streamlit ",
+     "heading": "comments 2024-07-12..2024-07-12",
+     "url": "https://github.com/streamlit/streamlit/issues/8518#issuecomment-2225376007",
+     "available_at": "2024-07-12T11:30:47Z",
+     "chunk_id": "a0e8017efb7d4fdd",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:10341",
+    "issue:8799",
+    "issue:12108",
+    "issue:9040",
+    "issue:12108",
+    "issue:5619",
+    "issue:14209",
+    "issue:8660",
+    "issue:8660",
+    "issue:8518"
+   ],
+   "error": null,
+   "retrieval_s": 0.026,
+   "steps": 2
+  },
+  {
+   "case_id": "c-16570",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-16570",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "info_request",
+    "outcome_exact": true,
+    "bucket_ok": true,
+    "retrieval_recall": 0.6,
+    "cited_recall": 0.6,
+    "n_cited": 5,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": true,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 2979,
+    "tokens_out": 389,
+    "usd_live": 0.00068,
+    "usd_replayed": 0.0,
+    "latency_s": 4.565,
+    "query_embeddings": 0,
+    "wall_s": 4.603,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "User is experiencing a connection error related to Websocket messages.",
+    "known_facts": [],
+    "hypotheses": [
+     {
+      "text": "The error may be related to a known issue with Websocket messages in Streamlit.",
+      "basis": "similar_report",
+      "sources": [
+       "S1",
+       "S2",
+       "S3",
+       "S4",
+       "S5"
+      ]
+     }
+    ],
+    "unknowns": [
+     "The user's Streamlit version, Python version, Operating System, and Browser."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Please provide your Streamlit version, Python version, Operating System, and Browser."
+    },
+    "questions": [
+     "What version of Streamlit are you using?",
+     "What operating system and browser are you using?"
+    ],
+    "user_reply": "It seems you are encountering a connection error related to Websocket messages, which has been reported by other users as well [S1], [S2]. To assist you better, could you please provide your Streamlit version, Python version, Operating System, and Browser?",
+    "maintainer_summary": {
+     "problem": "User is facing a connection error related to Websocket messages.",
+     "environment": "Unknown Streamlit version, Python version, Operating System, and Browser.",
+     "checks_done": "None, as the user has not provided version or environment details.",
+     "key_sources": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+     ],
+     "open_questions": "What version of Streamlit is the user using? What operating system and browser is the user using?",
+     "next_step": "Await user response for version and environment details."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:12089",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12089",
+     "available_at": "2025-07-31T13:30:15Z",
+     "chunk_id": "60cfdaa88d7ac9c3",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:11973",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11973",
+     "available_at": "2025-07-17T22:14:53Z",
+     "chunk_id": "53088c859b9203b1",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:13527",
+     "type": "issue",
+     "title": "connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13527",
+     "available_at": "2026-01-07T06:31:05Z",
+     "chunk_id": "970a3f006fd1b58d",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:15816",
+     "type": "issue",
+     "title": "Cached ForwardMsg MISS",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/15816",
+     "available_at": "2026-07-03T13:11:54Z",
+     "chunk_id": "fcab0e2a398c32a7",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:11357",
+     "type": "issue",
+     "title": "Connection error: Failed to process a Websocket message. Error: Cached ForwardMsg",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11357",
+     "available_at": "2025-05-14T06:20:47Z",
+     "chunk_id": "41489b947edbda40",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:12072",
+     "type": "issue",
+     "title": "Connection Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12072",
+     "available_at": "2025-07-30T16:29:08Z",
+     "chunk_id": "0d2758207c146f39",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:11488",
+     "type": "issue",
+     "title": "Connection error Failed to process a Websocket message.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11488",
+     "available_at": "2025-05-30T11:52:00Z",
+     "chunk_id": "a3611fa271a56d97",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:11847",
+     "type": "issue",
+     "title": "Connection Error: Failed to process a Websocket message. Error: Cached ForwardMsg MISS",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11847",
+     "available_at": "2025-07-02T17:16:53Z",
+     "chunk_id": "5c2ac7353187ca0d",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:11372",
+     "type": "issue",
+     "title": "streamlit webssocket error streamlit recomnds reporting",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11372",
+     "available_at": "2025-05-15T15:49:54Z",
+     "chunk_id": "71355d21cf5776df",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:11300",
+     "type": "issue",
+     "title": "cached websocket issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11300",
+     "available_at": "2025-05-08T00:30:38Z",
+     "chunk_id": "a793551db5203840",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S2",
+     "S3",
+     "S4",
+     "S5"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:12089",
+    "issue:11973",
+    "issue:13527",
+    "issue:15816",
+    "issue:11357",
+    "issue:12072",
+    "issue:11488",
+    "issue:11847",
+    "issue:11372",
+    "issue:11300"
+   ],
+   "error": null,
+   "retrieval_s": 0.033,
+   "steps": 2
+  },
+  {
+   "case_id": "c-5500",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-5500",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "info_request",
+    "outcome_exact": true,
+    "bucket_ok": true,
+    "retrieval_recall": 0.667,
+    "cited_recall": 0.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3811,
+    "tokens_out": 472,
+    "usd_live": 0.000855,
+    "usd_replayed": 0.0,
+    "latency_s": 7.423,
+    "query_embeddings": 0,
+    "wall_s": 7.453,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "The Streamlit app is stuck on 'please wait' after deployment.",
+    "known_facts": [
+     "Streamlit version: 1.13.0",
+     "Python version: 3.8.0",
+     "Using Conda for environment management."
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue may be related to deployment configuration or server connectivity.",
+      "basis": "similar_report",
+      "sources": [
+       "S2",
+       "S5"
+      ]
+     }
+    ],
+    "unknowns": [
+     "What specific deployment method was used?",
+     "Are there any error messages or logs in the terminal where the Streamlit app was run?"
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Could you provide more details about how you deployed the app and if there are any error messages in the terminal?"
+    },
+    "questions": [
+     "What specific deployment method did you use (e.g., Streamlit Cloud, AWS, etc.)?",
+     "Are there any error messages or logs displayed in the terminal where you ran the Streamlit command?"
+    ],
+    "user_reply": "It seems that your Streamlit app is getting stuck on the 'please wait' message after deployment. This can happen due to various reasons, including deployment configuration issues or server connectivity problems. To assist you better, could you provide more details about how you deployed the app? Additionally, are there any error messages or logs in the terminal where you ran the Streamlit command? This information will help us diagnose the issue more effectively.",
+    "maintainer_summary": {
+     "problem": "User's Streamlit app is stuck on 'please wait' after deployment.",
+     "environment": "Streamlit version 1.13.0, Python 3.8.0, using Conda.",
+     "checks_done": "None yet; awaiting further details from the user.",
+     "key_sources": [
+      "S2",
+      "S5"
+     ],
+     "open_questions": "What specific deployment method was used? Are there any error messages or logs in the terminal?",
+     "next_step": "Await user response for more details."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:5263",
+     "type": "comment",
+     "title": "please wait ",
+     "heading": "comments 2022-09-01..2022-09-01",
+     "url": "https://github.com/streamlit/streamlit/issues/5263#issuecomment-1234311407",
+     "available_at": "2022-09-01T14:31:28Z",
+     "chunk_id": "f227c110f3ecf195",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:5263",
+     "type": "issue",
+     "title": "please wait ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5263",
+     "available_at": "2022-08-29T12:56:02Z",
+     "chunk_id": "c4700a72ba318114",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:4993",
+     "type": "issue",
+     "title": "not showing anything",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4993",
+     "available_at": "2022-07-19T06:37:51Z",
+     "chunk_id": "cc3e792c3a551461",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:3177",
+     "type": "issue",
+     "title": "Runs perfect on localhost, but loads forever when deployed",
+     "heading": "body part 3",
+     "url": "https://github.com/streamlit/streamlit/issues/3177",
+     "available_at": "2021-04-26T07:09:35Z",
+     "chunk_id": "3143b4c31b63128f",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:5208",
+     "type": "issue",
+     "title": "Cloud Down?",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5208",
+     "available_at": "2022-08-22T15:38:00Z",
+     "chunk_id": "f286cf64ca5d0cc6",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:4001",
+     "type": "issue",
+     "title": "“Please wait…” forever error when deployed on GitHub",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4001",
+     "available_at": "2021-11-02T15:29:14Z",
+     "chunk_id": "2daf2c78fafd5e21",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:3844",
+     "type": "issue",
+     "title": "Streamlit showing still connecting despite enable cors false ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3844",
+     "available_at": "2021-09-24T10:54:36Z",
+     "chunk_id": "5c40ca5c25f16cb8",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:5408",
+     "type": "issue",
+     "title": "Bug of Blank page and showing please wait",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5408",
+     "available_at": "2022-09-23T03:16:38Z",
+     "chunk_id": "0d316ad73fe53a4d",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5140",
+     "type": "issue",
+     "title": "Uncaught exception: TypeError: Protocols cannot be instantiated",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5140",
+     "available_at": "2022-08-12T09:11:12Z",
+     "chunk_id": "51a8e27f52fa8f82",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5199",
+     "type": "issue",
+     "title": "Stremalit hello fails in anaconda",
+     "heading": "body part 4",
+     "url": "https://github.com/streamlit/streamlit/issues/5199",
+     "available_at": "2022-08-19T03:25:53Z",
+     "chunk_id": "a9f6a4f00e457e27",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S2",
+     "S5"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:5263",
+    "issue:5263",
+    "issue:4993",
+    "issue:3177",
+    "issue:5208",
+    "issue:4001",
+    "issue:3844",
+    "issue:5408",
+    "issue:5140",
+    "issue:5199"
+   ],
+   "error": null,
+   "retrieval_s": 0.027,
+   "steps": 2
+  },
+  {
+   "case_id": "c-6956",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-6956",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": true,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.5,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3908,
+    "tokens_out": 419,
+    "usd_live": 0.000838,
+    "usd_replayed": 0.0,
+    "latency_s": 6.885,
+    "query_embeddings": 0,
+    "wall_s": 6.907,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is encountering a ModuleNotFoundError for the 'cv2' module while deploying their Streamlit app.",
+    "known_facts": [
+     "The user is trying to deploy a Streamlit app that uses the 'cv2' module.",
+     "The requirements.txt file includes 'opencv-python-headless'."
+    ],
+    "hypotheses": [
+     {
+      "text": "The 'cv2' module is not included in the deployment environment because it is not listed in the requirements.txt file.",
+      "basis": "documented",
+      "sources": [
+       "S4"
+      ]
+     }
+    ],
+    "unknowns": [
+     "The user's Streamlit version and deployment environment details are missing."
+    ],
+    "next_step": {
+     "type": "answer",
+     "text": "Ensure that 'opencv-python-headless' is correctly specified in your requirements.txt file and redeploy your app."
+    },
+    "questions": [],
+    "user_reply": "It seems that the error you're encountering, `ModuleNotFoundError: No module named 'cv2'`, is likely due to the 'cv2' module not being included in your deployment environment. According to the Streamlit documentation, this error occurs when you import a module that isn’t included in your requirements file [S4]. Please make sure that 'opencv-python-headless' is correctly specified in your requirements.txt file and try redeploying your app.",
+    "maintainer_summary": {
+     "problem": "User is facing a ModuleNotFoundError for the 'cv2' module during deployment.",
+     "environment": "User's Streamlit version and deployment environment details are unknown.",
+     "checks_done": "User has included 'opencv-python-headless' in their requirements.txt.",
+     "key_sources": [
+      "S4"
+     ],
+     "open_questions": "What is the user's Streamlit version and deployment environment?",
+     "next_step": "Monitor for any further issues after the user updates their requirements.txt."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:4881",
+     "type": "issue",
+     "title": "Encountering ModuleNotFoundError: streamlit_folium while hosting on Heroku",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4881",
+     "available_at": "2022-06-21T21:00:44Z",
+     "chunk_id": "be963c79e00ae2cc",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:5415",
+     "type": "issue",
+     "title": "ModuleNotFoundError: This app has encountered an error. The original error message is redacted to prevent data leaks. Full error details have been recorded in the logs",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5415",
+     "available_at": "2022-09-24T05:27:20Z",
+     "chunk_id": "eec11413f31b5120",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "doc:/knowledge-base/dependencies/module-not-found-error#problem",
+     "type": "doc",
+     "title": "ModuleNotFoundError No module named",
+     "heading": "ModuleNotFoundError: No module named > Problem",
+     "url": "https://docs.streamlit.io/knowledge-base/dependencies/module-not-found-error#problem",
+     "available_at": null,
+     "chunk_id": "26eb59428eb1c940",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "doc:/knowledge-base/dependencies/module-not-found-error#solution",
+     "type": "doc",
+     "title": "ModuleNotFoundError No module named",
+     "heading": "ModuleNotFoundError: No module named > Solution",
+     "url": "https://docs.streamlit.io/knowledge-base/dependencies/module-not-found-error#solution",
+     "available_at": null,
+     "chunk_id": "4106a679062714f5",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6601",
+     "type": "issue",
+     "title": "Streamlit hello world fails with \"no module named streamlit.cli\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6601",
+     "available_at": "2023-04-29T15:41:40Z",
+     "chunk_id": "838c39182e4cbc7a",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "doc:/knowledge-base/deploy/invoking-python-subprocess-deployed-streamlit-app#relevant-links",
+     "type": "doc",
+     "title": "Invoking a Python subprocess in a deployed Streamlit app",
+     "heading": "Invoking a Python subprocess in a deployed Streamlit app > Solution > Relevant links",
+     "url": "https://docs.streamlit.io/knowledge-base/deploy/invoking-python-subprocess-deployed-streamlit-app#relevant-links",
+     "available_at": null,
+     "chunk_id": "6adbcb2268624188",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "doc:/deploy/concepts/dependencies#pip-and-requirementstxt",
+     "type": "doc",
+     "title": "Managing dependencies when deploying your app",
+     "heading": "Managing dependencies when deploying your app > Install Python packages > `pip` and `requirements.txt`",
+     "url": "https://docs.streamlit.io/deploy/concepts/dependencies#pip-and-requirementstxt",
+     "available_at": null,
+     "chunk_id": "a4077d58aa6b32a2",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "doc:/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies",
+     "type": "doc",
+     "title": "App dependencies for your Community Cloud app",
+     "heading": "App dependencies for your Community Cloud app > Add Python dependencies",
+     "url": "https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies",
+     "available_at": null,
+     "chunk_id": "98ba2bbbebe18cd2",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:4881",
+     "type": "comment",
+     "title": "Encountering ModuleNotFoundError: streamlit_folium while hosting on Heroku",
+     "heading": "comments 2022-06-21..2022-06-21",
+     "url": "https://github.com/streamlit/streamlit/issues/4881#issuecomment-1162393836",
+     "available_at": "2022-06-21T22:05:51Z",
+     "chunk_id": "d9d3fb0fa8e94468",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "doc:/knowledge-base/dependencies/no-matching-distribution#solution",
+     "type": "doc",
+     "title": "ERROR No matching distribution found for",
+     "heading": "ERROR: No matching distribution found for > Solution",
+     "url": "https://docs.streamlit.io/knowledge-base/dependencies/no-matching-distribution#solution",
+     "available_at": null,
+     "chunk_id": "889eece9efb44257",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S4"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:4881",
+    "issue:5415",
+    "doc:/knowledge-base/dependencies/module-not-found-error#problem",
+    "doc:/knowledge-base/dependencies/module-not-found-error#solution",
+    "issue:6601",
+    "doc:/knowledge-base/deploy/invoking-python-subprocess-deployed-streamlit-app#relevant-links",
+    "doc:/deploy/concepts/dependencies#pip-and-requirementstxt",
+    "doc:/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies",
+    "issue:4881",
+    "doc:/knowledge-base/dependencies/no-matching-distribution#solution"
+   ],
+   "error": null,
+   "retrieval_s": 0.018,
+   "steps": 2
+  },
+  {
+   "case_id": "c-7867",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-7867",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": true,
+    "retrieval_recall": 0.667,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [
+     "hypothesis without valid basis"
+    ],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4306,
+    "tokens_out": 442,
+    "usd_live": 0.000911,
+    "usd_replayed": 0.0,
+    "latency_s": 6.303,
+    "query_embeddings": 0,
+    "wall_s": 6.343,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The environment variable STREAMLIT_CLIENT_TOOLBAR_MODE is not hiding the toolbar as expected.",
+    "known_facts": [
+     "Streamlit version: 1.28.2",
+     "Python version: 3.10.12",
+     "Operating System: Ubuntu",
+     "Browser: Safari"
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue may be related to a known bug where the environment variable does not take effect due to the way Streamlit checks for development mode.",
+      "basis": "known_issue",
+      "sources": [
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [],
+    "next_step": {
+     "type": "check",
+     "text": "Check if the toolbar mode is set correctly in the config.toml file or if there are any command line flags that might be overriding the environment variable."
+    },
+    "questions": [],
+    "user_reply": "It seems that the issue you're experiencing with the `STREAMLIT_CLIENT_TOOLBAR_MODE` environment variable not hiding the toolbar may be related to a known bug where the environment variable does not take effect due to the way Streamlit checks for development mode [S2]. As a next step, please check if the toolbar mode is set correctly in your `config.toml` file or if there are any command line flags that might be overriding the environment variable. If you continue to have issues, please let me know!",
+    "maintainer_summary": {
+     "problem": "The user is unable to hide the Streamlit toolbar using the environment variable STREAMLIT_CLIENT_TOOLBAR_MODE.",
+     "environment": "Streamlit version 1.28.2, Python 3.10.12, Ubuntu, Safari.",
+     "checks_done": "User has confirmed the environment variable is set but the toolbar remains visible.",
+     "key_sources": [
+      "S2"
+     ],
+     "open_questions": "",
+     "next_step": "Check for any command line flags or config.toml settings that may override the environment variable."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "config:client.toolbarMode",
+     "type": "config_option",
+     "title": "client.toolbarMode",
+     "heading": "config.toml",
+     "url": "https://docs.streamlit.io/develop/api-reference/configuration/config.toml#client",
+     "available_at": null,
+     "chunk_id": "4a55bc8d022912f8",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:4576",
+     "type": "issue",
+     "title": "streamlit's webserver not working when using BAZEL for installation bug",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4576",
+     "available_at": "2022-03-31T09:13:59Z",
+     "chunk_id": "5fb6b160bf1ed4e1",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:2953",
+     "type": "issue",
+     "title": "Comment out config options in `streamlit config show` if they are set to their default values",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/2953",
+     "available_at": "2021-03-15T02:16:13Z",
+     "chunk_id": "6018ccad9071da0f",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:6087",
+     "type": "issue",
+     "title": "iframe-embedded Streamlit apps do not work on recent version Chrome with blocking third party cookies setting",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6087",
+     "available_at": "2023-02-09T11:00:05Z",
+     "chunk_id": "ac9265e2bb7eeeb0",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:7201",
+     "type": "issue",
+     "title": "CLI should not make blocking interactive requests unexpectedly",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7201",
+     "available_at": "2023-08-18T13:54:20Z",
+     "chunk_id": "68619bebeff70e9e",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "doc:/develop/concepts/configuration/options#working-with-configuration-options",
+     "type": "doc",
+     "title": "Working with configuration options",
+     "heading": "Working with configuration options",
+     "url": "https://docs.streamlit.io/develop/concepts/configuration/options#working-with-configuration-options",
+     "available_at": null,
+     "chunk_id": "b136030de5c5587c",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:6620",
+     "type": "issue",
+     "title": "Catch streamlit.runtime.caching.cache_data_api ?",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6620",
+     "available_at": "2023-05-03T12:32:43Z",
+     "chunk_id": "93c5ac335618cb77",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:4921",
+     "type": "comment",
+     "title": "UI does not display when serving at port 3000.",
+     "heading": "comments 2023-01-15..2023-01-17",
+     "url": "https://github.com/streamlit/streamlit/issues/4921#issuecomment-1383197014",
+     "available_at": "2023-01-17T03:43:42Z",
+     "chunk_id": "8b1b2cbaaf7209af",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5415",
+     "type": "issue",
+     "title": "ModuleNotFoundError: This app has encountered an error. The original error message is redacted to prevent data leaks. Full error details have been recorded in the logs",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5415",
+     "available_at": "2022-09-24T05:27:20Z",
+     "chunk_id": "eec11413f31b5120",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:7703",
+     "type": "issue",
+     "title": "Enable https to access external IP",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7703",
+     "available_at": "2023-11-10T17:29:33Z",
+     "chunk_id": "bb611f07673e4349",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [
+     "hypothesis without valid basis"
+    ],
+    "cited": [
+     "S2"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "config:client.toolbarMode",
+    "issue:4576",
+    "issue:2953",
+    "issue:6087",
+    "issue:7201",
+    "doc:/develop/concepts/configuration/options#working-with-configuration-options",
+    "issue:6620",
+    "issue:4921",
+    "issue:5415",
+    "issue:7703"
+   ],
+   "error": null,
+   "retrieval_s": 0.035,
+   "steps": 2
+  },
+  {
+   "case_id": "c-8149",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-8149",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 1.0,
+    "cited_recall": 1.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [
+     "hypothesis without valid basis"
+    ],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 1,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4342,
+    "tokens_out": 384,
+    "usd_live": 0.000882,
+    "usd_replayed": 0.0,
+    "latency_s": 5.912,
+    "query_embeddings": 0,
+    "wall_s": 5.959,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The Streamlit app fails to load when run on port 3000 due to a known issue with port detection.",
+    "known_facts": [],
+    "hypotheses": [
+     {
+      "text": "The issue is caused by Streamlit incorrectly detecting the development environment when using port 3000.",
+      "basis": "known_issue",
+      "sources": [
+       "S2",
+       "S3"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Streamlit version",
+     "Python version",
+     "Operating System",
+     "Browser"
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Please provide your Streamlit version."
+    },
+    "questions": [
+     "Have you tried using a different port, such as 8501 or another port, to see if the issue persists?"
+    ],
+    "user_reply": "It seems that running Streamlit on port 3000 is causing issues due to a known bug where Streamlit incorrectly identifies the development environment. This has been reported in previous issues [S2], [S3]. As a workaround, you can try using a different port, such as 8501, which is the default. Please let me know your Streamlit version so I can provide more specific guidance.",
+    "maintainer_summary": {
+     "problem": "User cannot run Streamlit on port 3000 due to incorrect detection of development mode.",
+     "environment": "Unknown Streamlit version, Python version, OS, and browser.",
+     "checks_done": "User has attempted to run Streamlit on port 3000.",
+     "key_sources": [
+      "S2",
+      "S3"
+     ],
+     "open_questions": "What is the user's Streamlit version?",
+     "next_step": "Request the user's Streamlit version for further assistance."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:7426",
+     "type": "issue",
+     "title": "--server.port does not change, always defaults to 8501",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7426",
+     "available_at": "2023-09-26T06:53:50Z",
+     "chunk_id": "f6823eba341b2747",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:4921",
+     "type": "issue",
+     "title": "UI does not display when serving at port 3000.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4921",
+     "available_at": "2022-07-03T23:03:33Z",
+     "chunk_id": "7d56da1b066b5b84",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:4921",
+     "type": "comment",
+     "title": "UI does not display when serving at port 3000.",
+     "heading": "comments 2023-01-15..2023-01-17",
+     "url": "https://github.com/streamlit/streamlit/issues/4921#issuecomment-1383197014",
+     "available_at": "2023-01-17T03:43:42Z",
+     "chunk_id": "8b1b2cbaaf7209af",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:3270",
+     "type": "issue",
+     "title": "Streamlit behind reverse proxy doesn’t work when you change port",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3270",
+     "available_at": "2021-05-14T14:01:17Z",
+     "chunk_id": "bb9f0ed847b5b5a7",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:5753",
+     "type": "issue",
+     "title": "Streamlit fails from Docker: MediaFileStorageError",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5753",
+     "available_at": "2022-11-22T20:41:43Z",
+     "chunk_id": "b8fa879c6202a6b0",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:3738",
+     "type": "issue",
+     "title": "Wrong display of app URL",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3738",
+     "available_at": "2021-08-28T05:38:03Z",
+     "chunk_id": "6c70a971386452a5",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:4576",
+     "type": "issue",
+     "title": "streamlit's webserver not working when using BAZEL for installation bug",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4576",
+     "available_at": "2022-03-31T09:13:59Z",
+     "chunk_id": "5fb6b160bf1ed4e1",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:3270",
+     "type": "comment",
+     "title": "Streamlit behind reverse proxy doesn’t work when you change port",
+     "heading": "comments 2021-05-14..2021-05-16",
+     "url": "https://github.com/streamlit/streamlit/issues/3270#issuecomment-841528546",
+     "available_at": "2021-05-16T13:16:59Z",
+     "chunk_id": "0ba0a4be48bf6cd0",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5619",
+     "type": "issue",
+     "title": "The app says \"Please wait...\" forever | streamlit running on via Databricks notebook",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5619",
+     "available_at": "2022-10-28T10:37:29Z",
+     "chunk_id": "e80c99085df70953",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:6162",
+     "type": "issue",
+     "title": "`pages` directory unreadable when running Streamlit in Docker Container",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6162",
+     "available_at": "2023-02-21T19:58:56Z",
+     "chunk_id": "f2d8b008b15d0abb",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [
+     "hypothesis without valid basis"
+    ],
+    "cited": [
+     "S2",
+     "S3"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:7426",
+    "issue:4921",
+    "issue:4921",
+    "issue:3270",
+    "issue:5753",
+    "issue:3738",
+    "issue:4576",
+    "issue:3270",
+    "issue:5619",
+    "issue:6162"
+   ],
+   "error": null,
+   "retrieval_s": 0.035,
+   "steps": 2
+  },
+  {
+   "case_id": "c-8364",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-8364",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4118,
+    "tokens_out": 402,
+    "usd_live": 0.000859,
+    "usd_replayed": 0.0,
+    "latency_s": 4.746,
+    "query_embeddings": 0,
+    "wall_s": 4.795,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The Streamlit server hangs on startup when the internet connection is disabled.",
+    "known_facts": [
+     "Streamlit version: 1.32.2",
+     "Python version: 3.11.1",
+     "Operating System: Fedora 36",
+     "Browser: Firefox 112.0.1"
+    ],
+    "hypotheses": [
+     {
+      "text": "The server hangs due to unnecessary failover behavior when offline.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [],
+    "next_step": {
+     "type": "answer",
+     "text": "You can try running Streamlit with an active internet connection or check if there are any configurations related to offline behavior that can be adjusted."
+    },
+    "questions": [],
+    "user_reply": "It seems that the issue you're experiencing with the Streamlit server hanging on startup when offline is related to a known behavior where the server takes longer to start due to unnecessary failover when there is no internet connection. This has been noted in previous discussions [S1]. As a workaround, you can try running Streamlit with an active internet connection. If you need to run it offline, consider checking your configurations to see if there are any settings that can help mitigate this delay.",
+    "maintainer_summary": {
+     "problem": "Streamlit server hangs on startup when offline.",
+     "environment": "Streamlit version 1.32.2, Python 3.11.1, Fedora 36.",
+     "checks_done": "User has confirmed the issue occurs when the internet connection is disabled.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "",
+     "next_step": "Monitor for any updates or fixes related to server startup behavior in offline mode."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8188",
+     "type": "issue",
+     "title": "Unnecessary failover on /_stcore/stream",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8188",
+     "available_at": "2024-02-21T20:56:45Z",
+     "chunk_id": "e83108487da8b08f",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:6242",
+     "type": "issue",
+     "title": "Firefox can’t establish a connection to websocket (started from within a devontainer)",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6242",
+     "available_at": "2023-03-07T11:52:17Z",
+     "chunk_id": "af0fbd71075f4808",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:6442",
+     "type": "issue",
+     "title": "Session gets stuck if disconnected while waiting for HTTP response",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6442",
+     "available_at": "2023-04-06T14:18:28Z",
+     "chunk_id": "4a2c4444fd58bdfe",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:4099",
+     "type": "issue",
+     "title": "User's session_info.ws object is None on first page load",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4099",
+     "available_at": "2021-11-24T01:53:05Z",
+     "chunk_id": "e80089ea03ce01b4",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6150",
+     "type": "issue",
+     "title": "App is stuck at Please wait...",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6150",
+     "available_at": "2023-02-19T03:27:48Z",
+     "chunk_id": "33aa6e4b2d39b694",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:7926",
+     "type": "issue",
+     "title": "Slow",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7926",
+     "available_at": "2024-01-10T16:45:13Z",
+     "chunk_id": "f50a31d64317d7d9",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:5257",
+     "type": "issue",
+     "title": "When binding to unix socket, startup script still shows TCP port",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5257",
+     "available_at": "2022-08-28T15:03:32Z",
+     "chunk_id": "b912f6c5084917a9",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:6442",
+     "type": "comment",
+     "title": "Session gets stuck if disconnected while waiting for HTTP response",
+     "heading": "comments 2023-05-06..2023-05-06",
+     "url": "https://github.com/streamlit/streamlit/issues/6442#issuecomment-1536964861",
+     "available_at": "2023-05-06T01:29:31Z",
+     "chunk_id": "d3ca4ed534078aab",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:4576",
+     "type": "issue",
+     "title": "streamlit's webserver not working when using BAZEL for installation bug",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4576",
+     "available_at": "2022-03-31T09:13:59Z",
+     "chunk_id": "5fb6b160bf1ed4e1",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5576",
+     "type": "issue",
+     "title": "Websocket connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5576",
+     "available_at": "2022-10-20T16:38:33Z",
+     "chunk_id": "821aef1c5b7cabca",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8188",
+    "issue:6242",
+    "issue:6442",
+    "issue:4099",
+    "issue:6150",
+    "issue:7926",
+    "issue:5257",
+    "issue:6442",
+    "issue:4576",
+    "issue:5576"
+   ],
+   "error": null,
+   "retrieval_s": 0.044,
+   "steps": 2
+  },
+  {
+   "case_id": "c-9665",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-9665",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [
+     "hypothesis without valid basis"
+    ],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4158,
+    "tokens_out": 465,
+    "usd_live": 0.000903,
+    "usd_replayed": 0.0,
+    "latency_s": 5.29,
+    "query_embeddings": 0,
+    "wall_s": 5.323,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "Streamlit 1.39.0 hangs after loading the page, while 1.37.1 works without issues.",
+    "known_facts": [
+     "Streamlit version: 1.39.0",
+     "Python version: 3.12",
+     "Operating System: Docker linux",
+     "1.37.1 works without problem on the same code."
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue may be related to a known problem with Streamlit 1.39.0 that causes hanging behavior.",
+      "basis": "known_issue",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the user has tried any specific configurations or workarounds to resolve the hanging issue."
+    ],
+    "next_step": {
+     "type": "answer",
+     "text": "You may want to consider downgrading to Streamlit 1.37.1, which you mentioned works without issues, as this appears to be a known problem with version 1.39.0."
+    },
+    "questions": [],
+    "user_reply": "It seems that you're experiencing a known issue with Streamlit 1.39.0, which can cause the app to hang after loading the page. Since you mentioned that version 1.37.1 works without problems, I recommend downgrading to that version as a workaround for now. This issue has been noted in previous reports, indicating that it is a recognized problem with the newer version [S1].",
+    "maintainer_summary": {
+     "problem": "User reports that Streamlit 1.39.0 hangs after loading the page, while 1.37.1 works fine.",
+     "environment": "Docker container running Python 3.12.",
+     "checks_done": "User confirmed that the same code works in version 1.37.1.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "None.",
+     "next_step": "Consider investigating the hanging issue in version 1.39.0 and whether a fix is planned."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8188",
+     "type": "issue",
+     "title": "Unnecessary failover on /_stcore/stream",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8188",
+     "available_at": "2024-02-21T20:56:45Z",
+     "chunk_id": "e83108487da8b08f",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:8387",
+     "type": "issue",
+     "title": "Component streamlit-url-fragment stop working since 1.32",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8387",
+     "available_at": "2024-03-27T06:05:17Z",
+     "chunk_id": "a1f6ebb8f8da4524",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:6441",
+     "type": "issue",
+     "title": "page does not load... it keep saying ... please wait...",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6441",
+     "available_at": "2023-04-06T12:24:39Z",
+     "chunk_id": "dd6b9cb03b565f09",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:7926",
+     "type": "issue",
+     "title": "Slow",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7926",
+     "available_at": "2024-01-10T16:45:13Z",
+     "chunk_id": "f50a31d64317d7d9",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6037",
+     "type": "issue",
+     "title": "\"Please Wait\" loading message will not load",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6037",
+     "available_at": "2023-01-30T23:54:52Z",
+     "chunk_id": "066fa5b33413c9a2",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:4099",
+     "type": "issue",
+     "title": "User's session_info.ws object is None on first page load",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4099",
+     "available_at": "2021-11-24T01:53:05Z",
+     "chunk_id": "e80089ea03ce01b4",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:7954",
+     "type": "issue",
+     "title": "Using `switch_page` forces the page to finish running before rendering",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7954",
+     "available_at": "2024-01-13T20:55:51Z",
+     "chunk_id": "12e264318e3c8396",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:6162",
+     "type": "issue",
+     "title": "`pages` directory unreadable when running Streamlit in Docker Container",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6162",
+     "available_at": "2023-02-21T19:58:56Z",
+     "chunk_id": "f2d8b008b15d0abb",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:8973",
+     "type": "issue",
+     "title": "Issue with Streamlit 1.35.0 (latest stable version) in Azure App Service Deployment",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8973",
+     "available_at": "2024-06-24T21:50:55Z",
+     "chunk_id": "3de27644ac9b9300",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:7285",
+     "type": "issue",
+     "title": "Streamlit bi-directional components not loading when using Bazel to build and run the app",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/7285",
+     "available_at": "2023-09-07T14:07:27Z",
+     "chunk_id": "787e51705052ad21",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [
+     "hypothesis without valid basis"
+    ],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8188",
+    "issue:8387",
+    "issue:6441",
+    "issue:7926",
+    "issue:6037",
+    "issue:4099",
+    "issue:7954",
+    "issue:6162",
+    "issue:8973",
+    "issue:7285"
+   ],
+   "error": null,
+   "retrieval_s": 0.03,
+   "steps": 2
+  },
+  {
+   "case_id": "c-9781",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-9781",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "info_request",
+    "outcome_exact": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [
+     "streamlit_version"
+    ],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3276,
+    "tokens_out": 448,
+    "usd_live": 0.00076,
+    "usd_replayed": 0.0,
+    "latency_s": 7.357,
+    "query_embeddings": 0,
+    "wall_s": 7.403,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "info_request",
+    "summary": "The app is stuck on 'Your app is in the oven' during deployment.",
+    "known_facts": [
+     "Streamlit version: stramlit server",
+     "Python version: streamlit server",
+     "Operating System: Windows 10",
+     "Browser: Chrome"
+    ],
+    "hypotheses": [
+     {
+      "text": "The deployment issue may be related to a regression in a previous version.",
+      "basis": "similar_report",
+      "sources": [
+       "S1",
+       "S3"
+      ]
+     }
+    ],
+    "unknowns": [
+     "The specific version of Streamlit being used is unclear.",
+     "Whether there are any specific error messages in the console logs beyond the initial provisioning messages."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Could you provide the exact version of Streamlit you are using?"
+    },
+    "questions": [
+     "Have you checked the console logs for any specific error messages that might indicate the cause of the deployment issue?"
+    ],
+    "user_reply": "It seems your app is stuck on 'Your app is in the oven' during deployment. This could be related to a regression issue, as similar problems have been reported in the past [S1]. To assist you better, could you please provide the exact version of Streamlit you are using? Additionally, checking the console logs for any specific error messages could help identify the issue.",
+    "maintainer_summary": {
+     "problem": "User's app is stuck on 'Your app is in the oven' during deployment.",
+     "environment": "Windows 10, Streamlit server, Python server, Chrome browser.",
+     "checks_done": "User has not provided specific error messages from the console logs.",
+     "key_sources": [
+      "S1",
+      "S3"
+     ],
+     "open_questions": "What is the exact version of Streamlit being used? Are there any specific error messages in the console logs?",
+     "next_step": "Await user response regarding the Streamlit version and any console errors."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8072",
+     "type": "issue",
+     "title": "Unable to edit Streamlit app: view only access",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8072",
+     "available_at": "2024-02-04T03:32:45Z",
+     "chunk_id": "0cf896b5ee1a5a85",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:9503",
+     "type": "issue",
+     "title": "Streamlit app autorefresh or autoreload ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9503",
+     "available_at": "2024-09-19T11:29:38Z",
+     "chunk_id": "22ef217bb4b22e8f",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:8414",
+     "type": "issue",
+     "title": "Streamlit cloud, deployment issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8414",
+     "available_at": "2024-04-03T12:22:34Z",
+     "chunk_id": "708de5c2e5efc4a2",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:9391",
+     "type": "issue",
+     "title": "Can't delete streamlit app in community cloud",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9391",
+     "available_at": "2024-09-03T14:42:11Z",
+     "chunk_id": "9aff2cd40a0a22c6",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:5684",
+     "type": "issue",
+     "title": "Cant enter app",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5684",
+     "available_at": "2022-11-10T12:26:11Z",
+     "chunk_id": "69b58295ebbe2c54",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:5688",
+     "type": "issue",
+     "title": "App https://app-avtools-klima-dev.azurewebsites.net/ is not working.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5688",
+     "available_at": "2022-11-11T09:09:04Z",
+     "chunk_id": "3b1f3dc3f59ecd0a",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:8955",
+     "type": "issue",
+     "title": "component fails to register in azure web app or similar",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8955",
+     "available_at": "2024-06-21T17:40:00Z",
+     "chunk_id": "cbedf1a69ceb1e33",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:7684",
+     "type": "issue",
+     "title": "Streamlit deployment showing error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7684",
+     "available_at": "2023-11-07T04:38:51Z",
+     "chunk_id": "e332d42a167da5a1",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:6246",
+     "type": "issue",
+     "title": "Streamlit Cloud fails to deploy with poetry==1.4.0",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6246",
+     "available_at": "2023-03-07T16:17:35Z",
+     "chunk_id": "a95fb6a99f5d87bb",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:6150",
+     "type": "issue",
+     "title": "App is stuck at Please wait...",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6150",
+     "available_at": "2023-02-19T03:27:48Z",
+     "chunk_id": "33aa6e4b2d39b694",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S3"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8072",
+    "issue:9503",
+    "issue:8414",
+    "issue:9391",
+    "issue:5684",
+    "issue:5688",
+    "issue:8955",
+    "issue:7684",
+    "issue:6246",
+    "issue:6150"
+   ],
+   "error": null,
+   "retrieval_s": 0.04,
+   "steps": 2
+  }
+ ]
+}

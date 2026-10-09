@@ -126,3 +126,49 @@ LLM_CACHE_MODE=replay PYTHONPATH=src python -m ...          # re-run anything of
 * Ledger prices are OpenAI list prices (override with `PRICE_<MODEL>_IN/_OUT`); the
   Metis panel is the source of truth for actual spend.
 * Default chat model: `gpt-4o-mini`; agent replies are in **English** (fixed for evaluation).
+
+## 5. Problem 1 — baseline and scoring
+
+```bash
+PYTHONPATH=src python -m ssa.eval.p1 --system baseline --split dev        # ~16 calls, ~$0.015
+LLM_CACHE_MODE=replay PYTHONPATH=src python -m ssa.eval.p1 --system baseline --split dev   # $0 re-run
+```
+
+**Baseline** (`ssa.agent.baseline`): title + body → flat hybrid top-10 (same leakage filters)
+→ one `gpt-4o-mini` call → the shared output contract (`ssa.agent.schema`). It is the
+reference point the final pipeline must beat on the same cases, model and budget caps.
+
+**Output contract** (baseline and final): `outcome` (usage_guidance / known_issue /
+info_request / escalate), `known_facts`, `hypotheses` with a `basis`
+(documented / similar_report / assistant_hypothesis) and sources, `unknowns`,
+`next_step`, `questions`, `user_reply` with inline `[S#]` citations, `maintainer_summary`.
+Citations are resolved to source ids **in code**; citations to unknown sources are counted.
+
+**Scoring** (`ssa.eval.p1`, judge-free): outcome accuracy (exact and right-kind per bucket,
+with a confusion table so "always ask" is not a win), retrieval recall and cited recall on
+labelled sources, invalid citations, redundant questions (asks for a field the report already
+gives), and cost (live vs replayed calls, tokens, USD, latency, steps). Systems only receive
+`visible` + `filters`; gold is stripped by the runner. Results: `data/eval/runs/`.
+The test split refuses to run without `--confirm-test`.
+`--rescore` re-scores a saved run against the current gold without any API call.
+
+**Three systems on the same cases** (`--system baseline | baseline-v2 | final`):
+
+| System | Retrieval | LLM calls | What it adds |
+|---|---|---|---|
+| `baseline` | 1 query, flat hybrid top-10 | 1 | — |
+| `baseline-v2` | same | 1 | the shared `agent/rules.py` text in the prompt (isolates *wording*) |
+| `final` (`agent/pipeline.py`) | report + 3 LLM queries + error signatures, grouped (docs / release notes / issues), RRF-fused, 1 chunk per source, ~14 sources | 3 | per-source assessment, hypotheses with a discriminating check, decision rules **in code**, enforcement in code |
+
+Final pipeline, enforced in code (not by the prompt):
+* `known_issue` needs a same-cause release note **newer than the user's version** or a maintainer
+  statement; `usage_guidance` needs same-cause docs/config — otherwise downgraded to
+  `info_request` (if a discriminating check exists) or `escalate`.
+* Upgrade advice only with a fixing release note; `confidence` from the evidence, not the model.
+* `basis` of each hypothesis set from its sources' types; citations to unknown or irrelevant
+  sources removed; questions for fields the report already gives (or ≥3-field checklists) dropped, max 2.
+* Env values the LLM extracts are kept only if the quoted text is in the report.
+* Every step is in the run file's `trace` (facts, queries, assessments, decision rules, fixes).
+
+Extra metrics (all systems): basis mislabel rate, checklist questions, duplicate citations,
+upgrade advice without a release note, high-confidence wrong answers, sources shown.
