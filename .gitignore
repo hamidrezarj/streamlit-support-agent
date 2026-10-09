@@ -43,5 +43,12 @@ data/index/
 #   data/usage/ledger.jsonl API cost ledger (no keys) -> cost report
 #   data/eval/              evaluation results
 
+# runtime state of the Problem-2 agent (rebuilt by every run; sample traces are copied to data/eval/runs)
+data/tracker/
+data/state/
+data/audit/
+
 # ---------- course material ----------
 *.pdf
+
+_to_delete/

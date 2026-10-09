@@ -264,6 +264,31 @@ def cmd_show(a, st: Style) -> int:
     return 0
 
 
+def cmd_tracker(a, st: Style) -> int:
+    from .agent.tools import TOOL_SPECS
+    from .tracker.store import Tracker
+    if a.action == "tools":
+        for t in TOOL_SPECS:
+            gate = st.warn("GATED") if t["gated"] else "     "
+            print(f"{gate} {t['name']:16s} {t['input']}  ->  {t['output']}   errors: {', '.join(t['errors'])}")
+        return 0
+    tr = Tracker()
+    if a.action == "reset":
+        from .agent.state import CaseStore
+        tr.reset()
+        cs = CaseStore()
+        cs.con.executescript("DELETE FROM cases; DELETE FROM proposals;")
+        print(f"tracker and case memory reset ({tr.path}, {cs.path})")
+        return 0
+    rows = tr.con.execute("SELECT id, status, labels, version, title FROM tickets ORDER BY id").fetchall()
+    if not rows:
+        print("tracker is empty")
+    for r in rows:
+        n = tr.con.execute("SELECT COUNT(*) FROM comments WHERE ticket_id=?", (r["id"],)).fetchone()[0]
+        print(f"{r['id']:12s} {r['status']:16s} v{r['version']:<3d} {n:2d} comments  {r['labels']:28s} {r['title'][:50]}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="python -m ssa.cli", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -287,6 +312,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--save", help="write the full result (with trace) to this .json file or directory")
     p.add_argument("--confirm-test", action="store_true")
 
+    p = sub.add_parser("tracker", help="local tracker: list tickets, reset, list tools")
+    p.add_argument("action", choices=["list", "reset", "tools"])
+
     p = sub.add_parser("show", parents=[common], help="pretty-print a saved eval run ($0)")
     p.add_argument("--case", required=True)
     p.add_argument("--run", default="final", choices=["final", "baseline", "baseline-v2"])
@@ -296,7 +324,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv=None) -> int:
     a = build_parser().parse_args(argv)
     st = Style(color=not a.no_color and sys.stdout.isatty() and not os.environ.get("NO_COLOR"))
-    return {"cases": cmd_cases, "analyze": cmd_analyze, "show": cmd_show}[a.cmd](a, st)
+    return {"cases": cmd_cases, "analyze": cmd_analyze, "show": cmd_show, "tracker": cmd_tracker}[a.cmd](a, st)
 
 
 if __name__ == "__main__":
