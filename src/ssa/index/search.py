@@ -104,9 +104,16 @@ class Retriever:
         if not q:
             return []
         out = []
+        # type filter goes INTO the SQL: otherwise the LIMIT is filled with (long, many) issue
+        # chunks and grouped search for docs / release notes comes back empty
+        type_sql, params = "", [q]
+        if f.types:
+            type_sql = " AND c.type IN (%s)" % ",".join("?" * len(f.types))
+            params += sorted(f.types)
         for (rowid,) in self.con.execute(
-                "SELECT rowid FROM chunks_fts WHERE chunks_fts MATCH ? "
-                "ORDER BY bm25(chunks_fts, 2.0, 1.0, 1.0) LIMIT 400", (q,)):
+                "SELECT chunks_fts.rowid FROM chunks_fts JOIN chunks c ON c.rowid = chunks_fts.rowid "
+                "WHERE chunks_fts MATCH ?" + type_sql +
+                " ORDER BY bm25(chunks_fts, 2.0, 1.0, 1.0) LIMIT 400", params):
             if self._allowed(rowid - 1, f):
                 out.append(rowid - 1)
                 if len(out) >= n:
