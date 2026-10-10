@@ -53,7 +53,7 @@ class InvalidAction(ToolError):
     code = "invalid_action"
 
 
-LIMITS = {"steps_per_turn": 6, "steps_per_case": 30}
+LIMITS = {"steps_per_turn": 8, "steps_per_case": 30}   # turn: read + memory + retrieve + 3 LLM + propose = 7
 OPS = ("post_comment", "set_status", "set_labels")
 LABEL_RX = re.compile(r"^[a-z0-9][a-z0-9:_\-]{0,39}$")
 MAX_COMMENT = 6000

@@ -193,3 +193,42 @@ questions, reply to the user, maintainer summary, what the code corrected, cost 
 sources judged irrelevant; `--json` / `--save` give the full result with trace. A new report is
 retrieved with the same leakage filters (`before = --as-of`, all eval issues excluded). Test cases
 need `--confirm-test`.
+
+## 7. Problem 2 — following a case (multi-turn agent with human approval)
+
+Architecture: `docs/architecture_p2.png`. Deterministic orchestrator with LLM steps; every
+visible change goes through the maintainer gate.
+
+| Piece | Module |
+|---|---|
+| Local tracker (SQLite, resettable, idempotent keyed writes, fault injection) | `ssa.tracker.store` |
+| Case memory (facts + supersession history, tried checks, rejection notes, proposals) | `ssa.agent.state` |
+| Typed tools + `MaintainerGate` (the only path to approve / edit / reject / write) | `ssa.agent.tools` |
+| Orchestrator (memory update → final-v4 analysis → multi-turn rules → proposal) | `ssa.agent.orchestrator` |
+| Audit log (JSONL, secrets masked) | `ssa.agent.audit` |
+| Scenario runner + code checks on stored state | `ssa.eval.p2` |
+
+```bash
+export PYTHONPATH=src
+python -m ssa.cli tracker tools                    # tool names, inputs, outputs, errors (GATED marked)
+python -m ssa.cli case open    --case c-5500
+python -m ssa.cli case turn    --case c-5500        # proposes; nothing is visible yet
+python -m ssa.cli case approve --case c-5500 --proposal p-... --hash <first 12 chars shown>
+python -m ssa.cli case say     --case c-5500 --text "It's behind our nginx under /st/"
+python -m ssa.cli case turn    --case c-5500
+python -m ssa.cli case status  --case c-5500        # tracker + memory (facts, superseded, tried) + proposals
+python -m ssa.cli case reject  --case c-5500 --proposal p-... --hash ... --reason "ask for logs first"
+python -m ssa.cli tracker reset                    # empty tracker + case memory
+python -m ssa.eval.p2 --system final    --split dev     # replay the multi-turn scenarios
+python -m ssa.eval.p2 --system baseline --split dev     # memoryless agent + naive executor
+```
+
+Guarantees enforced in code (tests in `tests/test_p2_safety.py`, `tests/test_p2_agent.py`):
+approval bound to case + content hash + ticket version (stale → refused); edit = new proposal,
+posted verbatim; reject = nothing written, reason kept for the next draft; every write keyed
+`<proposal>:<i>` (retries and duplicate deliveries never post twice); results read back and
+verified, failures never reported as success; `closed_resolved` only after a quoted user
+confirmation; facts kept only with a quote from the messages; corrections supersede (history
+kept); step limits 8 per turn / 30 per case (limit → escalation proposal); issue / comment /
+document text can never approve or act. Runtime state lives in `data/tracker/`, `data/state/`,
+`data/audit/` (git-ignored); scenario runs keep `audit.jsonl` per scenario as sample traces.

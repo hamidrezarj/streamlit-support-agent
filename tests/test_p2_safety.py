@@ -57,7 +57,7 @@ def test_duplicate_request_posts_once(env):
 
 
 def test_lost_connection_after_write_is_retried_without_duplicate(env):
-    env.tr.inject_fault("add_comment", "fail_after_write")
+    env.tr.inject_fault("post_comment", "fail_after_write")
     p = env.tb.propose_actions("c-1", REPLY)
     r = env.gate.approve("c-1", p.id, p.hash)
     assert r["ok"] and r["results"][0]["attempts"] == 2 and r["results"][0]["already_done"]
@@ -65,7 +65,7 @@ def test_lost_connection_after_write_is_retried_without_duplicate(env):
 
 
 def test_failure_is_never_reported_as_success_and_can_be_retried(env):
-    env.tr.inject_fault("add_comment", "fail_before", times=2)        # both attempts fail
+    env.tr.inject_fault("post_comment", "fail_before", times=2)        # both attempts fail
     p = env.tb.propose_actions("c-1", REPLY)
     r = env.gate.approve("c-1", p.id, p.hash)
     assert not r["ok"] and env.st.get_proposal(p.id).status == "failed"

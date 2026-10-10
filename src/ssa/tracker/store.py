@@ -133,14 +133,14 @@ class Tracker:
         self.con.execute("UPDATE tickets SET version = version + 1, updated_at=? WHERE id=?", (now(), ticket_id))
         return self.version(ticket_id)
 
-    def _keyed_write(self, op: str, ticket_id: str, key: str | None, do) -> dict:
+    def _keyed_write(self, op: str, ticket_id: str, key: str | None, do, fault_op: str | None = None) -> dict:
         """Run `do()` inside one transaction together with the idempotency record."""
         self._ticket_row(ticket_id)                          # NotFound before anything else
         if key:
             prev = self.find_op(key)
             if prev is not None:
                 return {**prev, "already_done": True}
-        fault = self._fault(op)
+        fault = self._fault(fault_op or op)
         if fault == "fail_before":
             raise ToolUnavailable(f"{op}: tracker unavailable (nothing written)")
         self.con.execute("BEGIN IMMEDIATE")
@@ -171,7 +171,9 @@ class Tracker:
                 "INSERT INTO comments (ticket_id, author, body, created_at, idempotency_key) VALUES (?,?,?,?,?)",
                 (ticket_id, author, body, created_at or now(), idempotency_key))
             return {"op": "add_comment", "comment_id": cur.lastrowid, "author": author}
-        return self._keyed_write("add_comment", ticket_id, idempotency_key, do)
+        # faults for agent posts are injected as "post_comment" (user comments are never faulted)
+        return self._keyed_write("add_comment", ticket_id, idempotency_key, do,
+                                 fault_op="post_comment" if author == "agent" else "add_comment")
 
     def set_status(self, ticket_id: str, status: str, idempotency_key: str | None = None) -> dict:
         if status not in STATUSES:

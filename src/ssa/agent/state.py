@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sqlite3
 import uuid
 from dataclasses import asdict, dataclass, field
@@ -43,11 +44,20 @@ def new_state(case_id: str, ticket_id: str) -> dict:
             "seen_comment_ids": [], "turns": 0, "steps_turn": 0, "steps_total": 0, "log": []}
 
 
+def _same(a, b) -> bool:
+    """Equal ignoring case/spaces; for versions, equal version numbers ('v1.13.0' == '1.13.0')."""
+    a, b = str(a).strip().lower(), str(b).strip().lower()
+    if a == b:
+        return True
+    va, vb = re.findall(r"\d+\.\d+(?:\.\d+)?", a), re.findall(r"\d+\.\d+(?:\.\d+)?", b)
+    return bool(va) and va == vb and len(va) == 1 and len(a) < 40 and len(b) < 40
+
+
 def set_fact(state: dict, name: str, value, quote: str | None, turn: int) -> str:
     """Add or correct a fact. Returns 'added' | 'unchanged' | 'superseded'."""
     name = name.strip().lower().replace(" ", "_")
     cur = state["facts"].get(name)
-    if cur and str(cur["value"]).strip().lower() == str(value).strip().lower():
+    if cur and _same(cur["value"], value):
         return "unchanged"
     entry = {"value": value, "quote": quote, "turn": turn, "at": now(), "history": []}
     if cur:

@@ -264,6 +264,123 @@ def cmd_show(a, st: Style) -> int:
     return 0
 
 
+# ------------------------------------------------------------------ Problem 2: live cases
+def _live(with_agent: bool = False):
+    from .agent.audit import AuditLog, AUDIT_DIR
+    from .agent.state import CaseStore
+    from .agent.tools import MaintainerGate, Toolbox
+    from .tracker.store import Tracker
+    tr, cs = Tracker(), CaseStore()
+    au = AuditLog(AUDIT_DIR / "cli.jsonl", run_id="cli")
+    tb = Toolbox(tr, cs, au)
+    agent = None
+    if with_agent:
+        from .agent.orchestrator import Agent
+        from .agent.pipeline import FinalP1
+        from .index.search import Retriever
+        from .llm import get_llm
+        llm = get_llm()
+        tb.retriever = Retriever(mode="hybrid")
+        agent = Agent(tb, FinalP1(llm, retriever=tb.retriever), llm, eval_exclusions())
+    return tb, MaintainerGate(tb), agent
+
+
+def _show_proposal(p, st: Style) -> None:
+    if p is None:
+        print("  no pending proposal")
+        return
+    print(st.b(f"  proposal {p.id}  hash {p.hash[:12]}  [{p.status}]  (made for ticket version {p.ticket_version})"))
+    for a in p.actions:
+        if a["op"] == "post_comment":
+            print("  post_comment:")
+            print(wrap(a["text"], "    | "))
+        else:
+            print(f"  {a['op']}: {', '.join(f'{k}={v}' for k, v in a.items() if k != 'op')}")
+    print(st.dim(f"  -> approve:  python -m ssa.cli case approve --case {p.case_id} --proposal {p.id} --hash {p.hash[:12]}"))
+
+
+def _resolve(gate, a):
+    p = gate.store.get_proposal(a.proposal)
+    if p is None:
+        raise SystemExit(f"proposal {a.proposal} not found")
+    if len(a.hash or "") < 8 or not p.hash.startswith(a.hash):
+        raise SystemExit("hash does not match the proposal you were shown (give at least 8 characters)")
+    return p.hash
+
+
+def cmd_case(a, st: Style) -> int:
+    from .agent.state import facts_view, superseded
+    from .agent.tools import ToolError
+    need_agent = a.action in ("open", "turn")
+    tb, gate, agent = _live(with_agent=need_agent)
+    cid = a.case
+    try:
+        if a.action == "open":
+            if a.title:
+                body = sys.stdin.read() if a.body_file == "-" else open(a.body_file, encoding="utf-8").read()
+                pub = new_report(a.title, body, a.as_of)
+                cid = cid or pub["case_id"]
+                v = pub["visible"]
+            else:
+                c = find_case(cid)
+                if c["split"] == "test" and not a.confirm_test:
+                    raise SystemExit("test case: pass --confirm-test")
+                v = c["visible"]
+            agent.open_case(cid, v["title"], v["body"], created_at=v["as_of"], url=v.get("url"),
+                            issue_number=v.get("issue_number"))
+            print(f"opened {cid}: {v['title']}   (next: case turn --case {cid})")
+        elif a.action == "say":
+            text = a.text or (sys.stdin.read() if a.text_file == "-" else open(a.text_file, encoding="utf-8").read())
+            tb.tracker.add_comment(tb.store.load(cid)["ticket_id"], "user", text)
+            print(f"user message added to {cid} (ticket version {tb.tracker.version(cid)})")
+        elif a.action == "turn":
+            r = agent.turn(cid)
+            print(st.h(f"== agent turn: outcome {r['outcome']}" + (f"  ({r['stopped']})" if r["stopped"] else "")))
+            mem = {k: v for k, v in (r.get("memory") or {}).items() if v}
+            if mem:
+                print(f"  memory: {mem}")
+            d = ((r.get("analysis") or {}).get("trace") or {}).get("decision") or {}
+            for rule in d.get("rules_applied") or []:
+                print(f"  rule: {rule}")
+            _show_proposal(r["proposal"], st)
+        elif a.action == "pending":
+            _show_proposal(gate.pending(cid), st)
+        elif a.action == "approve":
+            r = gate.approve(cid, a.proposal, _resolve(gate, a))
+            print(st.ok("executed") if r["ok"] else st.bad("FAILED"), "(already done - nothing posted again)" if r.get("already_done") else "")
+            for x in r.get("results") or []:
+                print(f"  {x['op']}: verified={x.get('verified')} attempts={x.get('attempts')} {x.get('error') or ''}")
+        elif a.action == "edit":
+            text = a.text or open(a.text_file, encoding="utf-8").read()
+            r = gate.edit(cid, a.proposal, _resolve(gate, a), text)
+            print(st.ok("edited text executed") if r["ok"] else st.bad("FAILED"), f"(new proposal {r['proposal_id']})")
+        elif a.action == "reject":
+            gate.reject(cid, a.proposal, _resolve(gate, a), a.reason or "rejected")
+            print("rejected - nothing was changed in the tracker; the reason is kept for the next draft")
+        elif a.action == "status":
+            t = tb.tracker.get(cid)
+            s = tb.store.load(cid)
+            print(st.h(f"== {cid}: {t['title']}"))
+            print(f"  tracker: status={t['status']} labels={t['labels']} version={t['version']}")
+            for c in t["comments"]:
+                print(st.dim(f"  [{c['author']}, {c['created_at'][:16]}]") + " " + c["body"][:160].replace("\n", " "))
+            print(st.h("== memory"))
+            print(f"  facts: {facts_view(s) or '-'}")
+            print(f"  superseded: {superseded(s) or '-'}")
+            print(f"  tried: {[t_['text'] + ' -> ' + t_['result'] for t_ in s['tried']] or '-'}")
+            print(f"  unknowns: {s['unknowns'] or '-'}   user confirmed fix: {s['user_confirmed_fix']}")
+            print(f"  last decision: {s['last_decision']}")
+            print(f"  rejection notes: {[n['reason'] for n in s['rejection_notes']] or '-'}")
+            print(f"  turns: {s['turns']}  steps: {s['steps_total']}")
+            print(st.h("== proposals"))
+            for p in tb.store.proposals(cid):
+                print(f"  {p.id} {p.status:10s} {p.origin:16s} {p.created_at}")
+    except ToolError as e:
+        print(st.bad(f"refused: {type(e).__name__}: {e}"))
+        return 2
+    return 0
+
+
 def cmd_tracker(a, st: Style) -> int:
     from .agent.tools import TOOL_SPECS
     from .tracker.store import Tracker
@@ -312,6 +429,19 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--save", help="write the full result (with trace) to this .json file or directory")
     p.add_argument("--confirm-test", action="store_true")
 
+    p = sub.add_parser("case", help="Problem 2: open a case, talk as the user, run agent turns, approve/edit/reject")
+    p.add_argument("action", choices=["open", "say", "turn", "pending", "approve", "edit", "reject", "status"])
+    p.add_argument("--case")
+    p.add_argument("--title")
+    p.add_argument("--body-file")
+    p.add_argument("--as-of")
+    p.add_argument("--text")
+    p.add_argument("--text-file")
+    p.add_argument("--proposal")
+    p.add_argument("--hash", help="first characters of the proposal hash you were shown (>= 8)")
+    p.add_argument("--reason")
+    p.add_argument("--confirm-test", action="store_true")
+
     p = sub.add_parser("tracker", help="local tracker: list tickets, reset, list tools")
     p.add_argument("action", choices=["list", "reset", "tools"])
 
@@ -324,7 +454,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv=None) -> int:
     a = build_parser().parse_args(argv)
     st = Style(color=not a.no_color and sys.stdout.isatty() and not os.environ.get("NO_COLOR"))
-    return {"cases": cmd_cases, "analyze": cmd_analyze, "show": cmd_show, "tracker": cmd_tracker}[a.cmd](a, st)
+    return {"cases": cmd_cases, "analyze": cmd_analyze, "show": cmd_show, "tracker": cmd_tracker, "case": cmd_case}[a.cmd](a, st)
 
 
 if __name__ == "__main__":
