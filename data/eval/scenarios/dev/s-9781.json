@@ -45,7 +45,29 @@
    "closed before user confirmation"
   ]
  },
+ "draft": {
+  "expected_final": {
+   "status": "closed_resolved",
+   "comments_posted": 2,
+   "must_not": [
+    "duplicate comment",
+    "closed before user confirmation"
+   ]
+  },
+  "covers": [
+   "real_followups",
+   "resolution_only_with_confirmation",
+   "duplicate_request"
+  ]
+ },
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "keep status closed_resolved; no fixture change",
+  "why": "Hani: duplicate delivery must repeat the same logical action (same proposal id / idempotency keys - already the case); closure only inside the approved bundle; count committed posts, not delivery attempts (already the case).",
+  "file": "data/eval/annotations/reviews/hani/scenarios/dev/hani-review-s-9781.md"
+ },
  "case_id": "c-9781",
  "annotated_by": "claude-draft",
- "reviewed_by": null
+ "reviewed_by": "Hani"
 }

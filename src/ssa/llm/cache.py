@@ -39,7 +39,7 @@ class ChatCache:
     def __init__(self, path: Path | None = None):
         self.path = Path(path or CACHE_PATH)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.con = sqlite3.connect(self.path)
+        self.con = sqlite3.connect(self.path, check_same_thread=False)   # UI may call from several threads
         self.con.execute("""CREATE TABLE IF NOT EXISTS chat (
             key TEXT PRIMARY KEY, model TEXT, request TEXT, response TEXT,
             tokens_in INT, tokens_out INT, usd REAL, latency_s REAL,

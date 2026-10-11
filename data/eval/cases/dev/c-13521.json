@@ -58,11 +58,12 @@
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Workaround: run with --server.port <free port>",
-   "Escalate as bug/enhancement with repro and link to #9271 / 0.47 auto-port behaviour"
+   "Escalate the PermissionError fallback with the supplied reproduction.",
+   "Give a documented --server.port workaround while clearly stating the fallback defect remains unconfirmed at intake."
   ],
   "must_not": [
-   "claim auto-port selection already covers this case"
+   "Claim the 1.53 fix was available on 2026-01-06.",
+   "Treat the reporter-proposed patch as maintainer-confirmed code."
   ],
   "relevant_sources": [
    "issue:9271",
@@ -71,6 +72,26 @@
   ],
   "reference": "Confirmed; fix merged for 1.53.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate",
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13521.md",
+  "review_reason": "The report includes an exact WinError, implementation limitation and reproduction. Escalating the missing fallback is defensible; a support reply offering a free port is also useful. The fix in 1.53 is future information.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "acceptable_next_steps": [
+    "Workaround: run with --server.port <free port>",
+    "Escalate as bug/enhancement with repro and link to #9271 / 0.47 auto-port behaviour"
+   ],
+   "must_not": [
+    "claim auto-port selection already covers this case"
+   ]
+  },
+  "acceptable_why": "Hani: a support reply offering a free port (--server.port) is also useful"
  }
 }

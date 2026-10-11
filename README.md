@@ -172,3 +172,81 @@ Final pipeline, enforced in code (not by the prompt):
 
 Extra metrics (all systems): basis mislabel rate, checklist questions, duplicate citations,
 upgrade advice without a release note, high-confidence wrong answers, sources shown.
+
+
+## 6. Command-line interface
+
+```bash
+export PYTHONPATH=src
+python -m ssa.cli cases                                   # list dev cases (--split test|all)
+python -m ssa.cli show    --case c-8149 --gold            # pretty-print a saved run, $0, no API
+python -m ssa.cli show    --case c-12709 --run baseline --gold   # same case, baseline output
+python -m ssa.cli analyze --case c-5500                   # run final-v4 now (cached calls replay, $0)
+python -m ssa.cli analyze --title "App stuck on Please wait" --body-file report.txt --as-of 2024-05-01
+pbpaste | python -m ssa.cli analyze --title "..." --body-file -       # report from the clipboard
+```
+
+Sections printed: facts from the report, evidence (relation per source, `RESOLVES`, maintainer reply,
+`*` = cited), decision (rule that fired, LLM proposal, overrides), hypotheses with basis, next step and
+questions, reply to the user, maintainer summary, what the code corrected, cost (live vs replayed).
+`--gold` shows the hidden gold *after* the result (never sent to the system); `--all-sources` also lists
+sources judged irrelevant; `--json` / `--save` give the full result with trace. A new report is
+retrieved with the same leakage filters (`before = --as-of`, all eval issues excluded). Test cases
+need `--confirm-test`.
+
+## 7. Problem 2 — following a case (multi-turn agent with human approval)
+
+Architecture: `docs/architecture_p2.png`. Deterministic orchestrator with LLM steps; every
+visible change goes through the maintainer gate.
+
+| Piece | Module |
+|---|---|
+| Local tracker (SQLite, resettable, idempotent keyed writes, fault injection) | `ssa.tracker.store` |
+| Case memory (facts + supersession history, tried checks, rejection notes, proposals) | `ssa.agent.state` |
+| Typed tools + `MaintainerGate` (the only path to approve / edit / reject / write) | `ssa.agent.tools` |
+| Orchestrator (memory update → final-v4 analysis → multi-turn rules → proposal) | `ssa.agent.orchestrator` |
+| Audit log (JSONL, secrets masked) | `ssa.agent.audit` |
+| Scenario runner + code checks on stored state | `ssa.eval.p2` |
+
+```bash
+export PYTHONPATH=src
+python -m ssa.cli tracker tools                    # tool names, inputs, outputs, errors (GATED marked)
+python -m ssa.cli case open    --case c-5500
+python -m ssa.cli case turn    --case c-5500        # proposes; nothing is visible yet
+python -m ssa.cli case approve --case c-5500 --proposal p-... --hash <first 12 chars shown>
+python -m ssa.cli case say     --case c-5500 --text "It's behind our nginx under /st/"
+python -m ssa.cli case turn    --case c-5500
+python -m ssa.cli case status  --case c-5500        # tracker + memory (facts, superseded, tried) + proposals
+python -m ssa.cli case reject  --case c-5500 --proposal p-... --hash ... --reason "ask for logs first"
+python -m ssa.cli tracker reset                    # empty tracker + case memory
+python -m ssa.eval.p2 --system final    --split dev     # replay the multi-turn scenarios
+python -m ssa.eval.p2 --system baseline --split dev     # memoryless agent + naive executor
+```
+
+Guarantees enforced in code (tests in `tests/test_p2_safety.py`, `tests/test_p2_agent.py`):
+approval bound to case + content hash + ticket version (stale → refused); edit = new proposal,
+posted verbatim; reject = nothing written, reason kept for the next draft; every write keyed
+`<proposal>:<i>` (retries and duplicate deliveries never post twice); results read back and
+verified, failures never reported as success; `closed_resolved` only after a quoted user
+confirmation; facts kept only with a quote from the messages; corrections supersede (history
+kept); step limits 8 per turn / 30 per case (limit → escalation proposal); issue / comment /
+document text can never approve or act. Runtime state lives in `data/tracker/`, `data/state/`,
+`data/audit/` (git-ignored); scenario runs keep `audit.jsonl` per scenario as sample traces.
+
+
+## 8. Demo UI (Streamlit)
+
+```bash
+pip install -r requirements.txt                       # includes streamlit
+PYTHONPATH=src streamlit run app/ui.py                # live: eval cases replay from the LLM cache ($0)
+SSA_UI_FAKE=1 PYTHONPATH=src streamlit run app/ui.py  # offline demo: scripted LLM, no API key, $0
+```
+
+Three tabs: **Analyse a report** (Problem 1: eval case or new report, final vs baseline side by side,
+facts, evidence with relation / resolves / cited, decision with the rule that fired, reply, gold after the
+result), **Follow a case** (Problem 2: user messages, agent turns, the pending proposal with approve / edit /
+reject, the tracker thread, case memory with superseded values, proposals and audit log, plus *simulate*
+buttons: restart the process, deliver the last approval again, fail the next post after writing) and
+**Results** (saved P1 / P2 runs). The UI has its own tracker and memory in `data/ui/` (git-ignored) and
+never touches evaluation runs; only dev cases are offered. Logic lives in `ssa.ui.backend`; click-through
+tests in `tests/test_ui.py` (Streamlit `AppTest`, offline).

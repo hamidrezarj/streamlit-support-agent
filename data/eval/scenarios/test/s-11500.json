@@ -52,7 +52,7 @@
   }
  ],
  "expected_final": {
-  "status": "answered",
+  "status": "awaiting_user",
   "comments_posted": 2,
   "facts": {
    "streamlit_version": "1.45.0"
@@ -62,10 +62,39 @@
    "streamlit_version=1.43.2"
   ],
   "must_not": [
-   "stale proposal executed"
+   "stale proposal executed",
+   "assumes what the (removed) screenshot shows"
   ]
+ },
+ "draft": {
+  "expected_final": {
+   "status": "answered",
+   "comments_posted": 2,
+   "facts": {
+    "streamlit_version": "1.45.0"
+   },
+   "superseded_facts": [
+    "streamlit_version=1.41.0",
+    "streamlit_version=1.43.2"
+   ],
+   "must_not": [
+    "stale proposal executed"
+   ]
+  },
+  "covers": [
+   "real_followups",
+   "user_correction",
+   "case_changed_before_execute"
+  ]
+ },
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "status answered -> awaiting_user",
+  "why": "Hani: the final turn contains an image placeholder without readable error details - request the actual error text; the stale pre-correction approval must stay invalid with zero writes.",
+  "file": "data/eval/annotations/reviews/hani/scenarios/test/hani-review-s-11500.md"
  },
  "case_id": "c-11500",
  "annotated_by": "claude-draft",
- "reviewed_by": null
+ "reviewed_by": "Hani"
 }

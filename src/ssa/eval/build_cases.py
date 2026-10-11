@@ -41,21 +41,87 @@ def load():
     return sel, gold, scen, issues
 
 
+def apply_review(g: dict, bucket: str, rv: dict | None) -> tuple[dict, str]:
+    """Human review overrides the LLM draft; the draft values that changed are kept under `draft`."""
+    g = {**g, "annotated_by": "claude-draft"}
+    if not rv:
+        return {**g, "acceptable_outcomes": [g["outcome"]], "reviewed_by": None}, bucket
+    edits = rv["edits"]
+    draft = {"outcome": g["outcome"], "bucket": bucket}
+    for k, v in edits.items():
+        if k == "bucket":
+            if v["from"] != bucket:
+                raise ValueError(f"{rv['case_id']}: review says bucket {v['from']} but selection has {bucket}")
+            bucket = v["to"]
+            continue
+        draft[k] = g.get(k)
+        g[k] = v
+    g.update(outcome=rv["outcome"], acceptable_outcomes=rv["acceptable_outcomes"], reviewed_by=rv["reviewer"],
+             review_date=rv["review_date"], review_verdict=rv["verdict"], review_file=rv["file"],
+             review_reason=rv["reason"], draft=draft)
+    if rv.get("acceptable_why"):
+        g["acceptable_why"] = rv["acceptable_why"]
+    return g, bucket
+
+
+def apply_scenario_review(scen: list[dict], dec: dict) -> list[dict]:
+    """Apply the human scenario review: expected_final patches, fixture steps, variants and an
+    explicit shared schedule for scenarios that switch between cases. Drafts are kept under 'draft'."""
+    import copy
+    out, by_id = [], {s["id"]: s for s in scen}
+    review_file = lambda sid, split: f"data/eval/annotations/reviews/hani/scenarios/{split}/hani-review-{sid}.md"
+    for s in scen:
+        s = copy.deepcopy(s)
+        d = dec["scenarios"].get(s["id"])
+        if d:
+            s["draft"] = {"expected_final": copy.deepcopy(s["expected_final"]), "covers": list(s["covers"])}
+            if "steps" in d:
+                s["draft"]["steps"] = copy.deepcopy(s["steps"])
+                s["steps"] = copy.deepcopy(d["steps"])
+            if "edit_step" in d:
+                for st in s["steps"]:
+                    if st["type"] == "maintainer" and st.get("decision") == "edit":
+                        st.update(d["edit_step"])
+            if "covers" in d:
+                s["covers"] = d["covers"]
+            s["expected_final"] = {**s["expected_final"], **d.get("set", {})}
+            s["review"] = {"reviewer": dec["reviewer"], "date": dec["review_date"], "verdict": d["verdict"],
+                           "why": d["why"], "file": review_file(s["id"], s["split"])}
+        out.append(s)
+    for vid, v in dec.get("variants", {}).items():
+        base = by_id[v["from"]]
+        out.append({"id": vid, "issue": base["issue"], "split": base["split"], "covers": v["covers"],
+                    "steps": copy.deepcopy(v["steps"]), "expected_final": v["expected_final"],
+                    **({"limits": v["limits"]} if v.get("limits") else {}), "variant_of": v["from"],
+                    "review": {"reviewer": dec["reviewer"], "date": dec["review_date"], "verdict": "new variant",
+                               "why": v["why"], "file": review_file(v["from"], base["split"])}})
+    for key, g in dec.get("groups", {}).items():
+        members = key.split("+")
+        for s in out:
+            if s["id"] in members:
+                s["group_schedule"] = {"members": members, "schedule": g["schedule"], "why": g["why"]}
+    return out
+
+
 def build(sel, gold, scen, issues) -> tuple[list, list]:
     eval_issues = sorted(c["issue"] for c in sel)
+    rp = A / "reviews.json"
+    reviews = read_json(rp)["reviews"] if rp.exists() else {}
     cases = []
     for c in sel:
         r = issues[c["issue"]]
-        g = gold[str(c["issue"])]
+        g, bucket = apply_review(gold[str(c["issue"])], c["bucket"], reviews.get(f"c-{c['issue']}"))
         case = {
-            "case_id": f"c-{r['number']}", "split": c["split"], "bucket": c["bucket"],
+            "case_id": f"c-{r['number']}", "split": c["split"], "bucket": bucket,
             "topic": c["topic"], "family_id": r["family_id"], "multi_turn": bool(c.get("mt")),
             "visible": {"issue_number": r["number"], "url": r["url"], "title": r["title"],
                         "body": r["body"], "as_of": r["created_at"]},
             "filters": {"before": r["created_at"], "exclude_issues": eval_issues},
-            "gold": {**g, "annotated_by": "claude-draft", "reviewed_by": None},
+            "gold": g,
         }
         cases.append(case)
+    sp = A / "scenario_review_decisions.json"
+    scen = apply_scenario_review(scen, read_json(sp)) if sp.exists() else scen
     scenarios = []
     for s in scen:
         r = issues[s["issue"]]
@@ -68,8 +134,9 @@ def build(sel, gold, scen, issues) -> tuple[list, list]:
                 st.update(text=cm["text"], created_at=cm["created_at"], url=cm["url"],
                           by_issue_author=cm["is_issue_author"])
             steps.append(st)
+        rv = s.get("review") or {}
         scenarios.append({**s, "case_id": f"c-{s['issue']}", "steps": steps,
-                          "annotated_by": "claude-draft", "reviewed_by": None})
+                          "annotated_by": "claude-draft", "reviewed_by": rv.get("reviewer")})
     return cases, scenarios
 
 

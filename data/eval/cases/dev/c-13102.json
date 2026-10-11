@@ -58,7 +58,8 @@
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Explain 1.51.0 dropped Python 3.9 (release notes) and recommend Python >= 3.10"
+   "Use a supported Python interpreter and install the desired Streamlit release in that environment.",
+   "If Python 3.9 is required temporarily, remain on a compatible Streamlit release and explain the version constraint."
   ],
   "must_not": [
    "ask for the Python version (visible in the pip path: python3.9)",
@@ -70,6 +71,20 @@
   ],
   "reference": "Maintainer: 1.51.0 does not support Python 3.9; upgrade Python.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13102.md",
+  "review_reason": "Python 3.9 is explicit in the pip path and pip output. The pre-case 1.51 release note explains the compatibility boundary; no need to ask for Python again.",
+  "draft": {
+   "outcome": "usage_guidance",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Explain 1.51.0 dropped Python 3.9 (release notes) and recommend Python >= 3.10"
+   ]
+  }
  }
 }

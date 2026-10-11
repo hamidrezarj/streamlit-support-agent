@@ -1,0 +1,800 @@
+{
+ "system": "baseline",
+ "version": "baseline-memoryless-v2",
+ "split": "dev",
+ "built_at": "2026-10-11T20:34:31+00:00",
+ "model": "gpt-4o-mini",
+ "cache_mode": "cache",
+ "limits": {
+  "steps_per_turn": 8,
+  "steps_per_case": 30
+ },
+ "limit_overrides": {},
+ "metrics": {
+  "n_scenarios": 5,
+  "scenarios_passed": 1,
+  "status_exact": "1/5",
+  "checks_passed": 33,
+  "checks_total": 46,
+  "by_check": {
+   "comments_posted": "4/5",
+   "fact": "0/5",
+   "inv:fact_provenance": "5/5",
+   "inv:no_duplicate_execution": "4/5",
+   "inv:no_stale_execution": "5/5",
+   "inv:pending_survives_restart": "1/1",
+   "inv:rejected_not_in_tracker": "5/5",
+   "inv:step_budget": "5/5",
+   "label": "0/1",
+   "label_not": "1/1",
+   "posted_text_equals_edited": "1/1",
+   "status": "1/5",
+   "status_not": "1/1",
+   "superseded": "0/1"
+  },
+  "violations": {
+   "inv:no_duplicate_execution": 1
+  },
+  "turns": 10,
+  "max_steps_turn": 0,
+  "repeated_replies": 1,
+  "cost": {
+   "live_calls": 5,
+   "replayed_calls": 5,
+   "tokens_in": 34067,
+   "tokens_out": 4569,
+   "usd_live": 0.003945,
+   "usd_replayed": 0.003906,
+   "latency_s": 108.949,
+   "usd_per_turn": 0.000785
+  }
+ },
+ "scenarios": [
+  {
+   "sid": "s-12709",
+   "case_id": "c-12709",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "hypothesis_refuted_by_new_fact"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 10,
+   "n_ok": 6,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected awaiting_user, acceptable ['awaiting_user', 'escalated'])"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:streamlit_version": {
+     "ok": false,
+     "detail": "memory streamlit_version=-"
+    },
+    "fact:deployment": {
+     "ok": false,
+     "detail": "memory deployment=-"
+    },
+    "fact:failure_frequency": {
+     "ok": false,
+     "detail": "memory failure_frequency=-"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-d58138da7505",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-d58138da7505"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-8c6f99e4d31a",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-8c6f99e4d31a"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 8,
+    "agent_comments": [
+     "It seems you are encountering a known issue with Websocket message processing in Streamlit, which has been reported multiple times [S1], [S2]. To help resolve this, could you please provide your Streamlit version and any relevant configuration details? Additionally, you might want to try adding a configuration file with the following settings to disable the response cache:\n\n```\n[snowflake.responseCache]\ninitialResponseCache = false\n```\nThis has helped other users experiencing similar issues.",
+     "It seems you are encountering a known issue with Websocket message processing in Streamlit, which has been reported multiple times [S1], [S2]. To help resolve this, could you please provide your Python version and any relevant configuration details? Additionally, you might want to try adding a configuration file with the following settings to disable the response cache:\n\n```\n[snowflake.responseCache]\ninitialResponseCache = false\n```\nThis has helped other users experiencing similar issues."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-d58138da7505",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-8c6f99e4d31a",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "recommends upgrading to 1.45.1 as the fix",
+     "asks again for the version or the platform"
+    ],
+    "final_reply": "It seems you are encountering a known issue with Websocket message processing in Streamlit, which has been reported multiple times [S1], [S2]. To help resolve this, could you please provide your Python version and any relevant configuration details? Additionally, you might want to try adding a configuration file with the following settings to disable the response cache:\n\n```\n[snowflake.responseCache]\ninitialResponseCache = false\n```\nThis has helped other users experiencing similar issues.",
+    "all_replies": [
+     "It seems you are encountering a known issue with Websocket message processing in Streamlit, which has been reported multiple times [S1], [S2]. To help resolve this, could you please provide your Streamlit version and any relevant configuration details? Additionally, you might want to try adding a configuration file with the following settings to disable the response cache:\n\n```\n[snowflake.responseCache]\ninitialResponseCache = false\n```\nThis has helped other users experiencing similar issues.",
+     "It seems you are encountering a known issue with Websocket message processing in Streamlit, which has been reported multiple times [S1], [S2]. To help resolve this, could you please provide your Python version and any relevant configuration details? Additionally, you might want to try adding a configuration file with the following settings to disable the response cache:\n\n```\n[snowflake.responseCache]\ninitialResponseCache = false\n```\nThis has helped other users experiencing similar issues."
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 1,
+    "tokens_in": 5535,
+    "tokens_out": 878,
+    "usd_live": 0.000706,
+    "usd_replayed": 0.000651,
+    "latency_s": 63.659
+   },
+   "wall_s": 58.23
+  },
+  {
+   "sid": "s-5500",
+   "case_id": "c-5500",
+   "split": "dev",
+   "covers": [
+    "designed_followups",
+    "user_correction",
+    "brief_example"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 10,
+   "n_ok": 6,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:access_path": {
+     "ok": false,
+     "detail": "memory access_path=-"
+    },
+    "fact:direct_ip_test": {
+     "ok": false,
+     "detail": "memory direct_ip_test=-"
+    },
+    "superseded:access_path=direct ip": {
+     "ok": false,
+     "detail": "history=[]"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-3716a3617f56",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-3716a3617f56"
+    },
+    {
+     "step": "user",
+     "origin": "designed",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-74fdc7d60b34",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "user",
+     "origin": "designed",
+     "corrects": "access_path"
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-2fe39b8fa108",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-2fe39b8fa108"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 7,
+    "agent_comments": [
+     "To troubleshoot the 'please wait' issue, please check the terminal for any error messages when you run the Streamlit app. Additionally, let me know what operating system you are using for deployment and the specific method you used to deploy the app.",
+     "It seems like the issue is related to how Nginx is configured. Please check your Nginx settings, especially regarding CORS and proxy settings. You may need to ensure that the headers are correctly set to allow Streamlit to communicate properly. If you can share your Nginx configuration, I can help you further."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-3716a3617f56",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-74fdc7d60b34",
+      "status": "superseded",
+      "origin": "agent"
+     },
+     {
+      "id": "p-2fe39b8fa108",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 3,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "stale (pre-correction) proposal executed",
+     "asks again for the Streamlit version or a reinstall",
+     "unsupported root-cause claim",
+     "final reply still assumes no proxy"
+    ],
+    "final_reply": "It seems like the issue is related to how Nginx is configured. Please check your Nginx settings, especially regarding CORS and proxy settings. You may need to ensure that the headers are correctly set to allow Streamlit to communicate properly. If you can share your Nginx configuration, I can help you further.",
+    "all_replies": [
+     "To troubleshoot the 'please wait' issue, please check the terminal for any error messages when you run the Streamlit app. Additionally, let me know what operating system you are using for deployment and the specific method you used to deploy the app.",
+     "It seems like the issue is related to how Nginx is configured. Please check your Nginx settings, especially regarding CORS and proxy settings. You may need to ensure that the headers are correctly set to allow Streamlit to communicate properly. If you can share your Nginx configuration, I can help you further."
+    ]
+   },
+   "stats": {
+    "live_calls": 2,
+    "replayed_calls": 1,
+    "tokens_in": 10391,
+    "tokens_out": 1472,
+    "usd_live": 0.00163,
+    "usd_replayed": 0.000812,
+    "latency_s": 18.037
+   },
+   "wall_s": 15.27
+  },
+  {
+   "sid": "s-7867",
+   "case_id": "c-7867",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "maintainer_edit"
+   ],
+   "passed": true,
+   "status_exact": true,
+   "n_checks": 10,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "answered (expected answered)"
+    },
+    "status_not": {
+     "ok": true,
+     "detail": "answered (must not be ['closed_resolved'])"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "1 (expected 1)"
+    },
+    "label_not:type:bug": {
+     "ok": true,
+     "detail": "labels=[]"
+    },
+    "posted_text_equals_edited": {
+     "ok": true,
+     "detail": "edited text found verbatim"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "1 agent comments for 1 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-24cf62f09291",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "edit",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-24cf62f09291"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 4,
+    "agent_comments": [
+     "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-24cf62f09291",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 1,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "label type:bug added",
+     "closed as resolved automatically",
+     "approval of a different draft reused for the edited text"
+    ],
+    "final_reply": "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms.",
+    "all_replies": [
+     "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
+    ]
+   },
+   "stats": {
+    "live_calls": 0,
+    "replayed_calls": 1,
+    "tokens_in": 4008,
+    "tokens_out": 475,
+    "usd_live": 0.0,
+    "usd_replayed": 0.000886,
+    "latency_s": 4.546
+   },
+   "wall_s": 0.11
+  },
+  {
+   "sid": "s-8364",
+   "case_id": "c-8364",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "stop_while_awaiting_approval",
+    "resume"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 9,
+   "n_ok": 7,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected escalated)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "label:needs-maintainer": {
+     "ok": false,
+     "detail": "labels=[]"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:pending_survives_restart": {
+     "ok": true,
+     "detail": "same id/hash/ticket_version/actions after restart: {'id': True, 'hash': True, 'ticket_version': True, 'actions': True}"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-fe04e89f195c",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "system",
+     "event": "crash_while_awaiting_approval",
+     "note": "process killed"
+    },
+    {
+     "step": "system",
+     "event": "restart",
+     "pending_found": true
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-fe04e89f195c"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-07237e8c9847",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-07237e8c9847"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 7,
+    "agent_comments": [
+     "It seems that the issue you're experiencing with the Streamlit server hanging on startup when offline is a known behavior related to unnecessary failover processes. This has been documented in a previous issue [S1]. As a workaround, I recommend checking if upgrading to a later version of Streamlit resolves the problem, as this behavior may have been addressed in subsequent releases. Please let me know if you need assistance with the upgrade process.",
+     "It appears that the issue you're experiencing with the Streamlit server hanging on startup when offline is a known behavior related to unnecessary failover processes in headless mode. This has been documented in a previous issue [S1]. As a workaround, I recommend checking if upgrading to a later version of Streamlit resolves the problem, as this behavior may have been addressed in subsequent releases. Please let me know if you need assistance with the upgrade process."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-fe04e89f195c",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-07237e8c9847",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "any write before approval",
+     "pending proposal lost or changed by the restart",
+     "duplicate comment",
+     "reported diagnosis presented as universally confirmed"
+    ],
+    "final_reply": "It appears that the issue you're experiencing with the Streamlit server hanging on startup when offline is a known behavior related to unnecessary failover processes in headless mode. This has been documented in a previous issue [S1]. As a workaround, I recommend checking if upgrading to a later version of Streamlit resolves the problem, as this behavior may have been addressed in subsequent releases. Please let me know if you need assistance with the upgrade process.",
+    "all_replies": [
+     "It seems that the issue you're experiencing with the Streamlit server hanging on startup when offline is a known behavior related to unnecessary failover processes. This has been documented in a previous issue [S1]. As a workaround, I recommend checking if upgrading to a later version of Streamlit resolves the problem, as this behavior may have been addressed in subsequent releases. Please let me know if you need assistance with the upgrade process.",
+     "It appears that the issue you're experiencing with the Streamlit server hanging on startup when offline is a known behavior related to unnecessary failover processes in headless mode. This has been documented in a previous issue [S1]. As a workaround, I recommend checking if upgrading to a later version of Streamlit resolves the problem, as this behavior may have been addressed in subsequent releases. Please let me know if you need assistance with the upgrade process."
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 1,
+    "tokens_in": 7936,
+    "tokens_out": 854,
+    "usd_live": 0.000882,
+    "usd_replayed": 0.000821,
+    "latency_s": 10.152999999999999
+   },
+   "wall_s": 7.49
+  },
+  {
+   "sid": "s-9781",
+   "case_id": "c-9781",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "resolution_only_with_confirmation",
+    "duplicate_request"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 7,
+   "n_ok": 4,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected closed_resolved)"
+    },
+    "comments_posted": {
+     "ok": false,
+     "detail": "3 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": false,
+     "detail": "3 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-d09b394a3341",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-d09b394a3341"
+    },
+    {
+     "step": "system",
+     "event": "duplicate_request",
+     "result": "ok",
+     "already_done": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-dacd50121bd5",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-dacd50121bd5"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 8,
+    "agent_comments": [
+     "It seems that your app is experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users as well, particularly when there are issues with app configuration or dependencies [S8]. To assist you better, could you please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app? This information will help us identify the problem more accurately.",
+     "It seems that your app is experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users as well, particularly when there are issues with app configuration or dependencies [S8]. To assist you better, could you please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app? This information will help us identify the problem more accurately.",
+     "It seems that your app was experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users, particularly when there are issues with app configuration or dependencies [S8]. If you encounter this issue again, please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app. Thank you for your patience!"
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-d09b394a3341",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-dacd50121bd5",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 1,
+   "judge_items": {
+    "must_not": [
+     "duplicate comment",
+     "closed before user confirmation"
+    ],
+    "final_reply": "It seems that your app was experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users, particularly when there are issues with app configuration or dependencies [S8]. If you encounter this issue again, please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app. Thank you for your patience!",
+    "all_replies": [
+     "It seems that your app is experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users as well, particularly when there are issues with app configuration or dependencies [S8]. To assist you better, could you please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app? This information will help us identify the problem more accurately.",
+     "It seems that your app is experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users as well, particularly when there are issues with app configuration or dependencies [S8]. To assist you better, could you please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app? This information will help us identify the problem more accurately.",
+     "It seems that your app was experiencing a known issue where it gets stuck in the deployment process, showing an endless 'Your app is in the oven' message. This has been reported by other users, particularly when there are issues with app configuration or dependencies [S8]. If you encounter this issue again, please confirm the exact version of Streamlit you are using and let me know if there are any specific dependencies in your app. Thank you for your patience!"
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 1,
+    "tokens_in": 6197,
+    "tokens_out": 890,
+    "usd_live": 0.000727,
+    "usd_replayed": 0.000736,
+    "latency_s": 12.554
+   },
+   "wall_s": 7.81
+  }
+ ]
+}

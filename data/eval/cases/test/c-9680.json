@@ -72,10 +72,12 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask about replicas/affinity and proxy timeouts; point to session-affinity docs"
+   "Ask replica/affinity configuration and failing WebSocket timing to select the next diagnostic.",
+   "Inspect pod restart/OOM events and compare a single-replica or direct-access controlled run."
   ],
   "must_not": [
-   "declare a Streamlit bug"
+   "Request a generic version/OS/browser checklist already answered.",
+   "Declare a confirmed Streamlit bug without isolating the deployment behavior."
   ],
   "relevant_sources": [
    "page:/develop/concepts/architecture/architecture",
@@ -83,6 +85,23 @@
   ],
   "reference": "Maintainer asked about replicas/sticky sessions; closed inactive.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-9680.md",
+  "review_reason": "Deployment-specific refresh during long execution has several plausible infrastructure causes. Streamlit/Python/OS/browser are known; prioritize affinity, WebSocket timing and pod lifecycle evidence.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask about replicas/affinity and proxy timeouts; point to session-affinity docs"
+   ],
+   "must_not": [
+    "declare a Streamlit bug"
+   ]
+  }
  }
 }

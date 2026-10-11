@@ -53,15 +53,17 @@
   "outcome": "usage_guidance",
   "summary": "k8s + nginx proxy: WebSocket to /_stcore/stream fails (config included).",
   "hypotheses": [
-   "nginx location /_stcore/stream/ with trailing slash returns 301",
-   "missing Upgrade/Connection headers"
+   "nginx slash-ended location redirects the slashless WebSocket endpoint with 301."
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Point out the trailing-slash location / 301 and websocket upgrade headers; give corrected location block"
+   "Use an exact or appropriate slashless /_stcore/stream location and preserve WebSocket headers and upstream path.",
+   "Verify the request gets a 101 handshake instead of a 301 while direct NodePort behavior stays working."
   ],
   "must_not": [
-   "ask for the nginx config (already provided)"
+   "Ask again for nginx configuration.",
+   "Say the provided WebSocket location lacks Upgrade/Connection headers.",
+   "Claim Streamlit removed /_stcore/stream."
   ],
   "relevant_sources": [
    "issue:3741",
@@ -69,6 +71,27 @@
   ],
   "reference": "Answer: use location /_stcore/stream (no trailing slash).",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-7856.md",
+  "review_reason": "The configuration already includes HTTP/1.1 and Upgrade/Connection headers. Its trailing-slash proxy location plus logged 301 explains the concrete mismatch under nginx documented behavior.",
+  "draft": {
+   "outcome": "usage_guidance",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Point out the trailing-slash location / 301 and websocket upgrade headers; give corrected location block"
+   ],
+   "must_not": [
+    "ask for the nginx config (already provided)"
+   ],
+   "hypotheses": [
+    "nginx location /_stcore/stream/ with trailing slash returns 301",
+    "missing Upgrade/Connection headers"
+   ]
+  }
  }
 }

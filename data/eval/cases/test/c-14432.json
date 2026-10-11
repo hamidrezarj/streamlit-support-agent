@@ -55,16 +55,41 @@
   "hypotheses": [
    "metric naming not OpenMetrics compliant"
   ],
-  "missing_info": [],
+  "missing_info": [
+   {
+    "item": "Prometheus version and response Content-Type/exposition payload",
+    "why": "Discriminates parser/format compatibility and verifies the precise naming violation."
+   }
+  ],
   "acceptable_next_steps": [
-   "Escalate as bug with the exact Prometheus error"
+   "Escalate with the exact scrape error, endpoint and Streamlit version.",
+   "Capture raw exposition and scraper version to validate the naming/format hypothesis."
   ],
   "must_not": [
-   "ask for repro steps (given)"
+   "Promise the reporter proposed metric rename is correct without checking the exposition format.",
+   "Recommend future 1.56 as already available at intake."
   ],
   "relevant_sources": [],
   "reference": "Confirmed; metrics made OpenMetrics-compliant in 1.56.0.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-14432.md",
+  "review_reason": "Exact scrape failure and reproduction support a metrics compatibility escalation. Prometheus version and negotiated format can narrow it; user-suggested renaming is not yet established as the correct fix.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "missing_info": [],
+   "acceptable_next_steps": [
+    "Escalate as bug with the exact Prometheus error"
+   ],
+   "must_not": [
+    "ask for repro steps (given)"
+   ]
+  }
  }
 }

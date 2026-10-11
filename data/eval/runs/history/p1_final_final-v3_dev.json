@@ -9,28 +9,32 @@
  "stopped_early": null,
  "metrics": {
   "n_cases": 16,
-  "outcome_exact": 0.562,
-  "bucket_ok": 0.562,
+  "outcome_exact": 0.688,
+  "outcome_acceptable": 0.75,
+  "bucket_ok": 0.688,
   "per_bucket": {
    "ambiguous": {
-    "n": 5,
+    "n": 7,
     "bucket_ok": 1.0,
-    "outcome_exact": 1.0
+    "outcome_exact": 1.0,
+    "outcome_acceptable": 1.0
    },
    "answerable": {
     "n": 6,
     "bucket_ok": 0.333,
-    "outcome_exact": 0.333
+    "outcome_exact": 0.333,
+    "outcome_acceptable": 0.333
    },
    "escalate": {
-    "n": 5,
-    "bucket_ok": 0.4,
-    "outcome_exact": 0.4
+    "n": 3,
+    "bucket_ok": 0.667,
+    "outcome_exact": 0.667,
+    "outcome_acceptable": 1.0
    }
   },
   "confusion": {
    "ambiguous": {
-    "info_request": 5
+    "info_request": 7
    },
    "answerable": {
     "known_issue": 2,
@@ -39,7 +43,7 @@
    },
    "escalate": {
     "escalate": 2,
-    "info_request": 3
+    "info_request": 1
    }
   },
   "retrieval_recall": 0.748,
@@ -56,7 +60,7 @@
   "avg_sources_shown": 14.0,
   "avg_questions": 1.062,
   "errors": 0,
-  "llm_proposed_exact": 0.5,
+  "llm_proposed_exact": 0.562,
   "cost": {
    "llm_calls_live": 32,
    "llm_calls_replayed": 16,
@@ -81,6 +85,7 @@
     "gold_outcome": "known_issue",
     "outcome": "known_issue",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 0.667,
     "cited_recall": 0.333,
@@ -446,6 +451,7 @@
     "gold_outcome": "info_request",
     "outcome": "info_request",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 0.5,
@@ -838,6 +844,7 @@
     "gold_outcome": "usage_guidance",
     "outcome": "info_request",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.5,
     "cited_recall": 0.0,
@@ -1197,6 +1204,7 @@
     "gold_outcome": "info_request",
     "outcome": "info_request",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 0.75,
     "cited_recall": 0.75,
@@ -1572,6 +1580,7 @@
     "gold_outcome": "known_issue",
     "outcome": "known_issue",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 1.0,
@@ -1951,6 +1960,7 @@
     "gold_outcome": "escalate",
     "outcome": "escalate",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 0.667,
     "cited_recall": 0.667,
@@ -2322,6 +2332,7 @@
     "gold_outcome": "usage_guidance",
     "outcome": "escalate",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.333,
     "cited_recall": 0.333,
@@ -2702,6 +2713,7 @@
     "gold_outcome": "escalate",
     "outcome": "escalate",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": null,
     "cited_recall": null,
@@ -3096,6 +3108,7 @@
     "gold_outcome": "info_request",
     "outcome": "info_request",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 0.8,
     "cited_recall": 0.8,
@@ -3488,6 +3501,7 @@
     "gold_outcome": "info_request",
     "outcome": "info_request",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 0.333,
@@ -3858,11 +3872,12 @@
    "bucket": "answerable",
    "score": {
     "case_id": "c-6956",
-    "bucket": "answerable",
-    "gold_outcome": "usage_guidance",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
     "outcome": "info_request",
-    "outcome_exact": false,
-    "bucket_ok": false,
+    "outcome_exact": true,
+    "outcome_acceptable": true,
+    "bucket_ok": true,
     "retrieval_recall": 0.5,
     "cited_recall": 0.5,
     "n_cited": 1,
@@ -4226,6 +4241,7 @@
     "gold_outcome": "usage_guidance",
     "outcome": "info_request",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 1.0,
     "cited_recall": 0.667,
@@ -4605,10 +4621,11 @@
    "bucket": "escalate",
    "score": {
     "case_id": "c-8149",
-    "bucket": "escalate",
-    "gold_outcome": "escalate",
+    "bucket": "answerable",
+    "gold_outcome": "known_issue",
     "outcome": "info_request",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 1.0,
     "cited_recall": 1.0,
@@ -4974,6 +4991,7 @@
     "gold_outcome": "escalate",
     "outcome": "info_request",
     "outcome_exact": false,
+    "outcome_acceptable": true,
     "bucket_ok": false,
     "retrieval_recall": 1.0,
     "cited_recall": 0.0,
@@ -5354,6 +5372,7 @@
     "gold_outcome": "info_request",
     "outcome": "info_request",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 0.0,
     "cited_recall": 0.0,
@@ -5733,11 +5752,12 @@
    "bucket": "escalate",
    "score": {
     "case_id": "c-9781",
-    "bucket": "escalate",
-    "gold_outcome": "escalate",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
     "outcome": "info_request",
-    "outcome_exact": false,
-    "bucket_ok": false,
+    "outcome_exact": true,
+    "outcome_acceptable": true,
+    "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 0.5,
     "n_cited": 3,
@@ -6112,5 +6132,6 @@
    }
   }
  ],
- "rescored_at": "2026-10-09T10:48:25+00:00"
+ "rescored_at": "2026-10-10T09:37:23+00:00",
+ "gold_version": "reviewed-hani-2026-10-09"
 }

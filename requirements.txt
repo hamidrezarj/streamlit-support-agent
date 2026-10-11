@@ -1,3 +1,4 @@
 # Runtime dependencies (Python >= 3.10; stdlib sqlite3 must include FTS5 - true for python.org/Homebrew builds)
 requests>=2.31,<3        # GitHub REST crawler + OpenAI-compatible Metis client
 numpy>=1.24,<3           # embedding matrix + dense search
+streamlit>=1.38,<2       # demo UI (app/ui.py) - optional for the pipeline itself

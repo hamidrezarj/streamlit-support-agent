@@ -57,15 +57,36 @@
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Suggest pinning starlette to the previous version in requirements.txt as workaround",
-   "Escalate as platform-wide regression"
+   "Escalate the minimal startup failure with the supplied package combination and traceback.",
+   "Test a previously working dependency combination as a conditional diagnostic, without presenting a future-confirmed pin as a known intake solution."
   ],
   "must_not": [
-   "blame the user's app code"
+   "Blame the application code.",
+   "Claim starlette<1.4.0 is confirmed before the first supporting comment.",
+   "Claim the eventual patch is 1.62.0; thread records Streamlit 1.61.1 and Starlette 1.4.1."
   ],
   "relevant_sources": [],
-  "reference": "Confirmed; starlette<1.4.0 workaround; fixed in 1.62.0.",
+  "reference": "Post-intake history only: Streamlit 1.61.1 patch announced at 15:05:59Z on 2026-08-05, then Starlette 1.4.1 at 15:32:48Z.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-16341.md",
+  "review_reason": "A minimal app fails before executing user code with exact versions and TypeError. This supports escalation, but the first workaround/patch appears later the same day.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "acceptable_next_steps": [
+    "Suggest pinning starlette to the previous version in requirements.txt as workaround",
+    "Escalate as platform-wide regression"
+   ],
+   "must_not": [
+    "blame the user's app code"
+   ],
+   "reference": "Confirmed; starlette<1.4.0 workaround; fixed in 1.62.0."
+  }
  }
 }

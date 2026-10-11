@@ -128,10 +128,12 @@ class FinalP1:
     name = NAME
     prompt_version = PROMPT_VERSION
 
-    def __init__(self, llm, retriever: Retriever | None = None, mode: str = "hybrid"):
+    def __init__(self, llm, retriever: Retriever | None = None, mode: str = "hybrid", decision_hook=None):
         self.llm = llm
         self.retr = retriever or Retriever(mode=mode)
         self.mode = mode
+        # Problem 2: multi-turn rules adjust the decision BEFORE drafting (None in Problem 1)
+        self.decision_hook = decision_hook
 
     # ---- step 1
     def facts(self, v: dict, tag: str, trace: dict) -> dict:
@@ -356,6 +358,8 @@ class FinalP1:
         # 4 decide
         d = self.decide(a.get("proposed_outcome"), assess, hyps, sources, by_label, facts["streamlit_version"],
                         signals=a, resolves=resolves)
+        if self.decision_hook:
+            d = self.decision_hook(d)
         trace.update(facts=facts, assessments=assess,
                      assessment_reasons=reasons, resolves=sorted(resolves),
                      hypotheses=hyps, outcome_reason=a.get("outcome_reason"), decision=d)

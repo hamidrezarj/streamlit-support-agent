@@ -53,15 +53,17 @@
   "outcome": "usage_guidance",
   "summary": "Community Cloud ignores runtime.txt and uses Python 3.14; user wants 3.9.",
   "hypotheses": [
-   "Cloud selects Python version in app settings, not runtime.txt",
-   "Python 3.9 no longer supported"
+   "Community Cloud selects the interpreter through deployment settings rather than runtime.txt.",
+   "Pinned older packages are incompatible with the interpreter actually used."
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Explain Python version is chosen in Advanced settings at deploy (redeploy to change) and that 3.9 is unsupported since 1.51; suggest upgrading packages / using >=3.10"
+   "Redeploy using a Python version offered in Advanced settings and compatible dependency versions.",
+   "If the selected supported version is ignored, collect the settings and fresh build log and route to Cloud support."
   ],
   "must_not": [
-   "promise runtime.txt will work"
+   "Infer Streamlit 1.35.0 itself requires Python >=3.10 merely because 1.51 does.",
+   "Promise runtime.txt controls the Cloud interpreter."
   ],
   "relevant_sources": [
    "page:/deploy/streamlit-community-cloud/manage-your-app/upgrade-python",
@@ -70,6 +72,27 @@
   ],
   "reference": "Maintainer: Python 3.9 isn't supported anymore; min 3.10.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-15326.md",
+  "review_reason": "The deployment method and requested interpreter are explicit. Explain Community Cloud Python selection separately from the Streamlit 1.51 Python support change: the user actually pins Streamlit 1.35.0.",
+  "draft": {
+   "outcome": "usage_guidance",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Explain Python version is chosen in Advanced settings at deploy (redeploy to change) and that 3.9 is unsupported since 1.51; suggest upgrading packages / using >=3.10"
+   ],
+   "must_not": [
+    "promise runtime.txt will work"
+   ],
+   "hypotheses": [
+    "Cloud selects Python version in app settings, not runtime.txt",
+    "Python 3.9 no longer supported"
+   ]
+  }
  }
 }

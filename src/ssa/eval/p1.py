@@ -131,6 +131,7 @@ def score_case(case: dict, res: dict) -> dict:
         "case_id": case["case_id"], "bucket": case["bucket"], "gold_outcome": g["outcome"],
         "outcome": outcome,
         "outcome_exact": outcome == g["outcome"],
+        "outcome_acceptable": outcome in (g.get("acceptable_outcomes") or [g["outcome"]]),
         "bucket_ok": outcome in BUCKET_OUTCOMES[case["bucket"]],
         "retrieval_recall": round(found(retrieved) / len(labels), 3) if labels else None,
         "cited_recall": round(found(cited) / len(labels), 3) if labels else None,
@@ -164,9 +165,11 @@ def aggregate(scores: list[dict], stats: list[dict]) -> dict:
     return {
         "n_cases": n,
         "outcome_exact": _mean([s["outcome_exact"] for s in scores]),
+        "outcome_acceptable": _mean([s.get("outcome_acceptable", s["outcome_exact"]) for s in scores]),
         "bucket_ok": _mean([s["bucket_ok"] for s in scores]),
         "per_bucket": {b: {"n": len(v), "bucket_ok": _mean([s["bucket_ok"] for s in v]),
-                           "outcome_exact": _mean([s["outcome_exact"] for s in v])}
+                           "outcome_exact": _mean([s["outcome_exact"] for s in v]),
+                           "outcome_acceptable": _mean([s.get("outcome_acceptable", s["outcome_exact"]) for s in v])}
                        for b, v in sorted(by_b.items())},
         "confusion": {b: dict(Counter(s["outcome"] or "none" for s in v)) for b, v in sorted(by_b.items())},
         "retrieval_recall": _mean([s["retrieval_recall"] for s in scores]),
@@ -251,9 +254,9 @@ def print_metrics(res: dict) -> None:
     m = res["metrics"]
     print(f"{res['system']} on {res['split']} ({m['n_cases']} cases, model={res['model']}, "
           f"cache={res['cache_mode']})" + (f"  STOPPED: {res['stopped_early']}" if res["stopped_early"] else ""))
-    print(f"  outcome exact {m['outcome_exact']}  |  right kind (bucket_ok) {m['bucket_ok']}")
+    print(f"  outcome exact {m['outcome_exact']}  |  acceptable {m.get('outcome_acceptable')}  |  right kind (bucket_ok) {m['bucket_ok']}")
     for b, v in m["per_bucket"].items():
-        print(f"    {b:10s} n={v['n']:2d}  bucket_ok={v['bucket_ok']}  exact={v['outcome_exact']}  "
+        print(f"    {b:10s} n={v['n']:2d}  bucket_ok={v['bucket_ok']}  exact={v['outcome_exact']}  acceptable={v.get('outcome_acceptable')}  "
               f"-> {m['confusion'][b]}")
     print(f"  evidence: retrieval_recall {m['retrieval_recall']}  cited_recall {m['cited_recall']}  "
           f"avg_cited {m['avg_cited']}  invalid-citation cases {m['invalid_citation_cases']}")

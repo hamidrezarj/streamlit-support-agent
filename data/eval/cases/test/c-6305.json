@@ -59,20 +59,22 @@
   ],
   "missing_info": [
    {
-    "item": "nginx location config + server.baseUrlPath value",
-    "why": "path prefix handling"
+    "item": "Inner nginx and outer HTTP proxy rewrite/upgrade configuration",
+    "why": "Tests both hops and the external-to-internal path mapping."
    },
    {
-    "item": "browser console error",
-    "why": "which request fails"
+    "item": "Actual failing browser request URL/query, response and close timing",
+    "why": "Separates path/query loss, handshake and post-connect failure."
    }
   ],
   "acceptable_next_steps": [
-   "Ask for nginx config; check baseUrlPath=dashboard and upgrade headers",
-   "Suggest upgrading (1.20 fixed ForwardMsgCache retrieval)"
+   "Inspect both proxy-hop configurations, query preservation and WebSocket upgrade end to end.",
+   "Compare direct and proxied access using the supplied /dashboard base path and a minimal app."
   ],
   "must_not": [
-   "state the 1.18 endpoint rename is the cause (user is on 1.11.1)"
+   "Ask again what server.baseUrlPath is without acknowledging the supplied value.",
+   "Attribute 1.11.1 behavior to the 1.18 rename.",
+   "Promise upgrading to 1.20 fixes this case without establishing the same regression."
   ],
   "relevant_sources": [
    "config:server.baseUrlPath",
@@ -82,6 +84,34 @@
   ],
   "reference": "Maintainer pointed to message-endpoint fix and query params; user to retest; others fixed via nginx location renames.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-6305.md",
+  "review_reason": "The inner baseUrlPath value and two-stage topology are supplied. Request missing configuration for both proxy hops and the actual failing browser path/query; a code 1006 is not a root cause. The 1.20 message fix was released on March 9, before intake, but its relevance to a user still running 1.11.1 is not established.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "missing_info": [
+    {
+     "item": "nginx location config + server.baseUrlPath value",
+     "why": "path prefix handling"
+    },
+    {
+     "item": "browser console error",
+     "why": "which request fails"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Ask for nginx config; check baseUrlPath=dashboard and upgrade headers",
+    "Suggest upgrading (1.20 fixed ForwardMsgCache retrieval)"
+   ],
+   "must_not": [
+    "state the 1.18 endpoint rename is the cause (user is on 1.11.1)"
+   ]
+  }
  }
 }

@@ -64,14 +64,34 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask tornado version + clean venv test; then escalate if it reproduces"
+   "Ask Tornado version, exact launch command and complete traceback.",
+   "Test a minimal app in a clean terminal environment, then escalate a reproducible dependency/OS difference."
   ],
   "must_not": [
-   "confirm Streamlit bug"
+   "Ask again for Python/Streamlit versions already provided.",
+   "Recommend deleting super().__init__ from Tornado as a routine fix.",
+   "Use the October Protocol diagnosis at the July intake."
   ],
   "relevant_sources": [],
   "reference": "Maintainer asked tornado version: 6.4.1, works on Ubuntu; never reproduced.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-9140.md",
+  "review_reason": "The report gives Python 3.10, Streamlit 1.36 and Windows but no complete traceback or Tornado version/launcher. The later Protocol analysis and deleting library code are not justified initial advice.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask tornado version + clean venv test; then escalate if it reproduces"
+   ],
+   "must_not": [
+    "confirm Streamlit bug"
+   ]
+  }
  }
 }

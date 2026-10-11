@@ -63,11 +63,13 @@
    }
   ],
   "acceptable_next_steps": [
-   "Tell user to remove the option from config/env/CLI",
-   "If absent, the platform sets it -> contact Posit"
+   "Check and remove the obsolete option from user-owned config/environment if present.",
+   "If the hosting launcher injects it, contact Posit to remove/update the launch flag; explain that config/env may not override CLI."
   ],
   "must_not": [
-   "escalate as Streamlit bug"
+   "Tell the user to edit a launch command they say they cannot access.",
+   "Promise an empty config file overrides a host-injected CLI option.",
+   "Escalate as a confirmed Streamlit defect."
   ],
   "relevant_sources": [
    "issue:7999",
@@ -75,6 +77,24 @@
   ],
   "reference": "Maintainer: remove option; if not set by you, Posit Connect likely sets it.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-9176.md",
+  "review_reason": "The unsupported configuration option is explicit and the user cannot modify the host launch command. Explain configuration precedence and where to remove the option; route host-injected CLI flags to Posit rather than pretending an env override always wins.",
+  "draft": {
+   "outcome": "usage_guidance",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Tell user to remove the option from config/env/CLI",
+    "If absent, the platform sets it -> contact Posit"
+   ],
+   "must_not": [
+    "escalate as Streamlit bug"
+   ]
+  }
  }
 }

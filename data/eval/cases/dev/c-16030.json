@@ -57,20 +57,45 @@
   ],
   "missing_info": [
    {
-    "item": "which proxy / auth layer injects the header",
-    "why": "fix may belong upstream or in proxy config"
+    "item": "Exact resolved uvicorn/websockets versions and server traceback",
+    "why": "Distinguishes header validation from the later-described re-encoding failure."
    }
   ],
   "acceptable_next_steps": [
-   "Acknowledge workaround: pin websockets<16.1",
-   "Escalate; suggest reporting upstream (websockets/uvicorn) and to the auth proxy"
+   "Escalate with the existing reproduction and exact dependency/header context.",
+   "Offer the reporter-tested websockets<16.1 pin as a conditional temporary test, without guaranteeing it for all stacks."
   ],
   "must_not": [
-   "claim Streamlit already pins websockets"
+   "Ask which auth proxy without acknowledging the supplied Authelia example.",
+   "Present the later uvicorn diagnosis or July 17 patch as known on July 16 morning."
   ],
   "relevant_sources": [],
   "reference": "Confirmed regression; root cause upstream (uvicorn) + auth proxy sending non-ASCII.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-16030.md",
+  "review_reason": "The report describes a reproducible dependency/header incompatibility and a reporter-tested workaround. There is no earlier resolving source in the supplied gold. Later uvicorn analysis and websockets 16.1.1 are not intake evidence.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "missing_info": [
+    {
+     "item": "which proxy / auth layer injects the header",
+     "why": "fix may belong upstream or in proxy config"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Acknowledge workaround: pin websockets<16.1",
+    "Escalate; suggest reporting upstream (websockets/uvicorn) and to the auth proxy"
+   ],
+   "must_not": [
+    "claim Streamlit already pins websockets"
+   ]
+  }
  }
 }

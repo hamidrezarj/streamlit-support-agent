@@ -1,7 +1,7 @@
 {
  "case_id": "c-6224",
  "split": "test",
- "bucket": "answerable",
+ "bucket": "ambiguous",
  "topic": "replicas-sticky-sessions",
  "family_id": "fam:2936",
  "multi_turn": false,
@@ -50,7 +50,7 @@
   ]
  },
  "gold": {
-  "outcome": "known_issue",
+  "outcome": "info_request",
   "summary": "file_uploader multiple files -> sporadic 400 Invalid session_id / 502 on AWS deployment.",
   "hypotheses": [
    "multiple replicas without session affinity (known)",
@@ -58,16 +58,21 @@
   ],
   "missing_info": [
    {
-    "item": "number of replicas / LB stickiness",
-    "why": "confirms the known cause"
+    "item": "Actual affinity cookie/routing for upload and WebSocket requests",
+    "why": "Verifies that the already-attempted sticky-session configuration is effective."
+   },
+   {
+    "item": "Instance IDs/restarts and 400/502 LB logs at upload failure",
+    "why": "Separates cross-instance session loss from gateway/backend failure."
    }
   ],
   "acceptable_next_steps": [
-   "Explain known multi-replica limitation; enable sticky sessions (cite #4173 / #2936 and architecture docs)",
-   "Ask about replicas if unsure"
+   "Acknowledge the attempted sticky sessions and verify upload/WebSocket requests reach the same live backend.",
+   "Compare a single-instance deployment and inspect failed upload/LB logs, including size/timeouts as hypotheses."
   ],
   "must_not": [
-   "claim a recent Streamlit regression"
+   "Simply repeat enable sticky sessions without acknowledging the previous attempt.",
+   "Treat 400 and 502 as proof of one identical root cause."
   ],
   "relevant_sources": [
    "issue:4173",
@@ -77,6 +82,30 @@
   ],
   "reference": "Maintainer: known issue with replicas; enable sticky sessions; closed as duplicate of #4173.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-6224.md",
+  "review_reason": "The visible report explicitly says sticky sessions were enabled with no luck. A similar multi-replica case is not proof of the same cause. Validate actual upload/WebSocket affinity, instance routing, restarts and LB logs before declaring the known limitation the full explanation.",
+  "draft": {
+   "outcome": "known_issue",
+   "bucket": "answerable",
+   "missing_info": [
+    {
+     "item": "number of replicas / LB stickiness",
+     "why": "confirms the known cause"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Explain known multi-replica limitation; enable sticky sessions (cite #4173 / #2936 and architecture docs)",
+    "Ask about replicas if unsure"
+   ],
+   "must_not": [
+    "claim a recent Streamlit regression"
+   ]
+  }
  }
 }

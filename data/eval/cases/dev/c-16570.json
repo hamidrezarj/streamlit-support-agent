@@ -67,8 +67,8 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for the exact Streamlit version first; if < 1.46 recommend upgrade",
-   "Mention the known fix (1.45.1 / 1.46.0 cache cleanup) conditionally"
+   "Ask exact Streamlit version and deployment platform.",
+   "Ask when the error occurs and whether a minimal app reproduces it; mention older fixes conditionally."
   ],
   "must_not": [
    "ask a full fixed checklist (OS, browser, python) without saying why",
@@ -83,6 +83,21 @@
   ],
   "reference": "Maintainer asked for the version; closed as likely caused by an old version.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-16570.md",
+  "review_reason": "Only the cache error is given. Ask version and platform to distinguish old fixed bugs from newer variants.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask for the exact Streamlit version first; if < 1.46 recommend upgrade",
+    "Mention the known fix (1.45.1 / 1.46.0 cache cleanup) conditionally"
+   ]
+  }
  }
 }

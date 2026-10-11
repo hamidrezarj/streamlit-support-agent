@@ -68,10 +68,12 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for Dockerfile/launch command; confirm env var naming per config docs"
+   "Ask Dockerfile ENTRYPOINT/CMD and inspect the env variable plus effective server.baseUrlPath.",
+   "Test the actual /test path with a standard streamlit run launcher as a controlled comparison."
   ],
   "must_not": [
-   "confirm a bug before ruling out the launcher"
+   "Declare STREAMLIT_SERVER_BASE_URL_PATH an invalid name.",
+   "State bootstrap.run caused it before the June 30 user reply."
   ],
   "relevant_sources": [
    "config:server.baseUrlPath",
@@ -79,6 +81,23 @@
   ],
   "reference": "Maintainer couldn't reproduce; user later: code used bootstrap.run(), needs flag_options.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-11509.md",
+  "review_reason": "The supplied env variable is valid. The launch command/entrypoint and effective config are missing; bootstrap.run is revealed only later. A printed root URL alone is not a decisive routing test.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask for Dockerfile/launch command; confirm env var naming per config docs"
+   ],
+   "must_not": [
+    "confirm a bug before ruling out the launcher"
+   ]
+  }
  }
 }

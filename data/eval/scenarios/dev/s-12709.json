@@ -50,16 +50,46 @@
   }
  ],
  "expected_final": {
-  "status": "escalated",
+  "status": "awaiting_user",
   "comments_posted": 2,
   "facts": {
-   "streamlit_version": "1.50.0"
+   "streamlit_version": "1.50.0",
+   "deployment": "Community Cloud",
+   "failure_frequency": "8 out of 10"
   },
   "must_not": [
-   "final reply recommends upgrading to 1.45.1 as the fix"
+   "recommends upgrading to 1.45.1 as the fix",
+   "asks again for the version or the platform"
+  ],
+  "acceptable_statuses": [
+   "awaiting_user",
+   "escalated"
   ]
+ },
+ "draft": {
+  "expected_final": {
+   "status": "escalated",
+   "comments_posted": 2,
+   "facts": {
+    "streamlit_version": "1.50.0"
+   },
+   "must_not": [
+    "final reply recommends upgrading to 1.45.1 as the fix"
+   ]
+  },
+  "covers": [
+   "real_followups",
+   "hypothesis_refuted_by_new_fact"
+  ]
+ },
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "status escalated -> awaiting_user (escalated acceptable)",
+  "why": "Hani: version, platform and frequency still leave useful questions (minimal reproduction, did it start after an upgrade); escalated is defensible for an evidence-backed handoff but should not be the only accepted outcome.",
+  "file": "data/eval/annotations/reviews/hani/scenarios/dev/hani-review-s-12709.md"
  },
  "case_id": "c-12709",
  "annotated_by": "claude-draft",
- "reviewed_by": null
+ "reviewed_by": "Hani"
 }
