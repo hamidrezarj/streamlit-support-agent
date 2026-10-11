@@ -41,11 +41,84 @@
   "status": "answered",
   "comments_posted": 2,
   "must_not": [
-   "facts from #9140 (tornado, Windows) appear in this case",
-   "approval from #9140 used here"
+   "facts or permissions imported from c-9140 (checked by provenance)",
+   "closed as resolved automatically"
+  ],
+  "status_not": [
+   "closed_resolved"
   ]
+ },
+ "draft": {
+  "expected_final": {
+   "status": "answered",
+   "comments_posted": 2,
+   "must_not": [
+    "facts from #9140 (tornado, Windows) appear in this case",
+    "approval from #9140 used here"
+   ]
+  },
+  "covers": [
+   "real_followups",
+   "case_switch"
+  ]
+ },
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "keep status answered; explicit shared schedule with s-9140",
+  "why": "Hani: define one shared event schedule with s-9140 and bind every turn/approval to its case; check provenance rather than banning words; do not close automatically.",
+  "file": "data/eval/annotations/reviews/hani/scenarios/test/hani-review-s-11509.md"
+ },
+ "group_schedule": {
+  "members": [
+   "s-9140",
+   "s-11509"
+  ],
+  "schedule": [
+   [
+    "s-9140",
+    0
+   ],
+   [
+    "s-11509",
+    0
+   ],
+   [
+    "s-11509",
+    1
+   ],
+   [
+    "s-9140",
+    2
+   ],
+   [
+    "s-9140",
+    3
+   ],
+   [
+    "s-9140",
+    4
+   ],
+   [
+    "s-9140",
+    5
+   ],
+   [
+    "s-11509",
+    3
+   ],
+   [
+    "s-11509",
+    4
+   ],
+   [
+    "s-11509",
+    5
+   ]
+  ],
+  "why": "Hani: one explicit shared event schedule; every user turn, agent turn and approval is bound to its own case (step indices refer to each scenario's own steps; switch_case steps are documentation only)."
  },
  "case_id": "c-11509",
  "annotated_by": "claude-draft",
- "reviewed_by": null
+ "reviewed_by": "Hani"
 }

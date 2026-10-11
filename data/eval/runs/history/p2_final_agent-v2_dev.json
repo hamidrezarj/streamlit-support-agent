@@ -2,30 +2,36 @@
  "system": "final",
  "version": "agent-v2",
  "split": "dev",
- "built_at": "2026-10-10T09:12:57+00:00",
+ "built_at": "2026-10-11T19:54:30+00:00",
  "model": "gpt-4o-mini",
  "cache_mode": "cache",
  "limits": {
   "steps_per_turn": 8,
   "steps_per_case": 30
  },
+ "limit_overrides": {},
  "metrics": {
   "n_scenarios": 5,
-  "scenarios_passed": 3,
-  "checks_passed": 34,
-  "checks_total": 37,
+  "scenarios_passed": 1,
+  "status_exact": "2/5",
+  "checks_passed": 47,
+  "checks_total": 52,
   "by_check": {
    "comments_posted": "5/5",
-   "fact": "2/2",
+   "fact": "3/5",
    "inv:closed_only_after_confirmation": "1/1",
+   "inv:fact_provenance": "5/5",
    "inv:no_duplicate_execution": "5/5",
    "inv:no_stale_execution": "5/5",
+   "inv:no_writes_from_unexecuted": "5/5",
    "inv:pending_survives_restart": "1/1",
    "inv:rejected_not_in_tracker": "5/5",
    "inv:step_budget": "5/5",
    "label": "0/1",
+   "label_not": "1/1",
    "posted_text_equals_edited": "1/1",
    "status": "3/5",
+   "status_not": "1/1",
    "superseded": "1/1"
   },
   "violations": {},
@@ -33,14 +39,14 @@
   "max_steps_turn": 6,
   "repeated_replies": 0,
   "cost": {
-   "live_calls": 19,
-   "replayed_calls": 14,
-   "tokens_in": 68468,
-   "tokens_out": 9016,
-   "usd_live": 0.008551,
-   "usd_replayed": 0.007128,
-   "latency_s": 142.905,
-   "usd_per_turn": 0.001568
+   "live_calls": 14,
+   "replayed_calls": 19,
+   "tokens_in": 67600,
+   "tokens_out": 8995,
+   "usd_live": 0.006978,
+   "usd_replayed": 0.008561,
+   "latency_s": 136.287,
+   "usd_per_turn": 0.001554
   }
  },
  "scenarios": [
@@ -52,13 +58,14 @@
     "real_followups",
     "hypothesis_refuted_by_new_fact"
    ],
-   "passed": true,
-   "n_checks": 7,
-   "n_ok": 7,
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 10,
    "checks": {
     "status": {
      "ok": true,
-     "detail": "escalated (expected escalated)"
+     "detail": "escalated (expected awaiting_user, acceptable ['awaiting_user', 'escalated']) - acceptable alternative"
     },
     "comments_posted": {
      "ok": true,
@@ -67,6 +74,14 @@
     "fact:streamlit_version": {
      "ok": true,
      "detail": "memory streamlit_version=1.50.0 (matched streamlit_version)"
+    },
+    "fact:deployment": {
+     "ok": true,
+     "detail": "memory deployment=Streamlit Cloud (matched deployment)"
+    },
+    "fact:failure_frequency": {
+     "ok": false,
+     "detail": "memory failure_frequency=-"
     },
     "inv:no_duplicate_execution": {
      "ok": true,
@@ -80,17 +95,28 @@
      "ok": true,
      "detail": "leaked=[]"
     },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "5 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "2 facts; quote not in this case: []"
+    },
     "inv:step_budget": {
      "ok": true,
-     "detail": "max steps in a turn=6 (limit 8)"
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
     }
    },
    "log": [
     {
      "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-f829a2df1e86",
+     "proposal": "p-492adf4e5b4d",
      "memory": {},
      "steps_turn": 6
     },
@@ -99,7 +125,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-f829a2df1e86"
+     "proposal": "p-492adf4e5b4d"
     },
     {
      "step": "user",
@@ -118,9 +144,12 @@
     },
     {
      "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
      "outcome": "escalate",
      "stopped": null,
-     "proposal": "p-1e7f8b446f56",
+     "proposal": "p-7de8fa8f6ce5",
      "memory": {
       "added": [
        "streamlit_version",
@@ -134,7 +163,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-1e7f8b446f56"
+     "proposal": "p-7de8fa8f6ce5"
     }
    ],
    "final": {
@@ -145,7 +174,7 @@
     "version": 9,
     "agent_comments": [
      "To better assist you, could you please provide the version of Streamlit you are currently using? This information is crucial for determining if the issue is resolved in a newer version [S7].\n\n- What version of Streamlit are you currently using?",
-     "It seems you are encountering a known issue with WebSocket messages in Streamlit version 1.50.0, which is related to a bug that was fixed in version 1.46.0 [S7]. Since you are using an affected version, I recommend escalating this issue for further investigation. Additionally, could you let us know if you have tried deploying the app in a different environment?\n\n- Have you tried deploying the app in a different environment?"
+     "Thank you for your report. The connection error you are experiencing, specifically the 'Cached ForwardMsg MISS' message, is a known issue that has been addressed in version 1.46.0 [S7]. Since you are using version 1.50.0, it is likely that this bug is still present. We recommend checking if the issue persists across different browsers or devices. If you continue to encounter this error, we will escalate the issue for further investigation.\n\n- Is the issue consistent across different browsers or devices?"
     ],
     "facts": {
      "streamlit_version": "1.50.0",
@@ -154,12 +183,12 @@
     "superseded": [],
     "proposals": [
      {
-      "id": "p-f829a2df1e86",
+      "id": "p-492adf4e5b4d",
       "status": "executed",
       "origin": "agent"
      },
      {
-      "id": "p-1e7f8b446f56",
+      "id": "p-7de8fa8f6ce5",
       "status": "executed",
       "origin": "agent"
      }
@@ -170,24 +199,25 @@
    "repeated_replies": 0,
    "judge_items": {
     "must_not": [
-     "final reply recommends upgrading to 1.45.1 as the fix"
+     "recommends upgrading to 1.45.1 as the fix",
+     "asks again for the version or the platform"
     ],
-    "final_reply": "It seems you are encountering a known issue with WebSocket messages in Streamlit version 1.50.0, which is related to a bug that was fixed in version 1.46.0 [S7]. Since you are using an affected version, I recommend escalating this issue for further investigation. Additionally, could you let us know if you have tried deploying the app in a different environment?\n\n- Have you tried deploying the app in a different environment?",
+    "final_reply": "Thank you for your report. The connection error you are experiencing, specifically the 'Cached ForwardMsg MISS' message, is a known issue that has been addressed in version 1.46.0 [S7]. Since you are using version 1.50.0, it is likely that this bug is still present. We recommend checking if the issue persists across different browsers or devices. If you continue to encounter this error, we will escalate the issue for further investigation.\n\n- Is the issue consistent across different browsers or devices?",
     "all_replies": [
      "To better assist you, could you please provide the version of Streamlit you are currently using? This information is crucial for determining if the issue is resolved in a newer version [S7].\n\n- What version of Streamlit are you currently using?",
-     "It seems you are encountering a known issue with WebSocket messages in Streamlit version 1.50.0, which is related to a bug that was fixed in version 1.46.0 [S7]. Since you are using an affected version, I recommend escalating this issue for further investigation. Additionally, could you let us know if you have tried deploying the app in a different environment?\n\n- Have you tried deploying the app in a different environment?"
+     "Thank you for your report. The connection error you are experiencing, specifically the 'Cached ForwardMsg MISS' message, is a known issue that has been addressed in version 1.46.0 [S7]. Since you are using version 1.50.0, it is likely that this bug is still present. We recommend checking if the issue persists across different browsers or devices. If you continue to encounter this error, we will escalate the issue for further investigation.\n\n- Is the issue consistent across different browsers or devices?"
     ]
    },
    "stats": {
-    "live_calls": 4,
-    "replayed_calls": 3,
-    "tokens_in": 15049,
-    "tokens_out": 2022,
-    "usd_live": 0.001909,
-    "usd_replayed": 0.001561,
-    "latency_s": 31.641000000000005
+    "live_calls": 3,
+    "replayed_calls": 4,
+    "tokens_in": 14843,
+    "tokens_out": 2054,
+    "usd_live": 0.00176,
+    "usd_replayed": 0.001699,
+    "latency_s": 32.15
    },
-   "wall_s": 17.9
+   "wall_s": 15.42
   },
   {
    "sid": "s-5500",
@@ -198,9 +228,10 @@
     "user_correction",
     "brief_example"
    ],
-   "passed": true,
-   "n_checks": 8,
-   "n_ok": 8,
+   "passed": false,
+   "status_exact": true,
+   "n_checks": 11,
+   "n_ok": 10,
    "checks": {
     "status": {
      "ok": true,
@@ -214,9 +245,13 @@
      "ok": true,
      "detail": "memory access_path=nginx reverse proxy at https://tools.example.com/st/ (matched access_path)"
     },
+    "fact:direct_ip_test": {
+     "ok": false,
+     "detail": "memory direct_ip_test=-"
+    },
     "superseded:access_path=direct ip": {
      "ok": true,
-     "detail": "history=['access_path=direct access at http://<server-ip>:8501']"
+     "detail": "history=['access_path=direct access via IP at http://<server-ip>:8501']"
     },
     "inv:no_duplicate_execution": {
      "ok": true,
@@ -230,17 +265,28 @@
      "ok": true,
      "detail": "leaked=[]"
     },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "4 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "3 facts; quote not in this case: []"
+    },
     "inv:step_budget": {
      "ok": true,
-     "detail": "max steps in a turn=6 (limit 8)"
+     "detail": "max steps in a turn=6 (limit 8), case total=18 (limit 30)"
     }
    },
    "log": [
     {
      "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-81a7f2921090",
+     "proposal": "p-a022e7623f28",
      "memory": {},
      "steps_turn": 6
     },
@@ -249,7 +295,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-81a7f2921090"
+     "proposal": "p-a022e7623f28"
     },
     {
      "step": "user",
@@ -258,9 +304,12 @@
     },
     {
      "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-1029841f05d9",
+     "proposal": "p-07bbd6588d21",
      "memory": {
       "added": [
        "access_path"
@@ -283,9 +332,12 @@
     },
     {
      "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-da556304da9e",
+     "proposal": "p-eac468f11a3d",
      "memory": {
       "superseded": [
        "access_path"
@@ -298,7 +350,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-da556304da9e"
+     "proposal": "p-eac468f11a3d"
     }
    ],
    "final": {
@@ -307,7 +359,7 @@
     "version": 7,
     "agent_comments": [
      "To troubleshoot the 'please wait' issue, please check the port your app is running on. If it's port 3000, try using a different port, such as 80, as this can cause loading issues [S1]. Additionally, consider temporarily disabling CORS protection to see if that resolves the problem.\n\n- What port is your Streamlit app running on?\n- Is CORS protection enabled in your server configuration?",
-     "To resolve the 'please wait' issue, please check if CORS protection is enabled in your nginx configuration and if there are any header modifications that might be affecting the Websocket connection. This is important as misconfigured CORS or header stripping can lead to the app being stuck on the loading screen [S2].\n\n- Is CORS protection enabled in your nginx configuration?\n- Can you check the nginx configuration for any header modifications?"
+     "To resolve the 'please wait' issue, please check if CORS protection is enabled in your Nginx configuration. You can also try disabling websocket compression to see if that helps. Let me know the results of these checks [S1].\n\n- Is CORS protection enabled in your Nginx configuration?\n- Have you tried disabling websocket compression?"
     ],
     "facts": {
      "streamlit_version": "1.13.0",
@@ -315,21 +367,21 @@
      "access_path": "nginx reverse proxy at https://tools.example.com/st/"
     },
     "superseded": [
-     "access_path=direct access at http://<server-ip>:8501"
+     "access_path=direct access via IP at http://<server-ip>:8501"
     ],
     "proposals": [
      {
-      "id": "p-81a7f2921090",
+      "id": "p-a022e7623f28",
       "status": "executed",
       "origin": "agent"
      },
      {
-      "id": "p-1029841f05d9",
+      "id": "p-07bbd6588d21",
       "status": "superseded",
       "origin": "agent"
      },
      {
-      "id": "p-da556304da9e",
+      "id": "p-eac468f11a3d",
       "status": "executed",
       "origin": "agent"
      }
@@ -340,25 +392,27 @@
    "repeated_replies": 0,
    "judge_items": {
     "must_not": [
-     "final reply still assumes no proxy",
-     "asks for Streamlit version again"
+     "stale (pre-correction) proposal executed",
+     "asks again for the Streamlit version or a reinstall",
+     "unsupported root-cause claim",
+     "final reply still assumes no proxy"
     ],
-    "final_reply": "To resolve the 'please wait' issue, please check if CORS protection is enabled in your nginx configuration and if there are any header modifications that might be affecting the Websocket connection. This is important as misconfigured CORS or header stripping can lead to the app being stuck on the loading screen [S2].\n\n- Is CORS protection enabled in your nginx configuration?\n- Can you check the nginx configuration for any header modifications?",
+    "final_reply": "To resolve the 'please wait' issue, please check if CORS protection is enabled in your Nginx configuration. You can also try disabling websocket compression to see if that helps. Let me know the results of these checks [S1].\n\n- Is CORS protection enabled in your Nginx configuration?\n- Have you tried disabling websocket compression?",
     "all_replies": [
      "To troubleshoot the 'please wait' issue, please check the port your app is running on. If it's port 3000, try using a different port, such as 80, as this can cause loading issues [S1]. Additionally, consider temporarily disabling CORS protection to see if that resolves the problem.\n\n- What port is your Streamlit app running on?\n- Is CORS protection enabled in your server configuration?",
-     "To resolve the 'please wait' issue, please check if CORS protection is enabled in your nginx configuration and if there are any header modifications that might be affecting the Websocket connection. This is important as misconfigured CORS or header stripping can lead to the app being stuck on the loading screen [S2].\n\n- Is CORS protection enabled in your nginx configuration?\n- Can you check the nginx configuration for any header modifications?"
+     "To resolve the 'please wait' issue, please check if CORS protection is enabled in your Nginx configuration. You can also try disabling websocket compression to see if that helps. Let me know the results of these checks [S1].\n\n- Is CORS protection enabled in your Nginx configuration?\n- Have you tried disabling websocket compression?"
     ]
    },
    "stats": {
     "live_calls": 8,
     "replayed_calls": 3,
-    "tokens_in": 22427,
-    "tokens_out": 2915,
-    "usd_live": 0.003717,
+    "tokens_in": 21817,
+    "tokens_out": 2834,
+    "usd_live": 0.003578,
     "usd_replayed": 0.001396,
-    "latency_s": 45.70199999999999
+    "latency_s": 39.354
    },
-   "wall_s": 34.33
+   "wall_s": 29.14
   },
   {
    "sid": "s-7867",
@@ -369,16 +423,25 @@
     "maintainer_edit"
    ],
    "passed": false,
-   "n_checks": 7,
-   "n_ok": 6,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 10,
    "checks": {
     "status": {
      "ok": false,
      "detail": "awaiting_user (expected answered)"
     },
+    "status_not": {
+     "ok": true,
+     "detail": "awaiting_user (must not be ['closed_resolved'])"
+    },
     "comments_posted": {
      "ok": true,
      "detail": "1 (expected 1)"
+    },
+    "label_not:type:bug": {
+     "ok": true,
+     "detail": "labels=[]"
     },
     "posted_text_equals_edited": {
      "ok": true,
@@ -396,9 +459,17 @@
      "ok": true,
      "detail": "leaked=[]"
     },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "2 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "4 facts; quote not in this case: []"
+    },
     "inv:step_budget": {
      "ok": true,
-     "detail": "max steps in a turn=6 (limit 8)"
+     "detail": "max steps in a turn=6 (limit 8), case total=6 (limit 30)"
     }
    },
    "log": [
@@ -409,9 +480,12 @@
     },
     {
      "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "open",
+     "status_after": "open",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-60fad69523e1",
+     "proposal": "p-7391fd4f42db",
      "memory": {
       "tried_now": [
        {
@@ -435,7 +509,7 @@
      "decision": "edit",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-60fad69523e1"
+     "proposal": "p-7391fd4f42db"
     }
    ],
    "final": {
@@ -443,7 +517,7 @@
     "labels": [],
     "version": 4,
     "agent_comments": [
-     "It seems that the environment variable STREAMLIT_CLIENT_TOOLBAR_MODE is not hiding the toolbar as expected. Please confirm that the environment variable is set correctly before running the Streamlit app, as this could be the reason for the issue. Additionally, have you tried using a different version of Streamlit to see if the issue persists?\n\nUse client.toolbarMode = \"minimal\" to hide the menu."
+     "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
     ],
     "facts": {
      "streamlit_version": "1.28.2",
@@ -454,12 +528,12 @@
     "superseded": [],
     "proposals": [
      {
-      "id": "p-60fad69523e1",
+      "id": "p-7391fd4f42db",
       "status": "edited",
       "origin": "agent"
      },
      {
-      "id": "p-e1a876fce966",
+      "id": "p-85c39a7bb2c1",
       "status": "executed",
       "origin": "maintainer_edit"
      }
@@ -470,23 +544,25 @@
    "repeated_replies": 0,
    "judge_items": {
     "must_not": [
-     "label type:bug added"
+     "label type:bug added",
+     "closed as resolved automatically",
+     "approval of a different draft reused for the edited text"
     ],
-    "final_reply": "It seems that the environment variable STREAMLIT_CLIENT_TOOLBAR_MODE is not hiding the toolbar as expected. Please confirm that the environment variable is set correctly before running the Streamlit app, as this could be the reason for the issue. Additionally, have you tried using a different version of Streamlit to see if the issue persists?\n\nUse client.toolbarMode = \"minimal\" to hide the menu.",
+    "final_reply": "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms.",
     "all_replies": [
-     "It seems that the environment variable STREAMLIT_CLIENT_TOOLBAR_MODE is not hiding the toolbar as expected. Please confirm that the environment variable is set correctly before running the Streamlit app, as this could be the reason for the issue. Additionally, have you tried using a different version of Streamlit to see if the issue persists?\n\nUse client.toolbarMode = \"minimal\" to hide the menu."
+     "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
     ]
    },
    "stats": {
-    "live_calls": 2,
-    "replayed_calls": 2,
+    "live_calls": 0,
+    "replayed_calls": 4,
     "tokens_in": 8043,
     "tokens_out": 1131,
-    "usd_live": 0.0008649999999999999,
-    "usd_replayed": 0.00102,
+    "usd_live": 0.0,
+    "usd_replayed": 0.001885,
     "latency_s": 18.159
    },
-   "wall_s": 9.75
+   "wall_s": 0.1
   },
   {
    "sid": "s-8364",
@@ -498,8 +574,9 @@
     "resume"
    ],
    "passed": false,
-   "n_checks": 8,
-   "n_ok": 6,
+   "status_exact": false,
+   "n_checks": 10,
+   "n_ok": 8,
    "checks": {
     "status": {
      "ok": false,
@@ -527,19 +604,30 @@
     },
     "inv:pending_survives_restart": {
      "ok": true,
-     "detail": "pending after restart: True"
+     "detail": "same id/hash/ticket_version/actions after restart: {'id': True, 'hash': True, 'ticket_version': True, 'actions': True}"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "4 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "5 facts; quote not in this case: []"
     },
     "inv:step_budget": {
      "ok": true,
-     "detail": "max steps in a turn=6 (limit 8)"
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
     }
    },
    "log": [
     {
      "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-dc5a9cbcbbf5",
+     "proposal": "p-8dd6608532d1",
      "memory": {},
      "steps_turn": 6
     },
@@ -558,7 +646,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-dc5a9cbcbbf5"
+     "proposal": "p-8dd6608532d1"
     },
     {
      "step": "user",
@@ -572,9 +660,12 @@
     },
     {
      "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
      "outcome": "known_issue",
      "stopped": null,
-     "proposal": "p-1323a15114df",
+     "proposal": "p-47ca9b78bace",
      "memory": {
       "added": [
        "error_message"
@@ -595,7 +686,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-1323a15114df"
+     "proposal": "p-47ca9b78bace"
     }
    ],
    "final": {
@@ -604,7 +695,7 @@
     "version": 7,
     "agent_comments": [
      "It seems that the server is hanging on startup when there is no internet connection. This behavior may be due to the server waiting for network resources, as indicated in the documentation [S1]. Please check if the server starts immediately when your internet connection is enabled, as this will help us diagnose the issue further.\n\n- Does the server start immediately when the internet is enabled?",
-     "The issue you are experiencing is a known bug related to external IP lookups causing startup hangs in headless mode, which has been fixed in Streamlit version 1.58.0 [S6]. Since you are using version 1.32.2, I recommend upgrading to resolve this issue."
+     "The issue you are experiencing is a known bug related to external IP address lookups in headless mode, which has been fixed in Streamlit version 1.58.0 [S6]. Since you are using version 1.32.2, I recommend upgrading to resolve this issue. Please let me know if you need assistance with the upgrade process."
     ],
     "facts": {
      "streamlit_version": "1.32.2",
@@ -616,12 +707,12 @@
     "superseded": [],
     "proposals": [
      {
-      "id": "p-dc5a9cbcbbf5",
+      "id": "p-8dd6608532d1",
       "status": "executed",
       "origin": "agent"
      },
      {
-      "id": "p-1323a15114df",
+      "id": "p-47ca9b78bace",
       "status": "executed",
       "origin": "agent"
      }
@@ -632,25 +723,27 @@
    "repeated_replies": 0,
    "judge_items": {
     "must_not": [
-     "pending proposal lost after restart",
-     "same comment posted twice"
+     "any write before approval",
+     "pending proposal lost or changed by the restart",
+     "duplicate comment",
+     "reported diagnosis presented as universally confirmed"
     ],
-    "final_reply": "The issue you are experiencing is a known bug related to external IP lookups causing startup hangs in headless mode, which has been fixed in Streamlit version 1.58.0 [S6]. Since you are using version 1.32.2, I recommend upgrading to resolve this issue.",
+    "final_reply": "The issue you are experiencing is a known bug related to external IP address lookups in headless mode, which has been fixed in Streamlit version 1.58.0 [S6]. Since you are using version 1.32.2, I recommend upgrading to resolve this issue. Please let me know if you need assistance with the upgrade process.",
     "all_replies": [
      "It seems that the server is hanging on startup when there is no internet connection. This behavior may be due to the server waiting for network resources, as indicated in the documentation [S1]. Please check if the server starts immediately when your internet connection is enabled, as this will help us diagnose the issue further.\n\n- Does the server start immediately when the internet is enabled?",
-     "The issue you are experiencing is a known bug related to external IP lookups causing startup hangs in headless mode, which has been fixed in Streamlit version 1.58.0 [S6]. Since you are using version 1.32.2, I recommend upgrading to resolve this issue."
+     "The issue you are experiencing is a known bug related to external IP address lookups in headless mode, which has been fixed in Streamlit version 1.58.0 [S6]. Since you are using version 1.32.2, I recommend upgrading to resolve this issue. Please let me know if you need assistance with the upgrade process."
     ]
    },
    "stats": {
-    "live_calls": 4,
-    "replayed_calls": 3,
-    "tokens_in": 16124,
-    "tokens_out": 2068,
-    "usd_live": 0.0019649999999999997,
-    "usd_replayed": 0.0016940000000000002,
-    "latency_s": 34.084
+    "live_calls": 3,
+    "replayed_calls": 4,
+    "tokens_in": 16072,
+    "tokens_out": 2096,
+    "usd_live": 0.00164,
+    "usd_replayed": 0.0020290000000000004,
+    "latency_s": 33.305
    },
-   "wall_s": 20.43
+   "wall_s": 13.73
   },
   {
    "sid": "s-9781",
@@ -662,8 +755,9 @@
     "duplicate_request"
    ],
    "passed": true,
-   "n_checks": 7,
-   "n_ok": 7,
+   "status_exact": true,
+   "n_checks": 9,
+   "n_ok": 9,
    "checks": {
     "status": {
      "ok": true,
@@ -685,21 +779,32 @@
      "ok": true,
      "detail": "leaked=[]"
     },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "4 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "4 facts; quote not in this case: []"
+    },
     "inv:closed_only_after_confirmation": {
      "ok": true,
-     "detail": "confirmation={'quote': \"It's working now. Thank you.\", 'turn': 2, 'at': '2026-10-10T09:12:57Z'}"
+     "detail": "confirmation={'quote': \"It's working now. Thank you.\", 'turn': 2, 'at': '2026-10-11T19:54:30Z'}"
     },
     "inv:step_budget": {
      "ok": true,
-     "detail": "max steps in a turn=6 (limit 8)"
+     "detail": "max steps in a turn=6 (limit 8), case total=8 (limit 30)"
     }
    },
    "log": [
     {
      "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
      "outcome": "info_request",
      "stopped": null,
-     "proposal": "p-d4f27d1a88f2",
+     "proposal": "p-f1b214a1e739",
      "memory": {},
      "steps_turn": 6
     },
@@ -708,7 +813,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-d4f27d1a88f2"
+     "proposal": "p-f1b214a1e739"
     },
     {
      "step": "system",
@@ -723,9 +828,12 @@
     },
     {
      "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
      "outcome": "close_resolved",
      "stopped": null,
-     "proposal": "p-847922d37045",
+     "proposal": "p-3c3f97679e98",
      "memory": {
       "confirmed": true
      },
@@ -736,7 +844,7 @@
      "decision": "approve",
      "result": "ok",
      "already_done": false,
-     "proposal": "p-847922d37045"
+     "proposal": "p-3c3f97679e98"
     }
    ],
    "final": {
@@ -756,12 +864,12 @@
     "superseded": [],
     "proposals": [
      {
-      "id": "p-d4f27d1a88f2",
+      "id": "p-f1b214a1e739",
       "status": "executed",
       "origin": "agent"
      },
      {
-      "id": "p-847922d37045",
+      "id": "p-3c3f97679e98",
       "status": "executed",
       "origin": "agent"
      }
@@ -782,15 +890,15 @@
     ]
    },
    "stats": {
-    "live_calls": 1,
-    "replayed_calls": 3,
+    "live_calls": 0,
+    "replayed_calls": 4,
     "tokens_in": 6825,
     "tokens_out": 880,
-    "usd_live": 9.5e-05,
-    "usd_replayed": 0.001457,
+    "usd_live": 0.0,
+    "usd_replayed": 0.001552,
     "latency_s": 13.318999999999999
    },
-   "wall_s": 0.98
+   "wall_s": 0.1
   }
  ]
 }

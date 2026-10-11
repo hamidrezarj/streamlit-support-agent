@@ -38,16 +38,93 @@
   }
  ],
  "expected_final": {
-  "status": "escalated",
+  "status": "awaiting_user",
   "comments_posted": 2,
   "facts": {
    "tornado_version": "6.4.1"
   },
   "must_not": [
-   "facts from #11509 appear in this case"
+   "asks again for the Tornado version",
+   "facts or permissions imported from c-11509 (checked by provenance)"
+  ],
+  "acceptable_statuses": [
+   "awaiting_user",
+   "escalated"
   ]
+ },
+ "draft": {
+  "expected_final": {
+   "status": "escalated",
+   "comments_posted": 2,
+   "facts": {
+    "tornado_version": "6.4.1"
+   },
+   "must_not": [
+    "facts from #11509 appear in this case"
+   ]
+  },
+  "covers": [
+   "real_followups",
+   "case_switch"
+  ]
+ },
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "status escalated -> awaiting_user (escalated acceptable); explicit shared schedule",
+  "why": "Hani: the Windows/Ubuntu comparison and Tornado version narrow the problem but leave a useful next step (complete traceback, minimal reproduction); escalated is defensible but should not be forced.",
+  "file": "data/eval/annotations/reviews/hani/scenarios/test/hani-review-s-9140.md"
+ },
+ "group_schedule": {
+  "members": [
+   "s-9140",
+   "s-11509"
+  ],
+  "schedule": [
+   [
+    "s-9140",
+    0
+   ],
+   [
+    "s-11509",
+    0
+   ],
+   [
+    "s-11509",
+    1
+   ],
+   [
+    "s-9140",
+    2
+   ],
+   [
+    "s-9140",
+    3
+   ],
+   [
+    "s-9140",
+    4
+   ],
+   [
+    "s-9140",
+    5
+   ],
+   [
+    "s-11509",
+    3
+   ],
+   [
+    "s-11509",
+    4
+   ],
+   [
+    "s-11509",
+    5
+   ]
+  ],
+  "why": "Hani: one explicit shared event schedule; every user turn, agent turn and approval is bound to its own case (step indices refer to each scenario's own steps; switch_case steps are documentation only)."
  },
  "case_id": "c-9140",
  "annotated_by": "claude-draft",
- "reviewed_by": null
+ "reviewed_by": "Hani"
 }

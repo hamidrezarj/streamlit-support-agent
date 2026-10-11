@@ -216,3 +216,51 @@ def test_report_versions_are_cleaned_and_same_version_is_no_correction(world):
     agent.user_says("c-1", "Version is 1.13.0", created_at="2022-10-09T10:00:00Z")
     agent.turn("c-1")
     assert superseded(st.load("c-1")) == []                           # same version: not a correction
+
+
+def test_reviewed_fixtures_lost_response_limit_and_schedule(tmp_path):
+    """Hani's scenario review: lost-response variant, step-limit variant, explicit shared schedule."""
+    res = p2.run("final", "test", ids=["s-9176-lost", "s-15378-limit", "s-9140"], llm=scripted(),
+                 retriever=FakeRetr(), outdir=tmp_path / "f")
+    by = {r["sid"]: r for r in res["scenarios"]}
+    assert set(by) == {"s-9176-lost", "s-15378-limit", "s-9140", "s-11509"}   # group members pulled in
+    assert not res["metrics"]["violations"]
+    lost = by["s-9176-lost"]
+    assert lost["checks"]["comments_posted"]["ok"] and lost["checks"]["inv:no_duplicate_execution"]["ok"]
+    assert any(e.get("mode") == "fail_after_write" for e in lost["log"])
+    lim = by["s-15378-limit"]
+    for k in ("limit_stop_recorded", "no_llm_call_after_limit", "status_preserved_after_limit", "comments_posted"):
+        assert lim["checks"][k]["ok"], (k, lim["checks"][k])
+    assert res["limit_overrides"] == {"s-15378-limit": {"steps_per_case": 7}}
+    # the shared schedule ran every step of both cases once, bound to its own case
+    assert [e["at"] for e in by["s-9140"]["log"]] == [0, 2, 3, 4, 5]
+    assert [e["at"] for e in by["s-11509"]["log"]] == [0, 1, 3, 4, 5]
+    assert by["s-9140"]["checks"]["inv:fact_provenance"]["ok"]
+
+
+def test_reviewed_edit_text_and_status_alternatives(tmp_path):
+    res = p2.run("final", "dev", ids=["s-7867", "s-12709"], llm=scripted(), retriever=FakeRetr(), outdir=tmp_path / "e")
+    by = {r["sid"]: r for r in res["scenarios"]}
+    want = "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
+    assert by["s-7867"]["final"]["agent_comments"][-1] == want
+    assert by["s-7867"]["checks"]["label_not:type:bug"]["ok"] and by["s-7867"]["checks"]["status_not"]["ok"]
+    assert "acceptable" in by["s-12709"]["checks"]["status"]["detail"] or by["s-12709"]["status_exact"]
+
+
+def test_baseline_reposts_after_a_lost_response(tmp_path):
+    res = p2.run("baseline", "test", ids=["s-9176-lost"], llm=scripted(), retriever=FakeRetr(), outdir=tmp_path / "b")
+    r = res["scenarios"][0]
+    assert not r["checks"]["inv:no_duplicate_execution"]["ok"]      # naive gate retries without a key
+
+
+def test_retrieval_cutoff_ignores_agent_posts(tmp_path):
+    """Agent comments are stamped with the wall clock; they must not move the leakage cut-off."""
+    from ssa.agent.orchestrator import case_as_of
+    t = {"created_at": "2024-03-22T17:00:00Z",
+         "comments": [{"author": "agent", "created_at": "2026-10-11T19:00:00Z"},
+                      {"author": "user", "created_at": "2024-03-22T22:00:00Z"}]}
+    assert case_as_of(t) == "2024-03-22T22:00:00Z"
+    res = p2.run("final", "dev", ids=["s-8364"], llm=scripted(), retriever=FakeRetr(), outdir=tmp_path / "c")
+    tr = __import__("ssa.tracker.store", fromlist=["Tracker"]).Tracker(tmp_path / "c" / "s-8364" / "tracker.sqlite")
+    users = [c["created_at"] for c in tr.get("c-8364")["comments"] if c["author"] == "user"]
+    assert all(u.startswith("2024") for u in users)

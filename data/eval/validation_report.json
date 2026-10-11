@@ -1,5 +1,5 @@
 {
- "built_at": "2026-10-10T09:37:08+00:00",
+ "built_at": "2026-10-11T18:34:23+00:00",
  "n_cases": 32,
  "per_split": {
   "dev": {
@@ -20,10 +20,10 @@
     "escalate": 4
    },
    "multi_turn": 6,
-   "scenarios": 6
+   "scenarios": 8
   }
  },
- "n_scenarios": 11,
+ "n_scenarios": 13,
  "cases_with_labelled_sources": 28,
  "cross_split_max_similarity": [
   {

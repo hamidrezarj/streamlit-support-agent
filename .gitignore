@@ -47,6 +47,8 @@ data/index/
 data/tracker/
 data/state/
 data/audit/
+data/ui/
+_ui_bundle/
 
 # ---------- course material ----------
 *.pdf

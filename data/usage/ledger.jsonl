@@ -512,3 +512,62 @@
 {"at": "2026-10-10T09:12:50+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4643, "tokens_out": 305, "usd": 0.000879, "tag": "final:assess:c-8364", "latency_s": 5.297, "key": "7ce951f56d01"}
 {"at": "2026-10-10T09:12:56+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2132, "tokens_out": 387, "usd": 0.000552, "tag": "final:draft:c-8364", "latency_s": 5.825, "key": "0bb7097c6e6d"}
 {"at": "2026-10-10T09:12:57+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 495, "tokens_out": 35, "usd": 9.5e-05, "tag": "agent:memory:c-9781", "latency_s": 0.863, "key": "ca019526705d"}
+{"at": "2026-10-11T19:53:34+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 505, "tokens_out": 151, "usd": 0.000166, "tag": "final:facts:c-12709", "latency_s": 2.408, "key": "de6064acb806"}
+{"at": "2026-10-11T19:53:35+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 311, "tokens_out": 0, "usd": 6e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T19:53:40+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3996, "tokens_out": 437, "usd": 0.000862, "tag": "final:assess:c-12709", "latency_s": 5.41, "key": "3096ddaf3942"}
+{"at": "2026-10-11T19:53:47+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3015, "tokens_out": 467, "usd": 0.000732, "tag": "final:draft:c-12709", "latency_s": 6.576, "key": "6b834e0f482a"}
+{"at": "2026-10-11T19:53:49+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 488, "tokens_out": 185, "usd": 0.000184, "tag": "agent:memory:c-5500", "latency_s": 2.427, "key": "47a44e746d9f"}
+{"at": "2026-10-11T19:53:52+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 521, "tokens_out": 118, "usd": 0.000149, "tag": "final:facts:c-5500", "latency_s": 2.49, "key": "847a196712c4"}
+{"at": "2026-10-11T19:53:53+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 330, "tokens_out": 0, "usd": 7e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T19:53:54+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 4, "tokens_out": 0, "usd": 0.0, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T19:53:57+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3932, "tokens_out": 288, "usd": 0.000763, "tag": "final:assess:c-5500", "latency_s": 3.158, "key": "b19eb7d983bc"}
+{"at": "2026-10-11T19:54:02+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2707, "tokens_out": 493, "usd": 0.000702, "tag": "final:draft:c-5500", "latency_s": 4.755, "key": "9462bc2cf8fe"}
+{"at": "2026-10-11T19:54:04+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 498, "tokens_out": 99, "usd": 0.000134, "tag": "agent:memory:c-5500", "latency_s": 1.419, "key": "423fee9ed968"}
+{"at": "2026-10-11T19:54:05+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 582, "tokens_out": 117, "usd": 0.000158, "tag": "final:facts:c-5500", "latency_s": 1.833, "key": "7c43d6d51f49"}
+{"at": "2026-10-11T19:54:06+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 392, "tokens_out": 0, "usd": 8e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T19:54:06+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 5, "tokens_out": 0, "usd": 0.0, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T19:54:11+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4210, "tokens_out": 290, "usd": 0.000806, "tag": "final:assess:c-5500", "latency_s": 4.061, "key": "598e38995ee3"}
+{"at": "2026-10-11T19:54:16+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2662, "tokens_out": 472, "usd": 0.000682, "tag": "final:draft:c-5500", "latency_s": 5.35, "key": "69f73ce839b7"}
+{"at": "2026-10-11T19:54:19+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 790, "tokens_out": 133, "usd": 0.000198, "tag": "final:facts:c-8364", "latency_s": 2.355, "key": "071450437e5d"}
+{"at": "2026-10-11T19:54:19+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 368, "tokens_out": 0, "usd": 7e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T19:54:24+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4641, "tokens_out": 298, "usd": 0.000875, "tag": "final:assess:c-8364", "latency_s": 4.787, "key": "1f698b27afc2"}
+{"at": "2026-10-11T19:54:30+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2082, "tokens_out": 424, "usd": 0.000567, "tag": "final:draft:c-8364", "latency_s": 5.871, "key": "bcd7a408c884"}
+{"at": "2026-10-11T20:30:28+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 521, "tokens_out": 172, "usd": 0.000181, "tag": "agent:memory:c-12709", "latency_s": 4.694, "key": "ff5467856b1f"}
+{"at": "2026-10-11T20:30:31+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 518, "tokens_out": 132, "usd": 0.000157, "tag": "final:facts:c-12709", "latency_s": 2.568, "key": "8ec1a8dc8819"}
+{"at": "2026-10-11T20:30:32+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 324, "tokens_out": 0, "usd": 6e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:30:39+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3919, "tokens_out": 438, "usd": 0.000851, "tag": "final:assess:c-12709", "latency_s": 6.444, "key": "93c6248f2729"}
+{"at": "2026-10-11T20:30:44+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2728, "tokens_out": 444, "usd": 0.000676, "tag": "final:draft:c-12709", "latency_s": 5.198, "key": "b638c9071682"}
+{"at": "2026-10-11T20:30:47+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 557, "tokens_out": 185, "usd": 0.000195, "tag": "agent:memory:c-5500", "latency_s": 2.562, "key": "359d07f611fb"}
+{"at": "2026-10-11T20:30:49+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 521, "tokens_out": 118, "usd": 0.000149, "tag": "final:facts:c-5500", "latency_s": 2.493, "key": "d423d7852fd5"}
+{"at": "2026-10-11T20:30:50+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 330, "tokens_out": 0, "usd": 7e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:30:56+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3970, "tokens_out": 520, "usd": 0.000907, "tag": "final:assess:c-5500", "latency_s": 5.345, "key": "c21ba8fb6d17"}
+{"at": "2026-10-11T20:31:03+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2644, "tokens_out": 519, "usd": 0.000708, "tag": "final:draft:c-5500", "latency_s": 7.496, "key": "9392d0902c73"}
+{"at": "2026-10-11T20:31:06+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 567, "tokens_out": 99, "usd": 0.000144, "tag": "agent:memory:c-5500", "latency_s": 2.512, "key": "34566480415a"}
+{"at": "2026-10-11T20:31:09+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 582, "tokens_out": 124, "usd": 0.000162, "tag": "final:facts:c-5500", "latency_s": 3.147, "key": "31ed8accb07f"}
+{"at": "2026-10-11T20:31:11+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 392, "tokens_out": 0, "usd": 8e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:31:12+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 6, "tokens_out": 0, "usd": 0.0, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:31:19+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4501, "tokens_out": 362, "usd": 0.000892, "tag": "final:assess:c-5500", "latency_s": 6.886, "key": "16bfb6666f72"}
+{"at": "2026-10-11T20:31:26+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3792, "tokens_out": 505, "usd": 0.000872, "tag": "final:draft:c-5500", "latency_s": 7.168, "key": "5014460fcc69"}
+{"at": "2026-10-11T20:31:30+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 471, "tokens_out": 146, "usd": 0.000158, "tag": "agent:memory:c-7867", "latency_s": 4.124, "key": "371e323f5a4b"}
+{"at": "2026-10-11T20:31:34+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 562, "tokens_out": 136, "usd": 0.000166, "tag": "final:facts:c-7867", "latency_s": 3.334, "key": "8d67d8932eda"}
+{"at": "2026-10-11T20:31:35+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 367, "tokens_out": 0, "usd": 7e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:31:37+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 4, "tokens_out": 0, "usd": 0.0, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:31:40+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4567, "tokens_out": 232, "usd": 0.000824, "tag": "final:assess:c-7867", "latency_s": 2.987, "key": "1c1ff9f717db"}
+{"at": "2026-10-11T20:31:46+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2513, "tokens_out": 535, "usd": 0.000698, "tag": "final:draft:c-7867", "latency_s": 5.47, "key": "46c78902f37b"}
+{"at": "2026-10-11T20:31:48+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 716, "tokens_out": 209, "usd": 0.000233, "tag": "agent:memory:c-8364", "latency_s": 2.664, "key": "e7c302f16c45"}
+{"at": "2026-10-11T20:31:52+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 805, "tokens_out": 136, "usd": 0.000202, "tag": "final:facts:c-8364", "latency_s": 3.995, "key": "ffb14e7dd74b"}
+{"at": "2026-10-11T20:31:54+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 370, "tokens_out": 0, "usd": 7e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:31:55+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 5, "tokens_out": 0, "usd": 0.0, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:32:01+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4596, "tokens_out": 239, "usd": 0.000833, "tag": "final:assess:c-8364", "latency_s": 5.929, "key": "bec2a72a1df1"}
+{"at": "2026-10-11T20:32:07+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4065, "tokens_out": 458, "usd": 0.000885, "tag": "final:draft:c-8364", "latency_s": 5.989, "key": "68125391e731"}
+{"at": "2026-10-11T20:32:24+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 564, "tokens_out": 35, "usd": 0.000106, "tag": "agent:memory:c-9781", "latency_s": 17.58, "key": "d00f3cec69c4"}
+{"at": "2026-10-11T20:33:06+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 314, "tokens_out": 0, "usd": 6e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:34:00+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 2918, "tokens_out": 448, "usd": 0.000706, "tag": "baseline:c-12709", "latency_s": 54.583, "key": "f15e970369f3"}
+{"at": "2026-10-11T20:34:01+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 206, "tokens_out": 0, "usd": 4e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:34:08+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3434, "tokens_out": 486, "usd": 0.000807, "tag": "baseline:c-5500", "latency_s": 6.37, "key": "6715bd14d88f"}
+{"at": "2026-10-11T20:34:09+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 242, "tokens_out": 0, "usd": 5e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:34:15+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3488, "tokens_out": 500, "usd": 0.000823, "tag": "baseline:c-5500", "latency_s": 6.479, "key": "78d3f0f6e503"}
+{"at": "2026-10-11T20:34:17+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 359, "tokens_out": 0, "usd": 7e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:34:23+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 4160, "tokens_out": 430, "usd": 0.000882, "tag": "baseline:c-8364", "latency_s": 5.957, "key": "d9b67226ca18"}
+{"at": "2026-10-11T20:34:24+00:00", "kind": "embedding", "model": "text-embedding-3-small", "tokens_in": 396, "tokens_out": 0, "usd": 8e-06, "n_inputs": 1, "tag": "query"}
+{"at": "2026-10-11T20:34:31+00:00", "kind": "chat", "model": "gpt-4o-mini", "tokens_in": 3263, "tokens_out": 396, "usd": 0.000727, "tag": "baseline:c-9781", "latency_s": 6.665, "key": "4385a8d28ec8"}

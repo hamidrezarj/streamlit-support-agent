@@ -232,3 +232,21 @@ confirmation; facts kept only with a quote from the messages; corrections supers
 kept); step limits 8 per turn / 30 per case (limit → escalation proposal); issue / comment /
 document text can never approve or act. Runtime state lives in `data/tracker/`, `data/state/`,
 `data/audit/` (git-ignored); scenario runs keep `audit.jsonl` per scenario as sample traces.
+
+
+## 8. Demo UI (Streamlit)
+
+```bash
+pip install -r requirements.txt                       # includes streamlit
+PYTHONPATH=src streamlit run app/ui.py                # live: eval cases replay from the LLM cache ($0)
+SSA_UI_FAKE=1 PYTHONPATH=src streamlit run app/ui.py  # offline demo: scripted LLM, no API key, $0
+```
+
+Three tabs: **Analyse a report** (Problem 1: eval case or new report, final vs baseline side by side,
+facts, evidence with relation / resolves / cited, decision with the rule that fired, reply, gold after the
+result), **Follow a case** (Problem 2: user messages, agent turns, the pending proposal with approve / edit /
+reject, the tracker thread, case memory with superseded values, proposals and audit log, plus *simulate*
+buttons: restart the process, deliver the last approval again, fail the next post after writing) and
+**Results** (saved P1 / P2 runs). The UI has its own tracker and memory in `data/ui/` (git-ignored) and
+never touches evaluation runs; only dev cases are offered. Logic lives in `ssa.ui.backend`; click-through
+tests in `tests/test_ui.py` (Streamlit `AppTest`, offline).

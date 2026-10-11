@@ -110,7 +110,7 @@ class CaseStore:
     def __init__(self, path: Path | str | None = None):
         self.path = Path(path or DB_PATH)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.con = sqlite3.connect(self.path, isolation_level=None)
+        self.con = sqlite3.connect(self.path, isolation_level=None, check_same_thread=False)
         self.con.row_factory = sqlite3.Row
         self.con.executescript(SCHEMA)
 

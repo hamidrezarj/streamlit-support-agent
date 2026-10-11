@@ -1,0 +1,904 @@
+{
+ "system": "final",
+ "version": "agent-v3",
+ "split": "dev",
+ "built_at": "2026-10-11T20:32:24+00:00",
+ "model": "gpt-4o-mini",
+ "cache_mode": "cache",
+ "limits": {
+  "steps_per_turn": 8,
+  "steps_per_case": 30
+ },
+ "limit_overrides": {},
+ "metrics": {
+  "n_scenarios": 5,
+  "scenarios_passed": 3,
+  "status_exact": "3/5",
+  "checks_passed": 50,
+  "checks_total": 52,
+  "by_check": {
+   "comments_posted": "5/5",
+   "fact": "4/5",
+   "inv:closed_only_after_confirmation": "1/1",
+   "inv:fact_provenance": "5/5",
+   "inv:no_duplicate_execution": "5/5",
+   "inv:no_stale_execution": "5/5",
+   "inv:no_writes_from_unexecuted": "5/5",
+   "inv:pending_survives_restart": "1/1",
+   "inv:rejected_not_in_tracker": "5/5",
+   "inv:step_budget": "5/5",
+   "label": "1/1",
+   "label_not": "1/1",
+   "posted_text_equals_edited": "1/1",
+   "status": "4/5",
+   "status_not": "1/1",
+   "superseded": "1/1"
+  },
+  "violations": {},
+  "turns": 10,
+  "max_steps_turn": 6,
+  "repeated_replies": 0,
+  "cost": {
+   "live_calls": 21,
+   "replayed_calls": 12,
+   "tokens_in": 71013,
+   "tokens_out": 9087,
+   "usd_live": 0.009999,
+   "usd_replayed": 0.006108,
+   "latency_s": 165.415,
+   "usd_per_turn": 0.001611
+  }
+ },
+ "scenarios": [
+  {
+   "sid": "s-12709",
+   "case_id": "c-12709",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "hypothesis_refuted_by_new_fact"
+   ],
+   "passed": true,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 11,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "escalated (expected awaiting_user, acceptable ['awaiting_user', 'escalated']) - acceptable alternative"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:streamlit_version": {
+     "ok": true,
+     "detail": "memory streamlit_version=1.50.0 (matched streamlit_version)"
+    },
+    "fact:deployment": {
+     "ok": true,
+     "detail": "memory deployment=- (matched access_path)"
+    },
+    "fact:failure_frequency": {
+     "ok": true,
+     "detail": "memory failure_frequency=8 out of 10 times (matched failure_frequency)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "5 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "3 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-55a814761e73",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-55a814761e73"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-76c4f0fc3f23",
+     "memory": {
+      "added": [
+       "streamlit_version",
+       "access_path",
+       "failure_frequency"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-76c4f0fc3f23"
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 9,
+    "agent_comments": [
+     "To better assist you, could you please provide the version of Streamlit you are currently using? This information is crucial for determining if the issue is resolved in a newer version [S7].\n\n- What version of Streamlit are you currently using?",
+     "It appears that you are encountering a known issue with WebSocket message handling in Streamlit, specifically a 'Cached ForwardMsg MISS' error. This issue has been addressed in version 1.46.0, and since you are currently using version 1.50.0, it is recommended to upgrade to at least version 1.46.0 to resolve this issue [S6]."
+    ],
+    "facts": {
+     "streamlit_version": "1.50.0",
+     "access_path": "Streamlit Cloud",
+     "failure_frequency": "8 out of 10 times"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-55a814761e73",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-76c4f0fc3f23",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "recommends upgrading to 1.45.1 as the fix",
+     "asks again for the version or the platform"
+    ],
+    "final_reply": "It appears that you are encountering a known issue with WebSocket message handling in Streamlit, specifically a 'Cached ForwardMsg MISS' error. This issue has been addressed in version 1.46.0, and since you are currently using version 1.50.0, it is recommended to upgrade to at least version 1.46.0 to resolve this issue [S6].",
+    "all_replies": [
+     "To better assist you, could you please provide the version of Streamlit you are currently using? This information is crucial for determining if the issue is resolved in a newer version [S7].\n\n- What version of Streamlit are you currently using?",
+     "It appears that you are encountering a known issue with WebSocket message handling in Streamlit, specifically a 'Cached ForwardMsg MISS' error. This issue has been addressed in version 1.46.0, and since you are currently using version 1.50.0, it is recommended to upgrade to at least version 1.46.0 to resolve this issue [S6]."
+    ]
+   },
+   "stats": {
+    "live_calls": 4,
+    "replayed_calls": 3,
+    "tokens_in": 14561,
+    "tokens_out": 2068,
+    "usd_live": 0.001865,
+    "usd_replayed": 0.001561,
+    "latency_s": 33.931
+   },
+   "wall_s": 20.9
+  },
+  {
+   "sid": "s-5500",
+   "case_id": "c-5500",
+   "split": "dev",
+   "covers": [
+    "designed_followups",
+    "user_correction",
+    "brief_example"
+   ],
+   "passed": false,
+   "status_exact": true,
+   "n_checks": 11,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "awaiting_user (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:access_path": {
+     "ok": true,
+     "detail": "memory access_path=nginx reverse proxy at https://tools.example.com/st/ (matched access_path)"
+    },
+    "fact:direct_ip_test": {
+     "ok": false,
+     "detail": "memory direct_ip_test=-"
+    },
+    "superseded:access_path=direct ip": {
+     "ok": true,
+     "detail": "history=['access_path=direct access by IP at http://<server-ip>:8501']"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "4 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "3 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=18 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-4fe38f4e74b7",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-4fe38f4e74b7"
+    },
+    {
+     "step": "user",
+     "origin": "designed",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "usage_guidance",
+     "stopped": null,
+     "proposal": "p-ccd828f02888",
+     "memory": {
+      "added": [
+       "access_path"
+      ],
+      "tried_now": [
+       {
+        "text": "Reinstalling streamlit",
+        "result": "did_not_help",
+        "turn": 2,
+        "ours": false
+       }
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "user",
+     "origin": "designed",
+     "corrects": "access_path"
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-170280392a8e",
+     "memory": {
+      "superseded": [
+       "access_path"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-170280392a8e"
+    }
+   ],
+   "final": {
+    "status": "awaiting_user",
+    "labels": [],
+    "version": 7,
+    "agent_comments": [
+     "To troubleshoot the 'please wait' issue, please check the port your app is running on. If it's port 3000, try using a different port, such as 80, as this can cause loading issues [S1]. Additionally, consider temporarily disabling CORS protection to see if that resolves the problem.\n\n- What port is your Streamlit app running on?\n- Is CORS protection enabled in your server configuration?",
+     "To troubleshoot the 'please wait' issue, please provide details about your Nginx configuration and whether CORS protection is enabled. This information is crucial for diagnosing the problem, as misconfigured CORS settings or reverse proxy configurations can lead to the app being stuck on the loading screen [S1][S2].\n\n- What does your Nginx configuration look like?\n- Is CORS protection enabled in your Nginx configuration?"
+    ],
+    "facts": {
+     "streamlit_version": "1.13.0",
+     "python_version": "3.8.0",
+     "access_path": "nginx reverse proxy at https://tools.example.com/st/"
+    },
+    "superseded": [
+     "access_path=direct access by IP at http://<server-ip>:8501"
+    ],
+    "proposals": [
+     {
+      "id": "p-4fe38f4e74b7",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-ccd828f02888",
+      "status": "superseded",
+      "origin": "agent"
+     },
+     {
+      "id": "p-170280392a8e",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 3,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "stale (pre-correction) proposal executed",
+     "asks again for the Streamlit version or a reinstall",
+     "unsupported root-cause claim",
+     "final reply still assumes no proxy"
+    ],
+    "final_reply": "To troubleshoot the 'please wait' issue, please provide details about your Nginx configuration and whether CORS protection is enabled. This information is crucial for diagnosing the problem, as misconfigured CORS settings or reverse proxy configurations can lead to the app being stuck on the loading screen [S1][S2].\n\n- What does your Nginx configuration look like?\n- Is CORS protection enabled in your Nginx configuration?",
+    "all_replies": [
+     "To troubleshoot the 'please wait' issue, please check the port your app is running on. If it's port 3000, try using a different port, such as 80, as this can cause loading issues [S1]. Additionally, consider temporarily disabling CORS protection to see if that resolves the problem.\n\n- What port is your Streamlit app running on?\n- Is CORS protection enabled in your server configuration?",
+     "To troubleshoot the 'please wait' issue, please provide details about your Nginx configuration and whether CORS protection is enabled. This information is crucial for diagnosing the problem, as misconfigured CORS settings or reverse proxy configurations can lead to the app being stuck on the loading screen [S1][S2].\n\n- What does your Nginx configuration look like?\n- Is CORS protection enabled in your Nginx configuration?"
+    ]
+   },
+   "stats": {
+    "live_calls": 8,
+    "replayed_calls": 3,
+    "tokens_in": 23351,
+    "tokens_out": 3204,
+    "usd_live": 0.004029,
+    "usd_replayed": 0.001396,
+    "latency_s": 51.47
+   },
+   "wall_s": 41.98
+  },
+  {
+   "sid": "s-7867",
+   "case_id": "c-7867",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "maintainer_edit"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "awaiting_user (expected answered)"
+    },
+    "status_not": {
+     "ok": true,
+     "detail": "awaiting_user (must not be ['closed_resolved'])"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "1 (expected 1)"
+    },
+    "label_not:type:bug": {
+     "ok": true,
+     "detail": "labels=[]"
+    },
+    "posted_text_equals_edited": {
+     "ok": true,
+     "detail": "edited text found verbatim"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "1 agent comments for 1 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "2 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "6 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=6 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-dbc5a305119c",
+     "memory": {
+      "added": [
+       "client_toolbar_mode_viewer_flag",
+       "client_toolbar_mode_minimal_flag"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "edit",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-dbc5a305119c"
+    }
+   ],
+   "final": {
+    "status": "awaiting_user",
+    "labels": [],
+    "version": 4,
+    "agent_comments": [
+     "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
+    ],
+    "facts": {
+     "client_toolbar_mode_viewer_flag": "no effect when set",
+     "client_toolbar_mode_minimal_flag": "works as intended",
+     "streamlit_version": "1.28.2",
+     "python_version": "3.10.12",
+     "os": "Ubuntu",
+     "browser": "Safari"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-dbc5a305119c",
+      "status": "edited",
+      "origin": "agent"
+     },
+     {
+      "id": "p-60db8542b809",
+      "status": "executed",
+      "origin": "maintainer_edit"
+     }
+    ]
+   },
+   "turns": 1,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "label type:bug added",
+     "closed as resolved automatically",
+     "approval of a different draft reused for the edited text"
+    ],
+    "final_reply": "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms.",
+    "all_replies": [
+     "The viewer setting hides developer options. Use client.toolbarMode = minimal to hide the menu, as your test confirms."
+    ]
+   },
+   "stats": {
+    "live_calls": 4,
+    "replayed_calls": 0,
+    "tokens_in": 8113,
+    "tokens_out": 1049,
+    "usd_live": 0.001846,
+    "usd_replayed": 0.0,
+    "latency_s": 15.915
+   },
+   "wall_s": 19.55
+  },
+  {
+   "sid": "s-8364",
+   "case_id": "c-8364",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "stop_while_awaiting_approval",
+    "resume"
+   ],
+   "passed": true,
+   "status_exact": true,
+   "n_checks": 10,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "escalated (expected escalated)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "label:needs-maintainer": {
+     "ok": true,
+     "detail": "labels=['needs-maintainer']"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:pending_survives_restart": {
+     "ok": true,
+     "detail": "same id/hash/ticket_version/actions after restart: {'id': True, 'hash': True, 'ticket_version': True, 'actions': True}"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "5 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "7 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-25eb581ddacc",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "system",
+     "event": "crash_while_awaiting_approval",
+     "note": "process killed"
+    },
+    {
+     "step": "system",
+     "event": "restart",
+     "pending_found": true
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-25eb581ddacc"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-9cab6707a795",
+     "memory": {
+      "added": [
+       "failure_frequency",
+       "error_message",
+       "deployment"
+      ],
+      "tried_now": [
+       {
+        "text": "disabled the version check",
+        "result": "did_not_help",
+        "turn": 2,
+        "ours": false
+       }
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-9cab6707a795"
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 8,
+    "agent_comments": [
+     "It seems that the server is hanging on startup when there is no internet connection. This behavior may be due to the server waiting for network resources, as indicated in the documentation [S1]. Please check if the server starts immediately when your internet connection is enabled, as this will help us diagnose the issue further.\n\n- Does the server start immediately when the internet is enabled?",
+     "Thank you for your detailed report. It appears that the server hangs on startup when offline in headless mode due to the external IP address lookup, as indicated in the documentation [S1]. Since you mentioned that the hang occurs even after disabling the version check, it seems to be related to the headless mode configuration. We will escalate this issue for further investigation."
+    ],
+    "facts": {
+     "streamlit_version": "1.32.2",
+     "python_version": "3.11.1",
+     "os": "Fedora 36",
+     "browser": "Firefox 112.0.1",
+     "failure_frequency": "only triggered in headless mode",
+     "error_message": "hangs during external IP address lookup",
+     "deployment": "headless mode enabled in config"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-25eb581ddacc",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-9cab6707a795",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "any write before approval",
+     "pending proposal lost or changed by the restart",
+     "duplicate comment",
+     "reported diagnosis presented as universally confirmed"
+    ],
+    "final_reply": "Thank you for your detailed report. It appears that the server hangs on startup when offline in headless mode due to the external IP address lookup, as indicated in the documentation [S1]. Since you mentioned that the hang occurs even after disabling the version check, it seems to be related to the headless mode configuration. We will escalate this issue for further investigation.",
+    "all_replies": [
+     "It seems that the server is hanging on startup when there is no internet connection. This behavior may be due to the server waiting for network resources, as indicated in the documentation [S1]. Please check if the server starts immediately when your internet connection is enabled, as this will help us diagnose the issue further.\n\n- Does the server start immediately when the internet is enabled?",
+     "Thank you for your detailed report. It appears that the server hangs on startup when offline in headless mode due to the external IP address lookup, as indicated in the documentation [S1]. Since you mentioned that the hang occurs even after disabling the version check, it seems to be related to the headless mode configuration. We will escalate this issue for further investigation."
+    ]
+   },
+   "stats": {
+    "live_calls": 4,
+    "replayed_calls": 3,
+    "tokens_in": 18094,
+    "tokens_out": 1886,
+    "usd_live": 0.002153,
+    "usd_replayed": 0.0016940000000000002,
+    "latency_s": 34.063
+   },
+   "wall_s": 20.98
+  },
+  {
+   "sid": "s-9781",
+   "case_id": "c-9781",
+   "split": "dev",
+   "covers": [
+    "real_followups",
+    "resolution_only_with_confirmation",
+    "duplicate_request"
+   ],
+   "passed": true,
+   "status_exact": true,
+   "n_checks": 9,
+   "n_ok": 9,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "closed_resolved (expected closed_resolved)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "4 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "4 facts; quote not in this case: []"
+    },
+    "inv:closed_only_after_confirmation": {
+     "ok": true,
+     "detail": "confirmation={'quote': \"It's working now. Thank you.\", 'turn': 2, 'at': '2026-10-11T20:32:24Z'}"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=8 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-adccf9273663",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-adccf9273663"
+    },
+    {
+     "step": "system",
+     "event": "duplicate_request",
+     "result": "ok",
+     "already_done": true
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "close_resolved",
+     "stopped": null,
+     "proposal": "p-81e17fb95791",
+     "memory": {
+      "confirmed": true
+     },
+     "steps_turn": 2
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-81e17fb95791"
+    }
+   ],
+   "final": {
+    "status": "closed_resolved",
+    "labels": [],
+    "version": 6,
+    "agent_comments": [
+     "It seems your app is currently stuck in the deployment process, showing the message 'Your app is in the oven'. This can happen due to various reasons, including initialization issues. To help diagnose the problem, could you check the logs for any specific error messages? Additionally, have you tried rebooting the app? Rebooting can often resolve such issues, as noted in the documentation [S3].\n\n- Have you checked the logs for any specific error messages?\n- Have you tried rebooting the app to see if that resolves the issue?",
+     "Thanks for confirming that it works now. I'm closing this issue as resolved. If the problem comes back, please comment here with the details."
+    ],
+    "facts": {
+     "streamlit_version": "stramlit server",
+     "python_version": "streamlit server",
+     "os": "Windows 10",
+     "browser": "Chrome"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-adccf9273663",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-81e17fb95791",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "duplicate comment",
+     "closed before user confirmation"
+    ],
+    "final_reply": "Thanks for confirming that it works now. I'm closing this issue as resolved. If the problem comes back, please comment here with the details.",
+    "all_replies": [
+     "It seems your app is currently stuck in the deployment process, showing the message 'Your app is in the oven'. This can happen due to various reasons, including initialization issues. To help diagnose the problem, could you check the logs for any specific error messages? Additionally, have you tried rebooting the app? Rebooting can often resolve such issues, as noted in the documentation [S3].\n\n- Have you checked the logs for any specific error messages?\n- Have you tried rebooting the app to see if that resolves the issue?",
+     "Thanks for confirming that it works now. I'm closing this issue as resolved. If the problem comes back, please comment here with the details."
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 3,
+    "tokens_in": 6894,
+    "tokens_out": 880,
+    "usd_live": 0.000106,
+    "usd_replayed": 0.001457,
+    "latency_s": 30.035999999999998
+   },
+   "wall_s": 17.74
+  }
+ ]
+}

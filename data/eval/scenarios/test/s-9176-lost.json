@@ -1,0 +1,60 @@
+{
+ "id": "s-9176-lost",
+ "issue": 9176,
+ "split": "test",
+ "covers": [
+  "real_followups",
+  "tool_failure_after_commit"
+ ],
+ "steps": [
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "system",
+   "event": "tool_failure",
+   "tool": "post_comment",
+   "mode": "fail_after_write",
+   "times": 1
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  },
+  {
+   "type": "user",
+   "origin": "real",
+   "comment_id": 2259179578,
+   "text": "@user I created a .streamlit/config.toml in the same folder as my posit app the [global] doesnt have anything in it.",
+   "created_at": "2024-07-30T20:46:34Z",
+   "url": "https://github.com/streamlit/streamlit/issues/9176#issuecomment-2259179578",
+   "by_issue_author": true
+  },
+  {
+   "type": "agent_turn"
+  },
+  {
+   "type": "maintainer",
+   "decision": "approve"
+  }
+ ],
+ "expected_final": {
+  "status": "answered",
+  "comments_posted": 2,
+  "must_not": [
+   "lost response reported as failure and the comment posted again",
+   "duplicate committed comment"
+  ]
+ },
+ "variant_of": "s-9176",
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "new variant",
+  "why": "Hani: post-commit lost-response failure as a separate test variant.",
+  "file": "data/eval/annotations/reviews/hani/scenarios/test/hani-review-s-9176.md"
+ },
+ "case_id": "c-9176",
+ "annotated_by": "claude-draft",
+ "reviewed_by": "Hani"
+}

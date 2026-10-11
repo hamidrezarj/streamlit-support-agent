@@ -48,12 +48,22 @@ Return ONE JSON object:
  "confirmation_quote": null}
 Fact names to use when they fit: streamlit_version, python_version, os, browser,
 access_path (how the app is reached: direct IP/port, reverse proxy, cloud URL), deployment (where it runs),
-error_message; other package versions as <package>_version (e.g. tornado_version).
+error_message, failure_frequency (how often it fails, e.g. "8 out of 10 runs"),
+<check>_test for a diagnostic the user ran and its result (e.g. direct_ip_test: "direct access by IP works");
+other package versions as <package>_version (e.g. tornado_version).
+When a correction replaces one fact, still record any other observation in the same message as its own fact.
 A value must be understandable on its own: say what kind of thing it is plus the detail
 (e.g. access_path: "nginx reverse proxy at https://host/st/", not just the URL).
 If the user corrects something said earlier, give the NEW value and set "corrects".
 was_our_suggestion is true only if the user tried something that OUR last reply suggested.
 user_confirmed_fix is true ONLY if the user clearly says the problem is solved / the app works now."""
+
+
+def case_as_of(ticket: dict) -> str:
+    """Leakage cut-off for retrieval: the newest thing the USER side wrote (report + user comments).
+    Agent comments are excluded - they are stamped with the wall clock when executed, which in a
+    replayed historical case is 'today' and would open the index to future releases/issues."""
+    return max([ticket["created_at"]] + [c["created_at"] for c in ticket["comments"] if c["author"] != "agent"])
 
 
 def _norm(s: str) -> str:
@@ -62,7 +72,7 @@ def _norm(s: str) -> str:
 
 class Agent:
     name = "final"
-    version = "agent-v2"
+    version = "agent-v3"
 
     def __init__(self, toolbox: Toolbox, analyser, llm, exclude_issues=()):
         self.tb, self.analyser, self.llm = toolbox, analyser, llm
@@ -212,7 +222,7 @@ class Agent:
                 return d
 
             self.tb.charge(case_id, "analyse (retrieval + 3 LLM calls)", n=4)
-            as_of = max([ticket["created_at"]] + [c["created_at"] for c in ticket["comments"]])
+            as_of = case_as_of(ticket)
             case = {"case_id": case_id,
                     "visible": {"title": ticket["title"], "body": self._report(ticket, st), "as_of": as_of},
                     "filters": {"before": as_of, "exclude_issues": sorted(self.exclude)}}
@@ -255,7 +265,7 @@ class MemorylessAgent:
     """P2 baseline: re-runs the Problem-1 baseline on the whole thread every turn.
     No memory, no stale/hash/version checks, no idempotency keys (see NaiveGate)."""
     name = "baseline"
-    version = "baseline-memoryless-v1"
+    version = "baseline-memoryless-v2"
 
     def __init__(self, toolbox: Toolbox, analyser, llm, exclude_issues=()):
         self.tb, self.analyser, self.llm = toolbox, analyser, llm
@@ -268,7 +278,7 @@ class MemorylessAgent:
     def turn(self, case_id: str) -> dict:
         t = self.tracker.get(case_id)
         thread = t["body"] + "".join(f"\n\n[{c['author']}, {c['created_at'][:10]}]\n{c['body']}" for c in t["comments"])
-        as_of = max([t["created_at"]] + [c["created_at"] for c in t["comments"]])
+        as_of = case_as_of(t)
         a = self.analyser.run({"case_id": case_id, "visible": {"title": t["title"], "body": thread, "as_of": as_of},
                                "filters": {"before": as_of, "exclude_issues": sorted(self.exclude)}})
         out = a.get("output") or {}

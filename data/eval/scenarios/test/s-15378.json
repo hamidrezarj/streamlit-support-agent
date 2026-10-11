@@ -3,8 +3,7 @@
  "issue": 15378,
  "split": "test",
  "covers": [
-  "real_followups",
-  "step_limit"
+  "real_followups"
  ],
  "steps": [
   {
@@ -32,14 +31,35 @@
   }
  ],
  "expected_final": {
-  "status": "escalated",
+  "status": "awaiting_user",
   "comments_posted": 2,
   "must_not": [
-   "repeats the server.address suggestion the user already tried",
-   "exceeds step budget"
+   "records server.address (or any setting) as tried unless it is visible in the history",
+   "assumes which setting failed instead of asking"
   ]
+ },
+ "draft": {
+  "expected_final": {
+   "status": "escalated",
+   "comments_posted": 2,
+   "must_not": [
+    "repeats the server.address suggestion the user already tried",
+    "exceeds step budget"
+   ]
+  },
+  "covers": [
+   "real_followups",
+   "step_limit"
+  ]
+ },
+ "review": {
+  "reviewer": "Hani",
+  "date": "2026-10-11",
+  "verdict": "status escalated -> awaiting_user; step-limit moved to a separate variant",
+  "why": "Hani: the failed 'proposed setting' is not identified reliably - ask which setting/value was tried; the step-limit claim needs a configured counter and a boundary test (variant s-15378-limit).",
+  "file": "data/eval/annotations/reviews/hani/scenarios/test/hani-review-s-15378.md"
  },
  "case_id": "c-15378",
  "annotated_by": "claude-draft",
- "reviewed_by": null
+ "reviewed_by": "Hani"
 }
