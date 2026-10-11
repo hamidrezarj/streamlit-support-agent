@@ -169,10 +169,13 @@ def render(res: dict, visible: dict, case_id: str, system: str, stats: dict | No
 
 def render_gold(case: dict, outcome: str | None, st: Style) -> str:
     g = case["gold"]
-    ok = outcome == g["outcome"]
+    acc = g.get("acceptable_outcomes") or [g["outcome"]]
+    verdict = (st.ok("MATCH") if outcome == g["outcome"] else
+               st.warn(f"ACCEPTABLE (alternative: {outcome})") if outcome in acc else st.bad(f"MISMATCH (got {outcome})"))
     L = ["\n" + st.h("== GOLD (hidden from the system) " + "=" * (WIDTH - 34)),
-         f"  bucket: {case['bucket']}   gold outcome: {g['outcome']}   -> "
-         + (st.ok("MATCH") if ok else st.bad(f"MISMATCH (got {outcome})")),
+         f"  bucket: {case['bucket']}   gold outcome: {g['outcome']}"
+         + (f" (also acceptable: {', '.join(a for a in acc if a != g['outcome'])})" if len(acc) > 1 else "")
+         + f"   -> {verdict}",
          wrap("reference: " + (g.get("reference") or "")),
          f"  relevant sources: {', '.join(g.get('relevant_sources') or []) or '-'}",
          f"  must not: {'; '.join(g.get('must_not') or []) or '-'}",

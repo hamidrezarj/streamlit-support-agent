@@ -58,11 +58,12 @@
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Explain the difference between viewer and minimal using the config docs; suggest minimal"
+   "Explain viewer versus minimal and test minimal if hiding the menu is the goal.",
+   "Inspect the effective client.toolbarMode if developer controls specifically remain exposed."
   ],
   "must_not": [
-   "escalate as a bug",
-   "claim env vars are not supported"
+   "Promise minimal removes every toolbar/control in every context.",
+   "Declare environment variables unsupported."
   ],
   "relevant_sources": [
    "config:client.toolbarMode",
@@ -71,6 +72,24 @@
   ],
   "reference": "Maintainer: viewer only hides developer options, working as expected; use minimal.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-7867.md",
+  "review_reason": "Keeping a toolbar visible is consistent with viewer hiding developer options rather than the entire menu. Explain minimal versus viewer; do not infer the environment variable failed merely from visibility.",
+  "draft": {
+   "outcome": "usage_guidance",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Explain the difference between viewer and minimal using the config docs; suggest minimal"
+   ],
+   "must_not": [
+    "escalate as a bug",
+    "claim env vars are not supported"
+   ]
+  }
  }
 }

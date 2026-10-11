@@ -53,27 +53,58 @@
   "outcome": "info_request",
   "summary": "1.32.2 shows 'Bad message format, SessionInfo...' while 1.32.0 works; Windows/Anaconda install warnings.",
   "hypotheses": [
-   "broken/mixed install in conda env (protobuf or partial upgrade)",
-   "regression between 1.32.0 and 1.32.2"
+   "Incomplete or mixed installation produces invalid Streamlit distribution metadata.",
+   "A separate frontend/session regression if the problem survives a clean installation."
   ],
   "missing_info": [
    {
-    "item": "protobuf version / clean venv test",
-    "why": "mixed install vs regression"
+    "item": "Clean-environment result and Streamlit package/version metadata",
+    "why": "Tests the visible invalid-metadata and None version symptoms."
    }
   ],
   "acceptable_next_steps": [
-   "Ask protobuf version and to test in a fresh environment",
-   "Escalate if it reproduces cleanly"
+   "Test a fresh isolated environment with the intended pinned version and verify python -m streamlit version.",
+   "Inspect import/package metadata and executable/interpreter alignment; escalate if reproducible after a clean install."
   ],
   "must_not": [
-   "claim fixed in a specific version"
+   "Treat protobuf mismatch as the confirmed cause.",
+   "Claim a later SessionInfo fix is already available on March 17."
   ],
   "relevant_sources": [
    "page:/knowledge-base/using-streamlit/sanity-checks"
   ],
   "reference": "Maintainer asked protobuf version; couldn't reproduce; later fix in 1.36 added SessionInfo check.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request",
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-8321.md",
+  "review_reason": "The mixed/invalid distribution metadata and STREAMLIT_VERSION_STRING=None are stronger immediate signals than a generic protobuf explanation. A fresh-environment comparison is the most useful discriminating check; repair guidance is acceptable if conditional.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "missing_info": [
+    {
+     "item": "protobuf version / clean venv test",
+     "why": "mixed install vs regression"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Ask protobuf version and to test in a fresh environment",
+    "Escalate if it reproduces cleanly"
+   ],
+   "must_not": [
+    "claim fixed in a specific version"
+   ],
+   "hypotheses": [
+    "broken/mixed install in conda env (protobuf or partial upgrade)",
+    "regression between 1.32.0 and 1.32.2"
+   ]
+  },
+  "acceptable_why": "Hani: escalate if it reproduces after a clean install"
  }
 }

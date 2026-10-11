@@ -41,19 +41,44 @@ def load():
     return sel, gold, scen, issues
 
 
+def apply_review(g: dict, bucket: str, rv: dict | None) -> tuple[dict, str]:
+    """Human review overrides the LLM draft; the draft values that changed are kept under `draft`."""
+    g = {**g, "annotated_by": "claude-draft"}
+    if not rv:
+        return {**g, "acceptable_outcomes": [g["outcome"]], "reviewed_by": None}, bucket
+    edits = rv["edits"]
+    draft = {"outcome": g["outcome"], "bucket": bucket}
+    for k, v in edits.items():
+        if k == "bucket":
+            if v["from"] != bucket:
+                raise ValueError(f"{rv['case_id']}: review says bucket {v['from']} but selection has {bucket}")
+            bucket = v["to"]
+            continue
+        draft[k] = g.get(k)
+        g[k] = v
+    g.update(outcome=rv["outcome"], acceptable_outcomes=rv["acceptable_outcomes"], reviewed_by=rv["reviewer"],
+             review_date=rv["review_date"], review_verdict=rv["verdict"], review_file=rv["file"],
+             review_reason=rv["reason"], draft=draft)
+    if rv.get("acceptable_why"):
+        g["acceptable_why"] = rv["acceptable_why"]
+    return g, bucket
+
+
 def build(sel, gold, scen, issues) -> tuple[list, list]:
     eval_issues = sorted(c["issue"] for c in sel)
+    rp = A / "reviews.json"
+    reviews = read_json(rp)["reviews"] if rp.exists() else {}
     cases = []
     for c in sel:
         r = issues[c["issue"]]
-        g = gold[str(c["issue"])]
+        g, bucket = apply_review(gold[str(c["issue"])], c["bucket"], reviews.get(f"c-{c['issue']}"))
         case = {
-            "case_id": f"c-{r['number']}", "split": c["split"], "bucket": c["bucket"],
+            "case_id": f"c-{r['number']}", "split": c["split"], "bucket": bucket,
             "topic": c["topic"], "family_id": r["family_id"], "multi_turn": bool(c.get("mt")),
             "visible": {"issue_number": r["number"], "url": r["url"], "title": r["title"],
                         "body": r["body"], "as_of": r["created_at"]},
             "filters": {"before": r["created_at"], "exclude_issues": eval_issues},
-            "gold": {**g, "annotated_by": "claude-draft", "reviewed_by": None},
+            "gold": g,
         }
         cases.append(case)
     scenarios = []

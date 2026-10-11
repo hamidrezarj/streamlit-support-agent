@@ -51,17 +51,19 @@
  },
  "gold": {
   "outcome": "known_issue",
-  "summary": "'Bad message format: SessionInfo before it was initialized' popup in production, user states 1.41.0 (later corrected to 1.43.2).",
+  "summary": "SessionInfo initialization popup on reported Streamlit 1.41.0 with reconnect symptoms.",
   "hypotheses": [
    "race condition fixed in 1.45.0",
    "after upgrade: ForwardMsg MISS known in 1.45.0, fixed 1.45.1"
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Explain patch landed in a later version (release notes 1.45.0) and recommend upgrading to latest patch (>=1.45.1)"
+   "Explain the earlier documented SessionInfo fix and test an appropriate later patch.",
+   "If it persists, collect reconnect/server logs and a minimal reproducer without assuming every similarly worded popup has the same cause."
   ],
   "must_not": [
-   "ask for the version (given)"
+   "Use 1.43.2 correction or the later screenshot as initial facts.",
+   "Guarantee upgrading fixes every reconnect problem."
   ],
   "relevant_sources": [
    "rn:1.45.0:18cae91c",
@@ -69,6 +71,24 @@
   ],
   "reference": "Maintainer: fix is in a later release; after correction & upgrade to 1.45.0 user hit ForwardMsg MISS -> 1.45.1 fixed it.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "known_issue"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-11500.md",
+  "review_reason": "Earlier release evidence for the SessionInfo race supports known_issue on reported 1.41.0. Later correction to 1.43.2 and the new ForwardMsg error must be confined to follow-up state.",
+  "draft": {
+   "outcome": "known_issue",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Explain patch landed in a later version (release notes 1.45.0) and recommend upgrading to latest patch (>=1.45.1)"
+   ],
+   "must_not": [
+    "ask for the version (given)"
+   ],
+   "summary": "'Bad message format: SessionInfo before it was initialized' popup in production, user states 1.41.0 (later corrected to 1.43.2)."
+  }
  }
 }

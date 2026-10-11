@@ -50,19 +50,19 @@
   ]
  },
  "gold": {
-  "outcome": "known_issue",
+  "outcome": "usage_guidance",
   "summary": "After 1.18 the websocket path changed from /stream to /_stcore/stream; LB config breaks.",
   "hypotheses": [
    "intentional endpoint rename in 1.18.0"
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Explain the rename (release notes 1.18.0) and update LB/proxy rules to /_stcore/stream and /_stcore/health",
-   "Note rollback is unlikely; these paths were internal"
+   "Update WebSocket routing/upgrade rules to the release-appropriate /_stcore/stream path.",
+   "Check related health routing and verify the handshake, preserving the deployment authentication policy."
   ],
   "must_not": [
-   "promise a rollback",
-   "escalate as regression"
+   "Promise rollback.",
+   "Escalate as a newly discovered Streamlit bug."
   ],
   "relevant_sources": [
    "rn:1.18.0:f5f16ff6",
@@ -70,6 +70,25 @@
   ],
   "reference": "Closed as expected behaviour; endpoints renamed to avoid GCP clashes.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "usage_guidance"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-6095.md",
+  "review_reason": "The user explicitly identifies the intentional endpoint rename and an LB rule restricted to the old path. Updating proxy rules is configuration guidance under the shared taxonomy, not an unconfirmed bug. known_issue is defensible only if the team explicitly includes documented migration limitations in that category.",
+  "draft": {
+   "outcome": "known_issue",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Explain the rename (release notes 1.18.0) and update LB/proxy rules to /_stcore/stream and /_stcore/health",
+    "Note rollback is unlikely; these paths were internal"
+   ],
+   "must_not": [
+    "promise a rollback",
+    "escalate as regression"
+   ]
+  }
  }
 }

@@ -71,8 +71,8 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for a minimal repro and to test 1.38 vs 1.39",
-   "Suggest checking custom components"
+   "Request a minimal app/component list and browser console details.",
+   "Compare a minimal app across 1.37.1, 1.38 and 1.39 using otherwise identical deployments."
   ],
   "must_not": [
    "declare a confirmed Streamlit regression"
@@ -82,6 +82,21 @@
   ],
   "reference": "Maintainer couldn't reproduce, asked for app details; closed for inactivity.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-9665.md",
+  "review_reason": "A version comparison exists, but no minimal code or browser diagnostic evidence. App-specific frontend changes and a regression remain distinguishable possibilities.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask for a minimal repro and to test 1.38 vs 1.39",
+    "Suggest checking custom components"
+   ]
+  }
  }
 }

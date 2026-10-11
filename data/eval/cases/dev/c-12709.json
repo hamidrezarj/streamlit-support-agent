@@ -51,7 +51,7 @@
  },
  "gold": {
   "outcome": "info_request",
-  "summary": "ForwardMsg MISS, title 'Connection error', no version (real follow-ups reveal Community Cloud, 8/10 frequency, version 1.50.0).",
+  "summary": "ForwardMsg MISS without an initial version or deployment context.",
   "hypotheses": [
    "old version (known bug)",
    "residual bug in recent versions on Community Cloud"
@@ -67,11 +67,12 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for version and platform",
-   "After 1.50.0 is revealed: do NOT recommend the old upgrade; escalate with evidence of residual reports (#11357 later comments, #11973)"
+   "Ask the Streamlit version and deployment platform.",
+   "Ask whether a minimal app reproduces it and whether it follows reconnect/navigation."
   ],
   "must_not": [
-   "after version 1.50.0 is known, still claim upgrading to 1.45.1 fixes it"
+   "Use later user replies as initial facts.",
+   "Promise 1.45.1 fixes a user already running 1.50.0."
   ],
   "relevant_sources": [
    "issue:11357",
@@ -81,6 +82,25 @@
   ],
   "reference": "Maintainer asked version; user said 1.50.0; issue closed not_planned without fix.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-12709.md",
+  "review_reason": "Version and deployment platform are absent initially and determine whether old cache fixes apply. Community Cloud, 1.50.0 and frequency 8/10 are later user turns, not initial facts.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask for version and platform",
+    "After 1.50.0 is revealed: do NOT recommend the old upgrade; escalate with evidence of residual reports (#11357 later comments, #11973)"
+   ],
+   "must_not": [
+    "after version 1.50.0 is known, still claim upgrading to 1.45.1 fixes it"
+   ],
+   "summary": "ForwardMsg MISS, title 'Connection error', no version (real follow-ups reveal Community Cloud, 8/10 frequency, version 1.50.0)."
+  }
  }
 }

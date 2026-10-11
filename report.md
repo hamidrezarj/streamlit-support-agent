@@ -4,7 +4,9 @@
 
 > **Status:** dev split only (16 cases). The test split (16 cases) has **not** been run; it will be run once,
 > with the frozen system, for the final numbers. All numbers below come from the saved run files in
-> `data/eval/runs/history/`, re-scored with the same scorer (`ssa.eval.p1 --rescore`) against the same gold.
+> `data/eval/runs/history/`, re-scored with the same scorer (`ssa.eval.p1 --rescore`).
+> **Gold:** sections 2–8 were written while the gold was an LLM draft; section 1b reports the human review
+> (2026-10-09) and the re-scored results on the **reviewed** gold, which are the numbers that count.
 
 ### TL;DR
 
@@ -46,6 +48,45 @@ two-sided sign test p = 0.008; vs v2: 6 / 0, p = 0.031).
 | unsupported upgrade | recommends upgrading without citing a release note or a maintainer statement |
 | high-confidence wrong | `confidence = high` and outcome wrong |
 | LLM-proposed exact | (final only) accuracy of the LLM's own proposed outcome, before the code decision |
+
+### 1b. Human gold review and re-scored results
+
+All 32 cases were reviewed by a team member (Hani) — `data/eval/annotations/reviews/hani/`, parsed by
+`ssa.eval.merge_reviews`, applied by `ssa.eval.build_cases` (the LLM draft is kept under `gold.draft`).
+Protocol: the reviewer first decided the outcome **blind** (only the visible report, before reading the
+draft), then compared with the draft and edited the fields. Test-split reviews were used only to correct
+gold, never to change a system.
+
+| Review statistic | Value |
+|---|---|
+| Cases reviewed | 32 / 32 |
+| Blind human outcome = LLM-draft outcome | 26 / 32 (81%), **Cohen's κ = 0.74** |
+| Outcome changed by the reviewer | 6 (dev: c-6956, c-8149, c-9781; test: c-6095, c-6224, c-15378) |
+| Bucket changed | 5 → dev now 6 answerable / 7 ambiguous / 3 escalate; test 4 / 8 / 4 |
+| Fields edited | must_not 28, acceptable_next_steps 32, missing_info 10, hypotheses 4, summary 3, reference 1 |
+| relevant_sources edited | 0 (the retriever-bias limitation in §8 remains) |
+
+What the reviewer corrected is the failure mode this project is about: the draft over-trusted similar
+reports and later information (c-6224 / c-6956: the report already says the obvious fix was tried;
+c-9781 / c-15378: the cause was confirmed only after intake). Seven cases were marked "needs discussion";
+the team recorded the alternatives the reviewer called defensible as `acceptable_outcomes`
+(`data/eval/annotations/review_decisions.json`), scored as **outcome acceptable** next to **outcome exact**.
+
+Re-scored on the reviewed gold (dev, 16 cases; same saved outputs, no new model calls):
+
+| Version | exact (draft gold) | **exact (reviewed)** | **acceptable** | answerable / ambiguous / escalate (exact) | high-conf wrong |
+|---|---|---|---|---|---|
+| baseline-v1 | 0.19 | 0.25 | 0.25 | 0.50 / 0.14 / 0.00 | 3 |
+| baseline-v2 | 0.31 | 0.44 | 0.44 | 0.33 / 0.71 / 0.00 | 5 |
+| final-v2 | 0.38 | 0.38 | 0.44 | 0.67 / 0.14 / 0.33 | 3 |
+| final-v3 | 0.56 | 0.69 | 0.75 | 0.33 / 1.00 / 0.67 | 0 |
+| **final-v4** | 0.69 | **0.75** | **0.88** | 0.50 / 1.00 / 0.67 | 0 |
+
+Paired comparison of final-v4 (two-sided sign test on the cases where the two systems differ):
+vs baseline-v1 — exact 9 wins / 1 loss (p = 0.02), acceptable 10 / 0 (p = 0.002);
+vs baseline-v2 — exact 6 / 1 (**p = 0.13, not significant on 16 cases**), acceptable 7 / 0 (p = 0.02).
+The ranking of all versions is unchanged by the review; final-v4's remaining misses on the reviewed gold
+are c-13102 and c-15326 (both the missing 1.51 release note, §7).
 
 ### 2. Retrieval (shared component)
 
@@ -278,9 +319,10 @@ Confusion (predicted outcomes per bucket):
   Every change is a general rule, not a case-specific patch, and each was checked by replaying the
   decision table on saved traces first — but over-fitting to these 16 cases is possible. The **test split
   is the real measure** and has not been touched.
-* **Gold labels are drafts:** written by an LLM from the full threads (`reviewed_by: null`), and the
-  `relevant_sources` were picked from the retriever's own results (recall may be optimistic). A team
-  review is pending; all runs can be re-scored for $0 after it (`--rescore`).
+* **Gold labels:** drafted by an LLM from the full threads, then reviewed by one team member (§1b; κ = 0.74
+  between the blind human decision and the draft). Only one reviewer, so no human–human agreement is
+  reported. `relevant_sources` were picked from the retriever's own results and were not changed by the
+  review, so retrieval recall may be optimistic.
 * **Not yet measured:** `must_not` violations and reply quality need an LLM judge with a published
   prompt, checked against human labels.
 * **Console-only runs:** baseline-v2 with rules r1 and final-v1 were overwritten before run history

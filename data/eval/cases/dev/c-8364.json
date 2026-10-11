@@ -63,12 +63,12 @@
    }
   ],
   "acceptable_next_steps": [
-   "Escalate with repro; ask about config (headless, gatherUsageStats) to narrow the network call",
-   "Suggest debug logging to locate the hang"
+   "Escalate the reproducible offline startup hang and request debug timing around startup.",
+   "Ask/test effective headless and usage-statistics/version-check settings as discriminating diagnostics."
   ],
   "must_not": [
-   "say it cannot be reproduced without trying the given steps",
-   "close as user error"
+   "State get_external_ip is the confirmed root cause at intake.",
+   "Claim a 2026 timeout fix was available in March 2024."
   ],
   "relevant_sources": [
    "config:server.headless",
@@ -76,6 +76,27 @@
   ],
   "reference": "User found headless mode calls get_external_ip(); confirmed; fixed with a timeout (2026).",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate",
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-8364.md",
+  "review_reason": "Explicit offline steps, versions and a minutes-long startup delay support escalation with targeted diagnostics. Headless/external-IP root cause emerges later that evening, so it must remain a hypothesis initially.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "acceptable_next_steps": [
+    "Escalate with repro; ask about config (headless, gatherUsageStats) to narrow the network call",
+    "Suggest debug logging to locate the hang"
+   ],
+   "must_not": [
+    "say it cannot be reproduced without trying the given steps",
+    "close as user error"
+   ]
+  },
+  "acceptable_why": "Hani: targeted diagnostics (headless, usage-stats/version-check settings) are acceptable next steps"
  }
 }

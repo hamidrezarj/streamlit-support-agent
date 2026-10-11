@@ -75,5 +75,8 @@ def test_test_cases_need_confirmation():
 
 def test_gold_is_rendered_only_on_request():
     case = cli.find_case("c-8149")
-    g = cli.render_gold(case, "escalate", cli.Style(False))
+    g = cli.render_gold(case, "known_issue", cli.Style(False))     # reviewed gold: known_issue
     assert "MATCH" in g and "MISMATCH" not in g
+    g = cli.render_gold(case, "escalate", cli.Style(False))        # accepted alternative
+    assert "ACCEPTABLE" in g and "MISMATCH" not in g
+    assert "MISMATCH" in cli.render_gold(case, "usage_guidance", cli.Style(False))

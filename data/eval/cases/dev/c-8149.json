@@ -1,7 +1,7 @@
 {
  "case_id": "c-8149",
  "split": "dev",
- "bucket": "escalate",
+ "bucket": "answerable",
  "topic": "server-port",
  "family_id": "fam:8149",
  "multi_turn": false,
@@ -50,24 +50,45 @@
   ]
  },
  "gold": {
-  "outcome": "escalate",
+  "outcome": "known_issue",
   "summary": "App fails to load with --server.port=3000 (dev-mode detection by port).",
   "hypotheses": [
    "frontend treats port 3000 as dev server and connects to 8501"
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Confirm known behaviour (see #4921 diagnosis), workaround: use another port",
-   "Escalate as bug"
+   "Explain the previously reported port-3000 limitation and try another port.",
+   "Escalate the improvement with a link to the earlier reproduction; do not claim a future fix is available."
   ],
   "must_not": [
-   "treat it as a user configuration error"
+   "Recommend 1.32 or 1.46 as an available fix at the February 13 intake.",
+   "Blame arbitrary user code for a documented matching limitation."
   ],
   "relevant_sources": [
    "issue:4921"
   ],
   "reference": "Confirmed; warning added in 1.32.0, port 3000 supported in 1.46.0.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "known_issue",
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-8149.md",
+  "review_reason": "Earlier #4921 describes the exact port-3000 symptom with reproductions. A known limitation with a different-port workaround is defensible even without an available fix. Escalation for improving the fallback/dev-port design is also reasonable; do not make the taxonomy penalize either useful answer.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "acceptable_next_steps": [
+    "Confirm known behaviour (see #4921 diagnosis), workaround: use another port",
+    "Escalate as bug"
+   ],
+   "must_not": [
+    "treat it as a user configuration error"
+   ]
+  },
+  "acceptable_why": "Hani: escalation for improving the fallback/dev-port design is also reasonable"
  }
 }

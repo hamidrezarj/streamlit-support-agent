@@ -60,20 +60,26 @@
   "missing_info": [
    {
     "item": "how the app is accessed (direct IP:port vs reverse proxy / LB)",
-    "why": "proxy without websocket upgrade is the most common cause"
+    "why": "proxy without websocket upgrade is the most common cause."
    },
    {
     "item": "browser console / network errors for the websocket",
-    "why": "confirms websocket failure vs script error"
+    "why": "confirms websocket failure vs script error."
+   },
+   {
+    "item": "Server startup/runtime logs and the exact launch command",
+    "why": "Distinguishes server/environment failures from browser or WebSocket routing problems."
    }
   ],
   "acceptable_next_steps": [
-   "Ask how it is accessed and for console errors",
-   "Point to the 'App is not loading when running remotely' KB article"
+   "Ask direct access versus reverse proxy and the failing browser WebSocket request.",
+   "Test the same hello app directly at the server address/port, then compare the proxied path.",
+   "Inspect server logs while loading streamlit hello; consider server-side startup/runtime errors without assuming a defect in custom application components."
   ],
   "must_not": [
-   "ask to reinstall again",
-   "claim a Streamlit bug"
+   "Ask for Streamlit/Python versions already supplied.",
+   "Assert a confirmed Streamlit bug.",
+   "Recommend reinstall as the primary diagnostic step without evidence."
   ],
   "relevant_sources": [
    "issue:4001",
@@ -82,6 +88,35 @@
   ],
   "reference": "Maintainer: not enough info, no known issue; asked if own app runs; closed as unactionable.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-5500.md",
+  "review_reason": "The server hangs at the loading screen but access topology and browser failures are absent. Streamlit and Python versions are already present.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "missing_info": [
+    {
+     "item": "how the app is accessed (direct IP:port vs reverse proxy / LB)",
+     "why": "proxy without websocket upgrade is the most common cause"
+    },
+    {
+     "item": "browser console / network errors for the websocket",
+     "why": "confirms websocket failure vs script error"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Ask how it is accessed and for console errors",
+    "Point to the 'App is not loading when running remotely' KB article"
+   ],
+   "must_not": [
+    "ask to reinstall again",
+    "claim a Streamlit bug"
+   ]
+  }
  }
 }

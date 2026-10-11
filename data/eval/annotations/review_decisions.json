@@ -1,0 +1,17 @@
+{
+ "_doc": "Team decisions after discussing Hani's review (2026-10-10). outcome = Hani's recommended outcome; acceptable_outcomes = alternatives Hani explicitly called defensible in the review text. Scored as 'outcome acceptable' next to 'outcome exact'. Test-split reviews are used ONLY to correct gold, never to change a system.",
+ "decided_by": ["Hani (reviewer)", "team"],
+ "decided_at": "2026-10-10",
+ "acceptable_outcomes": {
+  "c-8149":  {"alternates": ["escalate"],       "why": "Hani: escalation for improving the fallback/dev-port design is also reasonable"},
+  "c-13521": {"alternates": ["usage_guidance"], "why": "Hani: a support reply offering a free port (--server.port) is also useful"},
+  "c-8364":  {"alternates": ["info_request"],   "why": "Hani: targeted diagnostics (headless, usage-stats/version-check settings) are acceptable next steps"},
+  "c-9781":  {"alternates": ["escalate"],       "why": "Hani: immediate routing to Cloud support is also defensible if escalation means ownership routing"},
+  "c-15378": {"alternates": ["escalate"],       "why": "Hani: escalation with the minimal example remains reasonable"},
+  "c-5793":  {"alternates": ["info_request"],   "why": "Hani: a targeted diagnostic response is also defensible"},
+  "c-8321":  {"alternates": ["escalate"],       "why": "Hani: escalate if it reproduces after a clean install"}
+ },
+ "scenario_notes": {
+  "s-15378": "Intake outcome changed to info_request (bucket ambiguous). expected_final stays 'escalated': it describes the state AFTER the user tried the suggested setting and it did not help."
+ }
+}

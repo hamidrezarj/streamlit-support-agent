@@ -55,13 +55,20 @@
   "hypotheses": [
    "XSRF cookie attributes in cross-site/proxied auth setup"
   ],
-  "missing_info": [],
+  "missing_info": [
+   {
+    "item": "Cross-site iframe/SSO topology and actual Set-Cookie/request Cookie evidence",
+    "why": "Checks whether cookie attributes or proxy/auth filtering causes the 403."
+   }
+  ],
   "acceptable_next_steps": [
-   "Workaround: server.enableXsrfProtection=false (with security caveat)",
-   "Escalate cookie attribute bug"
+   "Escalate the suspected XSRF/auth integration problem with the supplied observations.",
+   "Inspect cookie forwarding and cross-site context; prefer a configuration fix preserving XSRF protection."
   ],
   "must_not": [
-   "recommend disabling XSRF without the security caveat"
+   "Make disabling XSRF the default permanent production fix.",
+   "Treat the 2026 SameSite option as available in 2022.",
+   "State the missing cookie attributes are conclusively the sole cause."
   ],
   "relevant_sources": [
    "config:server.enableXsrfProtection",
@@ -69,6 +76,27 @@
   ],
   "reference": "Confirmed; long-running; SameSite option added in 1.59.0.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate",
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-5793.md",
+  "review_reason": "The XSRF toggle, cookie observation and authentication context justify escalation of a suspected integration defect. Cross-site context, cookie filtering and headers still matter, so a targeted diagnostic response is also defensible. Do not equate SameSite=None with an unconditional universally correct setting.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "missing_info": [],
+   "acceptable_next_steps": [
+    "Workaround: server.enableXsrfProtection=false (with security caveat)",
+    "Escalate cookie attribute bug"
+   ],
+   "must_not": [
+    "recommend disabling XSRF without the security caveat"
+   ]
+  },
+  "acceptable_why": "Hani: a targeted diagnostic response is also defensible"
  }
 }

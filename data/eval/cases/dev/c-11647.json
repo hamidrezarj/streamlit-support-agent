@@ -58,12 +58,12 @@
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Explain it matches a known 1.45.0 issue and recommend upgrading to >=1.45.1 (cite issue #11357 maintainer comment)",
-   "Ask to report back if it recurs after upgrading"
+   "Recommend 1.45.1 or an appropriate later patch based on the earlier maintainer evidence.",
+   "If the error recurs, request a minimal reproducer and deployment/reconnect context."
   ],
   "must_not": [
-   "ask for the Streamlit version (already given: 1.45.0)",
-   "claim root cause is user code"
+   "Guarantee the upgrade resolves every ForwardMsg MISS variant.",
+   "Ask again for the supplied Streamlit version."
   ],
   "relevant_sources": [
    "issue:11357",
@@ -72,6 +72,25 @@
   ],
   "reference": "Maintainer: known issue in 1.45.0, fixed in 1.45.1 patch; closed as duplicate.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "known_issue"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-11647.md",
+  "review_reason": "The report gives Streamlit 1.45.0 and the precise cache error. Earlier #11357 contains a 2025-05-14 maintainer suggestion for patch 1.45.1, before this case. This supports a known issue, with recurrence follow-up rather than a guaranteed cure.",
+  "draft": {
+   "outcome": "known_issue",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Explain it matches a known 1.45.0 issue and recommend upgrading to >=1.45.1 (cite issue #11357 maintainer comment)",
+    "Ask to report back if it recurs after upgrading"
+   ],
+   "must_not": [
+    "ask for the Streamlit version (already given: 1.45.0)",
+    "claim root cause is user code"
+   ]
+  }
  }
 }

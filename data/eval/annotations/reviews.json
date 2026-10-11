@@ -1,0 +1,1008 @@
+{
+ "built_at": "2026-10-10T09:36:52+00:00",
+ "stats": {
+  "n": 32,
+  "complete": 32,
+  "blind_equals_draft": 26,
+  "kappa_blind_vs_draft": 0.738,
+  "outcome_changed": [
+   "c-6956",
+   "c-8149",
+   "c-9781",
+   "c-15378",
+   "c-6095",
+   "c-6224"
+  ],
+  "needs_discussion": [
+   "c-13521",
+   "c-8149",
+   "c-8364",
+   "c-9781",
+   "c-15378",
+   "c-5793",
+   "c-8321"
+  ],
+  "bucket_changed": [
+   "c-6956",
+   "c-8149",
+   "c-9781",
+   "c-15378",
+   "c-6224"
+  ],
+  "fields_edited": {
+   "acceptable_next_steps": 32,
+   "must_not": 28,
+   "summary": 3,
+   "hypotheses": 4,
+   "missing_info": 10,
+   "bucket": 5,
+   "reference": 1
+  }
+ },
+ "reviews": {
+  "c-11647": {
+   "case_id": "c-11647",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-11647.md",
+   "blind_outcome": "known_issue",
+   "draft_outcome": "known_issue",
+   "verdict": "Change",
+   "outcome": "known_issue",
+   "reason": "The report gives Streamlit 1.45.0 and the precise cache error. Earlier #11357 contains a 2025-05-14 maintainer suggestion for patch 1.45.1, before this case. This supports a known issue, with recurrence follow-up rather than a guaranteed cure.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Recommend 1.45.1 or an appropriate later patch based on the earlier maintainer evidence.",
+     "If the error recurs, request a minimal reproducer and deployment/reconnect context."
+    ],
+    "must_not": [
+     "Guarantee the upgrade resolves every ForwardMsg MISS variant.",
+     "Ask again for the supplied Streamlit version."
+    ]
+   },
+   "acceptable_outcomes": [
+    "known_issue"
+   ]
+  },
+  "c-12709": {
+   "case_id": "c-12709",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-12709.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "Version and deployment platform are absent initially and determine whether old cache fixes apply. Community Cloud, 1.50.0 and frequency 8/10 are later user turns, not initial facts.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask the Streamlit version and deployment platform.",
+     "Ask whether a minimal app reproduces it and whether it follows reconnect/navigation."
+    ],
+    "must_not": [
+     "Use later user replies as initial facts.",
+     "Promise 1.45.1 fixes a user already running 1.50.0."
+    ],
+    "summary": "ForwardMsg MISS without an initial version or deployment context."
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-13102": {
+   "case_id": "c-13102",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13102.md",
+   "blind_outcome": "usage_guidance",
+   "draft_outcome": "usage_guidance",
+   "verdict": "Change",
+   "outcome": "usage_guidance",
+   "reason": "Python 3.9 is explicit in the pip path and pip output. The pre-case 1.51 release note explains the compatibility boundary; no need to ask for Python again.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Use a supported Python interpreter and install the desired Streamlit release in that environment.",
+     "If Python 3.9 is required temporarily, remain on a compatible Streamlit release and explain the version constraint."
+    ]
+   },
+   "acceptable_outcomes": [
+    "usage_guidance"
+   ]
+  },
+  "c-13165": {
+   "case_id": "c-13165",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13165.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The exact error and tab-return trigger are known, but the installed Streamlit version is missing. Earlier fixes help frame a question, not promise a fix.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask the installed Streamlit version and how long the tab was inactive.",
+     "Request a minimal app reconnect test and use version-specific release notes conditionally."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-13461": {
+   "case_id": "c-13461",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13461.md",
+   "blind_outcome": "known_issue",
+   "draft_outcome": "known_issue",
+   "verdict": "Change",
+   "outcome": "known_issue",
+   "reason": "The same Entra/Authlib error was reported in #13335 before this case; its 2025-12-17 comment announces patch 1.52.2. The reported rollback is evidence of a dependency compatibility problem.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Explain the documented compatibility issue and test Streamlit 1.52.2 in staging.",
+     "Retain the user-tested Authlib 1.5.x workaround, or use the independently documented pre-1.6.6 constraint after checking the exact Authlib version."
+    ],
+    "must_not": [
+     "Claim every Authlib 1.6.x release is broken.",
+     "Use #13461 own future duplicate-closing comment as initial evidence."
+    ]
+   },
+   "acceptable_outcomes": [
+    "known_issue"
+   ]
+  },
+  "c-13521": {
+   "case_id": "c-13521",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13521.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Needs discussion",
+   "outcome": "escalate",
+   "reason": "The report includes an exact WinError, implementation limitation and reproduction. Escalating the missing fallback is defensible; a support reply offering a free port is also useful. The fix in 1.53 is future information.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Escalate the PermissionError fallback with the supplied reproduction.",
+     "Give a documented --server.port workaround while clearly stating the fallback defect remains unconfirmed at intake."
+    ],
+    "must_not": [
+     "Claim the 1.53 fix was available on 2026-01-06.",
+     "Treat the reporter-proposed patch as maintainer-confirmed code."
+    ]
+   },
+   "acceptable_outcomes": [
+    "escalate",
+    "usage_guidance"
+   ],
+   "acceptable_why": "Hani: a support reply offering a free port (--server.port) is also useful"
+  },
+  "c-15326": {
+   "case_id": "c-15326",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-15326.md",
+   "blind_outcome": "usage_guidance",
+   "draft_outcome": "usage_guidance",
+   "verdict": "Change",
+   "outcome": "usage_guidance",
+   "reason": "The deployment method and requested interpreter are explicit. Explain Community Cloud Python selection separately from the Streamlit 1.51 Python support change: the user actually pins Streamlit 1.35.0.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Redeploy using a Python version offered in Advanced settings and compatible dependency versions.",
+     "If the selected supported version is ignored, collect the settings and fresh build log and route to Cloud support."
+    ],
+    "must_not": [
+     "Infer Streamlit 1.35.0 itself requires Python >=3.10 merely because 1.51 does.",
+     "Promise runtime.txt controls the Cloud interpreter."
+    ],
+    "hypotheses": [
+     "Community Cloud selects the interpreter through deployment settings rather than runtime.txt.",
+     "Pinned older packages are incompatible with the interpreter actually used."
+    ]
+   },
+   "acceptable_outcomes": [
+    "usage_guidance"
+   ]
+  },
+  "c-16030": {
+   "case_id": "c-16030",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-16030.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Change",
+   "outcome": "escalate",
+   "reason": "The report describes a reproducible dependency/header incompatibility and a reporter-tested workaround. There is no earlier resolving source in the supplied gold. Later uvicorn analysis and websockets 16.1.1 are not intake evidence.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Exact resolved uvicorn/websockets versions and server traceback",
+      "why": "Distinguishes header validation from the later-described re-encoding failure."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Escalate with the existing reproduction and exact dependency/header context.",
+     "Offer the reporter-tested websockets<16.1 pin as a conditional temporary test, without guaranteeing it for all stacks."
+    ],
+    "must_not": [
+     "Ask which auth proxy without acknowledging the supplied Authelia example.",
+     "Present the later uvicorn diagnosis or July 17 patch as known on July 16 morning."
+    ]
+   },
+   "acceptable_outcomes": [
+    "escalate"
+   ]
+  },
+  "c-16570": {
+   "case_id": "c-16570",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-16570.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "Only the cache error is given. Ask version and platform to distinguish old fixed bugs from newer variants.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask exact Streamlit version and deployment platform.",
+     "Ask when the error occurs and whether a minimal app reproduces it; mention older fixes conditionally."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-5500": {
+   "case_id": "c-5500",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-5500.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The server hangs at the loading screen but access topology and browser failures are absent. Streamlit and Python versions are already present.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "how the app is accessed (direct IP:port vs reverse proxy / LB)",
+      "why": "proxy without websocket upgrade is the most common cause."
+     },
+     {
+      "item": "browser console / network errors for the websocket",
+      "why": "confirms websocket failure vs script error."
+     },
+     {
+      "item": "Server startup/runtime logs and the exact launch command",
+      "why": "Distinguishes server/environment failures from browser or WebSocket routing problems."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Ask direct access versus reverse proxy and the failing browser WebSocket request.",
+     "Test the same hello app directly at the server address/port, then compare the proxied path.",
+     "Inspect server logs while loading streamlit hello; consider server-side startup/runtime errors without assuming a defect in custom application components."
+    ],
+    "must_not": [
+     "Ask for Streamlit/Python versions already supplied.",
+     "Assert a confirmed Streamlit bug.",
+     "Recommend reinstall as the primary diagnostic step without evidence."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-6956": {
+   "case_id": "c-6956",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-6956.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "usage_guidance",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The visible report ALREADY lists opencv-python-headless. Its heading says requirement.txt (singular). Ask/check the actual filename, deployed revision, install log and interpreter; adding the same dependency blindly does not discriminate causes. Guidance is acceptable if it explicitly addresses this discrepancy.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Actual committed dependency filename/path and successful build installation log",
+      "why": "Distinguishes a singular filename, undiscovered requirements file, failed install or stale deployment."
+     },
+     {
+      "item": "Interpreter/environment used to install and run cv2",
+      "why": "Detects an installation/runtime mismatch."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Ask whether the actual file is requirements.txt and inspect the deployed commit/build log; do not assume the heading typo is definitive.",
+     "Verify OpenCV import with the runtime interpreter and compare its package installation with the build environment."
+    ],
+    "must_not": [
+     "Tell the user simply to add opencv-python-headless without acknowledging it is already listed.",
+     "Treat missing libGL as established from ModuleNotFoundError alone.",
+     "Escalate as a confirmed Streamlit bug."
+    ],
+    "hypotheses": [
+     "Requirements file not discovered or deployment uses another revision.",
+     "OpenCV installation failed or was installed in another environment."
+    ],
+    "bucket": {
+     "from": "answerable",
+     "to": "ambiguous"
+    }
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-7867": {
+   "case_id": "c-7867",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-7867.md",
+   "blind_outcome": "usage_guidance",
+   "draft_outcome": "usage_guidance",
+   "verdict": "Change",
+   "outcome": "usage_guidance",
+   "reason": "Keeping a toolbar visible is consistent with viewer hiding developer options rather than the entire menu. Explain minimal versus viewer; do not infer the environment variable failed merely from visibility.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Explain viewer versus minimal and test minimal if hiding the menu is the goal.",
+     "Inspect the effective client.toolbarMode if developer controls specifically remain exposed."
+    ],
+    "must_not": [
+     "Promise minimal removes every toolbar/control in every context.",
+     "Declare environment variables unsupported."
+    ]
+   },
+   "acceptable_outcomes": [
+    "usage_guidance"
+   ]
+  },
+  "c-8149": {
+   "case_id": "c-8149",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-8149.md",
+   "blind_outcome": "known_issue",
+   "draft_outcome": "escalate",
+   "verdict": "Needs discussion",
+   "outcome": "known_issue",
+   "reason": "Earlier #4921 describes the exact port-3000 symptom with reproductions. A known limitation with a different-port workaround is defensible even without an available fix. Escalation for improving the fallback/dev-port design is also reasonable; do not make the taxonomy penalize either useful answer.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Explain the previously reported port-3000 limitation and try another port.",
+     "Escalate the improvement with a link to the earlier reproduction; do not claim a future fix is available."
+    ],
+    "must_not": [
+     "Recommend 1.32 or 1.46 as an available fix at the February 13 intake.",
+     "Blame arbitrary user code for a documented matching limitation."
+    ],
+    "bucket": {
+     "from": "escalate",
+     "to": "answerable"
+    }
+   },
+   "acceptable_outcomes": [
+    "known_issue",
+    "escalate"
+   ],
+   "acceptable_why": "Hani: escalation for improving the fallback/dev-port design is also reasonable"
+  },
+  "c-8364": {
+   "case_id": "c-8364",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-8364.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Needs discussion",
+   "outcome": "escalate",
+   "reason": "Explicit offline steps, versions and a minutes-long startup delay support escalation with targeted diagnostics. Headless/external-IP root cause emerges later that evening, so it must remain a hypothesis initially.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Escalate the reproducible offline startup hang and request debug timing around startup.",
+     "Ask/test effective headless and usage-statistics/version-check settings as discriminating diagnostics."
+    ],
+    "must_not": [
+     "State get_external_ip is the confirmed root cause at intake.",
+     "Claim a 2026 timeout fix was available in March 2024."
+    ]
+   },
+   "acceptable_outcomes": [
+    "escalate",
+    "info_request"
+   ],
+   "acceptable_why": "Hani: targeted diagnostics (headless, usage-stats/version-check settings) are acceptable next steps"
+  },
+  "c-9665": {
+   "case_id": "c-9665",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-9665.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "A version comparison exists, but no minimal code or browser diagnostic evidence. App-specific frontend changes and a regression remain distinguishable possibilities.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Request a minimal app/component list and browser console details.",
+     "Compare a minimal app across 1.37.1, 1.38 and 1.39 using otherwise identical deployments."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-9781": {
+   "case_id": "c-9781",
+   "split": "dev",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/dev/hani-review-c-9781.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "escalate",
+   "verdict": "Needs discussion",
+   "outcome": "info_request",
+   "reason": "Only provisioning/manager-start logs are supplied. A platform incident is plausible but confirmed in later maintainer comments. Request full deployment logs and a minimal template test; immediate routing to Cloud support is also defensible if escalation means ownership routing.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask for complete deployment logs and test a minimal template app.",
+     "Route to Community Cloud support with the app URL and timestamps, explicitly as a suspected provisioning problem."
+    ],
+    "must_not": [
+     "Assert a confirmed Cloud incident at the initial timestamp.",
+     "Claim resolved before user confirmation."
+    ],
+    "bucket": {
+     "from": "escalate",
+     "to": "ambiguous"
+    }
+   },
+   "acceptable_outcomes": [
+    "info_request",
+    "escalate"
+   ],
+   "acceptable_why": "Hani: immediate routing to Cloud support is also defensible if escalation means ownership routing"
+  },
+  "c-11500": {
+   "case_id": "c-11500",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-11500.md",
+   "blind_outcome": "known_issue",
+   "draft_outcome": "known_issue",
+   "verdict": "Change",
+   "outcome": "known_issue",
+   "reason": "Earlier release evidence for the SessionInfo race supports known_issue on reported 1.41.0. Later correction to 1.43.2 and the new ForwardMsg error must be confined to follow-up state.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Explain the earlier documented SessionInfo fix and test an appropriate later patch.",
+     "If it persists, collect reconnect/server logs and a minimal reproducer without assuming every similarly worded popup has the same cause."
+    ],
+    "must_not": [
+     "Use 1.43.2 correction or the later screenshot as initial facts.",
+     "Guarantee upgrading fixes every reconnect problem."
+    ],
+    "summary": "SessionInfo initialization popup on reported Streamlit 1.41.0 with reconnect symptoms."
+   },
+   "acceptable_outcomes": [
+    "known_issue"
+   ]
+  },
+  "c-11509": {
+   "case_id": "c-11509",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-11509.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The supplied env variable is valid. The launch command/entrypoint and effective config are missing; bootstrap.run is revealed only later. A printed root URL alone is not a decisive routing test.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask Dockerfile ENTRYPOINT/CMD and inspect the env variable plus effective server.baseUrlPath.",
+     "Test the actual /test path with a standard streamlit run launcher as a controlled comparison."
+    ],
+    "must_not": [
+     "Declare STREAMLIT_SERVER_BASE_URL_PATH an invalid name.",
+     "State bootstrap.run caused it before the June 30 user reply."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-11670": {
+   "case_id": "c-11670",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-11670.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Change",
+   "outcome": "escalate",
+   "reason": "The code-level timeout discrepancy and debugger observation are sufficiently concrete for escalation. Tornado version is not supplied; it matters for compatibility, despite the broad original prohibition on asking versions.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Installed Tornado version",
+      "why": "Tests whether the changed timeout semantics apply to this environment."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Escalate with the supplied code/debugger analysis and collect the Tornado version.",
+     "Run a controlled comparison with an earlier compatible Tornado release, clearly as a diagnostic, not an already-confirmed intake fix."
+    ],
+    "must_not": [
+     "Ask again for Streamlit/Python versions already present.",
+     "Recommend 1.47/1.48 as available fixes on June 17.",
+     "Present later tornado<6.5 confirmation as pre-intake evidence."
+    ]
+   },
+   "acceptable_outcomes": [
+    "escalate"
+   ]
+  },
+  "c-14432": {
+   "case_id": "c-14432",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-14432.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Change",
+   "outcome": "escalate",
+   "reason": "Exact scrape failure and reproduction support a metrics compatibility escalation. Prometheus version and negotiated format can narrow it; user-suggested renaming is not yet established as the correct fix.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Prometheus version and response Content-Type/exposition payload",
+      "why": "Discriminates parser/format compatibility and verifies the precise naming violation."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Escalate with the exact scrape error, endpoint and Streamlit version.",
+     "Capture raw exposition and scraper version to validate the naming/format hypothesis."
+    ],
+    "must_not": [
+     "Promise the reporter proposed metric rename is correct without checking the exposition format.",
+     "Recommend future 1.56 as already available at intake."
+    ]
+   },
+   "acceptable_outcomes": [
+    "escalate"
+   ]
+  },
+  "c-15378": {
+   "case_id": "c-15378",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-15378.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "escalate",
+   "verdict": "Needs discussion",
+   "outcome": "info_request",
+   "reason": "The same machine works at 127.0.0.1 but not localhost, with explicit WebSocket failure already supplied. A targeted IPv4/IPv6, proxy-bypass and pre-Starlette comparison is more discriminating than immediately confirming a library regression. Escalation with the minimal example remains reasonable.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "localhost resolution/binding and proxy bypass settings",
+      "why": "Separates IPv4/IPv6 or corporate interception from a server regression."
+     },
+     {
+      "item": "Same minimal example on pre-Starlette version in the same network",
+      "why": "Tests the claimed version boundary."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Compare localhost versus 127.0.0.1, binding and proxy-bypass behavior with the supplied minimal app.",
+     "Compare the earlier version in the same environment and escalate reproducible differences with the existing console error."
+    ],
+    "must_not": [
+     "Ask for the same browser console WebSocket error already pasted.",
+     "Claim later authentication/cookie analysis is initial knowledge.",
+     "Declare a confirmed Streamlit regression solely from private-versus-corporate behavior."
+    ],
+    "bucket": {
+     "from": "escalate",
+     "to": "ambiguous"
+    }
+   },
+   "acceptable_outcomes": [
+    "info_request",
+    "escalate"
+   ],
+   "acceptable_why": "Hani: escalation with the minimal example remains reasonable"
+  },
+  "c-16341": {
+   "case_id": "c-16341",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-16341.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Change",
+   "outcome": "escalate",
+   "reason": "A minimal app fails before executing user code with exact versions and TypeError. This supports escalation, but the first workaround/patch appears later the same day.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Escalate the minimal startup failure with the supplied package combination and traceback.",
+     "Test a previously working dependency combination as a conditional diagnostic, without presenting a future-confirmed pin as a known intake solution."
+    ],
+    "must_not": [
+     "Blame the application code.",
+     "Claim starlette<1.4.0 is confirmed before the first supporting comment.",
+     "Claim the eventual patch is 1.62.0; thread records Streamlit 1.61.1 and Starlette 1.4.1."
+    ],
+    "reference": "Post-intake history only: Streamlit 1.61.1 patch announced at 15:05:59Z on 2026-08-05, then Starlette 1.4.1 at 15:32:48Z."
+   },
+   "acceptable_outcomes": [
+    "escalate"
+   ]
+  },
+  "c-5793": {
+   "case_id": "c-5793",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-5793.md",
+   "blind_outcome": "escalate",
+   "draft_outcome": "escalate",
+   "verdict": "Needs discussion",
+   "outcome": "escalate",
+   "reason": "The XSRF toggle, cookie observation and authentication context justify escalation of a suspected integration defect. Cross-site context, cookie filtering and headers still matter, so a targeted diagnostic response is also defensible. Do not equate SameSite=None with an unconditional universally correct setting.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Cross-site iframe/SSO topology and actual Set-Cookie/request Cookie evidence",
+      "why": "Checks whether cookie attributes or proxy/auth filtering causes the 403."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Escalate the suspected XSRF/auth integration problem with the supplied observations.",
+     "Inspect cookie forwarding and cross-site context; prefer a configuration fix preserving XSRF protection."
+    ],
+    "must_not": [
+     "Make disabling XSRF the default permanent production fix.",
+     "Treat the 2026 SameSite option as available in 2022.",
+     "State the missing cookie attributes are conclusively the sole cause."
+    ]
+   },
+   "acceptable_outcomes": [
+    "escalate",
+    "info_request"
+   ],
+   "acceptable_why": "Hani: a targeted diagnostic response is also defensible"
+  },
+  "c-6095": {
+   "case_id": "c-6095",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-6095.md",
+   "blind_outcome": "usage_guidance",
+   "draft_outcome": "known_issue",
+   "verdict": "Change",
+   "outcome": "usage_guidance",
+   "reason": "The user explicitly identifies the intentional endpoint rename and an LB rule restricted to the old path. Updating proxy rules is configuration guidance under the shared taxonomy, not an unconfirmed bug. known_issue is defensible only if the team explicitly includes documented migration limitations in that category.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Update WebSocket routing/upgrade rules to the release-appropriate /_stcore/stream path.",
+     "Check related health routing and verify the handshake, preserving the deployment authentication policy."
+    ],
+    "must_not": [
+     "Promise rollback.",
+     "Escalate as a newly discovered Streamlit bug."
+    ]
+   },
+   "acceptable_outcomes": [
+    "usage_guidance"
+   ]
+  },
+  "c-6224": {
+   "case_id": "c-6224",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-6224.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "known_issue",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The visible report explicitly says sticky sessions were enabled with no luck. A similar multi-replica case is not proof of the same cause. Validate actual upload/WebSocket affinity, instance routing, restarts and LB logs before declaring the known limitation the full explanation.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Actual affinity cookie/routing for upload and WebSocket requests",
+      "why": "Verifies that the already-attempted sticky-session configuration is effective."
+     },
+     {
+      "item": "Instance IDs/restarts and 400/502 LB logs at upload failure",
+      "why": "Separates cross-instance session loss from gateway/backend failure."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Acknowledge the attempted sticky sessions and verify upload/WebSocket requests reach the same live backend.",
+     "Compare a single-instance deployment and inspect failed upload/LB logs, including size/timeouts as hypotheses."
+    ],
+    "must_not": [
+     "Simply repeat enable sticky sessions without acknowledging the previous attempt.",
+     "Treat 400 and 502 as proof of one identical root cause."
+    ],
+    "bucket": {
+     "from": "answerable",
+     "to": "ambiguous"
+    }
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-6305": {
+   "case_id": "c-6305",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-6305.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The inner baseUrlPath value and two-stage topology are supplied. Request missing configuration for both proxy hops and the actual failing browser path/query; a code 1006 is not a root cause. The 1.20 message fix was released on March 9, before intake, but its relevance to a user still running 1.11.1 is not established.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Inner nginx and outer HTTP proxy rewrite/upgrade configuration",
+      "why": "Tests both hops and the external-to-internal path mapping."
+     },
+     {
+      "item": "Actual failing browser request URL/query, response and close timing",
+      "why": "Separates path/query loss, handshake and post-connect failure."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Inspect both proxy-hop configurations, query preservation and WebSocket upgrade end to end.",
+     "Compare direct and proxied access using the supplied /dashboard base path and a minimal app."
+    ],
+    "must_not": [
+     "Ask again what server.baseUrlPath is without acknowledging the supplied value.",
+     "Attribute 1.11.1 behavior to the 1.18 rename.",
+     "Promise upgrading to 1.20 fixes this case without establishing the same regression."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-7076": {
+   "case_id": "c-7076",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-7076.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "A periodic refresh and health-response theory do not establish causality. Request the actual stack trace and proxy/timeout topology. Screenshots were replaced with placeholders and must be restored or described.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Request the exact console stack trace, request/close sequence and proxy/LB timeout configuration.",
+     "Compare direct and proxied minimal long-running workloads and distinguish a reconnect consequence from the original cause."
+    ],
+    "must_not": [
+     "Confirm the JSON health-response theory as root cause.",
+     "Describe later timeout/proxy findings as initial evidence."
+    ],
+    "summary": "Periodic refresh in Docker/cloud deployments; reporter suspects health-response parsing."
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-7856": {
+   "case_id": "c-7856",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-7856.md",
+   "blind_outcome": "usage_guidance",
+   "draft_outcome": "usage_guidance",
+   "verdict": "Change",
+   "outcome": "usage_guidance",
+   "reason": "The configuration already includes HTTP/1.1 and Upgrade/Connection headers. Its trailing-slash proxy location plus logged 301 explains the concrete mismatch under nginx documented behavior.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Use an exact or appropriate slashless /_stcore/stream location and preserve WebSocket headers and upstream path.",
+     "Verify the request gets a 101 handshake instead of a 301 while direct NodePort behavior stays working."
+    ],
+    "must_not": [
+     "Ask again for nginx configuration.",
+     "Say the provided WebSocket location lacks Upgrade/Connection headers.",
+     "Claim Streamlit removed /_stcore/stream."
+    ],
+    "hypotheses": [
+     "nginx slash-ended location redirects the slashless WebSocket endpoint with 301."
+    ]
+   },
+   "acceptable_outcomes": [
+    "usage_guidance"
+   ]
+  },
+  "c-8321": {
+   "case_id": "c-8321",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-8321.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Needs discussion",
+   "outcome": "info_request",
+   "reason": "The mixed/invalid distribution metadata and STREAMLIT_VERSION_STRING=None are stronger immediate signals than a generic protobuf explanation. A fresh-environment comparison is the most useful discriminating check; repair guidance is acceptable if conditional.",
+   "complete": true,
+   "edits": {
+    "missing_info": [
+     {
+      "item": "Clean-environment result and Streamlit package/version metadata",
+      "why": "Tests the visible invalid-metadata and None version symptoms."
+     }
+    ],
+    "acceptable_next_steps": [
+     "Test a fresh isolated environment with the intended pinned version and verify python -m streamlit version.",
+     "Inspect import/package metadata and executable/interpreter alignment; escalate if reproducible after a clean install."
+    ],
+    "must_not": [
+     "Treat protobuf mismatch as the confirmed cause.",
+     "Claim a later SessionInfo fix is already available on March 17."
+    ],
+    "hypotheses": [
+     "Incomplete or mixed installation produces invalid Streamlit distribution metadata.",
+     "A separate frontend/session regression if the problem survives a clean installation."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request",
+    "escalate"
+   ],
+   "acceptable_why": "Hani: escalate if it reproduces after a clean install"
+  },
+  "c-9140": {
+   "case_id": "c-9140",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-9140.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "The report gives Python 3.10, Streamlit 1.36 and Windows but no complete traceback or Tornado version/launcher. The later Protocol analysis and deleting library code are not justified initial advice.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask Tornado version, exact launch command and complete traceback.",
+     "Test a minimal app in a clean terminal environment, then escalate a reproducible dependency/OS difference."
+    ],
+    "must_not": [
+     "Ask again for Python/Streamlit versions already provided.",
+     "Recommend deleting super().__init__ from Tornado as a routine fix.",
+     "Use the October Protocol diagnosis at the July intake."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  },
+  "c-9176": {
+   "case_id": "c-9176",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-9176.md",
+   "blind_outcome": "usage_guidance",
+   "draft_outcome": "usage_guidance",
+   "verdict": "Change",
+   "outcome": "usage_guidance",
+   "reason": "The unsupported configuration option is explicit and the user cannot modify the host launch command. Explain configuration precedence and where to remove the option; route host-injected CLI flags to Posit rather than pretending an env override always wins.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Check and remove the obsolete option from user-owned config/environment if present.",
+     "If the hosting launcher injects it, contact Posit to remove/update the launch flag; explain that config/env may not override CLI."
+    ],
+    "must_not": [
+     "Tell the user to edit a launch command they say they cannot access.",
+     "Promise an empty config file overrides a host-injected CLI option.",
+     "Escalate as a confirmed Streamlit defect."
+    ]
+   },
+   "acceptable_outcomes": [
+    "usage_guidance"
+   ]
+  },
+  "c-9680": {
+   "case_id": "c-9680",
+   "split": "test",
+   "reviewer": "Hani",
+   "review_date": "2026-10-09",
+   "file": "data/eval/annotations/reviews/hani/test/hani-review-c-9680.md",
+   "blind_outcome": "info_request",
+   "draft_outcome": "info_request",
+   "verdict": "Change",
+   "outcome": "info_request",
+   "reason": "Deployment-specific refresh during long execution has several plausible infrastructure causes. Streamlit/Python/OS/browser are known; prioritize affinity, WebSocket timing and pod lifecycle evidence.",
+   "complete": true,
+   "edits": {
+    "acceptable_next_steps": [
+     "Ask replica/affinity configuration and failing WebSocket timing to select the next diagnostic.",
+     "Inspect pod restart/OOM events and compare a single-replica or direct-access controlled run."
+    ],
+    "must_not": [
+     "Request a generic version/OS/browser checklist already answered.",
+     "Declare a confirmed Streamlit bug without isolating the deployment behavior."
+    ]
+   },
+   "acceptable_outcomes": [
+    "info_request"
+   ]
+  }
+ }
+}

@@ -67,8 +67,8 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for the version; recommend upgrading to latest if older than 1.47",
-   "Cite release notes 1.46.0 cache cleanup and 1.47.0 reconnect rerun"
+   "Ask the installed Streamlit version and how long the tab was inactive.",
+   "Request a minimal app reconnect test and use version-specific release notes conditionally."
   ],
   "must_not": [
    "state it is definitely fixed"
@@ -81,6 +81,21 @@
   ],
   "reference": "Maintainer asked version; closed assuming older version.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13165.md",
+  "review_reason": "The exact error and tab-return trigger are known, but the installed Streamlit version is missing. Earlier fixes help frame a question, not promise a fix.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask for the version; recommend upgrading to latest if older than 1.47",
+    "Cite release notes 1.46.0 cache cleanup and 1.47.0 reconnect rerun"
+   ]
+  }
  }
 }

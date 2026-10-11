@@ -51,7 +51,7 @@
  },
  "gold": {
   "outcome": "info_request",
-  "summary": "App refreshes after some time in certain cloud environments; suspects /healthz response format (v1.24).",
+  "summary": "Periodic refresh in Docker/cloud deployments; reporter suspects health-response parsing.",
   "hypotheses": [
    "proxy/LB idle or request timeout dropping the websocket -> reconnect + health check",
    "health endpoint format (unlikely)"
@@ -67,11 +67,12 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for platform/proxy details and logs",
-   "Explain health check is used on reconnect; suggest checking LB timeouts"
+   "Request the exact console stack trace, request/close sequence and proxy/LB timeout configuration.",
+   "Compare direct and proxied minimal long-running workloads and distinguish a reconnect consequence from the original cause."
   ],
   "must_not": [
-   "confirm the JSON-format theory as root cause"
+   "Confirm the JSON health-response theory as root cause.",
+   "Describe later timeout/proxy findings as initial evidence."
   ],
   "relevant_sources": [
    "issue:3028",
@@ -80,6 +81,25 @@
   ],
   "reference": "Maintainer asked for stack traces/deployment; long-running process timeouts suspected; unresolved.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-7076.md",
+  "review_reason": "A periodic refresh and health-response theory do not establish causality. Request the actual stack trace and proxy/timeout topology. Screenshots were replaced with placeholders and must be restored or described.",
+  "draft": {
+   "outcome": "info_request",
+   "bucket": "ambiguous",
+   "acceptable_next_steps": [
+    "Ask for platform/proxy details and logs",
+    "Explain health check is used on reconnect; suggest checking LB timeouts"
+   ],
+   "must_not": [
+    "confirm the JSON-format theory as root cause"
+   ],
+   "summary": "App refreshes after some time in certain cloud environments; suspects /healthz response format (v1.24)."
+  }
  }
 }

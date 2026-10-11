@@ -9,35 +9,39 @@
  "stopped_early": null,
  "metrics": {
   "n_cases": 16,
-  "outcome_exact": 0.188,
+  "outcome_exact": 0.25,
+  "outcome_acceptable": 0.25,
   "bucket_ok": 0.438,
   "per_bucket": {
    "ambiguous": {
-    "n": 5,
-    "bucket_ok": 0.2,
-    "outcome_exact": 0.2
+    "n": 7,
+    "bucket_ok": 0.143,
+    "outcome_exact": 0.143,
+    "outcome_acceptable": 0.143
    },
    "answerable": {
     "n": 6,
     "bucket_ok": 1.0,
-    "outcome_exact": 0.333
+    "outcome_exact": 0.5,
+    "outcome_acceptable": 0.5
    },
    "escalate": {
-    "n": 5,
+    "n": 3,
     "bucket_ok": 0.0,
-    "outcome_exact": 0.0
+    "outcome_exact": 0.0,
+    "outcome_acceptable": 0.0
    }
   },
   "confusion": {
    "ambiguous": {
-    "known_issue": 4,
+    "known_issue": 6,
     "info_request": 1
    },
    "answerable": {
     "known_issue": 6
    },
    "escalate": {
-    "known_issue": 5
+    "known_issue": 3
    }
   },
   "retrieval_recall": 0.468,
@@ -50,10 +54,11 @@
   "basis_mislabel_rate": 0.812,
   "duplicate_citation_cases": 2,
   "unsupported_upgrade_cases": 4,
-  "high_confidence_wrong": 4,
+  "high_confidence_wrong": 3,
   "avg_sources_shown": 10.0,
   "avg_questions": 0.938,
   "errors": 0,
+  "llm_proposed_exact": null,
   "cost": {
    "llm_calls_live": 16,
    "llm_calls_replayed": 0,
@@ -78,6 +83,7 @@
     "gold_outcome": "known_issue",
     "outcome": "known_issue",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 0.333,
@@ -93,6 +99,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -286,6 +293,7 @@
     "gold_outcome": "info_request",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.75,
     "cited_recall": 0.5,
@@ -301,6 +309,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -490,6 +499,7 @@
     "gold_outcome": "usage_guidance",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": true,
     "retrieval_recall": 0.0,
     "cited_recall": 0.0,
@@ -505,6 +515,7 @@
     "unsupported_upgrade": true,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -691,6 +702,7 @@
     "gold_outcome": "info_request",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.5,
     "cited_recall": 0.5,
@@ -706,6 +718,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -894,6 +907,7 @@
     "gold_outcome": "known_issue",
     "outcome": "known_issue",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 1.0,
@@ -909,6 +923,7 @@
     "unsupported_upgrade": true,
     "n_sources_shown": 10,
     "confidence": "high",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -1099,6 +1114,7 @@
     "gold_outcome": "escalate",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.333,
     "cited_recall": 0.333,
@@ -1114,6 +1130,7 @@
     "unsupported_upgrade": true,
     "n_sources_shown": 10,
     "confidence": "high",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -1300,6 +1317,7 @@
     "gold_outcome": "usage_guidance",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": true,
     "retrieval_recall": 0.0,
     "cited_recall": 0.0,
@@ -1315,6 +1333,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "high",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -1505,6 +1524,7 @@
     "gold_outcome": "escalate",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": null,
     "cited_recall": null,
@@ -1520,6 +1540,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "high",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -1707,6 +1728,7 @@
     "gold_outcome": "info_request",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.6,
     "cited_recall": 0.6,
@@ -1722,6 +1744,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -1916,6 +1939,7 @@
     "gold_outcome": "info_request",
     "outcome": "info_request",
     "outcome_exact": true,
+    "outcome_acceptable": true,
     "bucket_ok": true,
     "retrieval_recall": 0.667,
     "cited_recall": 0.0,
@@ -1931,6 +1955,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -2125,11 +2150,12 @@
    "bucket": "answerable",
    "score": {
     "case_id": "c-6956",
-    "bucket": "answerable",
-    "gold_outcome": "usage_guidance",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
     "outcome": "known_issue",
     "outcome_exact": false,
-    "bucket_ok": true,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
     "retrieval_recall": 0.5,
     "cited_recall": 0.5,
     "n_cited": 2,
@@ -2144,6 +2170,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -2336,6 +2363,7 @@
     "gold_outcome": "usage_guidance",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": true,
     "retrieval_recall": 0.667,
     "cited_recall": 0.667,
@@ -2351,6 +2379,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -2541,11 +2570,12 @@
    "bucket": "escalate",
    "score": {
     "case_id": "c-8149",
-    "bucket": "escalate",
-    "gold_outcome": "escalate",
+    "bucket": "answerable",
+    "gold_outcome": "known_issue",
     "outcome": "known_issue",
-    "outcome_exact": false,
-    "bucket_ok": false,
+    "outcome_exact": true,
+    "outcome_acceptable": true,
+    "bucket_ok": true,
     "retrieval_recall": 1.0,
     "cited_recall": 1.0,
     "n_cited": 2,
@@ -2560,6 +2590,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "high",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -2745,6 +2776,7 @@
     "gold_outcome": "escalate",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.0,
     "cited_recall": 0.0,
@@ -2760,6 +2792,7 @@
     "unsupported_upgrade": true,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -2947,6 +2980,7 @@
     "gold_outcome": "info_request",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.0,
     "cited_recall": 0.0,
@@ -2962,6 +2996,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -3144,10 +3179,11 @@
    "bucket": "escalate",
    "score": {
     "case_id": "c-9781",
-    "bucket": "escalate",
-    "gold_outcome": "escalate",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
     "outcome": "known_issue",
     "outcome_exact": false,
+    "outcome_acceptable": false,
     "bucket_ok": false,
     "retrieval_recall": 0.0,
     "cited_recall": 0.0,
@@ -3165,6 +3201,7 @@
     "unsupported_upgrade": false,
     "n_sources_shown": 10,
     "confidence": "medium",
+    "llm_proposed": null,
     "error": null
    },
    "stats": {
@@ -3348,5 +3385,6 @@
    "steps": 2
   }
  ],
- "rescored_at": "2026-10-09T09:19:04+00:00"
+ "rescored_at": "2026-10-10T09:37:23+00:00",
+ "gold_version": "reviewed-hani-2026-10-09"
 }

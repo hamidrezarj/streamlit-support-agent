@@ -1,13 +1,13 @@
 {
- "built_at": "2026-10-05T16:43:08+00:00",
+ "built_at": "2026-10-10T09:37:08+00:00",
  "n_cases": 32,
  "per_split": {
   "dev": {
    "cases": 16,
    "buckets": {
     "answerable": 6,
-    "ambiguous": 5,
-    "escalate": 5
+    "ambiguous": 7,
+    "escalate": 3
    },
    "multi_turn": 5,
    "scenarios": 5
@@ -15,9 +15,9 @@
   "test": {
    "cases": 16,
    "buckets": {
-    "answerable": 5,
-    "ambiguous": 6,
-    "escalate": 5
+    "answerable": 4,
+    "ambiguous": 8,
+    "escalate": 4
    },
    "multi_turn": 6,
    "scenarios": 6

@@ -1,7 +1,7 @@
 {
  "case_id": "c-9781",
  "split": "dev",
- "bucket": "escalate",
+ "bucket": "ambiguous",
  "topic": "cloud-incident",
  "family_id": "fam:9781",
  "multi_turn": true,
@@ -50,7 +50,7 @@
   ]
  },
  "gold": {
-  "outcome": "escalate",
+  "outcome": "info_request",
   "summary": "Community Cloud deploy stuck at 'Your app is in the oven'.",
   "hypotheses": [
    "Community Cloud platform incident",
@@ -67,10 +67,12 @@
    }
   ],
   "acceptable_next_steps": [
-   "Ask for logs / try minimal app; route to Community Cloud support (platform issue, not OSS library)"
+   "Ask for complete deployment logs and test a minimal template app.",
+   "Route to Community Cloud support with the app URL and timestamps, explicitly as a suspected provisioning problem."
   ],
   "must_not": [
-   "mark resolved before the user confirms"
+   "Assert a confirmed Cloud incident at the initial timestamp.",
+   "Claim resolved before user confirmation."
   ],
   "relevant_sources": [
    "issue:4516",
@@ -78,6 +80,25 @@
   ],
   "reference": "Cloud incident; resolved next day; user confirmed working.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request",
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-9781.md",
+  "review_reason": "Only provisioning/manager-start logs are supplied. A platform incident is plausible but confirmed in later maintainer comments. Request full deployment logs and a minimal template test; immediate routing to Cloud support is also defensible if escalation means ownership routing.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "acceptable_next_steps": [
+    "Ask for logs / try minimal app; route to Community Cloud support (platform issue, not OSS library)"
+   ],
+   "must_not": [
+    "mark resolved before the user confirms"
+   ]
+  },
+  "acceptable_why": "Hani: immediate routing to Cloud support is also defensible if escalation means ownership routing"
  }
 }

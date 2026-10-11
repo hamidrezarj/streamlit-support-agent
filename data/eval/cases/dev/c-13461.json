@@ -57,10 +57,12 @@
   ],
   "missing_info": [],
   "acceptable_next_steps": [
-   "Point to #13335 / #13389: upgrade Streamlit to >=1.52.2 or keep Authlib <1.6.6"
+   "Explain the documented compatibility issue and test Streamlit 1.52.2 in staging.",
+   "Retain the user-tested Authlib 1.5.x workaround, or use the independently documented pre-1.6.6 constraint after checking the exact Authlib version."
   ],
   "must_not": [
-   "ask which identity provider (given: Entra)"
+   "Claim every Authlib 1.6.x release is broken.",
+   "Use #13461 own future duplicate-closing comment as initial evidence."
   ],
   "relevant_sources": [
    "issue:13335",
@@ -68,6 +70,23 @@
   ],
   "reference": "Closed as duplicate of #13335; upgrade to 1.52.2.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "known_issue"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-13461.md",
+  "review_reason": "The same Entra/Authlib error was reported in #13335 before this case; its 2025-12-17 comment announces patch 1.52.2. The reported rollback is evidence of a dependency compatibility problem.",
+  "draft": {
+   "outcome": "known_issue",
+   "bucket": "answerable",
+   "acceptable_next_steps": [
+    "Point to #13335 / #13389: upgrade Streamlit to >=1.52.2 or keep Authlib <1.6.6"
+   ],
+   "must_not": [
+    "ask which identity provider (given: Entra)"
+   ]
+  }
  }
 }

@@ -55,13 +55,20 @@
   "hypotheses": [
    "Streamlit ping interval/timeout settings vs tornado behaviour"
   ],
-  "missing_info": [],
+  "missing_info": [
+   {
+    "item": "Installed Tornado version",
+    "why": "Tests whether the changed timeout semantics apply to this environment."
+   }
+  ],
   "acceptable_next_steps": [
-   "Escalate with the analysis; mention history (1.20 made timeouts more forgiving)",
-   "Workaround: patch settings / pin tornado until fix"
+   "Escalate with the supplied code/debugger analysis and collect the Tornado version.",
+   "Run a controlled comparison with an earlier compatible Tornado release, clearly as a diagnostic, not an already-confirmed intake fix."
   ],
   "must_not": [
-   "ask for versions (given)"
+   "Ask again for Streamlit/Python versions already present.",
+   "Recommend 1.47/1.48 as available fixes on June 17.",
+   "Present later tornado<6.5 confirmation as pre-intake evidence."
   ],
   "relevant_sources": [
    "rn:1.20.0:1f5e7538",
@@ -69,6 +76,25 @@
   ],
   "reference": "Confirmed regression; fixed in 1.47.0; configurable interval in 1.48.0.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-11670.md",
+  "review_reason": "The code-level timeout discrepancy and debugger observation are sufficiently concrete for escalation. Tornado version is not supplied; it matters for compatibility, despite the broad original prohibition on asking versions.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "missing_info": [],
+   "acceptable_next_steps": [
+    "Escalate with the analysis; mention history (1.20 made timeouts more forgiving)",
+    "Workaround: patch settings / pin tornado until fix"
+   ],
+   "must_not": [
+    "ask for versions (given)"
+   ]
+  }
  }
 }

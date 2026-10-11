@@ -1,7 +1,7 @@
 {
  "case_id": "c-15378",
  "split": "test",
- "bucket": "escalate",
+ "bucket": "ambiguous",
  "topic": "starlette-corporate-network",
  "family_id": "fam:15378",
  "multi_turn": true,
@@ -50,7 +50,7 @@
   ]
  },
  "gold": {
-  "outcome": "escalate",
+  "outcome": "info_request",
   "summary": "In a corporate network, Streamlit >=1.57 (Starlette) app doesn't load; works on private machine.",
   "hypotheses": [
    "proxy/auth in corporate network breaking websocket under new server",
@@ -58,25 +58,57 @@
   ],
   "missing_info": [
    {
-    "item": "does 1.56 (pre-Starlette) work in the same network",
-    "why": "isolates server change"
+    "item": "localhost resolution/binding and proxy bypass settings",
+    "why": "Separates IPv4/IPv6 or corporate interception from a server regression."
    },
    {
-    "item": "browser console websocket error",
-    "why": "where the connection fails"
+    "item": "Same minimal example on pre-Starlette version in the same network",
+    "why": "Tests the claimed version boundary."
    }
   ],
   "acceptable_next_steps": [
-   "Ask for console errors and 1.56 comparison; escalate as regression with evidence"
+   "Compare localhost versus 127.0.0.1, binding and proxy-bypass behavior with the supplied minimal app.",
+   "Compare the earlier version in the same environment and escalate reproducible differences with the existing console error."
   ],
   "must_not": [
-   "claim it is fixed"
+   "Ask for the same browser console WebSocket error already pasted.",
+   "Claim later authentication/cookie analysis is initial knowledge.",
+   "Declare a confirmed Streamlit regression solely from private-versus-corporate behavior."
   ],
   "relevant_sources": [
    "rn:1.57.0:5ca3c99f"
   ],
   "reference": "Confirmed regression; open; later linked to authentication.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request",
+   "escalate"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Needs discussion",
+  "review_file": "data/eval/annotations/reviews/hani/test/hani-review-c-15378.md",
+  "review_reason": "The same machine works at 127.0.0.1 but not localhost, with explicit WebSocket failure already supplied. A targeted IPv4/IPv6, proxy-bypass and pre-Starlette comparison is more discriminating than immediately confirming a library regression. Escalation with the minimal example remains reasonable.",
+  "draft": {
+   "outcome": "escalate",
+   "bucket": "escalate",
+   "missing_info": [
+    {
+     "item": "does 1.56 (pre-Starlette) work in the same network",
+     "why": "isolates server change"
+    },
+    {
+     "item": "browser console websocket error",
+     "why": "where the connection fails"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Ask for console errors and 1.56 comparison; escalate as regression with evidence"
+   ],
+   "must_not": [
+    "claim it is fixed"
+   ]
+  },
+  "acceptable_why": "Hani: escalation with the minimal example remains reasonable"
  }
 }

@@ -1,7 +1,7 @@
 {
  "case_id": "c-6956",
  "split": "dev",
- "bucket": "answerable",
+ "bucket": "ambiguous",
  "topic": "opencv-on-cloud",
  "family_id": "fam:6956",
  "multi_turn": false,
@@ -50,23 +50,30 @@
   ]
  },
  "gold": {
-  "outcome": "usage_guidance",
+  "outcome": "info_request",
   "summary": "ModuleNotFoundError cv2 on deploy.",
   "hypotheses": [
-   "opencv not in requirements.txt",
-   "opencv-python needs libGL -> use opencv-python-headless"
+   "Requirements file not discovered or deployment uses another revision.",
+   "OpenCV installation failed or was installed in another environment."
   ],
   "missing_info": [
    {
-    "item": "contents of requirements.txt",
-    "why": "missing vs wrong opencv package"
+    "item": "Actual committed dependency filename/path and successful build installation log",
+    "why": "Distinguishes a singular filename, undiscovered requirements file, failed install or stale deployment."
+   },
+   {
+    "item": "Interpreter/environment used to install and run cv2",
+    "why": "Detects an installation/runtime mismatch."
    }
   ],
   "acceptable_next_steps": [
-   "Recommend adding opencv-python-headless to requirements.txt (KB articles)"
+   "Ask whether the actual file is requirements.txt and inspect the deployed commit/build log; do not assume the heading typo is definitive.",
+   "Verify OpenCV import with the runtime interpreter and compare its package installation with the build environment."
   ],
   "must_not": [
-   "escalate as Streamlit bug"
+   "Tell the user simply to add opencv-python-headless without acknowledging it is already listed.",
+   "Treat missing libGL as established from ModuleNotFoundError alone.",
+   "Escalate as a confirmed Streamlit bug."
   ],
   "relevant_sources": [
    "page:/knowledge-base/dependencies/libgl",
@@ -74,6 +81,33 @@
   ],
   "reference": "Maintainer: use opencv-python-headless; not a Streamlit bug.",
   "annotated_by": "claude-draft",
-  "reviewed_by": null
+  "acceptable_outcomes": [
+   "info_request"
+  ],
+  "reviewed_by": "Hani",
+  "review_date": "2026-10-09",
+  "review_verdict": "Change",
+  "review_file": "data/eval/annotations/reviews/hani/dev/hani-review-c-6956.md",
+  "review_reason": "The visible report ALREADY lists opencv-python-headless. Its heading says requirement.txt (singular). Ask/check the actual filename, deployed revision, install log and interpreter; adding the same dependency blindly does not discriminate causes. Guidance is acceptable if it explicitly addresses this discrepancy.",
+  "draft": {
+   "outcome": "usage_guidance",
+   "bucket": "answerable",
+   "missing_info": [
+    {
+     "item": "contents of requirements.txt",
+     "why": "missing vs wrong opencv package"
+    }
+   ],
+   "acceptable_next_steps": [
+    "Recommend adding opencv-python-headless to requirements.txt (KB articles)"
+   ],
+   "must_not": [
+    "escalate as Streamlit bug"
+   ],
+   "hypotheses": [
+    "opencv not in requirements.txt",
+    "opencv-python needs libGL -> use opencv-python-headless"
+   ]
+  }
  }
 }
