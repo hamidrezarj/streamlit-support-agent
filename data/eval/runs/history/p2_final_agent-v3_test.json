@@ -1,0 +1,1407 @@
+{
+ "system": "final",
+ "version": "agent-v3",
+ "split": "test",
+ "built_at": "2026-10-14T11:46:24+00:00",
+ "model": "gpt-4o-mini",
+ "cache_mode": "cache",
+ "limits": {
+  "steps_per_turn": 8,
+  "steps_per_case": 30
+ },
+ "limit_overrides": {
+  "s-15378-limit": {
+   "steps_per_case": 7
+  }
+ },
+ "metrics": {
+  "n_scenarios": 8,
+  "scenarios_passed": 3,
+  "status_exact": "1/7",
+  "checks_passed": 70,
+  "checks_total": 75,
+  "by_check": {
+   "comments_posted": "8/8",
+   "fact": "2/2",
+   "inv:fact_provenance": "8/8",
+   "inv:no_approval_from": "2/2",
+   "inv:no_duplicate_execution": "8/8",
+   "inv:no_facts_from": "2/2",
+   "inv:no_stale_execution": "8/8",
+   "inv:no_writes_from_unexecuted": "8/8",
+   "inv:rejected_not_in_tracker": "8/8",
+   "inv:step_budget": "8/8",
+   "limit_stop_recorded": "1/1",
+   "no_llm_call_after_limit": "1/1",
+   "status": "2/7",
+   "status_not": "1/1",
+   "status_preserved_after_limit": "1/1",
+   "superseded": "2/2"
+  },
+  "violations": {},
+  "turns": 18,
+  "max_steps_turn": 6,
+  "repeated_replies": 1,
+  "cost": {
+   "live_calls": 50,
+   "replayed_calls": 10,
+   "tokens_in": 146775,
+   "tokens_out": 18581,
+   "usd_live": 0.027724,
+   "usd_replayed": 0.005439,
+   "latency_s": 355.315,
+   "usd_per_turn": 0.001842
+  }
+ },
+ "scenarios": [
+  {
+   "sid": "s-11500",
+   "case_id": "c-11500",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "user_correction",
+    "case_changed_before_execute"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "escalated (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:streamlit_version": {
+     "ok": true,
+     "detail": "memory streamlit_version=1.45.0 (matched streamlit_version)"
+    },
+    "superseded:streamlit_version=1.41.0": {
+     "ok": true,
+     "detail": "history=['streamlit_version=1.41.0', 'streamlit_version=1.45.0', 'streamlit_version=1.43.2']"
+    },
+    "superseded:streamlit_version=1.43.2": {
+     "ok": true,
+     "detail": "history=['streamlit_version=1.41.0', 'streamlit_version=1.45.0', 'streamlit_version=1.43.2']"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "6 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "4 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=18 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-f21fa7db78de",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": "streamlit_version"
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "refused",
+     "error": "StaleProposal",
+     "message": "the case changed since proposal p-f21fa7db78de was made (version 1 -> 2); a new proposal is needed"
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-c7c3243713b9",
+     "memory": {
+      "superseded": [
+       "streamlit_version",
+       "streamlit_version"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-c7c3243713b9"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "escalated",
+     "status_after": "escalated",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-bca318d360b8",
+     "memory": {
+      "superseded": [
+       "streamlit_version"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-bca318d360b8"
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 9,
+    "agent_comments": [
+     "Thank you for your report. The 'Bad message format' error you're encountering seems to be related to websocket disconnections, which has been noted in similar reports [S10]. To assist further, could you confirm if the websocket connection is stable during your sessions? Additionally, are you initializing all session state variables correctly before use? This information will help us understand the issue better.\n\n- Can you confirm if the websocket connection is stable during the session?",
+     "Thank you for your report. The 'Bad message format' error you're encountering seems to be related to session management issues, particularly with websocket disconnections. This has been noted in similar reports [S7]. Since you are using Streamlit version 1.45.0, which is known to have a race condition issue, I recommend escalating this for further investigation. Please monitor the websocket connection stability during your sessions, as this may provide additional insights."
+    ],
+    "facts": {
+     "streamlit_version": "1.45.0",
+     "python_version": "3.11",
+     "os": "Docker running on 64bit Amazon Linux 2023/4.5.2 (AWS Elastic Beanstalk, EC2)",
+     "browser": "Chrome Version 136.0.7103.114 (Official Build) (x86_64)"
+    },
+    "superseded": [
+     "streamlit_version=1.41.0",
+     "streamlit_version=1.45.0",
+     "streamlit_version=1.43.2"
+    ],
+    "proposals": [
+     {
+      "id": "p-f21fa7db78de",
+      "status": "stale",
+      "origin": "agent"
+     },
+     {
+      "id": "p-c7c3243713b9",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-bca318d360b8",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 3,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "stale proposal executed",
+     "assumes what the (removed) screenshot shows"
+    ],
+    "final_reply": "Thank you for your report. The 'Bad message format' error you're encountering seems to be related to session management issues, particularly with websocket disconnections. This has been noted in similar reports [S7]. Since you are using Streamlit version 1.45.0, which is known to have a race condition issue, I recommend escalating this for further investigation. Please monitor the websocket connection stability during your sessions, as this may provide additional insights.",
+    "all_replies": [
+     "Thank you for your report. The 'Bad message format' error you're encountering seems to be related to websocket disconnections, which has been noted in similar reports [S10]. To assist further, could you confirm if the websocket connection is stable during your sessions? Additionally, are you initializing all session state variables correctly before use? This information will help us understand the issue better.\n\n- Can you confirm if the websocket connection is stable during the session?",
+     "Thank you for your report. The 'Bad message format' error you're encountering seems to be related to session management issues, particularly with websocket disconnections. This has been noted in similar reports [S7]. Since you are using Streamlit version 1.45.0, which is known to have a race condition issue, I recommend escalating this for further investigation. Please monitor the websocket connection stability during your sessions, as this may provide additional insights."
+    ]
+   },
+   "stats": {
+    "live_calls": 11,
+    "replayed_calls": 0,
+    "tokens_in": 29169,
+    "tokens_out": 3328,
+    "usd_live": 0.006371,
+    "usd_replayed": 0.0,
+    "latency_s": 57.477
+   },
+   "wall_s": 70.6
+  },
+  {
+   "sid": "s-9140",
+   "case_id": "c-9140",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "case_switch"
+   ],
+   "passed": true,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 11,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "escalated (expected awaiting_user, acceptable ['awaiting_user', 'escalated']) - acceptable alternative"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:tornado_version": {
+     "ok": true,
+     "detail": "memory tornado_version=6.4.1 (matched tornado_version)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "6 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "5 facts; quote not in this case: []"
+    },
+    "inv:no_approval_from:c-11509": {
+     "ok": true,
+     "detail": "foreign comments=0"
+    },
+    "inv:no_facts_from:c-11509": {
+     "ok": true,
+     "detail": "facts quoting c-11509: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-2247c4773553",
+     "memory": {},
+     "steps_turn": 6,
+     "at": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-2247c4773553",
+     "at": 2
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null,
+     "at": 3
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "escalated",
+     "status_after": "escalated",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-65cbc84374c7",
+     "memory": {
+      "added": [
+       "tornado_version",
+       "failure_frequency"
+      ],
+      "superseded": [
+       "os"
+      ],
+      "tried_now": [
+       {
+        "text": "run this Streamlit app locally",
+        "result": "worked",
+        "turn": 2,
+        "ours": false
+       }
+      ]
+     },
+     "steps_turn": 6,
+     "at": 4
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-65cbc84374c7",
+     "at": 5
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 8,
+    "agent_comments": [
+     "Thank you for your report. The error you're encountering, `TypeError: WebSocketHandler.__init__() missing 2 required positional arguments: ‘application’ and ‘request’`, appears to be a specific issue that is not documented or explained by existing resources. We will escalate this for further investigation. Please let us know if you have any additional context or specific code that triggers this error.",
+     "Thank you for your report. The error you're encountering, `TypeError: WebSocketHandler.__init__() missing 2 required positional arguments: ‘application’ and ‘request’`, appears to be a specific issue that is not documented or explained by existing resources. We will escalate this for further investigation. Please let us know if you have any additional context or specific code that triggers this error."
+    ],
+    "facts": {
+     "streamlit_version": "1.36.0",
+     "python_version": "3.10",
+     "os": "ubuntu OS",
+     "tornado_version": "6.4.1",
+     "failure_frequency": "not working on windows OS"
+    },
+    "superseded": [
+     "os=windows 10 OS"
+    ],
+    "proposals": [
+     {
+      "id": "p-2247c4773553",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-65cbc84374c7",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 1,
+   "judge_items": {
+    "must_not": [
+     "asks again for the Tornado version",
+     "facts or permissions imported from c-11509 (checked by provenance)"
+    ],
+    "final_reply": "Thank you for your report. The error you're encountering, `TypeError: WebSocketHandler.__init__() missing 2 required positional arguments: ‘application’ and ‘request’`, appears to be a specific issue that is not documented or explained by existing resources. We will escalate this for further investigation. Please let us know if you have any additional context or specific code that triggers this error.",
+    "all_replies": [
+     "Thank you for your report. The error you're encountering, `TypeError: WebSocketHandler.__init__() missing 2 required positional arguments: ‘application’ and ‘request’`, appears to be a specific issue that is not documented or explained by existing resources. We will escalate this for further investigation. Please let us know if you have any additional context or specific code that triggers this error.",
+     "Thank you for your report. The error you're encountering, `TypeError: WebSocketHandler.__init__() missing 2 required positional arguments: ‘application’ and ‘request’`, appears to be a specific issue that is not documented or explained by existing resources. We will escalate this for further investigation. Please let us know if you have any additional context or specific code that triggers this error."
+    ]
+   },
+   "stats": {
+    "live_calls": 14,
+    "replayed_calls": 0,
+    "tokens_in": 31863,
+    "tokens_out": 4078,
+    "usd_live": 0.007226,
+    "usd_replayed": 0.0,
+    "latency_s": 76.962,
+    "shared_with": [
+     "s-11509"
+    ]
+   },
+   "wall_s": 90.49
+  },
+  {
+   "sid": "s-11509",
+   "case_id": "c-11509",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "case_switch"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 11,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "escalated (expected answered)"
+    },
+    "status_not": {
+     "ok": true,
+     "detail": "escalated (must not be ['closed_resolved'])"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "5 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "5 facts; quote not in this case: []"
+    },
+    "inv:no_approval_from:c-9140": {
+     "ok": true,
+     "detail": "foreign comments=0"
+    },
+    "inv:no_facts_from:c-9140": {
+     "ok": true,
+     "detail": "facts quoting c-9140: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "usage_guidance",
+     "stopped": null,
+     "proposal": "p-83d9938b665c",
+     "memory": {},
+     "steps_turn": 6,
+     "at": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-83d9938b665c",
+     "at": 1
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null,
+     "at": 3
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-f81de9db3246",
+     "memory": {
+      "added": [
+       "error_message"
+      ],
+      "superseded": [
+       "error_message",
+       "error_message"
+      ]
+     },
+     "steps_turn": 6,
+     "at": 4
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-f81de9db3246",
+     "at": 5
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 7,
+    "agent_comments": [
+     "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized in your Docker container. According to the documentation, this variable should allow you to specify a base path for your Streamlit application [S1]. Since you mentioned that it works when included in the .streamlit/.config.toml file, it suggests a possible misconfiguration when using the environment variable. Please check if the environment variable is set correctly in the Docker container and let me know the outcome.\n\n- Can you confirm if the environment variable is set correctly in the Docker container?",
+     "Thank you for your update. It seems that the issue may stem from how the environment variable is being set or how the application code is configured to read it. Please ensure that the environment variable is correctly set in your Docker container and that your application code is properly configured to utilize it. If the problem persists, we will escalate this issue for further investigation."
+    ],
+    "facts": {
+     "streamlit_version": "1.45.1",
+     "python_version": "3.13.2",
+     "os": "Mac OS 15.5 (24F74)",
+     "browser": "Chrome Version 137.0.7151.41 (Official Build) (arm64)",
+     "error_message": "bootstrap.run(\"app.py\", False, [], {\"server.baseUrlPath\": base_url_path})"
+    },
+    "superseded": [
+     "error_message=the command wasn't working for me as the code was using bootstrap.run()",
+     "error_message=requires the arguments to be passed explicitly into the function"
+    ],
+    "proposals": [
+     {
+      "id": "p-83d9938b665c",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-f81de9db3246",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "facts or permissions imported from c-9140 (checked by provenance)",
+     "closed as resolved automatically"
+    ],
+    "final_reply": "Thank you for your update. It seems that the issue may stem from how the environment variable is being set or how the application code is configured to read it. Please ensure that the environment variable is correctly set in your Docker container and that your application code is properly configured to utilize it. If the problem persists, we will escalate this issue for further investigation.",
+    "all_replies": [
+     "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized in your Docker container. According to the documentation, this variable should allow you to specify a base path for your Streamlit application [S1]. Since you mentioned that it works when included in the .streamlit/.config.toml file, it suggests a possible misconfiguration when using the environment variable. Please check if the environment variable is set correctly in the Docker container and let me know the outcome.\n\n- Can you confirm if the environment variable is set correctly in the Docker container?",
+     "Thank you for your update. It seems that the issue may stem from how the environment variable is being set or how the application code is configured to read it. Please ensure that the environment variable is correctly set in your Docker container and that your application code is properly configured to utilize it. If the problem persists, we will escalate this issue for further investigation."
+    ]
+   },
+   "stats": {
+    "live_calls": 14,
+    "replayed_calls": 0,
+    "tokens_in": 31863,
+    "tokens_out": 4078,
+    "usd_live": 0.007226,
+    "usd_replayed": 0.0,
+    "latency_s": 76.962,
+    "shared_with": [
+     "s-9140"
+    ]
+   },
+   "wall_s": 90.49
+  },
+  {
+   "sid": "s-15378-limit",
+   "case_id": "c-15378",
+   "split": "test",
+   "covers": [
+    "step_limit"
+   ],
+   "passed": true,
+   "status_exact": null,
+   "n_checks": 10,
+   "n_ok": 10,
+   "checks": {
+    "comments_posted": {
+     "ok": true,
+     "detail": "1 (expected 1)"
+    },
+    "limit_stop_recorded": {
+     "ok": true,
+     "detail": "stopped=step budget exhausted before llm:update_memory (turn 1/8, case 7/7); audit step_limit=True"
+    },
+    "no_llm_call_after_limit": {
+     "ok": true,
+     "detail": "LLM calls in the limited turn=0 (allowed before stop 0)"
+    },
+    "status_preserved_after_limit": {
+     "ok": true,
+     "detail": "escalated -> escalated, final escalated"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "1 agent comments for 1 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "3 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "4 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=7 (limit 7)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-4c7897ee4690",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-4c7897ee4690"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 0,
+     "status_before": "escalated",
+     "status_after": "escalated",
+     "outcome": "escalate",
+     "stopped": "step budget exhausted before llm:update_memory (turn 1/8, case 7/7)",
+     "proposal": "p-212e369eef4c",
+     "memory": {},
+     "steps_turn": 1
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 5,
+    "agent_comments": [
+     "It seems that you are experiencing issues accessing your Streamlit app at localhost, while it works at 127.0.0.1. This could be due to WebSocket connection issues, which are often caused by corporate network restrictions [S2][S3][S4]. I recommend checking if you can access the app from a different network or VPN. Additionally, have you tried changing the server port or checking your firewall settings?\n\n- Can you access the app from a different network or VPN?"
+    ],
+    "facts": {
+     "streamlit_version": "1.58",
+     "python_version": "3.12",
+     "os": "Windows",
+     "browser": "Chrome, Edge, Firefox"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-4c7897ee4690",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-212e369eef4c",
+      "status": "pending",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "second model call or additional post after the limit",
+     "tracker status changed to escalated automatically by reaching the limit"
+    ],
+    "final_reply": "It seems that you are experiencing issues accessing your Streamlit app at localhost, while it works at 127.0.0.1. This could be due to WebSocket connection issues, which are often caused by corporate network restrictions [S2][S3][S4]. I recommend checking if you can access the app from a different network or VPN. Additionally, have you tried changing the server port or checking your firewall settings?\n\n- Can you access the app from a different network or VPN?",
+    "all_replies": [
+     "It seems that you are experiencing issues accessing your Streamlit app at localhost, while it works at 127.0.0.1. This could be due to WebSocket connection issues, which are often caused by corporate network restrictions [S2][S3][S4]. I recommend checking if you can access the app from a different network or VPN. Additionally, have you tried changing the server port or checking your firewall settings?\n\n- Can you access the app from a different network or VPN?"
+    ]
+   },
+   "stats": {
+    "live_calls": 3,
+    "replayed_calls": 0,
+    "tokens_in": 9219,
+    "tokens_out": 1152,
+    "usd_live": 0.0020740000000000003,
+    "usd_replayed": 0.0,
+    "latency_s": 21.543
+   },
+   "wall_s": 27.95
+  },
+  {
+   "sid": "s-15378",
+   "case_id": "c-15378",
+   "split": "test",
+   "covers": [
+    "real_followups"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 8,
+   "n_ok": 7,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "escalated (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "6 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "4 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-0bc7a93753f6",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-0bc7a93753f6"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "escalated",
+     "status_after": "escalated",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-76390cd0acc8",
+     "memory": {
+      "tried_now": [
+       {
+        "text": "I tried the proposed setting (along various other configurations)",
+        "result": "did_not_help",
+        "turn": 2,
+        "ours": true
+       }
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-76390cd0acc8"
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 8,
+    "agent_comments": [
+     "It seems that you are experiencing issues accessing your Streamlit app at localhost, while it works at 127.0.0.1. This could be due to WebSocket connection issues, which are often caused by corporate network restrictions [S2][S3][S4]. I recommend checking if you can access the app from a different network or VPN. Additionally, have you tried changing the server port or checking your firewall settings?\n\n- Can you access the app from a different network or VPN?",
+     "Hi, thank you for your detailed report. It seems you're facing WebSocket connection issues, which can often be caused by corporate network restrictions or firewall settings [S2][S3][S4]. Since you mentioned that the app works on 127.0.0.1 but not on localhost, this could indicate a network configuration issue. Please check your firewall settings to ensure that port 8501 is open and accessible. Additionally, if possible, try accessing the app from a different network or VPN to see if that resolves the issue. If the problem persists, we will need to escalate this for further investigation."
+    ],
+    "facts": {
+     "streamlit_version": "1.58",
+     "python_version": "3.12",
+     "os": "Windows",
+     "browser": "Chrome, Edge, Firefox"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-0bc7a93753f6",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-76390cd0acc8",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "records server.address (or any setting) as tried unless it is visible in the history",
+     "assumes which setting failed instead of asking"
+    ],
+    "final_reply": "Hi, thank you for your detailed report. It seems you're facing WebSocket connection issues, which can often be caused by corporate network restrictions or firewall settings [S2][S3][S4]. Since you mentioned that the app works on 127.0.0.1 but not on localhost, this could indicate a network configuration issue. Please check your firewall settings to ensure that port 8501 is open and accessible. Additionally, if possible, try accessing the app from a different network or VPN to see if that resolves the issue. If the problem persists, we will need to escalate this for further investigation.",
+    "all_replies": [
+     "It seems that you are experiencing issues accessing your Streamlit app at localhost, while it works at 127.0.0.1. This could be due to WebSocket connection issues, which are often caused by corporate network restrictions [S2][S3][S4]. I recommend checking if you can access the app from a different network or VPN. Additionally, have you tried changing the server port or checking your firewall settings?\n\n- Can you access the app from a different network or VPN?",
+     "Hi, thank you for your detailed report. It seems you're facing WebSocket connection issues, which can often be caused by corporate network restrictions or firewall settings [S2][S3][S4]. Since you mentioned that the app works on 127.0.0.1 but not on localhost, this could indicate a network configuration issue. Please check your firewall settings to ensure that port 8501 is open and accessible. Additionally, if possible, try accessing the app from a different network or VPN to see if that resolves the issue. If the problem persists, we will need to escalate this for further investigation."
+    ]
+   },
+   "stats": {
+    "live_calls": 4,
+    "replayed_calls": 3,
+    "tokens_in": 20391,
+    "tokens_out": 2668,
+    "usd_live": 0.0025849999999999996,
+    "usd_replayed": 0.0020740000000000003,
+    "latency_s": 45.83
+   },
+   "wall_s": 30.06
+  },
+  {
+   "sid": "s-7076",
+   "case_id": "c-7076",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "maintainer_reject"
+   ],
+   "passed": true,
+   "status_exact": true,
+   "n_checks": 8,
+   "n_ok": 8,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "awaiting_user (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "4 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "6 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=18 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-3a181898c41f",
+     "memory": {
+      "added": [
+       "error_message"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "reject",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-3a181898c41f"
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-c4c1a88fb998",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-c4c1a88fb998"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-94c8ed533ae1",
+     "memory": {
+      "added": [
+       "failure_frequency"
+      ],
+      "superseded": [
+       "failure_frequency",
+       "error_message"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-94c8ed533ae1"
+    }
+   ],
+   "final": {
+    "status": "awaiting_user",
+    "labels": [],
+    "version": 8,
+    "agent_comments": [
+     "Hi, thank you for your report. It seems that the health check endpoint response format might be causing the issue, as the tests for the WebsocketConnection expect a JSON object like {status: 'ok'} instead of just the string 'ok' [S6]. To help us further, could you please check if the health check endpoint returns a JSON object instead of a string? Additionally, is the websocket connection stable during the health check?\n\n- Can you confirm the exact response format of the health check endpoint?",
+     "Hi, thank you for your detailed report. It seems that the health check endpoint response format might be causing the issue, as the tests for the WebsocketConnection expect a JSON object like {status: 'ok'} instead of just the string 'ok' [S6]. To help us further, could you please confirm if the health check endpoint returns a JSON object? Additionally, does the application consistently timeout during long-running processes?"
+    ],
+    "facts": {
+     "error_message": "application refresh caused by timeout",
+     "streamlit_version": "1.24.0",
+     "python_version": "3.8.16",
+     "os": "Windows",
+     "browser": "Chrome/Edge",
+     "failure_frequency": "timeout during long running process"
+    },
+    "superseded": [
+     "error_message=The tests for the WebsocketConnection seem to think the result of the health check should be json in the form of {status: \"ok\"} rather than the string \"ok\".",
+     "failure_frequency=healthcheck endpoint called every 5 minutes"
+    ],
+    "proposals": [
+     {
+      "id": "p-3a181898c41f",
+      "status": "rejected",
+      "origin": "agent"
+     },
+     {
+      "id": "p-c4c1a88fb998",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-94c8ed533ae1",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 3,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "any tracker write (comment/status/label) from the rejected proposal - checked by action ids",
+     "confirms the JSON health-response theory as root cause"
+    ],
+    "final_reply": "Hi, thank you for your detailed report. It seems that the health check endpoint response format might be causing the issue, as the tests for the WebsocketConnection expect a JSON object like {status: 'ok'} instead of just the string 'ok' [S6]. To help us further, could you please confirm if the health check endpoint returns a JSON object? Additionally, does the application consistently timeout during long-running processes?",
+    "all_replies": [
+     "Hi, thank you for your report. It seems that the health check endpoint response format might be causing the issue, as the tests for the WebsocketConnection expect a JSON object like {status: 'ok'} instead of just the string 'ok' [S6]. To help us further, could you please check if the health check endpoint returns a JSON object instead of a string? Additionally, is the websocket connection stable during the health check?\n\n- Can you confirm the exact response format of the health check endpoint?",
+     "Hi, thank you for your detailed report. It seems that the health check endpoint response format might be causing the issue, as the tests for the WebsocketConnection expect a JSON object like {status: 'ok'} instead of just the string 'ok' [S6]. To help us further, could you please confirm if the health check endpoint returns a JSON object? Additionally, does the application consistently timeout during long-running processes?"
+    ]
+   },
+   "stats": {
+    "live_calls": 11,
+    "replayed_calls": 0,
+    "tokens_in": 26629,
+    "tokens_out": 3513,
+    "usd_live": 0.006103000000000001,
+    "usd_replayed": 0.0,
+    "latency_s": 83.82300000000001
+   },
+   "wall_s": 94.83
+  },
+  {
+   "sid": "s-9176-lost",
+   "case_id": "c-9176",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "tool_failure_after_commit"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 8,
+   "n_ok": 7,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "escalated (expected answered)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "5 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "3 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-a414b98d45c8",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "system",
+     "event": "tool_failure",
+     "mode": "fail_after_write"
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-a414b98d45c8"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-d59c8dfa7b03",
+     "memory": {
+      "added": [
+       "config_file_location",
+       "config_global_section"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-d59c8dfa7b03"
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 7,
+    "agent_comments": [
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this.\n\n- Can you set the config option --server.fileWatcherType to none?",
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this."
+    ],
+    "facts": {
+     "streamlit_version": "1.37",
+     "config_file_location": "same folder as my posit app",
+     "config_global_section": "empty"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-a414b98d45c8",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-d59c8dfa7b03",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "lost response reported as failure and the comment posted again",
+     "duplicate committed comment"
+    ],
+    "final_reply": "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this.",
+    "all_replies": [
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this.\n\n- Can you set the config option --server.fileWatcherType to none?",
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this."
+    ]
+   },
+   "stats": {
+    "live_calls": 7,
+    "replayed_calls": 0,
+    "tokens_in": 14752,
+    "tokens_out": 1921,
+    "usd_live": 0.003365,
+    "usd_replayed": 0.0,
+    "latency_s": 34.84
+   },
+   "wall_s": 41.2
+  },
+  {
+   "sid": "s-9176",
+   "case_id": "c-9176",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "tool_failure"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 8,
+   "n_ok": 7,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "escalated (expected answered)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:no_writes_from_unexecuted": {
+     "ok": true,
+     "detail": "5 keyed writes; from non-executed proposals: []"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "3 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=6 (limit 8), case total=12 (limit 30)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 3,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "info_request",
+     "stopped": null,
+     "proposal": "p-ed0b6cafe917",
+     "memory": {},
+     "steps_turn": 6
+    },
+    {
+     "step": "system",
+     "event": "tool_failure",
+     "mode": "fail_before"
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-ed0b6cafe917"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 4,
+     "status_before": "awaiting_user",
+     "status_after": "awaiting_user",
+     "outcome": "escalate",
+     "stopped": null,
+     "proposal": "p-e237b43cd056",
+     "memory": {
+      "added": [
+       "config_file_location",
+       "config_global_section"
+      ]
+     },
+     "steps_turn": 6
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": false,
+     "proposal": "p-e237b43cd056"
+    }
+   ],
+   "final": {
+    "status": "escalated",
+    "labels": [
+     "needs-maintainer"
+    ],
+    "version": 7,
+    "agent_comments": [
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this.\n\n- Can you set the config option --server.fileWatcherType to none?",
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this."
+    ],
+    "facts": {
+     "streamlit_version": "1.37",
+     "config_file_location": "same folder as my posit app",
+     "config_global_section": "empty"
+    },
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-ed0b6cafe917",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-e237b43cd056",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 6,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "failed attempt reported as success",
+     "duplicate committed comment"
+    ],
+    "final_reply": "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this.",
+    "all_replies": [
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this.\n\n- Can you set the config option --server.fileWatcherType to none?",
+     "The error you are encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit 1.37, which is no longer supported [S10]. Since you mentioned that you cannot change the command used to run the app, I recommend checking if you can set the config option `--server.fileWatcherType` to `none`. This may help suppress the warning. Please let me know if you can do this."
+    ]
+   },
+   "stats": {
+    "live_calls": 0,
+    "replayed_calls": 7,
+    "tokens_in": 14752,
+    "tokens_out": 1921,
+    "usd_live": 0.0,
+    "usd_replayed": 0.003365,
+    "latency_s": 34.84
+   },
+   "wall_s": 0.21
+  }
+ ]
+}
