@@ -570,11 +570,3 @@ Running and deploying Streamlit apps only (server, proxies, WebSockets, Docker, 
 546 issues from 2021 onwards. Docs are a 2026 snapshot treated as timeless; patch releases are missing from
 the release notes; the agent answers in English; reports outside the domain are expected to be escalated.
 
-## Team contributions
-
-| Member | Contribution |
-|---|---|
-| Hamidreza Ranjbarpour | *to fill* |
-| Hani | gold review of all 32 cases (blind-first protocol) and of the 13 scenarios |
-| *to fill* | *to fill* |
-
