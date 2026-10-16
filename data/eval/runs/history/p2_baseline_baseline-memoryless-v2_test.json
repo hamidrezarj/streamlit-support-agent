@@ -1,0 +1,1250 @@
+{
+ "system": "baseline",
+ "version": "baseline-memoryless-v2",
+ "split": "test",
+ "built_at": "2026-10-14T11:40:11+00:00",
+ "model": "gpt-4o-mini",
+ "cache_mode": "cache",
+ "limits": {
+  "steps_per_turn": 8,
+  "steps_per_case": 30
+ },
+ "limit_overrides": {
+  "s-15378-limit": {
+   "steps_per_case": 7
+  }
+ },
+ "metrics": {
+  "n_scenarios": 8,
+  "scenarios_passed": 2,
+  "status_exact": "3/7",
+  "checks_passed": 51,
+  "checks_total": 67,
+  "by_check": {
+   "comments_posted": "6/8",
+   "fact": "0/2",
+   "inv:fact_provenance": "8/8",
+   "inv:no_approval_from": "2/2",
+   "inv:no_duplicate_execution": "7/8",
+   "inv:no_facts_from": "2/2",
+   "inv:no_stale_execution": "7/8",
+   "inv:rejected_not_in_tracker": "7/8",
+   "inv:step_budget": "8/8",
+   "limit_stop_recorded": "0/1",
+   "no_llm_call_after_limit": "0/1",
+   "status": "3/7",
+   "status_not": "1/1",
+   "status_preserved_after_limit": "0/1",
+   "superseded": "0/2"
+  },
+  "violations": {
+   "inv:no_duplicate_execution": 1,
+   "inv:no_stale_execution": 1,
+   "inv:rejected_not_in_tracker": 1
+  },
+  "turns": 18,
+  "max_steps_turn": 0,
+  "repeated_replies": 4,
+  "cost": {
+   "live_calls": 9,
+   "replayed_calls": 9,
+   "tokens_in": 75956,
+   "tokens_out": 8531,
+   "usd_live": 0.008316,
+   "usd_replayed": 0.008194,
+   "latency_s": 135.449,
+   "usd_per_turn": 0.000917
+  }
+ },
+ "scenarios": [
+  {
+   "sid": "s-11500",
+   "case_id": "c-11500",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "user_correction",
+    "case_changed_before_execute"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 10,
+   "n_ok": 4,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": false,
+     "detail": "3 (expected 2)"
+    },
+    "fact:streamlit_version": {
+     "ok": false,
+     "detail": "memory streamlit_version=-"
+    },
+    "superseded:streamlit_version=1.41.0": {
+     "ok": false,
+     "detail": "history=[]"
+    },
+    "superseded:streamlit_version=1.43.2": {
+     "ok": false,
+     "detail": "history=[]"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "3 agent comments for 3 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": false,
+     "detail": "stale executions=1"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-246fd2898f9a",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": "streamlit_version"
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-246fd2898f9a"
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-3bf18ffa48c2",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-3bf18ffa48c2"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-c672a128c652",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-c672a128c652"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 9,
+    "agent_comments": [
+     "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. I recommend checking if upgrading to a newer version resolves the problem. Additionally, please let me know if you have tried this or if the issue occurs consistently across different browsers or devices [S1].",
+     "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. I recommend checking if upgrading to a newer version resolves the problem. Additionally, please let me know if you have tried this or if the issue occurs consistently across different browsers or devices [S1].",
+     "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. Since you mentioned that you updated to version 1.45.0, please confirm if the issue persists after this upgrade. Additionally, let me know if you have tried accessing the application from different browsers or devices, as this could help narrow down the cause of the issue [S1]."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-246fd2898f9a",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-3bf18ffa48c2",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-c672a128c652",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 3,
+   "max_steps_turn": 0,
+   "repeated_replies": 1,
+   "judge_items": {
+    "must_not": [
+     "stale proposal executed",
+     "assumes what the (removed) screenshot shows"
+    ],
+    "final_reply": "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. Since you mentioned that you updated to version 1.45.0, please confirm if the issue persists after this upgrade. Additionally, let me know if you have tried accessing the application from different browsers or devices, as this could help narrow down the cause of the issue [S1].",
+    "all_replies": [
+     "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. I recommend checking if upgrading to a newer version resolves the problem. Additionally, please let me know if you have tried this or if the issue occurs consistently across different browsers or devices [S1].",
+     "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. I recommend checking if upgrading to a newer version resolves the problem. Additionally, please let me know if you have tried this or if the issue occurs consistently across different browsers or devices [S1].",
+     "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. Since you mentioned that you updated to version 1.45.0, please confirm if the issue persists after this upgrade. Additionally, let me know if you have tried accessing the application from different browsers or devices, as this could help narrow down the cause of the issue [S1]."
+    ]
+   },
+   "stats": {
+    "live_calls": 2,
+    "replayed_calls": 1,
+    "tokens_in": 14487,
+    "tokens_out": 1612,
+    "usd_live": 0.002107,
+    "usd_replayed": 0.001033,
+    "latency_s": 25.348999999999997
+   },
+   "wall_s": 16.45
+  },
+  {
+   "sid": "s-9140",
+   "case_id": "c-9140",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "case_switch"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 10,
+   "n_ok": 8,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected awaiting_user, acceptable ['awaiting_user', 'escalated'])"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "fact:tornado_version": {
+     "ok": false,
+     "detail": "memory tornado_version=-"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:no_approval_from:c-11509": {
+     "ok": true,
+     "detail": "foreign comments=0"
+    },
+    "inv:no_facts_from:c-11509": {
+     "ok": true,
+     "detail": "facts quoting c-11509: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-2121ebd2355b",
+     "memory": {},
+     "steps_turn": 0,
+     "at": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-2121ebd2355b",
+     "at": 2
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null,
+     "at": 3
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-e558612720e1",
+     "memory": {},
+     "steps_turn": 0,
+     "at": 4
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-e558612720e1",
+     "at": 5
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 6,
+    "agent_comments": [
+     "It seems that the error you are encountering is related to a known issue with WebSocket connections in Streamlit version 1.36.0, as noted in a recent GitHub issue [S1]. I recommend upgrading to the latest version of Streamlit to see if this resolves the problem. Please let me know if you need assistance with the upgrade process.",
+     "It seems that the error you are encountering is related to a known issue with WebSocket connections in Streamlit version 1.36.0, particularly on Windows, as noted in a recent GitHub issue [S1]. I recommend upgrading to the latest version of Streamlit to see if this resolves the problem. Please let me know if you need assistance with the upgrade process."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-2121ebd2355b",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-e558612720e1",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "asks again for the Tornado version",
+     "facts or permissions imported from c-11509 (checked by provenance)"
+    ],
+    "final_reply": "It seems that the error you are encountering is related to a known issue with WebSocket connections in Streamlit version 1.36.0, particularly on Windows, as noted in a recent GitHub issue [S1]. I recommend upgrading to the latest version of Streamlit to see if this resolves the problem. Please let me know if you need assistance with the upgrade process.",
+    "all_replies": [
+     "It seems that the error you are encountering is related to a known issue with WebSocket connections in Streamlit version 1.36.0, as noted in a recent GitHub issue [S1]. I recommend upgrading to the latest version of Streamlit to see if this resolves the problem. Please let me know if you need assistance with the upgrade process.",
+     "It seems that the error you are encountering is related to a known issue with WebSocket connections in Streamlit version 1.36.0, particularly on Windows, as noted in a recent GitHub issue [S1]. I recommend upgrading to the latest version of Streamlit to see if this resolves the problem. Please let me know if you need assistance with the upgrade process."
+    ]
+   },
+   "stats": {
+    "live_calls": 2,
+    "replayed_calls": 2,
+    "tokens_in": 15606,
+    "tokens_out": 1782,
+    "usd_live": 0.001692,
+    "usd_replayed": 0.0017170000000000002,
+    "latency_s": 28.808,
+    "shared_with": [
+     "s-11509"
+    ]
+   },
+   "wall_s": 13.35
+  },
+  {
+   "sid": "s-11509",
+   "case_id": "c-11509",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "case_switch"
+   ],
+   "passed": true,
+   "status_exact": true,
+   "n_checks": 10,
+   "n_ok": 10,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "answered (expected answered)"
+    },
+    "status_not": {
+     "ok": true,
+     "detail": "answered (must not be ['closed_resolved'])"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:no_approval_from:c-9140": {
+     "ok": true,
+     "detail": "foreign comments=0"
+    },
+    "inv:no_facts_from:c-9140": {
+     "ok": true,
+     "detail": "facts quoting c-9140: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-018866922a54",
+     "memory": {},
+     "steps_turn": 0,
+     "at": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-018866922a54",
+     "at": 1
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null,
+     "at": 3
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-33bbdf6e4c5b",
+     "memory": {},
+     "steps_turn": 0,
+     "at": 4
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-33bbdf6e4c5b",
+     "at": 5
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 6,
+    "agent_comments": [
+     "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized when running your Streamlit app in Docker. This behavior has been noted in previous discussions, indicating that using the configuration in the .streamlit/.config.toml file may be a more reliable approach for setting this option [S4]. I recommend checking if the issue persists with a different version of Streamlit or by using the .config.toml file instead of the environment variable.",
+     "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized when running your Streamlit app in Docker. This behavior has been noted in previous discussions, indicating that using the configuration in the .streamlit/.config.toml file may be a more reliable approach for setting this option [S4]. I recommend checking if the issue persists with a different version of Streamlit or by using the .config.toml file instead of the environment variable."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-018866922a54",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-33bbdf6e4c5b",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 1,
+   "judge_items": {
+    "must_not": [
+     "facts or permissions imported from c-9140 (checked by provenance)",
+     "closed as resolved automatically"
+    ],
+    "final_reply": "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized when running your Streamlit app in Docker. This behavior has been noted in previous discussions, indicating that using the configuration in the .streamlit/.config.toml file may be a more reliable approach for setting this option [S4]. I recommend checking if the issue persists with a different version of Streamlit or by using the .config.toml file instead of the environment variable.",
+    "all_replies": [
+     "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized when running your Streamlit app in Docker. This behavior has been noted in previous discussions, indicating that using the configuration in the .streamlit/.config.toml file may be a more reliable approach for setting this option [S4]. I recommend checking if the issue persists with a different version of Streamlit or by using the .config.toml file instead of the environment variable.",
+     "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized when running your Streamlit app in Docker. This behavior has been noted in previous discussions, indicating that using the configuration in the .streamlit/.config.toml file may be a more reliable approach for setting this option [S4]. I recommend checking if the issue persists with a different version of Streamlit or by using the .config.toml file instead of the environment variable."
+    ]
+   },
+   "stats": {
+    "live_calls": 2,
+    "replayed_calls": 2,
+    "tokens_in": 15606,
+    "tokens_out": 1782,
+    "usd_live": 0.001692,
+    "usd_replayed": 0.0017170000000000002,
+    "latency_s": 28.808,
+    "shared_with": [
+     "s-9140"
+    ]
+   },
+   "wall_s": 13.35
+  },
+  {
+   "sid": "s-15378-limit",
+   "case_id": "c-15378",
+   "split": "test",
+   "covers": [
+    "step_limit"
+   ],
+   "passed": false,
+   "status_exact": null,
+   "n_checks": 9,
+   "n_ok": 6,
+   "checks": {
+    "comments_posted": {
+     "ok": true,
+     "detail": "1 (expected 1)"
+    },
+    "limit_stop_recorded": {
+     "ok": false,
+     "detail": "stopped=None; audit step_limit=False"
+    },
+    "no_llm_call_after_limit": {
+     "ok": false,
+     "detail": "LLM calls in the limited turn=None (allowed before stop 0)"
+    },
+    "status_preserved_after_limit": {
+     "ok": false,
+     "detail": "None -> None, final answered"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "1 agent comments for 1 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-6e560436e59f",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-6e560436e59f"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-6591c411a7c3",
+     "memory": {},
+     "steps_turn": 0
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 4,
+    "agent_comments": [
+     "It seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections. This issue has been noted in similar reports, particularly when running Streamlit apps in environments with strict network policies [S1]."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-6e560436e59f",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-6591c411a7c3",
+      "status": "pending",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "second model call or additional post after the limit",
+     "tracker status changed to escalated automatically by reaching the limit"
+    ],
+    "final_reply": "It seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections. This issue has been noted in similar reports, particularly when running Streamlit apps in environments with strict network policies [S1].",
+    "all_replies": [
+     "It seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections. This issue has been noted in similar reports, particularly when running Streamlit apps in environments with strict network policies [S1]."
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 1,
+    "tokens_in": 9065,
+    "tokens_out": 863,
+    "usd_live": 0.000928,
+    "usd_replayed": 0.000949,
+    "latency_s": 14.334
+   },
+   "wall_s": 5.25
+  },
+  {
+   "sid": "s-15378",
+   "case_id": "c-15378",
+   "split": "test",
+   "covers": [
+    "real_followups"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 7,
+   "n_ok": 6,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-cc79efe23566",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-cc79efe23566"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-ef7082c7bb58",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-ef7082c7bb58"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 6,
+    "agent_comments": [
+     "It seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections. This issue has been noted in similar reports, particularly when running Streamlit apps in environments with strict network policies [S1].",
+     "Hi, it seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections, as this issue has been noted in similar reports [S1]."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-cc79efe23566",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-ef7082c7bb58",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "records server.address (or any setting) as tried unless it is visible in the history",
+     "assumes which setting failed instead of asking"
+    ],
+    "final_reply": "Hi, it seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections, as this issue has been noted in similar reports [S1].",
+    "all_replies": [
+     "It seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections. This issue has been noted in similar reports, particularly when running Streamlit apps in environments with strict network policies [S1].",
+     "Hi, it seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections, as this issue has been noted in similar reports [S1]."
+    ]
+   },
+   "stats": {
+    "live_calls": 0,
+    "replayed_calls": 2,
+    "tokens_in": 9065,
+    "tokens_out": 863,
+    "usd_live": 0.0,
+    "usd_replayed": 0.001877,
+    "latency_s": 14.334
+   },
+   "wall_s": 0.06
+  },
+  {
+   "sid": "s-7076",
+   "case_id": "c-7076",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "maintainer_reject"
+   ],
+   "passed": false,
+   "status_exact": false,
+   "n_checks": 7,
+   "n_ok": 5,
+   "checks": {
+    "status": {
+     "ok": false,
+     "detail": "answered (expected awaiting_user)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": false,
+     "detail": "leaked=['p-fbb81af3ca94']"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-fbb81af3ca94",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "reject",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-fbb81af3ca94"
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-d902acc885a2",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-d902acc885a2"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-f2170ba058e0",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-f2170ba058e0"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 8,
+    "agent_comments": [
+     "Hi! It seems that the issue you're experiencing with the health check endpoint returning a plain text response instead of a JSON object is a known limitation in certain cloud environments, which can lead to application refreshes. This has been discussed in the community, and it appears that upgrading to a newer version of Streamlit may help resolve this issue. Please consider checking if you can upgrade to the latest version and let me know if the problem persists [S1][S2].",
+     "Hi! It seems that the issue you're experiencing with the health check endpoint returning a plain text response instead of a JSON object is a known limitation in certain cloud environments, which can lead to application refreshes. This has been discussed in the community, and it appears that upgrading to a newer version of Streamlit may help resolve this issue. Please consider checking if you can upgrade to the latest version and let me know if the problem persists [S1][S2]."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-fbb81af3ca94",
+      "status": "rejected",
+      "origin": "agent"
+     },
+     {
+      "id": "p-d902acc885a2",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-f2170ba058e0",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 3,
+   "max_steps_turn": 0,
+   "repeated_replies": 1,
+   "judge_items": {
+    "must_not": [
+     "any tracker write (comment/status/label) from the rejected proposal - checked by action ids",
+     "confirms the JSON health-response theory as root cause"
+    ],
+    "final_reply": "Hi! It seems that the issue you're experiencing with the health check endpoint returning a plain text response instead of a JSON object is a known limitation in certain cloud environments, which can lead to application refreshes. This has been discussed in the community, and it appears that upgrading to a newer version of Streamlit may help resolve this issue. Please consider checking if you can upgrade to the latest version and let me know if the problem persists [S1][S2].",
+    "all_replies": [
+     "Hi! It seems that the issue you're experiencing with the health check endpoint returning a plain text response instead of a JSON object is a known limitation in certain cloud environments, which can lead to application refreshes. This has been discussed in the community, and it appears that upgrading to a newer version of Streamlit may help resolve this issue. Please consider checking if you can upgrade to the latest version and let me know if the problem persists [S1][S2].",
+     "Hi! It seems that the issue you're experiencing with the health check endpoint returning a plain text response instead of a JSON object is a known limitation in certain cloud environments, which can lead to application refreshes. This has been discussed in the community, and it appears that upgrading to a newer version of Streamlit may help resolve this issue. Please consider checking if you can upgrade to the latest version and let me know if the problem persists [S1][S2]."
+    ]
+   },
+   "stats": {
+    "live_calls": 2,
+    "replayed_calls": 1,
+    "tokens_in": 13144,
+    "tokens_out": 1445,
+    "usd_live": 0.001898,
+    "usd_replayed": 0.00094,
+    "latency_s": 21.275
+   },
+   "wall_s": 14.5
+  },
+  {
+   "sid": "s-9176-lost",
+   "case_id": "c-9176",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "tool_failure_after_commit"
+   ],
+   "passed": false,
+   "status_exact": true,
+   "n_checks": 7,
+   "n_ok": 5,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "answered (expected answered)"
+    },
+    "comments_posted": {
+     "ok": false,
+     "detail": "3 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": false,
+     "detail": "3 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-496a0999cff7",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "system",
+     "event": "tool_failure",
+     "mode": "fail_after_write"
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-496a0999cff7"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "usage_guidance",
+     "stopped": null,
+     "proposal": "p-204277c5f019",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-204277c5f019"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 7,
+    "agent_comments": [
+     "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+     "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+     "To resolve the deprecation error you're encountering, please ensure that your .streamlit/config.toml file includes the following lines:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis setting will suppress the file watching feature and should eliminate the deprecation warning related to `global.disableWatchdogWarning`. If you have already done this, please double-check the file's location and contents to ensure it's being read correctly. Let me know if you need further assistance!"
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-496a0999cff7",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-204277c5f019",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 1,
+   "judge_items": {
+    "must_not": [
+     "lost response reported as failure and the comment posted again",
+     "duplicate committed comment"
+    ],
+    "final_reply": "To resolve the deprecation error you're encountering, please ensure that your .streamlit/config.toml file includes the following lines:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis setting will suppress the file watching feature and should eliminate the deprecation warning related to `global.disableWatchdogWarning`. If you have already done this, please double-check the file's location and contents to ensure it's being read correctly. Let me know if you need further assistance!",
+    "all_replies": [
+     "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+     "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+     "To resolve the deprecation error you're encountering, please ensure that your .streamlit/config.toml file includes the following lines:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis setting will suppress the file watching feature and should eliminate the deprecation warning related to `global.disableWatchdogWarning`. If you have already done this, please double-check the file's location and contents to ensure it's being read correctly. Let me know if you need further assistance!"
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 1,
+    "tokens_in": 7374,
+    "tokens_out": 992,
+    "usd_live": 0.000863,
+    "usd_replayed": 0.000839,
+    "latency_s": 15.083
+   },
+   "wall_s": 8.94
+  },
+  {
+   "sid": "s-9176",
+   "case_id": "c-9176",
+   "split": "test",
+   "covers": [
+    "real_followups",
+    "tool_failure"
+   ],
+   "passed": true,
+   "status_exact": true,
+   "n_checks": 7,
+   "n_ok": 7,
+   "checks": {
+    "status": {
+     "ok": true,
+     "detail": "answered (expected answered)"
+    },
+    "comments_posted": {
+     "ok": true,
+     "detail": "2 (expected 2)"
+    },
+    "inv:no_duplicate_execution": {
+     "ok": true,
+     "detail": "2 agent comments for 2 executed proposals"
+    },
+    "inv:no_stale_execution": {
+     "ok": true,
+     "detail": "stale executions=0"
+    },
+    "inv:rejected_not_in_tracker": {
+     "ok": true,
+     "detail": "leaked=[]"
+    },
+    "inv:fact_provenance": {
+     "ok": true,
+     "detail": "0 facts; quote not in this case: []"
+    },
+    "inv:step_budget": {
+     "ok": true,
+     "detail": "max steps in a turn=0 (limit 1000000), case total=0 (limit 1000000)"
+    }
+   },
+   "log": [
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "open",
+     "status_after": "open",
+     "outcome": "known_issue",
+     "stopped": null,
+     "proposal": "p-efd1e1dd8ce1",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "system",
+     "event": "tool_failure",
+     "mode": "fail_before"
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-efd1e1dd8ce1"
+    },
+    {
+     "step": "user",
+     "origin": "real",
+     "corrects": null
+    },
+    {
+     "step": "agent_turn",
+     "llm_calls": 1,
+     "status_before": "answered",
+     "status_after": "answered",
+     "outcome": "usage_guidance",
+     "stopped": null,
+     "proposal": "p-bae39c3dc991",
+     "memory": {},
+     "steps_turn": 0
+    },
+    {
+     "step": "maintainer",
+     "decision": "approve",
+     "result": "ok",
+     "already_done": null,
+     "proposal": "p-bae39c3dc991"
+    }
+   ],
+   "final": {
+    "status": "answered",
+    "labels": [],
+    "version": 6,
+    "agent_comments": [
+     "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+     "To resolve the deprecation error you're encountering, please ensure that your `.streamlit/config.toml` file includes the following lines:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis setting will suppress the file watching feature and should eliminate the deprecation warning related to `global.disableWatchdogWarning`. If you have already added this and are still facing issues, please let me know the exact contents of your `config.toml` file so I can assist you further."
+    ],
+    "facts": {},
+    "superseded": [],
+    "proposals": [
+     {
+      "id": "p-efd1e1dd8ce1",
+      "status": "executed",
+      "origin": "agent"
+     },
+     {
+      "id": "p-bae39c3dc991",
+      "status": "executed",
+      "origin": "agent"
+     }
+    ]
+   },
+   "turns": 2,
+   "max_steps_turn": 0,
+   "repeated_replies": 0,
+   "judge_items": {
+    "must_not": [
+     "failed attempt reported as success",
+     "duplicate committed comment"
+    ],
+    "final_reply": "To resolve the deprecation error you're encountering, please ensure that your `.streamlit/config.toml` file includes the following lines:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis setting will suppress the file watching feature and should eliminate the deprecation warning related to `global.disableWatchdogWarning`. If you have already added this and are still facing issues, please let me know the exact contents of your `config.toml` file so I can assist you further.",
+    "all_replies": [
+     "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+     "To resolve the deprecation error you're encountering, please ensure that your `.streamlit/config.toml` file includes the following lines:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis setting will suppress the file watching feature and should eliminate the deprecation warning related to `global.disableWatchdogWarning`. If you have already added this and are still facing issues, please let me know the exact contents of your `config.toml` file so I can assist you further."
+    ]
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 1,
+    "tokens_in": 7215,
+    "tokens_out": 974,
+    "usd_live": 0.000828,
+    "usd_replayed": 0.000839,
+    "latency_s": 16.266
+   },
+   "wall_s": 8.78
+  }
+ ]
+}

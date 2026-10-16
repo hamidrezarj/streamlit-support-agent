@@ -10,6 +10,9 @@
 
 ### TL;DR
 
+> **Held-out test (§1c):** final-v4 0.375 exact / 0.44 acceptable vs baselines 0.125 / 0.19; same ranking as dev,
+> not significant on 16 cases; 0 high-confidence wrong answers on both splits.
+
 | | baseline-v1 | baseline-v2 | **final-v4 (chosen)** |
 |---|---|---|---|
 | What it is | 1 query → top-10 → 1 LLM call | same + shared rules in the prompt | 3 LLM calls, grouped multi-query retrieval, decisions in code |
@@ -87,6 +90,47 @@ vs baseline-v1 — exact 9 wins / 1 loss (p = 0.02), acceptable 10 / 0 (p = 0.00
 vs baseline-v2 — exact 6 / 1 (**p = 0.13, not significant on 16 cases**), acceptable 7 / 0 (p = 0.02).
 The ranking of all versions is unchanged by the review; final-v4's remaining misses on the reviewed gold
 are c-13102 and c-15326 (both the missing 1.51 release note, §7).
+
+### 1c. Held-out test split (run once, 2026-10-14, after the freeze)
+
+The systems were frozen (commit `c8eeef4`) and run **once** on the 16 test cases; nothing was changed
+afterwards. All calls were **live** (0 replayed). Gold = Hani's reviewed gold.
+
+| | baseline-v1 | baseline-v2 | **final-v4** |
+|---|---|---|---|
+| Outcome exact | 0.125 (2/16) | 0.188 (3/16) | **0.375 (6/16)** |
+| Outcome acceptable | 0.125 | 0.188 | **0.438 (7/16)** |
+| Right kind (bucket_ok) | 0.25 | 0.31 | **0.44** |
+| Answerable / ambiguous / escalate exact (n = 4 / 8 / 4) | 0.50 / 0.00 / 0.00 | 0.50 / 0.13 / 0.00 | 0.25 / 0.38 / 0.50 |
+| Predicted outcomes | `known_issue` 15/16 | `known_issue` 14/16 | 7 escalate, 4 info_request, 3 usage, 2 known |
+| Retrieval recall (labelled sources shown) | 0.37 | 0.37 | **0.65** |
+| Cited recall | 0.24 | 0.14 | **0.43** |
+| Wrong "documented" basis labels | 75% | 31% | **0%** |
+| Upgrade advice without evidence (cases) | 7 | 5 | **2** |
+| High-confidence wrong answers | 3 | 6 | **0** |
+| Output-contract problems | 0 | 6 | 0 |
+| Cost per case (live) | $0.00096 | $0.00097 | $0.00193 (2.0×) |
+| LLM latency per case | 10.4 s | 8.0 s | 17.6 s |
+
+Paired sign test (cases where the systems differ): final vs baseline-v1 exact 5 wins / 1 loss
+(p = 0.22), acceptable 6 / 1 (p = 0.13); vs baseline-v2 exact 4 / 1 (p = 0.38). **The ranking from dev
+holds on test, but none of the differences is significant on 16 cases**, and all three systems score much
+lower than on dev (final 0.75 → 0.375, baseline-v2 0.44 → 0.19). The safety-type metrics (0 high-confidence
+wrong, 0% basis mislabels, retrieval recall +0.28) hold up better than outcome accuracy.
+
+**Main test failure — the code escalation rule over-fires.** The rule *"concrete error/repro and no doc or
+known fix → escalate"* (added in final-v2 because dev escalate cases were answered as "ask") fired on
+8 test cases: 2 correct (c-14432, c-16341), 1 acceptable (c-8321), **5 wrong** (c-11509, c-6224, c-6305,
+c-9140: gold `info_request`; c-7856: gold `usage_guidance`). Many *ambiguous* test reports contain a
+traceback, yet still need one discriminating fact from the user; a traceback is not a reason to involve a
+maintainer. On 3 of these cases the LLM's own proposal (`info_request`) was right and the code overrode it:
+**LLM-proposed exact 0.50 vs code decision 0.375** on test (dev: 0.50 vs 0.75). Post-hoc count, *not* a
+result (the test split is now seen): keeping the LLM's `info_request` when it proposes a discriminating
+check would give 8/16. This is the first change for a next version, to be validated on new cases.
+
+Other misses: c-11670 / c-5793 (gold escalate → `usage_guidance`: the model graded a general docs page as
+resolving), c-6095 (gold usage → `info_request`: no qualifying doc retrieved), c-9176 (gold usage →
+`known_issue` from a maintainer statement). Run files: `data/eval/runs/p1_<system>_test.json`.
 
 ### 2. Retrieval (shared component)
 
@@ -317,8 +361,9 @@ Confusion (predicted outcomes per bucket):
 * **Small sample:** 16 dev cases; one case = 6 points of accuracy.
 * **Tuned on dev:** four rounds of changes (final-v1 → v4) were made after looking at dev results.
   Every change is a general rule, not a case-specific patch, and each was checked by replaying the
-  decision table on saved traces first — but over-fitting to these 16 cases is possible. The **test split
-  is the real measure** and has not been touched.
+  decision table on saved traces first — but over-fitting to these 16 cases is possible. The held-out test split
+  (§1c) confirms it: exact 0.75 → 0.375, with one dev-motivated rule (escalate on a concrete error)
+  causing 5 of the 10 test misses.
 * **Gold labels:** drafted by an LLM from the full threads, then reviewed by one team member (§1b; κ = 0.74
   between the blind human decision and the draft). Only one reviewer, so no human–human agreement is
   reported. `relevant_sources` were picked from the retriever's own results and were not changed by the
@@ -334,7 +379,7 @@ Confusion (predicted outcomes per bucket):
 
 ```bash
 export PYTHONPATH=src
-python -m pytest -q tests                                   # 42 offline tests
+python -m pytest -q tests                                   # 85 offline tests
 python -m ssa.eval.retrieval_gold --split dev
 python -m ssa.eval.p1 --system baseline    --split dev
 python -m ssa.eval.p1 --system baseline-v2 --split dev
@@ -350,4 +395,178 @@ cost and the full `trace`). Cost ledger: `data/usage/ledger.jsonl`.
 
 ## Problem 2 — Following a case with a reliable agent
 
-*To be written.*
+### TL;DR
+
+| Test split (8 scenarios, held-out, run once) | baseline (memoryless + naive executor) | **agent-v3** |
+|---|---|---|
+| **Safety invariant violations** | **3** (duplicate post, stale execution, rejected text posted) | **0** |
+| Facts remembered / corrections kept as history | 0/2 / 0/2 | **2/2 / 2/2** |
+| Step-limit behaviour (stop recorded, no LLM call after limit, status kept) | 0/3 (no limits) | **3/3** |
+| Final status as expected | 3/7 | 2/7 (over-escalation, see §P2.6) |
+| All code checks | 51/67 | **70/75** |
+| Cost per agent turn | $0.0009 | $0.0018 |
+
+On dev (5 scenarios): agent-v3 **50/52** checks, 0 violations, status 4/5; baseline 33/46, 1 duplicate post,
+status 1/5. The agent's **safety and memory** guarantees held on every scenario of both splits; its **decision
+quality** (which status to propose) inherits Problem 1's over-escalation on test.
+
+### P2.1 Design (`docs/architecture_p2.png`)
+
+A deterministic orchestrator (`ssa.agent.orchestrator.Agent`) with LLM steps; the model never writes to the
+tracker. One agent turn:
+
+1. **read** the ticket (local SQLite tracker, `ssa.tracker.store`), new user messages since the last turn;
+2. **update memory** (LLM, `SYS_UPDATE`): facts with an exact **quote** from the user's message (no quote in the
+   text → fact rejected), corrections **supersede** the old value (history kept), things the user tried and
+   whether *our* suggestion failed, explicit confirmation that the problem is solved;
+3. **analyse** with the Problem 1 final-v4 pipeline on the report + memory (memory facts first), with the
+   leakage cut-off = newest *user-side* timestamp;
+4. **multi-turn rules in code** (decision hook): a fix *we* suggested failed and nothing new resolves it →
+   escalate; `closed_resolved` only after a quoted user confirmation;
+5. **propose** actions (`post_comment`, `set_status`, `set_labels`) — stored as a proposal with a content
+   hash and the ticket version it was made for. **Nothing is visible yet.**
+
+The **maintainer gate** (`ssa.agent.tools.MaintainerGate`) is the only path to the tracker:
+
+| Guarantee | How (code) |
+|---|---|
+| no action without approval | tools only *propose*; `approve / edit / reject` execute or discard |
+| approval bound to what was seen | approve(case, proposal id, **hash**); wrong case / hash → refused |
+| no stale execution | ticket version changed since the proposal (e.g. a new user message) → `StaleProposal`, re-plan |
+| edit = new proposal | edited text posted **verbatim**, origin `maintainer_edit` |
+| reject = nothing written | reason stored and given to the next draft |
+| no duplicate writes | every write keyed `<proposal>:<i>`; retries / duplicate requests return the stored result |
+| verified results | read the ticket back after writing; failure is never reported as success |
+| survives a crash | proposals + memory in SQLite; the pending proposal is found again after restart |
+| bounded work | 8 steps per turn, 30 per case (LLM call or tool = 1 step); at the limit → stop, escalation *proposal*, no status change |
+| prompt injection | issue / comment / doc text is data; it cannot call the gate |
+| audit | JSONL per action (secrets masked) — sample traces in `data/eval/runs/p2_*/*/audit.jsonl` |
+
+**Baseline:** `MemorylessAgent` (Problem 1 baseline on the whole thread each turn) + `NaiveGate` (executes the last
+proposal without case / hash / version checks, no idempotency keys, no step limits). Same tracker, same model.
+
+### P2.2 Scenarios (13: 5 dev, 8 test)
+
+Built from real issue threads: the user turns are the issue author's **real** follow-up comments
+(`origin: real`, with their original timestamps); two dev turns are designed (`s-5500` correction). Reviewed
+by Hani (`data/eval/annotations/reviews/hani/scenarios/`, decisions in `scenario_review_decisions.json`):
+expected statuses / facts corrected, acceptable alternative statuses, exact maintainer edit text, an explicit
+shared event schedule for the interleaved pair, and two variants.
+
+| Scenario | Split | What it tests |
+|---|---|---|
+| s-12709 | dev | real follow-ups refute a hypothesis; facts (version, Community Cloud, "8 out of 10") |
+| s-5500 | dev | user **correction** (direct IP → nginx under /st/); old value kept as history |
+| s-7867 | dev | maintainer **edit**, posted verbatim; no `type:bug` label, not closed |
+| s-8364 | dev | **crash while awaiting approval** → restart → same pending proposal (id, hash, version, actions) |
+| s-9781 | dev | **duplicate approval request** → one post; close only after the user confirms |
+| s-11500 | test | user correction arrives **before** approval → stale proposal refused, re-plan |
+| s-9140 + s-11509 | test | two cases **interleaved** in one process: no fact / approval crosses cases |
+| s-15378 | test | real follow-ups |
+| s-15378-limit | test | **step limit** (7 per case): stop recorded, no LLM call after it, status unchanged |
+| s-7076 | test | maintainer **reject** → nothing written, reason used in the next draft |
+| s-9176 | test | tool fails **before** writing → one retry with the same key |
+| s-9176-lost | test | write succeeds but the response is **lost** → retry returns the stored result, no 2nd post |
+
+### P2.3 Evaluation: checks on stored state, not on model text (`ssa.eval.p2`)
+
+The runner replays every step against the real tracker, memory and gate and then checks the **stored** state:
+expected status (or an accepted alternative), number of agent comments, remembered facts (with history),
+labels, edited text verbatim, step-limit behaviour, and the invariants — no duplicate execution, no stale
+execution, rejected text never in the tracker, no write from a non-executed proposal, pending proposal
+survives restart unchanged, closed only after confirmation, every fact quotes **this** case (provenance), no
+approval / fact crossing cases, step budget kept. Text-level `must_not` items are collected for a judge
+(not run; see limitations).
+
+### P2.4 Results
+
+| | Dev baseline | Dev **agent-v3** | Test baseline | Test **agent-v3** |
+|---|---|---|---|---|
+| Scenarios passing all checks | 1/5 | **3/5** | 2/8 | **3/8** |
+| Code checks | 33/46 | **50/52** | 51/67 | **70/75** |
+| Invariant violations | 1 | **0** | 3 | **0** |
+| Status as expected | 1/5 | **4/5** | **3/7** | 2/7 |
+| Facts / superseded | 0/5 / 0/1 | **4/5 / 1/1** | 0/2 / 0/2 | **2/2 / 2/2** |
+| Repeated identical replies | 1 | **0** | 4 | 1 |
+| Agent turns | 10 | 10 | 18 | 18 |
+| Cost: live + replayed USD | 0.0039 + 0.0039 | 0.0100 + 0.0061 | 0.0083 + 0.0082 | 0.0277 + 0.0054 |
+| Cost per turn | $0.0008 | $0.0016 | $0.0009 | $0.0018 |
+
+(Check totals differ because some checks exist only for the final system, e.g. keyed writes.)
+Baseline violations on test, each a real-world incident: **s-9176-lost** — the response of a successful post was
+lost and the naive retry posted the comment twice; **s-11500** — the user corrected the version before the
+maintainer approved, and the old reply was executed anyway; **s-7076** — the memoryless baseline re-drafted the
+same text after the maintainer rejected it, and it was posted.
+
+### P2.5 What changed during development (effective changes)
+
+| Version | Change | Effect |
+|---|---|---|
+| agent-v1 | orchestrator + gate + memory | dev: hook fired on the user's *own* failed attempts → wrong escalations |
+| agent-v2 | "our fix failed" counts only for fixes **we** suggested; env template parsed (no fake corrections) | dev 34/37 (old fixtures), 0 violations |
+| review | Hani's scenario review: stricter fixtures and new checks (pending identity, provenance, no write from unexecuted proposals, step limit) | dev 47/52 |
+| **agent-v3** | **leakage fix:** retrieval cut-off from user-side text only (agent posts carry today's date, which let turn ≥ 2 retrieve 2026 release notes for a 2024 case — found in s-8364, where the agent cited a 1.58.0 fix); memory records failure frequency and test results | dev **50/52**; s-8364 now escalates correctly |
+
+### P2.6 Failure analysis
+
+* **Over-escalation on test (all 5 status misses).** The agent proposed `escalated` where the gold expects
+  `awaiting_user` (s-11500, s-15378) or `answered` (s-11509, s-9176, s-9176-lost). The audit log names the rule
+  every time: *"concrete error/repro, no doc or known fix → escalate"* — the same Problem 1 rule that over-fires
+  on test (§1c). Safe but unhelpful: the maintainer sees a proposal they would edit. Fix candidate (not applied,
+  test seen): keep the LLM's `info_request` when it names a discriminating check.
+* **s-5500 (dev):** the correction was stored and the old value kept as history, but "direct IP works" was not
+  stored as its own fact, even after the prompt change.
+* **s-7867 (dev):** the user had already shown that `minimal` works; the agent still asked for information
+  because no document directly states the difference between `viewer` and `minimal`.
+* **Found by the checks, fixed:** the leakage bug above; the hook firing on user-tried fixes (v1).
+
+### P2.7 Limitations
+
+* 13 scenarios (5 / 8) are few; one reviewer; real follow-ups only exist where the issue author replied.
+* The maintainer is simulated by the scenario (approve / edit / reject at fixed points).
+* No ablation run (memory off + safe gate) — the comparison mixes the memory and gate effects; the invariant
+  violations are attributable to the gate (they are about execution), the fact checks to memory.
+* `must_not` text items are not scored (no LLM judge was run).
+* Local SQLite tracker, not GitHub; the tool layer is typed and could be swapped for a real API.
+
+### P2.8 Reproduce
+
+```bash
+export PYTHONPATH=src
+python -m ssa.eval.p2 --system final    --split dev
+python -m ssa.eval.p2 --system baseline --split dev
+LLM_CACHE_MODE=replay python -m ssa.eval.p2 --system final --split dev     # offline, $0
+python -m ssa.cli tracker reset                                              # empty tracker + memory
+```
+
+Run files: `data/eval/runs/p2_<system>_<split>.json` and per-scenario folders with `audit.jsonl`,
+`tracker.sqlite`, `state.sqlite` (sample traces).
+
+---
+
+## Cost report (whole project, from `data/usage/ledger.jsonl`)
+
+Budget: $5 for the team. **Spent: $0.31** (live calls only; replayed calls cost $0 and are not in the ledger).
+
+| Item | Calls | Tokens in | Tokens out | USD |
+|---|---|---|---|---|
+| Embeddings — index (5,990 chunks, once) | 71 batches | 1,278,565 | — | 0.026 |
+| Embeddings — queries | 339 | 51,792 | — | 0.001 |
+| Chat — final pipeline (P1 dev iterations v1–v4 + test, P2 analysis) | 279 | 817,922 | 101,280 | 0.184 |
+| Chat — baseline | 57 | 220,274 | 27,703 | 0.050 |
+| Chat — baseline-v2 | 48 | 200,343 | 22,176 | 0.043 |
+| Chat — agent memory updates (P2) | 28 | 14,763 | 4,272 | 0.005 |
+| Smoke test | 1 | 39 | 16 | 0.000 |
+| **Total** | **823** | **2,583,698** | **155,447** | **0.308** |
+
+Model `gpt-4o-mini` (chat) and `text-embedding-3-small` via the Metis gateway; prices are OpenAI list prices
+(the Metis panel is the source of truth). Per unit: P1 case $0.001 (baselines) vs $0.002 (final);
+P2 turn $0.0009 vs $0.0018. Every run file separates `live_calls` / `replayed_calls` and `usd_live` /
+`usd_replayed`; the committed LLM cache (`data/llm_cache/chat.sqlite`) re-runs all evaluations offline for $0.
+
+## Domain limits
+
+Running and deploying Streamlit apps only (server, proxies, WebSockets, Docker, config, Community Cloud);
+546 issues from 2021 onwards. Docs are a 2026 snapshot treated as timeless; patch releases are missing from
+the release notes; the agent answers in English; reports outside the domain are expected to be escalated.
+

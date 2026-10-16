@@ -3,6 +3,22 @@
 Domain: **running & deploying Streamlit apps** (server, proxies, WebSockets, Docker,
 config, Community Cloud).
 
+**Start here:** results and analysis in [`report.md`](report.md) (Problem 1, Problem 2, cost report,
+held-out test results); a guided tour of the system in [`ONBOARDING.md`](ONBOARDING.md).
+
+**Quick start (offline, $0, no API key)** — needs the search index, which is not in git (109 MB):
+rebuild it once with `./scripts/build_index.sh` (~$0.02 embeddings, needs `LLM_API_KEY`) or unpack a
+provided `data/index` copy. Then:
+
+```bash
+pip install -r requirements-dev.txt && export PYTHONPATH=src
+python -m pytest -q tests                                        # 85 offline tests
+LLM_CACHE_MODE=replay python -m ssa.eval.p1 --system final --split dev
+LLM_CACHE_MODE=replay python -m ssa.eval.p2 --system final --split dev
+SSA_UI_FAKE=1 streamlit run app/ui.py                            # demo UI, scripted LLM
+python -m ssa.cli tracker reset                                  # reset the Problem-2 tracker + memory
+```
+
 ## 1. Data pipeline
 
 ```bash
@@ -84,8 +100,8 @@ PYTHONPATH=src python -m ssa.eval.retrieval_gold --split dev
 ```
 
 * **32 cases** (16 dev / 16 test), hand-picked from 139 candidates; buckets
-  answerable / ambiguous / escalate are balanced per split. **11 multi-turn
-  scenarios** (5 dev / 6 test) covering user correction, maintainer edit/reject,
+  answerable / ambiguous / escalate are balanced per split. **13 multi-turn
+  scenarios** (5 dev / 8 test, incl. the lost-response and step-limit variants from the review) covering user correction, maintainer edit/reject,
   stop-while-awaiting-approval, duplicate request, case changed before execute,
   tool failure, switching between two cases.
 * **Historical setting:** a case starts at the issue's `created_at`; the assistant
@@ -95,8 +111,9 @@ PYTHONPATH=src python -m ssa.eval.retrieval_gold --split dev
   appears in both dev and test. Max cross-split body similarity is 0.75.
 * Real follow-ups are copied from the issue author's comments (`origin: real`);
   our own turns are marked `origin: designed`.
-* Annotations in `data/eval/annotations/*_draft.json` were drafted by Claude
-  from the full threads and **must be reviewed by the team** (`reviewed_by`).
+* Annotations were drafted by an LLM from the full threads and then **reviewed by a team member**
+  (Hani): cases in `data/eval/annotations/reviews/hani/` (κ = 0.74 blind vs draft), scenarios in
+  `.../reviews/hani/scenarios/` (`scenario_review_decisions.json`); `reviewed_by` is set on every item.
 * Release-note ids are content hashes (`rn:<version>:<sha1[:8]>`), stable across re-parsing.
 * Known limitations: docs are a 2026 snapshot (treated as timeless); patch
   releases (e.g. 1.45.1) are not in the release notes, so such fixes are only

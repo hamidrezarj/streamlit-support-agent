@@ -1,0 +1,3416 @@
+{
+ "system": "baseline",
+ "prompt_version": "baseline-v1",
+ "split": "test",
+ "built_at": "2026-10-14T11:31:24+00:00",
+ "git_commit": "c8eeef4",
+ "model": "gpt-4o-mini",
+ "cache_mode": "cache",
+ "stopped_early": null,
+ "metrics": {
+  "n_cases": 16,
+  "outcome_exact": 0.125,
+  "outcome_acceptable": 0.125,
+  "bucket_ok": 0.25,
+  "per_bucket": {
+   "ambiguous": {
+    "n": 8,
+    "bucket_ok": 0.0,
+    "outcome_exact": 0.0,
+    "outcome_acceptable": 0.0
+   },
+   "answerable": {
+    "n": 4,
+    "bucket_ok": 1.0,
+    "outcome_exact": 0.5,
+    "outcome_acceptable": 0.5
+   },
+   "escalate": {
+    "n": 4,
+    "bucket_ok": 0.0,
+    "outcome_exact": 0.0,
+    "outcome_acceptable": 0.0
+   }
+  },
+  "confusion": {
+   "ambiguous": {
+    "known_issue": 8
+   },
+   "answerable": {
+    "known_issue": 3,
+    "usage_guidance": 1
+   },
+   "escalate": {
+    "known_issue": 4
+   }
+  },
+  "retrieval_recall": 0.372,
+  "cited_recall": 0.237,
+  "avg_cited": 1.562,
+  "invalid_citation_cases": 0,
+  "contract_problem_cases": 0,
+  "redundant_question_cases": 4,
+  "checklist_question_cases": 0,
+  "basis_mislabel_rate": 0.75,
+  "duplicate_citation_cases": 2,
+  "unsupported_upgrade_cases": 7,
+  "high_confidence_wrong": 3,
+  "avg_sources_shown": 10.0,
+  "avg_questions": 1.625,
+  "errors": 0,
+  "llm_proposed_exact": null,
+  "cost": {
+   "llm_calls_live": 16,
+   "llm_calls_replayed": 0,
+   "tokens_in": 67548,
+   "tokens_out": 8764,
+   "usd_live": 0.015388,
+   "usd_replayed_equiv": 0.0,
+   "usd_per_case": 0.000962,
+   "query_embeddings": 16,
+   "avg_llm_latency_s": 10.38,
+   "avg_wall_s": 12.161,
+   "avg_steps": 2.0
+  }
+ },
+ "cases": [
+  {
+   "case_id": "c-11500",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-11500",
+    "bucket": "answerable",
+    "gold_outcome": "known_issue",
+    "outcome": "known_issue",
+    "outcome_exact": true,
+    "outcome_acceptable": true,
+    "bucket_ok": true,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [
+     "streamlit_version"
+    ],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4653,
+    "tokens_out": 559,
+    "usd_live": 0.001033,
+    "usd_replayed": 0.0,
+    "latency_s": 9.017,
+    "query_embeddings": 1,
+    "wall_s": 9.793,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is experiencing a 'Bad message format' error related to SessionInfo initialization in their Streamlit application.",
+    "known_facts": [
+     "Streamlit version: 1.41.0",
+     "Python version: 3.11-slim",
+     "Operating System: Docker running on 64bit Amazon Linux 2023/4.5.2 (AWS Elastic Beanstalk, EC2)",
+     "Browser: Chrome Version 136.0.7103.114",
+     "The issue appeared recently and was not present before."
+    ],
+    "hypotheses": [
+     {
+      "text": "The error may be related to a known issue with WebSocket connections and SessionInfo initialization.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the issue is consistently reproducible across different sessions or environments.",
+     "If there are any specific changes in the environment or dependencies that could have triggered this issue."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Consider upgrading to a later version of Streamlit, as this issue may have been addressed in subsequent releases."
+    },
+    "questions": [
+     "Have you tried upgrading to a newer version of Streamlit to see if the issue persists?",
+     "Can you confirm if the issue occurs consistently across different browsers or devices?"
+    ],
+    "user_reply": "It seems that the 'Bad message format' error you are encountering is related to the initialization of SessionInfo, which has been noted in previous issues. This may be a known issue that has been addressed in later versions of Streamlit. I recommend checking if upgrading to a newer version resolves the problem. Additionally, please let me know if you have tried this or if the issue occurs consistently across different browsers or devices [S1].",
+    "maintainer_summary": {
+     "problem": "User reports a 'Bad message format' error related to SessionInfo initialization in their Streamlit app.",
+     "environment": "Streamlit version 1.41.0, Python 3.11-slim, Docker on Amazon Linux 2023/4.5.2.",
+     "checks_done": "User has attempted various solutions related to session_state variables and configuration updates.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "Is the issue consistently reproducible across different sessions or environments? Have there been any recent changes in dependencies?",
+     "next_step": "Consider investigating if this issue has been resolved in later versions of Streamlit."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:7684",
+     "type": "issue",
+     "title": "Streamlit deployment showing error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7684",
+     "available_at": "2023-11-07T04:38:51Z",
+     "chunk_id": "e332d42a167da5a1",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:11325",
+     "type": "issue",
+     "title": "Application Not Starting - \"The main module file does not exist\" Despite File Presence",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11325",
+     "available_at": "2025-05-11T16:27:59Z",
+     "chunk_id": "2f401a92842e8e4b",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:9787",
+     "type": "issue",
+     "title": "st.fragment produces \"Failed to process a Websocket message (AxiosError: Request failed with status code 418\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9787",
+     "available_at": "2024-11-05T15:16:05Z",
+     "chunk_id": "6a10113c0dea75cd",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:9284",
+     "type": "issue",
+     "title": "st.file_uploader AxiosError caused by _streamlit_xsrf cookie deletion when popup windows are closed",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9284",
+     "available_at": "2024-08-15T17:00:18Z",
+     "chunk_id": "3676be6621c160b7",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:4516",
+     "type": "issue",
+     "title": "Your app is in the oven / booting",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4516",
+     "available_at": "2022-03-16T14:18:52Z",
+     "chunk_id": "ee86cabcca10f097",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:5753",
+     "type": "issue",
+     "title": "Streamlit fails from Docker: MediaFileStorageError",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5753",
+     "available_at": "2022-11-22T20:41:43Z",
+     "chunk_id": "b8fa879c6202a6b0",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:9660",
+     "type": "issue",
+     "title": "Seaborn / Matplotlib plot fails to render on cold start",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9660",
+     "available_at": "2024-10-13T23:11:36Z",
+     "chunk_id": "d1fea1ce55b8f98b",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:8188",
+     "type": "issue",
+     "title": "Unnecessary failover on /_stcore/stream",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8188",
+     "available_at": "2024-02-21T20:56:45Z",
+     "chunk_id": "e83108487da8b08f",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:9284",
+     "type": "issue",
+     "title": "st.file_uploader AxiosError caused by _streamlit_xsrf cookie deletion when popup windows are closed",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/9284",
+     "available_at": "2024-08-15T17:00:18Z",
+     "chunk_id": "4a497f3dddf9b32b",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:10412",
+     "type": "issue",
+     "title": "Streamlit script using fragment feature breaks when run in FIPS-Compliant python image",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/10412",
+     "available_at": "2025-02-17T06:48:50Z",
+     "chunk_id": "a6094b86f76ec90c",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:7684",
+    "issue:11325",
+    "issue:9787",
+    "issue:9284",
+    "issue:4516",
+    "issue:5753",
+    "issue:9660",
+    "issue:8188",
+    "issue:9284",
+    "issue:10412"
+   ],
+   "error": null,
+   "retrieval_s": 0.768,
+   "steps": 2
+  },
+  {
+   "case_id": "c-11509",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-11509",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [
+     "streamlit_version"
+    ],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3991,
+    "tokens_out": 508,
+    "usd_live": 0.000903,
+    "usd_replayed": 0.0,
+    "latency_s": 7.303,
+    "query_embeddings": 1,
+    "wall_s": 7.902,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The STREAMLIT_SERVER_BASE_URL_PATH environment variable is not functioning as expected when running a Streamlit app in Docker.",
+    "known_facts": [
+     "Streamlit version: 1.45.1",
+     "Python version: 3.13.2",
+     "Operating System: Mac OS 15.5 (24F74)"
+    ],
+    "hypotheses": [
+     {
+      "text": "The environment variable STREAMLIT_SERVER_BASE_URL_PATH is not being recognized by Streamlit when running in Docker.",
+      "basis": "documented",
+      "sources": [
+       "S4"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether this issue is specific to the user's Docker setup or a broader issue with the Streamlit version."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Verify if the issue persists with a different version of Streamlit or by using the configuration in the .streamlit/config.toml file."
+    },
+    "questions": [
+     "Have you tried running the app with a different version of Streamlit?",
+     "Does the issue persist when using the .streamlit/config.toml file instead of the environment variable?"
+    ],
+    "user_reply": "It seems that the STREAMLIT_SERVER_BASE_URL_PATH environment variable is not being recognized when running your Streamlit app in Docker. This behavior has been noted in previous discussions, indicating that using the configuration in the .streamlit/.config.toml file may be a more reliable approach for setting this option [S4]. I recommend checking if the issue persists with a different version of Streamlit or by using the .config.toml file instead of the environment variable.",
+    "maintainer_summary": {
+     "problem": "The STREAMLIT_SERVER_BASE_URL_PATH environment variable is not functioning as expected in Docker.",
+     "environment": "Streamlit version 1.45.1, Python 3.13.2, Mac OS 15.5.",
+     "checks_done": "User has confirmed the issue with the provided Docker command.",
+     "key_sources": [
+      "S4"
+     ],
+     "open_questions": "Is this issue specific to the user's Docker setup or a broader issue with the Streamlit version?",
+     "next_step": "Investigate if this behavior is consistent across different Streamlit versions or configurations."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:5753",
+     "type": "issue",
+     "title": "Streamlit fails from Docker: MediaFileStorageError",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5753",
+     "available_at": "2022-11-22T20:41:43Z",
+     "chunk_id": "b8fa879c6202a6b0",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:8629",
+     "type": "issue",
+     "title": "default of browser.serverAddress is not actually \"localhost\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8629",
+     "available_at": "2024-05-07T17:28:57Z",
+     "chunk_id": "b87f253e6bb2d535",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:7922",
+     "type": "issue",
+     "title": "How to run streamlit on a stand alone EC2 with docker options? Followed the documentation from website, but doesn't seem to work. ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7922",
+     "available_at": "2024-01-09T18:14:22Z",
+     "chunk_id": "4880c98f3ec9dc8e",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:10361",
+     "type": "issue",
+     "title": "Support .env files for configuration",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/10361",
+     "available_at": "2025-02-07T14:04:36Z",
+     "chunk_id": "eec6f7774a0e4542",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6162",
+     "type": "issue",
+     "title": "`pages` directory unreadable when running Streamlit in Docker Container",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6162",
+     "available_at": "2023-02-21T19:58:56Z",
+     "chunk_id": "f2d8b008b15d0abb",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:3242",
+     "type": "issue",
+     "title": "When I create the image docker and try it to run localy I recive \"Streamlit requires raw Python (.py) files, but the provided file has no extension.\\nFor more information, please see https://docs.streamlit.io\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3242",
+     "available_at": "2021-05-09T15:38:41Z",
+     "chunk_id": "aed2b671fe0f10b1",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:7684",
+     "type": "issue",
+     "title": "Streamlit deployment showing error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7684",
+     "available_at": "2023-11-07T04:38:51Z",
+     "chunk_id": "e332d42a167da5a1",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:10361",
+     "type": "issue",
+     "title": "Support .env files for configuration",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/10361",
+     "available_at": "2025-02-07T14:04:36Z",
+     "chunk_id": "c486cedf8c65899b",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:7922",
+     "type": "comment",
+     "title": "How to run streamlit on a stand alone EC2 with docker options? Followed the documentation from website, but doesn't seem to work. ",
+     "heading": "comments 2024-01-10..2024-01-10",
+     "url": "https://github.com/streamlit/streamlit/issues/7922#issuecomment-1884240994",
+     "available_at": "2024-01-10T06:00:41Z",
+     "chunk_id": "1a59d39dd52422ae",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:9456",
+     "type": "issue",
+     "title": "Streamlit slows down with many nested blocks",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9456",
+     "available_at": "2024-09-12T17:53:47Z",
+     "chunk_id": "ff245cd699f80f10",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S4"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:5753",
+    "issue:8629",
+    "issue:7922",
+    "issue:10361",
+    "issue:6162",
+    "issue:3242",
+    "issue:7684",
+    "issue:10361",
+    "issue:7922",
+    "issue:9456"
+   ],
+   "error": null,
+   "retrieval_s": 0.592,
+   "steps": 2
+  },
+  {
+   "case_id": "c-11670",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-11670",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.5,
+    "n_cited": 3,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3940,
+    "tokens_out": 512,
+    "usd_live": 0.000898,
+    "usd_replayed": 0.0,
+    "latency_s": 9.577,
+    "query_embeddings": 1,
+    "wall_s": 12.419,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The WebSocket connection is unstable due to a low ping timeout setting in Streamlit.",
+    "known_facts": [
+     "Streamlit version: 1.45.1",
+     "Python version: 3.9 or 3.12",
+     "Operating System: Linux",
+     "Browser: Chrome"
+    ],
+    "hypotheses": [
+     {
+      "text": "The ping timeout is set to 1 second, which is shorter than the expected 30 seconds, causing connection instability.",
+      "basis": "documented",
+      "sources": [
+       "S1",
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the user has tried adjusting the websocket ping interval in the Streamlit configuration."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Check if you can adjust the websocket ping interval in your Streamlit configuration."
+    },
+    "questions": [
+     "Have you tried modifying the websocket ping interval using the configuration option `server.websocketPingInterval`?"
+    ],
+    "user_reply": "It seems that the issue you're experiencing is related to the WebSocket ping timeout being set too low. In Streamlit, the `websocket_ping_timeout` is set to 1 second, which is shorter than the expected 30 seconds, leading to connection instability, especially in high-latency environments. You can try adjusting the `server.websocketPingInterval` in your Streamlit configuration to a higher value to see if that resolves the issue. This setting allows you to specify the interval at which the server pings the client to keep the WebSocket connection alive, and it should help with the stability of your connection [S5].",
+    "maintainer_summary": {
+     "problem": "User reports unstable WebSocket connections due to low ping timeout settings.",
+     "environment": "Streamlit version 1.45.1, Python 3.9 or 3.12, Linux OS, Chrome browser.",
+     "checks_done": "User has identified the ping timeout issue in the Tornado source code.",
+     "key_sources": [
+      "S1",
+      "S2",
+      "S5"
+     ],
+     "open_questions": "User has not confirmed if they have tried adjusting the websocket ping interval.",
+     "next_step": "Consider providing guidance on adjusting the websocket ping interval in the Streamlit configuration."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8660",
+     "type": "comment",
+     "title": "streamlit does not produce WebSocket ping frames",
+     "heading": "comments 2025-06-17..2025-06-17",
+     "url": "https://github.com/streamlit/streamlit/issues/8660#issuecomment-2980771374",
+     "available_at": "2025-06-17T15:11:49Z",
+     "chunk_id": "de12edc437af7fa3",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:3196",
+     "type": "comment",
+     "title": "Change websocket ping time to 1s to improve connection resilience?",
+     "heading": "comments 2021-06-22..2021-06-22",
+     "url": "https://github.com/streamlit/streamlit/issues/3196#issuecomment-866284340",
+     "available_at": "2021-06-22T19:48:36Z",
+     "chunk_id": "426eda6c9d80e583",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:3196",
+     "type": "issue",
+     "title": "Change websocket ping time to 1s to improve connection resilience?",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3196",
+     "available_at": "2021-04-29T18:00:24Z",
+     "chunk_id": "6a6860c726c844d3",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:8660",
+     "type": "issue",
+     "title": "streamlit does not produce WebSocket ping frames",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8660",
+     "available_at": "2024-05-14T08:13:05Z",
+     "chunk_id": "8644176221130d5b",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "config:server.websocketPingInterval",
+     "type": "config_option",
+     "title": "server.websocketPingInterval",
+     "heading": "config.toml",
+     "url": "https://docs.streamlit.io/develop/api-reference/configuration/config.toml#server",
+     "available_at": null,
+     "chunk_id": "7b863f7802af864e",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:3342",
+     "type": "issue",
+     "title": "Streamlit websocket timeout is set too low",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3342",
+     "available_at": "2021-05-28T14:15:26Z",
+     "chunk_id": "e0e49166ba448e59",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:5576",
+     "type": "issue",
+     "title": "Websocket connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5576",
+     "available_at": "2022-10-20T16:38:33Z",
+     "chunk_id": "821aef1c5b7cabca",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:9916",
+     "type": "issue",
+     "title": "Tornado HTTPServer extra arguments",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9916",
+     "available_at": "2024-11-24T12:03:57Z",
+     "chunk_id": "458a47b612916b6d",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:6242",
+     "type": "comment",
+     "title": "Firefox can’t establish a connection to websocket (started from within a devontainer)",
+     "heading": "comments 2023-03-13..2023-03-14",
+     "url": "https://github.com/streamlit/streamlit/issues/6242#issuecomment-1467101024",
+     "available_at": "2023-03-14T08:26:04Z",
+     "chunk_id": "946a0372968673f6",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:9916",
+     "type": "comment",
+     "title": "Tornado HTTPServer extra arguments",
+     "heading": "comments 2024-11-30..2024-12-01",
+     "url": "https://github.com/streamlit/streamlit/issues/9916#issuecomment-2508981034",
+     "available_at": "2024-12-01T00:57:10Z",
+     "chunk_id": "d7a7c7402e90a5f9",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S5",
+     "S1",
+     "S2"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8660",
+    "issue:3196",
+    "issue:3196",
+    "issue:8660",
+    "config:server.websocketPingInterval",
+    "issue:3342",
+    "issue:5576",
+    "issue:9916",
+    "issue:6242",
+    "issue:9916"
+   ],
+   "error": null,
+   "retrieval_s": 2.835,
+   "steps": 2
+  },
+  {
+   "case_id": "c-14432",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-14432",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": null,
+    "cited_recall": null,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 0,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3004,
+    "tokens_out": 431,
+    "usd_live": 0.000709,
+    "usd_replayed": 0.0,
+    "latency_s": 6.89,
+    "query_embeddings": 1,
+    "wall_s": 10.508,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "Error from Prometheus when scraping the /_stcore/metrics endpoint due to metric naming convention.",
+    "known_facts": [
+     "Streamlit version: 1.55.0",
+     "Python version: 3.13",
+     "Operating System: linux"
+    ],
+    "hypotheses": [
+     {
+      "text": "The metric naming convention may not conform to the OpenMetrics standard, causing Prometheus to reject it.",
+      "basis": "documented",
+      "sources": [
+       "S3"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether this issue has been addressed in a later version of Streamlit."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Check if upgrading to a later version of Streamlit resolves the issue."
+    },
+    "questions": [],
+    "user_reply": "It seems that the error you're encountering is related to the naming convention of the metrics exposed at the /_stcore/metrics endpoint. This has been noted in previous issues where the metric names did not conform to the OpenMetrics standard, which can lead to errors when Prometheus attempts to scrape them [S3]. I recommend checking if there is a newer version of Streamlit available, as this issue may have been addressed in a later release. Upgrading could potentially resolve the problem you're facing.",
+    "maintainer_summary": {
+     "problem": "User is experiencing an error from Prometheus when scraping the /_stcore/metrics endpoint due to metric naming conventions.",
+     "environment": "Streamlit version 1.55.0, Python 3.13, Linux.",
+     "checks_done": "User has confirmed the error occurs when scraping the metrics endpoint.",
+     "key_sources": [
+      "S3"
+     ],
+     "open_questions": "Has this issue been resolved in a later version of Streamlit?",
+     "next_step": "Consider investigating if the metric naming issue has been fixed in subsequent releases."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:7895",
+     "type": "issue",
+     "title": "`UploadedFileManager` stats are not tracked on metrics endpoint",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7895",
+     "available_at": "2024-01-03T15:55:30Z",
+     "chunk_id": "d1ec863f77fc3d15",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:7318",
+     "type": "issue",
+     "title": "An application developed using Streamlit, when accessing the path /_stcore/metrics, triggers a file download",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7318",
+     "available_at": "2023-09-13T07:05:40Z",
+     "chunk_id": "1c1d2ec49b14e2d1",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:7891",
+     "type": "issue",
+     "title": "session_state stats are not tracked correctly on metrics endpoint",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7891",
+     "available_at": "2024-01-02T18:35:00Z",
+     "chunk_id": "bfb7391bbe349744",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:12089",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12089",
+     "available_at": "2025-07-31T13:30:15Z",
+     "chunk_id": "60cfdaa88d7ac9c3",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:11973",
+     "type": "issue",
+     "title": "Failed to process a Websocket message. Error: Cached ForwardMsg MISS [hash=e63afe0b97691c0f29be8a2a48ea095e]. This is not expected to happen. Please report this bug.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11973",
+     "available_at": "2025-07-17T22:14:53Z",
+     "chunk_id": "53088c859b9203b1",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:9428",
+     "type": "issue",
+     "title": "`TypeError` when requesting `_stcore/metrics` with sqlalchemy engine in session state",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9428",
+     "available_at": "2024-09-09T17:06:40Z",
+     "chunk_id": "123c9b1bb4d92c36",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:12513",
+     "type": "issue",
+     "title": "/_stcore/health and /_stcore/host-config spamming on 403",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/12513",
+     "available_at": "2025-09-12T13:10:47Z",
+     "chunk_id": "6f1959096963dbbc",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:13476",
+     "type": "issue",
+     "title": "Nimchand",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13476",
+     "available_at": "2025-12-28T17:37:09Z",
+     "chunk_id": "30a8f61c708d535e",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5929",
+     "type": "issue",
+     "title": "Connection Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5929",
+     "available_at": "2023-01-09T08:55:59Z",
+     "chunk_id": "de0543f5bb7ad06a",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:8013",
+     "type": "issue",
+     "title": "Adding '/a/a' in the end of URL address causes a blank page.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8013",
+     "available_at": "2024-01-25T09:57:14Z",
+     "chunk_id": "d55ef9926d5b53df",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S3"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:7895",
+    "issue:7318",
+    "issue:7891",
+    "issue:12089",
+    "issue:11973",
+    "issue:9428",
+    "issue:12513",
+    "issue:13476",
+    "issue:5929",
+    "issue:8013"
+   ],
+   "error": null,
+   "retrieval_s": 3.614,
+   "steps": 2
+  },
+  {
+   "case_id": "c-15378",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-15378",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4456,
+    "tokens_out": 468,
+    "usd_live": 0.000949,
+    "usd_replayed": 0.0,
+    "latency_s": 9.144,
+    "query_embeddings": 1,
+    "wall_s": 11.868,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is experiencing issues with WebSocket connections when running a Streamlit app in a corporate network after upgrading to version 1.58.",
+    "known_facts": [
+     "Streamlit version: 1.58",
+     "Python version: 3.12",
+     "Operating System: Windows",
+     "The app works on a private machine but not in the corporate network."
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue may be related to WebSocket connections being blocked or misconfigured in the corporate network.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether there are specific network configurations or firewall settings in the corporate environment that could be affecting WebSocket connections."
+    ],
+    "next_step": {
+     "type": "ask",
+     "text": "Check if there are any firewall or proxy settings in your corporate network that might be blocking WebSocket connections."
+    },
+    "questions": [
+     "Are there any known restrictions on WebSocket connections in your corporate network?",
+     "Have you tried running the app with different network configurations or from a different network?"
+    ],
+    "user_reply": "It seems that the WebSocket connection is being blocked or misconfigured in your corporate network. I recommend checking with your IT department to see if there are any restrictions on WebSocket connections. This issue has been noted in similar reports, particularly when running Streamlit apps in environments with strict network policies [S1].",
+    "maintainer_summary": {
+     "problem": "User is unable to run a Streamlit app with WebSocket connections in a corporate network after upgrading to version 1.58.",
+     "environment": "Windows, Streamlit version 1.58, Python 3.12.",
+     "checks_done": "User confirmed the app works on a private machine but fails in the corporate network.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "What specific network configurations or firewall settings are in place in the corporate environment?",
+     "next_step": "Investigate potential network restrictions affecting WebSocket connections."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8188",
+     "type": "issue",
+     "title": "Unnecessary failover on /_stcore/stream",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8188",
+     "available_at": "2024-02-21T20:56:45Z",
+     "chunk_id": "e83108487da8b08f",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:13600",
+     "type": "comment",
+     "title": "[Request for feedback] Starlette/ASGI Support in Streamlit",
+     "heading": "comments 2026-02-09..2026-02-09",
+     "url": "https://github.com/streamlit/streamlit/issues/13600#issuecomment-3871613259",
+     "available_at": "2026-02-09T13:09:36Z",
+     "chunk_id": "94f6aaca2637c04d",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:14209",
+     "type": "issue",
+     "title": "WebSocket fails behind Istio VirtualService despite websocketUpgrade: true, causing localhost requests to stall even with normal CPU/memory usage",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/14209",
+     "available_at": "2026-03-04T09:11:57Z",
+     "chunk_id": "748fa1c39afb40bc",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:13600",
+     "type": "issue",
+     "title": "[Request for feedback] Starlette/ASGI Support in Streamlit",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13600",
+     "available_at": "2026-01-15T15:51:05Z",
+     "chunk_id": "0ad2c5f3c1997df9",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:7922",
+     "type": "issue",
+     "title": "How to run streamlit on a stand alone EC2 with docker options? Followed the documentation from website, but doesn't seem to work. ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7922",
+     "available_at": "2024-01-09T18:14:22Z",
+     "chunk_id": "4880c98f3ec9dc8e",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:9787",
+     "type": "issue",
+     "title": "st.fragment produces \"Failed to process a Websocket message (AxiosError: Request failed with status code 418\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9787",
+     "available_at": "2024-11-05T15:16:05Z",
+     "chunk_id": "6a10113c0dea75cd",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:5753",
+     "type": "issue",
+     "title": "Streamlit fails from Docker: MediaFileStorageError",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5753",
+     "available_at": "2022-11-22T20:41:43Z",
+     "chunk_id": "b8fa879c6202a6b0",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:7426",
+     "type": "issue",
+     "title": "--server.port does not change, always defaults to 8501",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7426",
+     "available_at": "2023-09-26T06:53:50Z",
+     "chunk_id": "f6823eba341b2747",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:4311",
+     "type": "comment",
+     "title": "Provide way to run with the WSGI/ASGI protocols",
+     "heading": "comments 2026-04-10..2026-04-10",
+     "url": "https://github.com/streamlit/streamlit/issues/4311#issuecomment-4222376181",
+     "available_at": "2026-04-10T08:58:05Z",
+     "chunk_id": "35bb03d950eab18b",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:4311",
+     "type": "comment",
+     "title": "Provide way to run with the WSGI/ASGI protocols",
+     "heading": "comments 2026-01-15..2026-01-15",
+     "url": "https://github.com/streamlit/streamlit/issues/4311#issuecomment-3756201500",
+     "available_at": "2026-01-15T18:08:42Z",
+     "chunk_id": "936e285203c85acf",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8188",
+    "issue:13600",
+    "issue:14209",
+    "issue:13600",
+    "issue:7922",
+    "issue:9787",
+    "issue:5753",
+    "issue:7426",
+    "issue:4311",
+    "issue:4311"
+   ],
+   "error": null,
+   "retrieval_s": 2.719,
+   "steps": 2
+  },
+  {
+   "case_id": "c-16341",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-16341",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": null,
+    "cited_recall": null,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3995,
+    "tokens_out": 482,
+    "usd_live": 0.000888,
+    "usd_replayed": 0.0,
+    "latency_s": 9.619,
+    "query_embeddings": 1,
+    "wall_s": 11.548,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is experiencing a TypeError related to GZipResponder due to incompatible versions of Streamlit and Starlette.",
+    "known_facts": [
+     "Streamlit version: 1.61.0",
+     "Starlette version: 1.4.0",
+     "Uvicorn version: 0.52.1",
+     "Python version: 3.14.6"
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue is caused by an incompatibility between the installed versions of Streamlit and Starlette.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether upgrading to a compatible version of Streamlit or Starlette resolves the issue."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Check if upgrading Streamlit to a later version resolves the issue."
+    },
+    "questions": [
+     "Have you tried upgrading Streamlit to a newer version?"
+    ],
+    "user_reply": "It seems that the issue you're facing is due to an incompatibility between the versions of Streamlit and Starlette being used. The error message indicates that the GZipResponder is missing a required argument, which is likely due to the specific versions installed in your environment. I recommend checking if upgrading Streamlit to a later version resolves the issue, as there may have been fixes related to this in subsequent releases. Please let me know if you need assistance with the upgrade process.",
+    "maintainer_summary": {
+     "problem": "User is unable to deploy any Streamlit application due to a TypeError related to GZipResponder.",
+     "environment": "Streamlit version 1.61.0, Starlette version 1.4.0, Uvicorn version 0.52.1, Python 3.14.6.",
+     "checks_done": "User has confirmed the issue occurs with a minimal app and multiple configurations.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "Have they tried upgrading Streamlit to a newer version?",
+     "next_step": "Suggest checking for an upgrade to a compatible version of Streamlit."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:11396",
+     "type": "issue",
+     "title": "file_uploader fails for files with Unicode characters in filename (Streamlit Community Cloud)",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11396",
+     "available_at": "2025-05-18T17:45:09Z",
+     "chunk_id": "b77ad8dfa26242f7",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:6751",
+     "type": "issue",
+     "title": "CacheStorageKeyNotFoundError on Streamlit Community Cloud",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6751",
+     "available_at": "2023-05-26T12:01:51Z",
+     "chunk_id": "a46799add7eab686",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:13111",
+     "type": "issue",
+     "title": "Streamlit Cloud: App randomly crashes with “Oh no. Error running app” after recent updates",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/13111",
+     "available_at": "2025-11-24T19:50:29Z",
+     "chunk_id": "13457750c6c4ccb6",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:6934",
+     "type": "issue",
+     "title": "Streamlit reinstalling packages by itself causing incompatibilities",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6934",
+     "available_at": "2023-06-30T16:03:00Z",
+     "chunk_id": "05e05999841f6e96",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:11356",
+     "type": "issue",
+     "title": "Unable to log in to Streamlit Community Cloud – Receiving 403 Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11356",
+     "available_at": "2025-05-14T03:49:04Z",
+     "chunk_id": "7da7bb31f7514703",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:8414",
+     "type": "issue",
+     "title": "Streamlit cloud, deployment issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8414",
+     "available_at": "2024-04-03T12:22:34Z",
+     "chunk_id": "708de5c2e5efc4a2",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:11325",
+     "type": "issue",
+     "title": "Application Not Starting - \"The main module file does not exist\" Despite File Presence",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11325",
+     "available_at": "2025-05-11T16:27:59Z",
+     "chunk_id": "2f401a92842e8e4b",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:15455",
+     "type": "issue",
+     "title": "st.login regression on streamlit 1.58.0 (streamlit cloud) - \"Missing provider for OAuth callback\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/15455",
+     "available_at": "2026-06-06T06:33:29Z",
+     "chunk_id": "594d16c478773c84",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:9787",
+     "type": "issue",
+     "title": "st.fragment produces \"Failed to process a Websocket message (AxiosError: Request failed with status code 418\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9787",
+     "available_at": "2024-11-05T15:16:05Z",
+     "chunk_id": "6a10113c0dea75cd",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:11726",
+     "type": "issue",
+     "title": "Unable to deploy: 403 Error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/11726",
+     "available_at": "2025-06-22T14:33:18Z",
+     "chunk_id": "3fb9296e7f759f66",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:11396",
+    "issue:6751",
+    "issue:13111",
+    "issue:6934",
+    "issue:11356",
+    "issue:8414",
+    "issue:11325",
+    "issue:15455",
+    "issue:9787",
+    "issue:11726"
+   ],
+   "error": null,
+   "retrieval_s": 1.923,
+   "steps": 2
+  },
+  {
+   "case_id": "c-5793",
+   "bucket": "escalate",
+   "score": {
+    "case_id": "c-5793",
+    "bucket": "escalate",
+    "gold_outcome": "escalate",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.5,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3871,
+    "tokens_out": 549,
+    "usd_live": 0.00091,
+    "usd_replayed": 0.0,
+    "latency_s": 10.928,
+    "query_embeddings": 1,
+    "wall_s": 12.856,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The _xsrf cookie is not transmitted when deployed on Azure with SSO and HTTPS-only, leading to a 403 Forbidden error with st.file_uploader.",
+    "known_facts": [
+     "Streamlit version: 1.15.0",
+     "Python version: 3.10, 3.11",
+     "Operating System: Ubuntu 22.04 (WSL)",
+     "Browser: Firefox, Chrome",
+     "Virtual environment: yes"
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue is related to the SameSite attribute of the _xsrf cookie not being set to 'None' when deployed, which is required for cross-site requests.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the app is served over HTTPS correctly, as required for SameSite=None cookies.",
+     "If the server.cookieSecret is configured consistently across replicas."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Verify that the app is served over HTTPS and consider setting server.xsrfCookieSameSite to 'none' in your config."
+    },
+    "questions": [
+     "Is your Streamlit app served over HTTPS?",
+     "Have you set the server.cookieSecret consistently across all replicas?"
+    ],
+    "user_reply": "Hi, it seems that the issue with the _xsrf cookie not being transmitted correctly when deployed on Azure is related to the SameSite attribute. To resolve this, ensure that your app is served over HTTPS, as cookies with SameSite=None must also have the Secure attribute. You can also try setting the `server.xsrfCookieSameSite` configuration option to 'none' in your config file. This should help with the 403 Forbidden error when using `st.file_uploader` [S1].",
+    "maintainer_summary": {
+     "problem": "The _xsrf cookie is not transmitted correctly in Azure deployments, causing 403 errors with st.file_uploader.",
+     "environment": "Streamlit 1.15.0 on Azure with AD authentication, using HTTPS.",
+     "checks_done": "User has confirmed the issue occurs only in the deployed environment, not locally.",
+     "key_sources": [
+      "S1",
+      "S3"
+     ],
+     "open_questions": "Is the app served over HTTPS? Is the server.cookieSecret configured consistently across replicas?",
+     "next_step": "Advise the user to check HTTPS configuration and cookie settings."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "config:server.xsrfCookieSameSite",
+     "type": "config_option",
+     "title": "server.xsrfCookieSameSite",
+     "heading": "config.toml",
+     "url": "https://docs.streamlit.io/develop/api-reference/configuration/config.toml#server",
+     "available_at": null,
+     "chunk_id": "4d6d6f8027f01d3d",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:2803",
+     "type": "issue",
+     "title": "When \"upload_file_request_handler.py\" returns 400 error, we can see session ID.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/2803",
+     "available_at": "2021-02-17T03:02:32Z",
+     "chunk_id": "c3c0f6b87de72c61",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "doc:/knowledge-base/deploy/remote-start#symptom-3-unable-to-upload-files-when-running-in-multiple-replicas",
+     "type": "doc",
+     "title": "App is not loading when running remotely",
+     "heading": "App is not loading when running remotely > Symptom #1: The app never loads > Symptom #3: Unable to upload files when running in multiple replicas",
+     "url": "https://docs.streamlit.io/knowledge-base/deploy/remote-start#symptom-3-unable-to-upload-files-when-running-in-multiple-replicas",
+     "available_at": null,
+     "chunk_id": "81b1bd4d404dc8b8",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:5494",
+     "type": "issue",
+     "title": "[Google Cloud Run] Hasn't received its \"streamlit:componentReady\" warning on custom modules",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5494",
+     "available_at": "2022-10-06T10:28:38Z",
+     "chunk_id": "fa600ef4eef7c20f",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "rn:0.62.0:8e283606",
+     "type": "release_note",
+     "title": "Streamlit 0.62.0 - Highlights",
+     "heading": "Highlights",
+     "url": "https://docs.streamlit.io/develop/quick-reference/release-notes/2020#version-0620",
+     "available_at": "2020-06-21T00:00:00Z",
+     "chunk_id": "7304f5ab3790d227",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:5558",
+     "type": "issue",
+     "title": "Unable to set enableCORS to false",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5558",
+     "available_at": "2022-10-18T10:13:43Z",
+     "chunk_id": "fb08ca3b33a88841",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:4173",
+     "type": "issue",
+     "title": "st.file_uploader returns HTTP code 400 with invalid session_id when deployed on Kubernetes",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4173",
+     "available_at": "2021-12-14T12:00:08Z",
+     "chunk_id": "5dea0dfa0599422f",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:5688",
+     "type": "issue",
+     "title": "App https://app-avtools-klima-dev.azurewebsites.net/ is not working.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5688",
+     "available_at": "2022-11-11T09:09:04Z",
+     "chunk_id": "3b1f3dc3f59ecd0a",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5084",
+     "type": "issue",
+     "title": "embedding streamlit cloud app in an iframe causes too many redirects and breaks",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5084",
+     "available_at": "2022-08-03T14:58:53Z",
+     "chunk_id": "d9e28172200048ff",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5576",
+     "type": "issue",
+     "title": "Websocket connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5576",
+     "available_at": "2022-10-20T16:38:33Z",
+     "chunk_id": "821aef1c5b7cabca",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S3"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "config:server.xsrfCookieSameSite",
+    "issue:2803",
+    "doc:/knowledge-base/deploy/remote-start#symptom-3-unable-to-upload-files-when-running-in-multiple-replicas",
+    "issue:5494",
+    "rn:0.62.0:8e283606",
+    "issue:5558",
+    "issue:4173",
+    "issue:5688",
+    "issue:5084",
+    "issue:5576"
+   ],
+   "error": null,
+   "retrieval_s": 1.92,
+   "steps": 2
+  },
+  {
+   "case_id": "c-6095",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-6095",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": true,
+    "retrieval_recall": 0.0,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3852,
+    "tokens_out": 524,
+    "usd_live": 0.000892,
+    "usd_replayed": 0.0,
+    "latency_s": 10.519,
+    "query_embeddings": 1,
+    "wall_s": 11.227,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The change in websocket request path from `/stream` to `/_stcore/stream` in Streamlit version 1.18.0 is causing issues for users running Streamlit behind load balancers.",
+    "known_facts": [
+     "Streamlit version: streamlit-1.18.0",
+     "Python version: python-3.8.15",
+     "Operating System: macOS 13.1"
+    ],
+    "hypotheses": [
+     {
+      "text": "The websocket path change is incompatible with existing load balancer configurations that expect the old path.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether there is a specific configuration in the load balancer that can be adjusted to accommodate the new websocket path."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Check if the load balancer can be configured to route requests from the new websocket path."
+    },
+    "questions": [
+     "Can you provide details about your load balancer configuration?",
+     "Have you tried adjusting the load balancer settings to accommodate the new websocket path?"
+    ],
+    "user_reply": "Hi Nicolas, it seems that the recent change in the websocket request path from `/stream` to `/_stcore/stream` in Streamlit version 1.18.0 is causing issues for users running Streamlit behind load balancers, as you've experienced. This is a known issue, and while I understand your request for a rollback, I recommend checking if your load balancer can be configured to route requests from the new websocket path. Please let me know if you need further assistance or if you have more details about your load balancer configuration.",
+    "maintainer_summary": {
+     "problem": "The change in websocket request path in Streamlit 1.18.0 is causing issues for users behind load balancers.",
+     "environment": "Streamlit version 1.18.0, Python 3.8.15, macOS 13.1.",
+     "checks_done": "User has confirmed the issue is related to the websocket path change.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "What specific load balancer configuration is being used?",
+     "next_step": "Investigate potential adjustments to the websocket path handling in load balancer configurations."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:3270",
+     "type": "issue",
+     "title": "Streamlit behind reverse proxy doesn’t work when you change port",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3270",
+     "available_at": "2021-05-14T14:01:17Z",
+     "chunk_id": "bb9f0ed847b5b5a7",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:5666",
+     "type": "issue",
+     "title": "Deploy app with Google App Engine no longer works with 1.14.0",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5666",
+     "available_at": "2022-11-09T01:10:17Z",
+     "chunk_id": "b7f6eb460b7c1821",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:5605",
+     "type": "issue",
+     "title": "Showing Please wait when deploying the app on elastic beanstalk",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5605",
+     "available_at": "2022-10-26T12:52:41Z",
+     "chunk_id": "41fa5ff03040bad7",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:4297",
+     "type": "issue",
+     "title": "User's session_state is reset on websocket close",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4297",
+     "available_at": "2022-01-19T08:41:33Z",
+     "chunk_id": "1446b2b24b0c5743",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:5866",
+     "type": "issue",
+     "title": "Streamlit Cloud App Redirects and Renaming",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5866",
+     "available_at": "2022-12-17T00:18:16Z",
+     "chunk_id": "0a629c0225ad6430",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:5576",
+     "type": "issue",
+     "title": "Websocket connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5576",
+     "available_at": "2022-10-20T16:38:33Z",
+     "chunk_id": "821aef1c5b7cabca",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:4099",
+     "type": "issue",
+     "title": "User's session_info.ws object is None on first page load",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4099",
+     "available_at": "2021-11-24T01:53:05Z",
+     "chunk_id": "e80089ea03ce01b4",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:5619",
+     "type": "issue",
+     "title": "The app says \"Please wait...\" forever | streamlit running on via Databricks notebook",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5619",
+     "available_at": "2022-10-28T10:37:29Z",
+     "chunk_id": "e80c99085df70953",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:3270",
+     "type": "comment",
+     "title": "Streamlit behind reverse proxy doesn’t work when you change port",
+     "heading": "comments 2021-05-14..2021-05-16",
+     "url": "https://github.com/streamlit/streamlit/issues/3270#issuecomment-841528546",
+     "available_at": "2021-05-16T13:16:59Z",
+     "chunk_id": "0ba0a4be48bf6cd0",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:6037",
+     "type": "issue",
+     "title": "\"Please Wait\" loading message will not load",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6037",
+     "available_at": "2023-01-30T23:54:52Z",
+     "chunk_id": "066fa5b33413c9a2",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:3270",
+    "issue:5666",
+    "issue:5605",
+    "issue:4297",
+    "issue:5866",
+    "issue:5576",
+    "issue:4099",
+    "issue:5619",
+    "issue:3270",
+    "issue:6037"
+   ],
+   "error": null,
+   "retrieval_s": 0.703,
+   "steps": 2
+  },
+  {
+   "case_id": "c-6224",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-6224",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.25,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 1,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3846,
+    "tokens_out": 556,
+    "usd_live": 0.00091,
+    "usd_replayed": 0.0,
+    "latency_s": 6.65,
+    "query_embeddings": 1,
+    "wall_s": 7.349,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is experiencing sporadic 400 and 502 errors when using st.file_uploader with multiple files in an AWS deployment.",
+    "known_facts": [
+     "Streamlit version: 1.13.0",
+     "Python version: 3.10.8",
+     "Deployed in an auto-scaled/auto-balanced AWS ElasticBeanstalk environment",
+     "The issue occurs sporadically when uploading more than ~10 files."
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue may be related to session management in a distributed environment, where the file upload request is routed to a different node than the one connected via websocket.",
+      "basis": "documented",
+      "sources": [
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether sticky sessions are correctly configured in the AWS ElasticBeanstalk environment.",
+     "If there are any specific network configurations or limits that could be affecting the upload process."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Verify that sticky sessions are properly configured in your AWS ElasticBeanstalk environment."
+    },
+    "questions": [
+     "Can you confirm if sticky sessions are enabled in your AWS ElasticBeanstalk configuration?",
+     "Have you noticed any patterns in the failures, such as specific file sizes or types that are more likely to fail?"
+    ],
+    "user_reply": "It seems that the sporadic 400 and 502 errors you are encountering with the file uploader may be related to session management in your distributed AWS environment. This issue has been documented in similar cases where the upload request is routed to a different node than the one connected via websocket, leading to session ID mismatches [S2]. I recommend checking if sticky sessions are properly configured in your AWS ElasticBeanstalk environment, as this could help mitigate the issue. Additionally, please let me know if you notice any specific patterns in the failures, such as file sizes or types that are more likely to fail.",
+    "maintainer_summary": {
+     "problem": "User reports sporadic 400 and 502 errors with st.file_uploader in an AWS deployment.",
+     "environment": "AWS ElasticBeanstalk, auto-scaled and load-balanced.",
+     "checks_done": "User has attempted enabling sticky sessions without success.",
+     "key_sources": [
+      "S1",
+      "S2"
+     ],
+     "open_questions": "What specific configurations are in place for sticky sessions?",
+     "next_step": "Investigate the session management and routing in the user's AWS deployment."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:4173",
+     "type": "issue",
+     "title": "st.file_uploader returns HTTP code 400 with invalid session_id when deployed on Kubernetes",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4173",
+     "available_at": "2021-12-14T12:00:08Z",
+     "chunk_id": "5dea0dfa0599422f",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:4173",
+     "type": "comment",
+     "title": "st.file_uploader returns HTTP code 400 with invalid session_id when deployed on Kubernetes",
+     "heading": "comments 2021-12-21..2021-12-21",
+     "url": "https://github.com/streamlit/streamlit/issues/4173#issuecomment-998418242",
+     "available_at": "2021-12-21T02:29:23Z",
+     "chunk_id": "d18227ec7f8e6d4e",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:2803",
+     "type": "issue",
+     "title": "When \"upload_file_request_handler.py\" returns 400 error, we can see session ID.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/2803",
+     "available_at": "2021-02-17T03:02:32Z",
+     "chunk_id": "c3c0f6b87de72c61",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:2936",
+     "type": "issue",
+     "title": "The file uploader reports \"400 session invalid\" when streamlit is wrapped in swarm docker container if REPLICAS > 1",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/2936",
+     "available_at": "2021-03-12T03:16:56Z",
+     "chunk_id": "13de6cd8567f7113",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:4825",
+     "type": "issue",
+     "title": "404 error on loading images from files",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4825",
+     "available_at": "2022-06-06T04:34:41Z",
+     "chunk_id": "c03c3de74324512f",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:3722",
+     "type": "issue",
+     "title": "file_uploader is slow when deployed",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3722",
+     "available_at": "2021-08-20T06:58:12Z",
+     "chunk_id": "786e084dcc623fb9",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:6142",
+     "type": "issue",
+     "title": "File uploader stops serving file after 30 seconds",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6142",
+     "available_at": "2023-02-16T10:50:44Z",
+     "chunk_id": "bb39d676d3c61e23",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:2803",
+     "type": "comment",
+     "title": "When \"upload_file_request_handler.py\" returns 400 error, we can see session ID.",
+     "heading": "comments 2021-10-20..2021-10-20",
+     "url": "https://github.com/streamlit/streamlit/issues/2803#issuecomment-948079579",
+     "available_at": "2021-10-20T22:18:09Z",
+     "chunk_id": "5ccfe485027afd72",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:3838",
+     "type": "issue",
+     "title": "file_uploader triggering second time when we click on other buttons in the same page.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3838",
+     "available_at": "2021-09-23T16:29:58Z",
+     "chunk_id": "58cb3813875a7d51",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:2936",
+     "type": "comment",
+     "title": "The file uploader reports \"400 session invalid\" when streamlit is wrapped in swarm docker container if REPLICAS > 1",
+     "heading": "comments 2023-01-31..2023-01-31",
+     "url": "https://github.com/streamlit/streamlit/issues/2936#issuecomment-1410144790",
+     "available_at": "2023-01-31T10:52:35Z",
+     "chunk_id": "2e30680d6626c2b7",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S2",
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:4173",
+    "issue:4173",
+    "issue:2803",
+    "issue:2936",
+    "issue:4825",
+    "issue:3722",
+    "issue:6142",
+    "issue:2803",
+    "issue:3838",
+    "issue:2936"
+   ],
+   "error": null,
+   "retrieval_s": 0.69,
+   "steps": 2
+  },
+  {
+   "case_id": "c-6305",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-6305",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 5172,
+    "tokens_out": 439,
+    "usd_live": 0.001039,
+    "usd_replayed": 0.0,
+    "latency_s": 7.092,
+    "query_embeddings": 1,
+    "wall_s": 7.969,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The Streamlit app is not functioning correctly behind an HTTP reverse proxy due to websocket errors.",
+    "known_facts": [
+     "Streamlit version: 1.11.1",
+     "Python version: 3.8.12",
+     "Operating System: Debian GNU/Linux 11 (bullseye)",
+     "The app works when accessed directly via IP but fails when accessed through the reverse proxy."
+    ],
+    "hypotheses": [
+     {
+      "text": "Websocket connections are not properly handled by the reverse proxy.",
+      "basis": "documented",
+      "sources": [
+       "S10"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the reverse proxy configuration is correctly set up to handle websocket connections."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Verify the NGINX configuration to ensure it properly supports websocket connections."
+    },
+    "questions": [
+     "Can you provide the NGINX configuration file you are using for the reverse proxy?"
+    ],
+    "user_reply": "It seems that the issue may be related to how the reverse proxy is configured to handle websocket connections. Please check your NGINX configuration to ensure it supports websockets. You can refer to the documentation on deploying Streamlit behind a reverse proxy for guidance on the necessary settings [S8]. If you can share your NGINX configuration, I can help you identify any potential issues.",
+    "maintainer_summary": {
+     "problem": "User is experiencing websocket errors when accessing a Streamlit app behind an HTTP reverse proxy.",
+     "environment": "Streamlit version 1.11.1, running in Docker on Debian GNU/Linux 11.",
+     "checks_done": "User confirmed the app works when accessed directly via IP.",
+     "key_sources": [
+      "S10"
+     ],
+     "open_questions": "What is the exact NGINX configuration being used?",
+     "next_step": "Investigate the user's NGINX configuration for websocket support."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:3741",
+     "type": "issue",
+     "title": "RaspberryPi4 deployed app loading stuck with Nginx Proxy Manager & Docker",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3741",
+     "available_at": "2021-08-30T18:59:09Z",
+     "chunk_id": "9bb11d3e0eb940c6",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:3741",
+     "type": "issue",
+     "title": "RaspberryPi4 deployed app loading stuck with Nginx Proxy Manager & Docker",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/3741",
+     "available_at": "2021-08-30T18:59:09Z",
+     "chunk_id": "4af21504bc203566",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:3270",
+     "type": "issue",
+     "title": "Streamlit behind reverse proxy doesn’t work when you change port",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3270",
+     "available_at": "2021-05-14T14:01:17Z",
+     "chunk_id": "bb9f0ed847b5b5a7",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:3270",
+     "type": "comment",
+     "title": "Streamlit behind reverse proxy doesn’t work when you change port",
+     "heading": "comments 2021-05-14..2021-05-16",
+     "url": "https://github.com/streamlit/streamlit/issues/3270#issuecomment-841528546",
+     "available_at": "2021-05-16T13:16:59Z",
+     "chunk_id": "0ba0a4be48bf6cd0",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:5753",
+     "type": "issue",
+     "title": "Streamlit fails from Docker: MediaFileStorageError",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5753",
+     "available_at": "2022-11-22T20:41:43Z",
+     "chunk_id": "b8fa879c6202a6b0",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:4921",
+     "type": "issue",
+     "title": "UI does not display when serving at port 3000.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4921",
+     "available_at": "2022-07-03T23:03:33Z",
+     "chunk_id": "7d56da1b066b5b84",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:5619",
+     "type": "issue",
+     "title": "The app says \"Please wait...\" forever | streamlit running on via Databricks notebook",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5619",
+     "available_at": "2022-10-28T10:37:29Z",
+     "chunk_id": "e80c99085df70953",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "doc:/knowledge-base/deploy/deploy-streamlit-domain-port-80#solution",
+     "type": "doc",
+     "title": "How do I deploy Streamlit on a domain so it appears to run on a regular port (i.e. port 80)?",
+     "heading": "How do I deploy Streamlit on a domain so it appears to run on a regular port (i.e. port 80)? > Solution",
+     "url": "https://docs.streamlit.io/knowledge-base/deploy/deploy-streamlit-domain-port-80#solution",
+     "available_at": null,
+     "chunk_id": "d8835267137e0a22",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:6162",
+     "type": "issue",
+     "title": "`pages` directory unreadable when running Streamlit in Docker Container",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6162",
+     "available_at": "2023-02-21T19:58:56Z",
+     "chunk_id": "f2d8b008b15d0abb",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "doc:/knowledge-base/deploy/remote-start#symptom-2-the-app-says-please-wait-or-shows-skeleton-elements-forever",
+     "type": "doc",
+     "title": "App is not loading when running remotely",
+     "heading": "App is not loading when running remotely > Symptom #1: The app never loads > Symptom #2: The app says \"Please wait...\" or shows skeleton elements forever",
+     "url": "https://docs.streamlit.io/knowledge-base/deploy/remote-start#symptom-2-the-app-says-please-wait-or-shows-skeleton-elements-forever",
+     "available_at": null,
+     "chunk_id": "45bef09e8f89a0ac",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S8",
+     "S10"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:3741",
+    "issue:3741",
+    "issue:3270",
+    "issue:3270",
+    "issue:5753",
+    "issue:4921",
+    "issue:5619",
+    "doc:/knowledge-base/deploy/deploy-streamlit-domain-port-80#solution",
+    "issue:6162",
+    "doc:/knowledge-base/deploy/remote-start#symptom-2-the-app-says-please-wait-or-shows-skeleton-elements-forever"
+   ],
+   "error": null,
+   "retrieval_s": 0.871,
+   "steps": 2
+  },
+  {
+   "case_id": "c-7076",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-7076",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.333,
+    "cited_recall": 0.333,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [
+     "streamlit_version"
+    ],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3969,
+    "tokens_out": 507,
+    "usd_live": 0.0009,
+    "usd_replayed": 0.0,
+    "latency_s": 7.222,
+    "query_embeddings": 1,
+    "wall_s": 10.783,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The health check endpoint fails to parse correctly in certain cloud environments, causing application refreshes.",
+    "known_facts": [
+     "Streamlit version: 1.24.0",
+     "Python version: 3.8.16",
+     "Operating System: Windows",
+     "Browser: Chrome/Edge"
+    ],
+    "hypotheses": [
+     {
+      "text": "The health check endpoint returns a plain text response instead of JSON, causing parsing errors.",
+      "basis": "documented",
+      "sources": [
+       "S1",
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether upgrading to a newer version of Streamlit resolves the issue.",
+     "If there are specific configurations in the cloud environment that exacerbate the problem."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Consider upgrading to the latest version of Streamlit to see if the issue persists."
+    },
+    "questions": [
+     "Have you tried upgrading to a newer version of Streamlit?",
+     "Can you confirm if the issue occurs in other cloud environments or only in AWS/Azure?"
+    ],
+    "user_reply": "Hi! It seems like you're encountering a known issue with the health check endpoint in certain cloud environments, which can cause your application to refresh unexpectedly. This is likely due to the endpoint returning a plain text response instead of a JSON object, leading to parsing errors in the frontend [S1][S2]. I recommend checking if upgrading to the latest version of Streamlit resolves the issue. Additionally, could you let me know if you've tried upgrading or if the issue occurs in other cloud environments as well?",
+    "maintainer_summary": {
+     "problem": "Health check endpoint fails to parse correctly in certain cloud environments, causing application refreshes.",
+     "environment": "Streamlit version 1.24.0, deployed in AWS/Azure using Docker.",
+     "checks_done": "User has confirmed the issue occurs during long-running applications and has traced the problem to the health check endpoint.",
+     "key_sources": [
+      "S1",
+      "S2"
+     ],
+     "open_questions": "Have there been any updates or fixes in newer versions that address this issue?",
+     "next_step": "Consider investigating the health check endpoint response format and whether it can be modified to return JSON."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:3028",
+     "type": "comment",
+     "title": "Change health check endpoint name",
+     "heading": "comments 2022-05-09..2022-05-09",
+     "url": "https://github.com/streamlit/streamlit/issues/3028#issuecomment-1121398343",
+     "available_at": "2022-05-09T17:49:14Z",
+     "chunk_id": "8de1fa88089de560",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:5666",
+     "type": "issue",
+     "title": "Deploy app with Google App Engine no longer works with 1.14.0",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5666",
+     "available_at": "2022-11-09T01:10:17Z",
+     "chunk_id": "b7f6eb460b7c1821",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:3028",
+     "type": "comment",
+     "title": "Change health check endpoint name",
+     "heading": "comments 2021-10-13..2021-10-13",
+     "url": "https://github.com/streamlit/streamlit/issues/3028#issuecomment-942363002",
+     "available_at": "2021-10-13T15:25:27Z",
+     "chunk_id": "1c5a5d3458f29a7d",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:6142",
+     "type": "issue",
+     "title": "File uploader stops serving file after 30 seconds",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6142",
+     "available_at": "2023-02-16T10:50:44Z",
+     "chunk_id": "bb39d676d3c61e23",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:3722",
+     "type": "issue",
+     "title": "file_uploader is slow when deployed",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3722",
+     "available_at": "2021-08-20T06:58:12Z",
+     "chunk_id": "786e084dcc623fb9",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:3844",
+     "type": "issue",
+     "title": "Streamlit showing still connecting despite enable cors false ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3844",
+     "available_at": "2021-09-24T10:54:36Z",
+     "chunk_id": "5c40ca5c25f16cb8",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:4344",
+     "type": "comment",
+     "title": "Streamlit cloud requests read/write permissions to private repositories when deploying public application",
+     "heading": "comments 2022-08-29..2022-08-29",
+     "url": "https://github.com/streamlit/streamlit/issues/4344#issuecomment-1230073690",
+     "available_at": "2022-08-29T18:18:37Z",
+     "chunk_id": "1bd8c85a57e66dd7",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:3177",
+     "type": "comment",
+     "title": "Runs perfect on localhost, but loads forever when deployed",
+     "heading": "comments 2021-04-26..2021-04-26",
+     "url": "https://github.com/streamlit/streamlit/issues/3177#issuecomment-827056165",
+     "available_at": "2021-04-26T18:31:15Z",
+     "chunk_id": "f9769e120db78baf",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5208",
+     "type": "issue",
+     "title": "Cloud Down?",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5208",
+     "available_at": "2022-08-22T15:38:00Z",
+     "chunk_id": "f286cf64ca5d0cc6",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5666",
+     "type": "comment",
+     "title": "Deploy app with Google App Engine no longer works with 1.14.0",
+     "heading": "comments 2022-12-13..2022-12-13",
+     "url": "https://github.com/streamlit/streamlit/issues/5666#issuecomment-1347604313",
+     "available_at": "2022-12-13T09:42:02Z",
+     "chunk_id": "e2386fda4467a400",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S2"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:3028",
+    "issue:5666",
+    "issue:3028",
+    "issue:6142",
+    "issue:3722",
+    "issue:3844",
+    "issue:4344",
+    "issue:3177",
+    "issue:5208",
+    "issue:5666"
+   ],
+   "error": null,
+   "retrieval_s": 3.551,
+   "steps": 2
+  },
+  {
+   "case_id": "c-7856",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-7856",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "usage_guidance",
+    "outcome_exact": true,
+    "outcome_acceptable": true,
+    "bucket_ok": true,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.0,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 4745,
+    "tokens_out": 646,
+    "usd_live": 0.001099,
+    "usd_replayed": 0.0,
+    "latency_s": 10.719,
+    "query_embeddings": 1,
+    "wall_s": 12.85,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "usage_guidance",
+    "summary": "The WebSocket connection issue is likely due to incorrect handling of the WebSocket upgrade in the Nginx configuration.",
+    "known_facts": [
+     "Streamlit version: 1.29.0",
+     "Python version: 3.10",
+     "Operating System: ubuntu",
+     "Browser: chrome"
+    ],
+    "hypotheses": [
+     {
+      "text": "The Nginx configuration may not be correctly set up to handle WebSocket connections.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the Nginx server is correctly forwarding WebSocket requests to the Streamlit app."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Verify that the Nginx configuration correctly handles WebSocket connections."
+    },
+    "questions": [
+     "Have you confirmed that the WebSocket upgrade headers are being sent correctly?",
+     "Is the Nginx server able to reach the Streamlit service at the specified IP and port?"
+    ],
+    "user_reply": "It seems that the WebSocket connection issue is likely due to the Nginx configuration. You need to ensure that the WebSocket upgrade headers are correctly set. In your Nginx configuration, you have the following lines, which are correct for handling WebSocket connections:\n\n```nginx\nproxy_http_version 1.1;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection \"upgrade\";\n```\n\nHowever, you should also ensure that the location block for `/_stcore/stream/` is correctly set up to handle WebSocket connections. Make sure that the upstream server (your Streamlit app) is reachable from Nginx. You might also want to check if the WebSocket connection is being redirected or blocked by any other rules in your Nginx configuration. If the endpoint is returning a 301 status, it indicates a redirection issue, which could be due to incorrect path handling. Please verify that the paths are correctly configured and that the Streamlit app is accessible directly via the specified IP and port. If you continue to face issues, consider checking the Nginx logs for more detailed error messages.",
+    "maintainer_summary": {
+     "problem": "User is experiencing WebSocket connection failures when using Nginx as a proxy for a Streamlit app deployed in Kubernetes.",
+     "environment": "Streamlit version 1.29.0, Python 3.10, Ubuntu OS, Nginx as a reverse proxy.",
+     "checks_done": "User provided Nginx configuration and logs indicating 301 redirects for WebSocket connections.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "What specific errors are being logged in Nginx when the WebSocket connection fails?",
+     "next_step": "Advise the user to check the Nginx configuration for WebSocket handling and ensure the Streamlit app is reachable."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "doc:/deploy/tutorials/kubernetes#create-a-kubernetes-configuration-file",
+     "type": "doc",
+     "title": "Deploy Streamlit using Kubernetes",
+     "heading": "Deploy Streamlit using Kubernetes > Create a Kubernetes deployment > Create a Kubernetes configuration file",
+     "url": "https://docs.streamlit.io/deploy/tutorials/kubernetes#create-a-kubernetes-configuration-file",
+     "available_at": null,
+     "chunk_id": "d62818805bf2cb89",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "doc:/deploy/tutorials/kubernetes#create-a-kubernetes-deployment",
+     "type": "doc",
+     "title": "Deploy Streamlit using Kubernetes",
+     "heading": "Deploy Streamlit using Kubernetes > Create a Kubernetes deployment",
+     "url": "https://docs.streamlit.io/deploy/tutorials/kubernetes#create-a-kubernetes-deployment",
+     "available_at": null,
+     "chunk_id": "3f3cc7d9a78a0434",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:3741",
+     "type": "issue",
+     "title": "RaspberryPi4 deployed app loading stuck with Nginx Proxy Manager & Docker",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/3741",
+     "available_at": "2021-08-30T18:59:09Z",
+     "chunk_id": "4af21504bc203566",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:3741",
+     "type": "issue",
+     "title": "RaspberryPi4 deployed app loading stuck with Nginx Proxy Manager & Docker",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/3741",
+     "available_at": "2021-08-30T18:59:09Z",
+     "chunk_id": "9bb11d3e0eb940c6",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "doc:/deploy/tutorials/kubernetes#verify-the-deployment",
+     "type": "doc",
+     "title": "Deploy Streamlit using Kubernetes",
+     "heading": "Deploy Streamlit using Kubernetes > Create a Kubernetes deployment > Verify the deployment",
+     "url": "https://docs.streamlit.io/deploy/tutorials/kubernetes#verify-the-deployment",
+     "available_at": null,
+     "chunk_id": "a3628ed336cd30cb",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "doc:/deploy/tutorials/kubernetes#configure-a-google-oauth-client-and-oauth2-proxy",
+     "type": "doc",
+     "title": "Deploy Streamlit using Kubernetes",
+     "heading": "Deploy Streamlit using Kubernetes > Create a Kubernetes deployment > Configure a Google OAuth Client and OAuth2-Proxy",
+     "url": "https://docs.streamlit.io/deploy/tutorials/kubernetes#configure-a-google-oauth-client-and-oauth2-proxy",
+     "available_at": null,
+     "chunk_id": "9ceaba1cc0e45c8f",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:7684",
+     "type": "issue",
+     "title": "Streamlit deployment showing error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7684",
+     "available_at": "2023-11-07T04:38:51Z",
+     "chunk_id": "e332d42a167da5a1",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "doc:/deploy/tutorials/kubernetes#create-a-kubernetes-configuration-file",
+     "type": "doc",
+     "title": "Deploy Streamlit using Kubernetes",
+     "heading": "Deploy Streamlit using Kubernetes > Create a Kubernetes deployment > Create a Kubernetes configuration file (2)",
+     "url": "https://docs.streamlit.io/deploy/tutorials/kubernetes#create-a-kubernetes-configuration-file",
+     "available_at": null,
+     "chunk_id": "961d5e6fe20034ab",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5576",
+     "type": "issue",
+     "title": "Websocket connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5576",
+     "available_at": "2022-10-20T16:38:33Z",
+     "chunk_id": "821aef1c5b7cabca",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:4173",
+     "type": "comment",
+     "title": "st.file_uploader returns HTTP code 400 with invalid session_id when deployed on Kubernetes",
+     "heading": "comments 2022-05-25..2022-05-25",
+     "url": "https://github.com/streamlit/streamlit/issues/4173#issuecomment-1136984339",
+     "available_at": "2022-05-25T09:01:25Z",
+     "chunk_id": "ab29d978a528b121",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "doc:/deploy/tutorials/kubernetes#create-a-kubernetes-configuration-file",
+    "doc:/deploy/tutorials/kubernetes#create-a-kubernetes-deployment",
+    "issue:3741",
+    "issue:3741",
+    "doc:/deploy/tutorials/kubernetes#verify-the-deployment",
+    "doc:/deploy/tutorials/kubernetes#configure-a-google-oauth-client-and-oauth2-proxy",
+    "issue:7684",
+    "doc:/deploy/tutorials/kubernetes#create-a-kubernetes-configuration-file",
+    "issue:5576",
+    "issue:4173"
+   ],
+   "error": null,
+   "retrieval_s": 2.122,
+   "steps": 2
+  },
+  {
+   "case_id": "c-8321",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-8321",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 1.0,
+    "cited_recall": 1.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 3,
+    "redundant_q": [
+     "python_version",
+     "streamlit_version"
+    ],
+    "checklist_q": false,
+    "basis_mislabelled": 0,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 7190,
+    "tokens_out": 1123,
+    "usd_live": 0.001752,
+    "usd_replayed": 0.0,
+    "latency_s": 34.846,
+    "query_embeddings": 1,
+    "wall_s": 36.721,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "After upgrading Streamlit from 1.32.0 to 1.32.2, the app fails in the browser with “Bad message format, Tried to use SessionInfo before it was initialized”, accompanied by a protobuf error trying to set `EnvironmentInfo.streamlit_version` to None.",
+    "known_facts": [
+     "User is on Windows 10, Python 3.11.8, Streamlit 1.32.2.",
+     "The same app worked on Streamlit 1.32.0 and fails after upgrading to 1.32.2.",
+     "Browser popup shows: “Bad message format, Tried to use SessionInfo before it was initialized”.",
+     "Terminal shows repeated TypeError from protobuf: `Cannot set EnvironmentInfo.streamlit_version to None... expected (bytes|str)` and then `Stopping...`.",
+     "During `pip install --upgrade streamlit`, pip emits warnings about invalid/ignored distributions (e.g., skipping streamlit-1.32.0.dist-info due to invalid metadata and ignoring invalid distribution `~treamlit`)."
+    ],
+    "hypotheses": [
+     {
+      "text": "The environment is in a partially broken/contaminated install state after upgrade (invalid/ignored distributions), causing Streamlit internal version environment info to be None and leading to the protobuf message/handshake failure seen in the logs.",
+      "basis": "similar_report",
+      "sources": [
+       "S5"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether `streamlit --version` reports 1.32.2 cleanly from the same environment used to run the app.",
+     "Whether there are multiple Streamlit installs/environments or stale `streamlit`/`~treamlit` artifacts still on disk.",
+     "Whether `python -m streamlit run ...` also fails the same way (vs only the `streamlit` console script)."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Verify and clean the install in the same environment: run `python -c \"import streamlit, sys; print(streamlit.__version__); print(sys.executable)\"` and `streamlit --version`, then remove stale/invalid distributions and reinstall Streamlit 1.32.2 (or temporarily downgrade)."
+    },
+    "questions": [
+     "What do you get from `streamlit --version` and `python -c \"import streamlit; print(streamlit.__version__)\"` when you run them from the same command prompt used for `streamlit run`?",
+     "Does `python -m streamlit run C:\\Users\\<user>\\Documents\\GitHub\\SpineTime_Streamlit\\ST_App\\Main_page.py` reproduce the same error?",
+     "Do you have multiple conda/pip environments, or leftover `~treamlit` / older streamlit dist-info directories in that same site-packages folder?"
+    ],
+    "user_reply": "This looks less like an app-code issue and more like Streamlit failing during session/message initialization after the upgrade. Your logs show a protobuf type error: Streamlit is trying to set `EnvironmentInfo.streamlit_version`, but it is `None` (expected bytes/str), which lines up with the browser error about `SessionInfo` not being initialized.\n\nGiven your pip output also shows invalid/ignored distributions (e.g., “Skipping streamlit-1.32.0.dist-info due to invalid metadata entry” and “Ignoring invalid distribution ~treamlit”), the most likely cause is a broken/contaminated install state.\n\nAction: first confirm you’re running the expected Streamlit from the expected Python environment (same `sys.executable`) using:\n- `streamlit --version`\n- `python -c \"import streamlit, sys; print(streamlit.__version__); print(sys.executable)\"`\n\nThen either (a) reinstall Streamlit cleanly in that environment, or (b) quickly downgrade to restore service (Streamlit docs recommend you can downgrade if the latest upgrade breaks): `pip install --upgrade streamlit==1.0.0` (replace with the last known-good version you’re targeting) [S3].",
+    "maintainer_summary": {
+     "problem": "Upgrading Streamlit 1.32.0 -> 1.32.2 causes browser “Bad message format, Tried to use SessionInfo before it was initialized” and terminal protobuf errors while creating session messages; `EnvironmentInfo.streamlit_version` is None.",
+     "environment": "Windows 10, Python 3.11.8, Streamlit 1.32.2 installed via pip in conda env; Opera browser.",
+     "checks_done": "User provided pip install logs showing invalid/ignored distributions and full traceback indicating protobuf type error on `EnvironmentInfo.streamlit_version`.",
+     "key_sources": [
+      "S3",
+      "S5"
+     ],
+     "open_questions": "Is this reproducible with a clean install (no invalid/ignored distributions)? Does `python -m streamlit` reproduce? What are outputs of `streamlit --version` and `python -c` import version within the same environment?"
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "doc:/knowledge-base/using-streamlit/sanity-checks#check-7-windows-do-you-need-build-tools-for-visual-studio-installed",
+     "type": "doc",
+     "title": "Sanity checks",
+     "heading": "Sanity checks > Check #7 [Windows]: Do you need Build Tools for Visual Studio installed?",
+     "url": "https://docs.streamlit.io/knowledge-base/using-streamlit/sanity-checks#check-7-windows-do-you-need-build-tools-for-visual-studio-installed",
+     "available_at": null,
+     "chunk_id": "6bc40c13a6e20341",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:7858",
+     "type": "issue",
+     "title": "Apply logger config to all logger instances",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7858",
+     "available_at": "2023-12-19T16:44:20Z",
+     "chunk_id": "465cbb011dc954f1",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "doc:/knowledge-base/using-streamlit/sanity-checks#check-5-is-this-a-streamlit-regression",
+     "type": "doc",
+     "title": "Sanity checks",
+     "heading": "Sanity checks > Check #5: Is this a Streamlit regression?",
+     "url": "https://docs.streamlit.io/knowledge-base/using-streamlit/sanity-checks#check-5-is-this-a-streamlit-regression",
+     "available_at": null,
+     "chunk_id": "149876886a4ef92d",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "doc:/get-started/installation/anaconda-distribution#install-streamlit-in-your-environment",
+     "type": "doc",
+     "title": "Install Streamlit using Anaconda Distribution",
+     "heading": "Install Streamlit using Anaconda Distribution > Install Streamlit in your environment",
+     "url": "https://docs.streamlit.io/get-started/installation/anaconda-distribution#install-streamlit-in-your-environment",
+     "available_at": null,
+     "chunk_id": "ce7d4860deaef32c",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:6601",
+     "type": "comment",
+     "title": "Streamlit hello world fails with \"no module named streamlit.cli\"",
+     "heading": "comments 2023-05-08..2023-05-08",
+     "url": "https://github.com/streamlit/streamlit/issues/6601#issuecomment-1538729480",
+     "available_at": "2023-05-08T17:01:15Z",
+     "chunk_id": "1035c1c378f87adf",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "doc:/get-started/installation/command-line#install-streamlit-in-your-environment",
+     "type": "doc",
+     "title": "Install Streamlit using command line",
+     "heading": "Install Streamlit using command line > Install Streamlit in your environment",
+     "url": "https://docs.streamlit.io/get-started/installation/command-line#install-streamlit-in-your-environment",
+     "available_at": null,
+     "chunk_id": "c55459fdd391bc4d",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:7684",
+     "type": "issue",
+     "title": "Streamlit deployment showing error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7684",
+     "available_at": "2023-11-07T04:38:51Z",
+     "chunk_id": "e332d42a167da5a1",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:5619",
+     "type": "issue",
+     "title": "The app says \"Please wait...\" forever | streamlit running on via Databricks notebook",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5619",
+     "available_at": "2022-10-28T10:37:29Z",
+     "chunk_id": "e80c99085df70953",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:4842",
+     "type": "comment",
+     "title": "streamlit run fails for containerized v1.10.0",
+     "heading": "comments 2023-06-17..2023-06-17",
+     "url": "https://github.com/streamlit/streamlit/issues/4842#issuecomment-1595875253",
+     "available_at": "2023-06-17T22:28:02Z",
+     "chunk_id": "f4e0681ccbe43105",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5263",
+     "type": "comment",
+     "title": "please wait ",
+     "heading": "comments 2022-09-01..2022-09-01",
+     "url": "https://github.com/streamlit/streamlit/issues/5263#issuecomment-1234311407",
+     "available_at": "2022-09-01T14:31:28Z",
+     "chunk_id": "f227c110f3ecf195",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S3",
+     "S5"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "doc:/knowledge-base/using-streamlit/sanity-checks#check-7-windows-do-you-need-build-tools-for-visual-studio-installed",
+    "issue:7858",
+    "doc:/knowledge-base/using-streamlit/sanity-checks#check-5-is-this-a-streamlit-regression",
+    "doc:/get-started/installation/anaconda-distribution#install-streamlit-in-your-environment",
+    "issue:6601",
+    "doc:/get-started/installation/command-line#install-streamlit-in-your-environment",
+    "issue:7684",
+    "issue:5619",
+    "issue:4842",
+    "issue:5263"
+   ],
+   "error": null,
+   "retrieval_s": 1.867,
+   "steps": 2
+  },
+  {
+   "case_id": "c-9140",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-9140",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": null,
+    "cited_recall": null,
+    "n_cited": 1,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": true,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3737,
+    "tokens_out": 422,
+    "usd_live": 0.000814,
+    "usd_replayed": 0.0,
+    "latency_s": 10.034,
+    "query_embeddings": 1,
+    "wall_s": 12.06,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is encountering a TypeError related to WebSocketHandler when launching a Streamlit app.",
+    "known_facts": [
+     "Streamlit version: 1.36.0",
+     "Python version: 3.10",
+     "Operating System: Windows 10"
+    ],
+    "hypotheses": [
+     {
+      "text": "This issue is likely related to a known bug in Streamlit version 1.36.0 that affects WebSocket connections.",
+      "basis": "documented",
+      "sources": [
+       "S1"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether the user has tried upgrading to a later version of Streamlit."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Upgrade to the latest version of Streamlit to see if the issue persists."
+    },
+    "questions": [
+     "Have you tried upgrading to a newer version of Streamlit?"
+    ],
+    "user_reply": "It seems that the error you are encountering is related to a known issue with WebSocket connections in Streamlit version 1.36.0, as noted in a recent GitHub issue [S1]. I recommend upgrading to the latest version of Streamlit to see if this resolves the problem. Please let me know if you need assistance with the upgrade process.",
+    "maintainer_summary": {
+     "problem": "User is facing a TypeError related to WebSocketHandler when launching a Streamlit app.",
+     "environment": "Streamlit version 1.36.0, Python 3.10, Windows 10.",
+     "checks_done": "User has provided a reproducible code example and confirmed the error message.",
+     "key_sources": [
+      "S1"
+     ],
+     "open_questions": "User has not confirmed if they have tried upgrading Streamlit.",
+     "next_step": "Suggest the user upgrade to the latest version of Streamlit."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8958",
+     "type": "issue",
+     "title": "Multipage app v2 - reloading a page generates websocket connection error on Windows",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8958",
+     "available_at": "2024-06-22T07:44:57Z",
+     "chunk_id": "8b6ed4d8189fdb79",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:5762",
+     "type": "issue",
+     "title": "Could not open streamlit on my device ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5762",
+     "available_at": "2022-11-24T09:51:02Z",
+     "chunk_id": "37f1673597c07fb5",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:6601",
+     "type": "issue",
+     "title": "Streamlit hello world fails with \"no module named streamlit.cli\"",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6601",
+     "available_at": "2023-04-29T15:41:40Z",
+     "chunk_id": "838c39182e4cbc7a",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:8600",
+     "type": "issue",
+     "title": "`st.runtime.get_instance()._session_mgr.list_active_sessions()[0].client.request.protocol` is http on https pages.",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8600",
+     "available_at": "2024-05-03T03:05:17Z",
+     "chunk_id": "d6c16e3d12c55e75",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:5415",
+     "type": "issue",
+     "title": "ModuleNotFoundError: This app has encountered an error. The original error message is redacted to prevent data leaks. Full error details have been recorded in the logs",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5415",
+     "available_at": "2022-09-24T05:27:20Z",
+     "chunk_id": "eec11413f31b5120",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:6330",
+     "type": "issue",
+     "title": "streamlit-webrtc is not working and it is not due to component",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/6330",
+     "available_at": "2023-03-17T06:51:46Z",
+     "chunk_id": "3bbfee77df30d8d8",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:5576",
+     "type": "issue",
+     "title": "Websocket connection error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5576",
+     "available_at": "2022-10-20T16:38:33Z",
+     "chunk_id": "821aef1c5b7cabca",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:8414",
+     "type": "issue",
+     "title": "Streamlit cloud, deployment issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8414",
+     "available_at": "2024-04-03T12:22:34Z",
+     "chunk_id": "708de5c2e5efc4a2",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:5605",
+     "type": "issue",
+     "title": "Showing Please wait when deploying the app on elastic beanstalk",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5605",
+     "available_at": "2022-10-26T12:52:41Z",
+     "chunk_id": "41fa5ff03040bad7",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:8903",
+     "type": "issue",
+     "title": "Streamlit Cloud is showing workspaces I don't know",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8903",
+     "available_at": "2024-06-14T09:47:07Z",
+     "chunk_id": "1da15a2fa6d528bd",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8958",
+    "issue:5762",
+    "issue:6601",
+    "issue:8600",
+    "issue:5415",
+    "issue:6330",
+    "issue:5576",
+    "issue:8414",
+    "issue:5605",
+    "issue:8903"
+   ],
+   "error": null,
+   "retrieval_s": 2.019,
+   "steps": 2
+  },
+  {
+   "case_id": "c-9176",
+   "bucket": "answerable",
+   "score": {
+    "case_id": "c-9176",
+    "bucket": "answerable",
+    "gold_outcome": "usage_guidance",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": true,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.5,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 1,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 1,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "high",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3518,
+    "tokens_out": 518,
+    "usd_live": 0.000839,
+    "usd_replayed": 0.0,
+    "latency_s": 7.554,
+    "query_embeddings": 1,
+    "wall_s": 8.451,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The user is encountering a deprecation error related to the `global.disableWatchdogWarning` option when deploying their Streamlit app.",
+    "known_facts": [
+     "Streamlit version 1.37 is being used.",
+     "The app works locally but fails to deploy on Posit Connect."
+    ],
+    "hypotheses": [
+     {
+      "text": "The deprecation of `global.disableWatchdogWarning` is causing the error during deployment.",
+      "basis": "documented",
+      "sources": [
+       "S1",
+       "S2"
+      ]
+     }
+    ],
+    "unknowns": [
+     "What specific command or configuration is being used to deploy the app on Posit Connect?"
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Check if you can set the `server.fileWatcherType` option in your config.toml file."
+    },
+    "questions": [
+     "Can you confirm if you have access to modify the config.toml file for your Streamlit app on Posit Connect?"
+    ],
+    "user_reply": "The error you're encountering is due to the deprecation of the `global.disableWatchdogWarning` option in Streamlit version 1.29.0 and later. Since you're using version 1.37, this option is no longer supported, and you should not use it in your deployment configuration. Instead, you can set the `server.fileWatcherType` option to `none` in your config.toml file to suppress file watching entirely. Please try adding the following to your config.toml:\n\n```toml\n[server]\nfileWatcherType = \"none\"\n```\nThis should help resolve the deprecation error you're seeing. If you have any further questions or issues, feel free to ask! [S1][S2]",
+    "maintainer_summary": {
+     "problem": "User is facing a deprecation error related to `global.disableWatchdogWarning` during deployment.",
+     "environment": "Streamlit version 1.37 deployed on Posit Connect.",
+     "checks_done": "User confirmed the app works locally but fails on deployment.",
+     "key_sources": [
+      "S1",
+      "S2"
+     ],
+     "open_questions": "What specific command or configuration is being used to deploy the app on Posit Connect?",
+     "next_step": "Suggest checking if the user can modify the config.toml file to set `server.fileWatcherType`."
+    },
+    "confidence": "high"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:7999",
+     "type": "comment",
+     "title": "--global.disableWatchdogWarning deprecated with no other way to suppress watchdog warning",
+     "heading": "comments 2024-07-28..2024-07-28",
+     "url": "https://github.com/streamlit/streamlit/issues/7999#issuecomment-2254662121",
+     "available_at": "2024-07-28T21:57:43Z",
+     "chunk_id": "a75b0971028f7860",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:7999",
+     "type": "issue",
+     "title": "--global.disableWatchdogWarning deprecated with no other way to suppress watchdog warning",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7999",
+     "available_at": "2024-01-22T21:49:01Z",
+     "chunk_id": "ffea298fa17b54b6",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:7818",
+     "type": "issue",
+     "title": "BUG: Streamlit v1.29.0 throws deprecation errors immediately after fresh installation",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7818",
+     "available_at": "2023-12-08T02:14:09Z",
+     "chunk_id": "fbccd36f6f344596",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:8414",
+     "type": "issue",
+     "title": "Streamlit cloud, deployment issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8414",
+     "available_at": "2024-04-03T12:22:34Z",
+     "chunk_id": "708de5c2e5efc4a2",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:7818",
+     "type": "issue",
+     "title": "BUG: Streamlit v1.29.0 throws deprecation errors immediately after fresh installation",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/7818",
+     "available_at": "2023-12-08T02:14:09Z",
+     "chunk_id": "957a0bd9207f68ca",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:8936",
+     "type": "issue",
+     "title": "Error occured: module 'streamlit' has no attribute 'column_config'",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8936",
+     "available_at": "2024-06-19T04:23:12Z",
+     "chunk_id": "087ddfbc0cf08a90",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:7684",
+     "type": "issue",
+     "title": "Streamlit deployment showing error",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7684",
+     "available_at": "2023-11-07T04:38:51Z",
+     "chunk_id": "e332d42a167da5a1",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:5605",
+     "type": "issue",
+     "title": "Showing Please wait when deploying the app on elastic beanstalk",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5605",
+     "available_at": "2022-10-26T12:52:41Z",
+     "chunk_id": "41fa5ff03040bad7",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:7289",
+     "type": "issue",
+     "title": "libGL.so.1 not installed for Streamlit Server",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/7289",
+     "available_at": "2023-09-07T20:21:08Z",
+     "chunk_id": "f55e0ad9de05c2c8",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:6155",
+     "type": "issue",
+     "title": "New Streamlit Cloud apps no longer functioning",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/6155",
+     "available_at": "2023-02-20T04:29:55Z",
+     "chunk_id": "b52e249b784a7155",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S1",
+     "S2"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:7999",
+    "issue:7999",
+    "issue:7818",
+    "issue:8414",
+    "issue:7818",
+    "issue:8936",
+    "issue:7684",
+    "issue:5605",
+    "issue:7289",
+    "issue:6155"
+   ],
+   "error": null,
+   "retrieval_s": 0.892,
+   "steps": 2
+  },
+  {
+   "case_id": "c-9680",
+   "bucket": "ambiguous",
+   "score": {
+    "case_id": "c-9680",
+    "bucket": "ambiguous",
+    "gold_outcome": "info_request",
+    "outcome": "known_issue",
+    "outcome_exact": false,
+    "outcome_acceptable": false,
+    "bucket_ok": false,
+    "retrieval_recall": 0.5,
+    "cited_recall": 0.0,
+    "n_cited": 2,
+    "invalid_citations": 0,
+    "contract_problems": [],
+    "n_questions": 2,
+    "redundant_q": [],
+    "checklist_q": false,
+    "basis_mislabelled": 1,
+    "n_hypotheses": 1,
+    "duplicate_citations": 0,
+    "unsupported_upgrade": false,
+    "n_sources_shown": 10,
+    "confidence": "medium",
+    "llm_proposed": null,
+    "error": null
+   },
+   "stats": {
+    "live_calls": 1,
+    "replayed_calls": 0,
+    "tokens_in": 3609,
+    "tokens_out": 520,
+    "usd_live": 0.000853,
+    "usd_replayed": 0.0,
+    "latency_s": 8.966,
+    "query_embeddings": 1,
+    "wall_s": 10.271,
+    "steps": 2
+   },
+   "output": {
+    "outcome": "known_issue",
+    "summary": "The Streamlit app is automatically reloading when deployed in a Kubernetes cluster, causing issues with rendering UI elements.",
+    "known_facts": [
+     "Streamlit version: 1.39",
+     "Python version: 3.9",
+     "Operating System: RHEL",
+     "Browser: Chrome"
+    ],
+    "hypotheses": [
+     {
+      "text": "The issue may be related to network latency or proxy settings affecting the app's ability to maintain a stable connection.",
+      "basis": "documented",
+      "sources": [
+       "S2",
+       "S4"
+      ]
+     }
+    ],
+    "unknowns": [
+     "Whether there are specific network configurations or proxy settings in the Kubernetes environment that could be causing the issue.",
+     "If there are any specific logs or error messages that could provide more insight into the automatic reload behavior."
+    ],
+    "next_step": {
+     "type": "check",
+     "text": "Check the network configurations and proxy settings in your Kubernetes deployment."
+    },
+    "questions": [
+     "Have you checked the network configurations and proxy settings in your Kubernetes environment?",
+     "Are there any specific error messages or logs that appear when the UI fails to render?"
+    ],
+    "user_reply": "It seems that your Streamlit app is experiencing automatic reloads when deployed in a Kubernetes cluster, which can be linked to network latency or proxy settings affecting the connection stability. I recommend checking your network configurations and proxy settings in the Kubernetes deployment, as these can often lead to such issues. Additionally, if you have any specific logs or error messages, they could provide further insight into the problem. This behavior has been noted in other deployments as well, particularly when using custom components or when network conditions are not optimal [S2], [S4].",
+    "maintainer_summary": {
+     "problem": "Streamlit app is auto-reloading in a Kubernetes deployment, causing UI rendering issues.",
+     "environment": "Kubernetes cluster, Streamlit version 1.39, RHEL OS.",
+     "checks_done": "User has confirmed the app works locally but fails in the deployed environment.",
+     "key_sources": [
+      "S2",
+      "S4"
+     ],
+     "open_questions": "What specific network configurations or proxy settings are in place? Are there any error messages in the logs?",
+     "next_step": "Investigate network configurations and proxy settings in the Kubernetes deployment."
+    },
+    "confidence": "medium"
+   },
+   "sources": {
+    "S1": {
+     "source_id": "issue:8188",
+     "type": "issue",
+     "title": "Unnecessary failover on /_stcore/stream",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8188",
+     "available_at": "2024-02-21T20:56:45Z",
+     "chunk_id": "e83108487da8b08f",
+     "rank": 1
+    },
+    "S2": {
+     "source_id": "issue:9465",
+     "type": "issue",
+     "title": "Multiple custom Streamlit components fail to load in deployed environments",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9465",
+     "available_at": "2024-09-14T11:19:38Z",
+     "chunk_id": "e803d28ede3f757f",
+     "rank": 2
+    },
+    "S3": {
+     "source_id": "issue:8973",
+     "type": "issue",
+     "title": "Issue with Streamlit 1.35.0 (latest stable version) in Azure App Service Deployment",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8973",
+     "available_at": "2024-06-24T21:50:55Z",
+     "chunk_id": "3de27644ac9b9300",
+     "rank": 3
+    },
+    "S4": {
+     "source_id": "issue:9503",
+     "type": "issue",
+     "title": "Streamlit app autorefresh or autoreload ",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9503",
+     "available_at": "2024-09-19T11:29:38Z",
+     "chunk_id": "22ef217bb4b22e8f",
+     "rank": 4
+    },
+    "S5": {
+     "source_id": "issue:9040",
+     "type": "issue",
+     "title": "Network Issue (cannot load Streamlit frontend code) on AWS deployed apps",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/9040",
+     "available_at": "2024-07-04T12:46:49Z",
+     "chunk_id": "7e7c5c8caf8c6962",
+     "rank": 5
+    },
+    "S6": {
+     "source_id": "issue:8955",
+     "type": "issue",
+     "title": "component fails to register in azure web app or similar",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8955",
+     "available_at": "2024-06-21T17:40:00Z",
+     "chunk_id": "cbedf1a69ceb1e33",
+     "rank": 6
+    },
+    "S7": {
+     "source_id": "issue:4173",
+     "type": "issue",
+     "title": "st.file_uploader returns HTTP code 400 with invalid session_id when deployed on Kubernetes",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/4173",
+     "available_at": "2021-12-14T12:00:08Z",
+     "chunk_id": "5dea0dfa0599422f",
+     "rank": 7
+    },
+    "S8": {
+     "source_id": "issue:9465",
+     "type": "issue",
+     "title": "Multiple custom Streamlit components fail to load in deployed environments",
+     "heading": "body part 2",
+     "url": "https://github.com/streamlit/streamlit/issues/9465",
+     "available_at": "2024-09-14T11:19:38Z",
+     "chunk_id": "6ff5438d16527140",
+     "rank": 8
+    },
+    "S9": {
+     "source_id": "issue:8414",
+     "type": "issue",
+     "title": "Streamlit cloud, deployment issue",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/8414",
+     "available_at": "2024-04-03T12:22:34Z",
+     "chunk_id": "708de5c2e5efc4a2",
+     "rank": 9
+    },
+    "S10": {
+     "source_id": "issue:5605",
+     "type": "issue",
+     "title": "Showing Please wait when deploying the app on elastic beanstalk",
+     "heading": "body part 1",
+     "url": "https://github.com/streamlit/streamlit/issues/5605",
+     "available_at": "2022-10-26T12:52:41Z",
+     "chunk_id": "41fa5ff03040bad7",
+     "rank": 10
+    }
+   },
+   "check": {
+    "problems": [],
+    "cited": [
+     "S2",
+     "S4"
+    ],
+    "invalid_citations": []
+   },
+   "retrieved": [
+    "issue:8188",
+    "issue:9465",
+    "issue:8973",
+    "issue:9503",
+    "issue:9040",
+    "issue:8955",
+    "issue:4173",
+    "issue:9465",
+    "issue:8414",
+    "issue:5605"
+   ],
+   "error": null,
+   "retrieval_s": 1.297,
+   "steps": 2
+  }
+ ]
+}
